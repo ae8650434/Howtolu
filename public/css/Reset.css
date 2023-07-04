@@ -1,0 +1,222 @@
+body{
+  background-color: #e8e8e8;
+}
+
+/* 忘記密碼CSS */
+
+.head {
+  background-color: blue; 
+  height: 100px;
+  margin: 0;
+}
+
+.short {
+  margin-left: 8%; 
+  margin-right: 8%;
+}
+
+.reset_rule {
+  color: #ff7064;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 28px;
+  line-height: 45px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reset_label {
+  font-size: 36px;
+  width: 180px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.reset_label_first {
+  margin-left: 37px;
+}
+
+.reset_input {
+  width: 500px;
+  height: 60px;
+  text-align: left;
+  font-size: 25px;
+  background-color: #ffffff;
+}
+
+.reset_input_email {
+  width: 500px;
+  height: 60px;
+  text-align: left;
+  margin-right: 30px;
+  text-align: left;
+  font-size: 25px;
+  background-color: #ffffff;
+}
+
+.reset_button {
+  font-size: 24px;
+  background-color: #5e9b44;
+  border-radius: 10px;
+  border: 0;
+  width: 180px;
+  height: 60px;
+  color: #ffffff;
+  /* margin-left: 33px; */
+}
+
+.reset_first {
+  text-align: left;
+  width: 790px;
+  display: flex;
+  align-items: center;
+  margin-left: 19%;
+  margin-right: 20%;
+  margin-bottom: 1%;
+}
+
+.revise_login {
+  margin-top: 5%;
+  width: 100%;
+  /* background-color: aqua; */
+  margin-bottom: 15%;
+}
+
+/* 修改密碼頁CSS */
+.revise_from_title {
+  font-size: 32px;
+  text-align: right;
+  width: 200px;
+}
+
+.revise_first {
+  text-align: left;
+  width: 790px;
+  display: flex;
+  align-items: center;
+  margin-left: 18%;
+  margin-right: 20%;
+  margin-bottom: 1%;
+}
+
+.revise_rule {
+  color: #ff7064;
+  margin-left: 20%;
+  margin-right: 30%;
+  font-size: 28px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 700px;
+}
+
+.resive_go {
+  margin-left: 20px;
+  background-color: #5e9b44;
+  font-size: 28px;
+  color: #ffffff;
+  border: 0;
+  width: 250px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+.resive_from_send {
+  width: 800px;
+  text-align: center;
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+#small-title {
+  text-align: center;
+  font-size: 64px;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.send {
+  text-align: center;
+  display: inline;
+  width: 50%;
+}
+
+.go {
+  font-size: 40px;
+  width: 250px;
+  height: 90px;
+  background-color: #5e9b44;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  /* margin-left: 27%; */
+}
+
+@media screen and (max-width:400px) {
+  #small-title {
+    font-size: 36px;
+    margin-top: 100px;
+  }
+
+  .reset_rule {
+    font-size: 20px;
+    line-height: 28px;
+    /* border: 2px solid orange; */
+    justify-content: center;
+  }
+
+  .short {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .reset_label{
+    font-size: 20px;
+    margin-right: 20px;
+    text-align: left;
+   }
+
+  .reset_label_first {
+    margin-left: 0;
+  }
+
+  .reset_first {
+    width: 350px;
+    margin-left: 0;
+    /* border: 2px solid orange; */
+  }
+
+  .reset_input_email {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .reset_button {
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+
+  }
+
+  .reset_input {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    margin-left: -110px;
+  }
+
+  .go {
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  /* body {
+    background-color: red;
+    border: 2px solid orange;
+  } */
+}

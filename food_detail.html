@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Howto露-食材</title>
+    <link rel="stylesheet" href="./public/css/food_detail.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="nav_bar">
+        <a href="/index.html"> <img id="logo" src="./public/image/logo-removebg-preview.png" alt=""></a>
+        <div id="selnav">
+            <ul id="navul">
+                <a href="./index.html">
+                    <li class="tili">首頁</li>
+                </a>
+                <a class="nava" href="">
+                    <li class="tili">所有商品
+                        <ul>
+                            <a href="./product.html">
+                                <li class="conli">設備出租</li>
+                            </a>
+                            <a href="./product2.html">
+                                <li class="conli">食材購買</li>
+                            </a>
+                        </ul>
+                    </li>
+                </a>
+                <a class="nava" href="">
+                    <li class="tili">租借內容
+                        <ul>
+                            <a href="./process.html">
+                                <li class="conli">租借流程</li>
+                            </a>
+                            <a href="./rule.html">
+                                <li class="conli">租借規範</li>
+                            </a>
+
+                        </ul>
+                    </li>
+                </a>
+
+                <a href="">
+                    <li class="tili">表單訂購
+                        <ul>
+                            <a href="">
+                                <li class="conli">表單上傳</li>
+                            </a>
+                            <li class="conli">表單填寫
+                                <ul id="a">
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBpC90D4LAPmwi5iGMOShmuA6D1Lj0IvsvNUr7HUmzzhWzrQ/viewform?usp=sharing">
+                                        <li>Google表單</li>
+                                    </a>
+                                    <a href="./public/image/logo-removebg-preview.png" download>
+                                        <li>Excel表單下載</li>
+                                    </a>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                </a>
+
+                <li class="tili"><a href="">會員專區
+                        <ul>
+                            <a href="./Info.html">
+                                <li class="conli">會員資料</li>
+                            </a>
+                            <a href="./Order.html">
+                                <li class="conli">訂單查詢</li>
+                            </a>
+
+                        </ul>
+                </li></a>
+
+            </ul>
+        </div>
+        <div id="nav_icon">
+            <a href="./cart.html"> <button id="navcarbtn"></button></a>
+            <button id="navmembtn"></button>
+            <ul id="memul" class="memul">
+                <a href="./Login.html">
+                    <li>會員登入</li>
+                </a>
+                <a href="./Register.html">
+                    <li>註冊會員</li>
+                </a>
+            </ul>
+
+        </div>
+    </div>
+    <div class="categories_food">
+        <p>商品分類</p>
+        <ul class="categoriesUl_food">
+            <li><a href="#">套餐</a>
+                <ul>
+                    <li><a href="">賀呷套餐</a></li>
+                    <li><a href="">滿漢全席</a></li>
+                    <li><a href="">雙人套餐</a></li>
+                    <li><a href="">素食套餐</a></li>
+                    <li><a href="">快樂分享餐</a></li>
+                </ul>
+            </li>
+            <li><a href="">單點</a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="image_food">
+            <a target="_blank" href="./public/image/比利時CanvasCamp鐘型帳(2~6人).png">
+                <img src="./public/image/比利時CanvasCamp鐘型帳(2~6人).png"></a>
+        </div>
+        <div class="commodityall_food">
+            <div class="commodity_food">
+                <p>雙人套餐</p>
+                <p>
+                    <span>NT$</span>
+                    <span>1,300</span>
+                    <span> — 1份</span>
+                </p>
+                <p>注意事項</p>
+                <ul>
+                    <li>食材皆採「低溫冷凍」宅配出貨，須注意以下特別狀況:</li>
+                    <li>收到食材請以「冷凍」方式保存，以維持生鮮產品的新鮮度。</li>
+                    <li>生鮮蔬菜類皆有「凍熟」或「凍傷」的可能，若有疑慮請斟酌考量再下訂單。</li>
+                    <li>因應環保，所以不提供餐具。</li>
+                </ul>
+                <p class="warn">*食材之背景擺設僅供參考。</p>
+            </div>
+            <div class="myform_food">
+                <form id='myform_food' method='POST' action='#'>
+                    <label for="">數量：</label>
+                    <input type='button' value='-' class='qtyminus' field='quantity' />
+                    <input type='button' name='quantity' value='0' class='qty' />
+                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                    <input type='submit' value='選購' class='reserve' />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="food_information">
+        <p>套餐明細</p>
+        <div class="image_food">
+                <img src="./public/image/比利時CanvasCamp鐘型帳(2~6人).png">
+        </div>
+    </div>
+    <div class="informationImg_food">
+        <p>經常一起選購商品：</p>
+        <div>
+            <div class="container_food">
+                <a href=""> <img src="./public/image/Barebones LED手提鐵路復古營燈(白).jpg" alt="Avatar"
+                        class="cimage">
+                    <div class="overlay_food">
+                        <div class="imgtext_food">
+                            <p>黑胡椒牛小排</p>
+                            <p>NT$400</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="container_food">
+                <a href=""><img src="./public/image/DOD 來日天幕 TT5-631-TN.png" alt="Avatar" class="cimage">
+                    <div class="overlay_food">
+                        <div class="imgtext_food">
+                            <p>筊白筍</p>
+                            <p>NT$150 </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="container_food">
+                <a href=""><img src="./public/image/KZM KAZMI 可調式高背摺疊椅(沙色).jpg" alt="Avatar" class="cimage">
+                    <div class="overlay_food">
+                        <div class="imgtext_food">
+                            <p>枸杞絲瓜鋁盒</p>
+                            <p>NT$90</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- <br><br><br> -->
+    <div class="categories_min_food">
+        <p>商品分類</p>
+        <ul class="categoriesUl_min_food">
+            <li><a href="#">套餐</a>
+                <ul>
+                    <li><a href="">賀呷套餐</a></li>
+                    <li><a href="">滿漢全席</a></li>
+                    <li><a href="">雙人套餐</a></li>
+                    <li><a href="">素食套餐</a></li>
+                    <li><a href="">快樂分享餐</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="./public/js/food_detail.js"></script>
+    <script src="/public/js/nav.js"></script>
+</body>
+<footer>
+    
+</footer>
+</html>

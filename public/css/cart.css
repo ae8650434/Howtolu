@@ -1,0 +1,154 @@
+#imgw {
+    width: 265px;
+    
+}
+#dateSize {
+    order: 1;
+    font-size: 36px;
+}
+
+#numberstyle {
+    font-size: 36px;
+    width: 50px;
+    flex: 2;
+}
+
+#buy {
+    border-radius: 20px;
+    background-color: #DBAF74;
+    border: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+    cursor: pointer;
+/
+}
+
+#buy span {
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#buy span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#buy:hover span {
+    padding-right: 20px;
+}
+
+#buy:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+#buy:hover{
+    background-color: #5bb873;
+}
+
+#null{
+    background-color: #ffffff;
+    width: 70%;
+}
+
+#shopping{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    /* height: 800px; */
+}
+/* 總計跟結帳 */
+#shopping2{
+    display: flex;
+    justify-content: space-around; 
+}
+
+#shopping3{
+    border: 1px solid black;
+    border-left: none; 
+    border-right: none;
+    border-top: none; 
+    display: inline-block; 
+    width: 79.4%;
+}
+
+#magnifier {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
+    margin: 0;
+    display: none;
+}
+
+#nullshopping {
+    border-radius: 20px;
+    background-color: #DBAF74;
+    border: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 34px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#nullshopping span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    
+}
+
+#nullshopping span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#nullshopping:hover span {
+    padding-right: 25px;
+}
+
+#nullshopping:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+#nullshopping:hover{
+    background-color: #5bb873;
+}
+
+#imgRubbish{
+    width: 20px;
+    height: 25px;
+}
+
+#process{
+    font-size: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#moneySize{
+    font-size: 36px;
+    flex: 9;
+}
+
+#butRubbish{
+    flex: 1;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+}

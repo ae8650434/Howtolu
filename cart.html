@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./public/css/cart.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="./public/css/nav.css">
+    <link rel="stylesheet" href="./public/css/footer.css">
+    <script src="./public/js/cart.js"></script>
+    <title>購物車</title>
+
+</head>
+<!-- style="border: 1px solid black ;" -->
+
+<body style="background-color: #E8E8E8;">
+<!--   導覽列   -->
+<div id="nav_bar">
+    <a href="/index.html"> <img id="logo" src="./public/image/logo-removebg-preview.png" alt=""></a>
+    <div id="selnav">
+        <ul id="navul">
+            <a href="./index.html">
+                <li class="tili">首頁</li>
+            </a>
+            <a class="nava" href="">
+                <li class="tili">所有商品
+                    <ul>
+                        <a href="./product.html">
+                            <li class="conli">設備出租</li>
+                        </a>
+                        <a href="./product2.html">
+                            <li class="conli">食材購買</li>
+                        </a>
+                    </ul>
+                </li>
+            </a>
+            <a class="nava" href="">
+                <li class="tili">租借內容
+                    <ul>
+                        <a href="./process.html">
+                            <li class="conli">租借流程</li>
+                        </a>
+                        <a href="./rule.html">
+                            <li class="conli">租借規範</li>
+                        </a>
+
+                    </ul>
+                </li>
+            </a>
+
+            <a href="">
+                <li class="tili">表單訂購
+                    <ul>
+                        <a href="">
+                            <li class="conli">表單上傳</li>
+                        </a>
+                        <li class="conli">表單填寫
+                            <ul id="a">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBpC90D4LAPmwi5iGMOShmuA6D1Lj0IvsvNUr7HUmzzhWzrQ/viewform?usp=sharing">
+                                    <li>Google表單</li>
+                                </a>
+                                <a href="./public/image/logo-removebg-preview.png" download>
+                                    <li>Excel表單下載</li>
+                                </a>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </a>
+
+            <li class="tili"><a href="">會員專區
+                    <ul>
+                        <a href="./Info.html">
+                            <li class="conli">會員資料</li>
+                        </a>
+                        <a href="./Order.html">
+                            <li class="conli">訂單查詢</li>
+                        </a>
+
+                    </ul>
+            </li></a>
+
+        </ul>
+    </div>
+    <div id="nav_icon">
+        <a href="./cart.html"> <button id="navcarbtn"></button></a>
+        <button id="navmembtn"></button>
+        <ul id="memul" class="memul">
+            <a href="./Login.html">
+                <li>會員登入</li>
+            </a>
+            <a href="./Register.html">
+                <li>註冊會員</li>
+            </a>
+        </ul>
+
+    </div>
+</div>
+    </div><br><br><br>
+
+    
+<!--   上傳excel   -->
+        <div style="font-size: 40px;">
+            上傳檔案(excel)：<input style="font-size: 20px;" type="file">
+            <input style="font-size: 25px;" type="submit" value="上傳">
+        </div><br><br><br><br><br>
+
+<div id="process">
+    <span style="color: orange;" id="process1"><b><ins>1.購物車確認</ins></b></span> <b>></b>
+    <span style="color: grey;" id="process2"><b><ins>2.確認訂單資訊</ins></b></span> <b>></b>
+    <span style="color: grey;" id="process3"><b><ins>3.訂單完成</ins></b></span>
+</div><br><br><br><br><br>
+
+<!--   放大鏡   -->
+        <div id="magnifier">
+            <img style="width: 220px;" src="./public/image/magnifier.png" alt="">
+            <a href="./product.html"><button id="nullshopping"><span>前往商城逛逛</span></button></a>
+        </div>
+<!--   商品加入購物車後的樣子   -->
+        <div id="shopping">
+            <div id="null">
+
+                <div id="text1">
+                    <img id="imgw" src="./public/image/Snow Peak 卡式瓦斯爐.jpg" alt="">
+                    <div id="shopping3">
+                        <span style="font-size: 40px;"><b>Snow Peak 卡式瓦斯爐</b></span>
+                        <br><br><br><br>
+                        <span><b id="dateSize">可租借天數:1995/10/14 - 1995/10/16 共3日</b></span>
+                        <p></p>
+                        <div style="display: flex;">
+                            <b id="moneySize">金額:35000</b>
+                            <input id="numberstyle" type="number" value="1" min="1">
+                            <button id="butRubbish"
+                                onclick="del(1)"><img id="imgRubbish" src="./public/image/Rubbish.png" alt=""></button>
+                        </div><br><br>
+                    </div>
+                </div>
+
+                <div id="text2">
+                    <img id="imgw" src="./public/image/筊白筍.jpeg" alt="">
+                    <div id="shopping3">
+                        <span style="font-size: 40px;"><b>筊白筍</b></span>
+                        <br><br><br><br><br>
+                        <div>
+                            <div style="display: flex;">
+                                <b id="moneySize">金額:35000</b>
+                                <input id="numberstyle" type="number" value="1" min="1">
+                                <button id="butRubbish"
+                                    onclick="del(2)"><img id="imgRubbish" src="./public/image/Rubbish.png" alt=""></button>
+                            </div>
+                        </div><br><br>
+                    </div>
+                </div>
+
+                <div id="text3">
+                    <img id="imgw" src="./public/image/Snow Peak Amenity Dome 寢室帳 L(SDE-003R)2-6人.png" alt="">
+                    <div id="shopping3">
+                        <span style="font-size: 40px;"><b>Snow Peak Amenity Dome 寢室帳 L(SDE-003R)2-6人</b></span>
+                        <br><br><br><br>
+                        <span><b id="dateSize">可租借天數:1995/10/14 - 1995/10/16 共3日</b></span>
+                        <p></p>
+                        <div style="display: flex;">
+                            <b id="moneySize">金額:35000</b>
+                            <input id="numberstyle" type="number" value="1" min="1">
+                            <button id="butRubbish"
+                                onclick="del(3)"><img id="imgRubbish" src="./public/image/Rubbish.png" alt=""></button>
+                        </div><br><br>
+                    </div>
+                </div>
+
+                <div id="text4">
+                    <img id="imgw" src="./public/image/黑胡椒牛小排.png" alt="">
+                    <div id="shopping3">
+                        <span style="font-size: 40px;"><b>黑胡椒牛小排</b></span>
+                        <br><br><br><br><br>
+                        <div>
+                            <div style="display: flex;">
+                                <b id="moneySize">金額:35000</b>
+                                <input id="numberstyle" type="number" value="1" min="1">
+                                <button id="butRubbish"
+                                    onclick="del(4)"><img id="imgRubbish" src="./public/image/Rubbish.png" alt=""></button>
+                            </div><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+<!--   總計跟前往結帳   -->
+    <div id="shopping2">
+        <span style="font-size: 40px;">總計：NT100000</span>
+        <a href="./index.html"><button onclick="processBuy()" id="buy"><span>前往結帳</span></button></a>
+    </div><br><br><br>
+
+    <div id="footerdiv">
+        <br><br>
+        <p>店家資訊：台中市南屯區公益路二段51號</p>
+        <p>電話：(04)2326-5860</p>
+        <p>營業時間：09：00 ～ 21：00</p>
+        <a href="/privacy.html">
+            <p>隱私條款</p>
+        </a>
+        <br>
+        <br>
+    </div>
+    <script src="./public/js/nav.js"></script>
+
+
+</body>
+
+</html>

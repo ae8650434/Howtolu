@@ -1,0 +1,71 @@
+body{
+    background-color: #E8E8E8;
+}
+#rule *{
+    box-sizing: border-box;
+    // outline: 1px solid red;
+}
+#rule{
+    //卡片標題的文字大小
+    $card--header--fz:32px;
+    //卡片標題部分，左右的padding分別要是多少
+    $card--header--paddingX:50px;
+    //卡片標題部分，上下的padding分別要是多少
+    $card--header--paddingY:20px;
+    //卡片內文的文字大小
+    $card--body--fz:30px;
+    //卡片的內文部分，左右的padding分別要是多少
+    $card--body--paddingX:100px;
+    //卡片內文部分，上下padding分別是多少
+    $card--body--paddingY:30px;
+    
+    //卡片內文，每個p中間（注意，一定要用p來寫，否則會吃不到css)的間隔要多少px?
+    $card--body--p--gap:25px;
+    
+    
+    margin-top: 200px;
+    p{
+        margin: 0;
+        padding: 0;
+    }
+    .text-wraning{
+        color:#fa0;
+    }
+    .container{
+        max-width: 1200px;
+        margin:auto;
+    }
+    .card{
+        + .card{
+            margin-top: 100px;
+        }
+        .card--header{
+            background-color: #ffffe0;
+            border-radius: 10px 10px 0px 0px;
+            line-height: 1.5;
+            text-align: center;
+            font-size:$card--header--fz ;
+            padding: $card--header--paddingY $card--header--paddingX;
+        }
+        .card--body{
+            font-size: $card--body--fz;
+            // text-align: center;
+            border-radius: 0px 0px 10px 10px;
+            background-color: #ffffff;
+            padding: $card--body--paddingY $card--body--paddingX;
+            p+p{
+                margin-top:$card--body--p--gap ;
+            }
+            
+        }
+    }
+    h1{
+        font-size: 38px;
+        text-align: center;
+    }
+    hr{
+        height: 5px;
+        background-color: #000;
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,145 @@
+body {
+  background-color: #e8e8e8;
+}
+
+/* 修改密碼頁CSS */
+.head {
+  background-color: blue;
+  height: 100px;
+  margin: 0;
+}
+
+.short {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+.revise_from_title {
+  font-size: 32px;
+  text-align: right;
+  width: 200px;
+}
+
+.revise_first {
+  text-align: left;
+  width: 790px;
+  display: flex;
+  align-items: center;
+  margin-left: 18%;
+  margin-right: 20%;
+  margin-bottom: 1%;
+}
+
+.revise_rule {
+  color: #ff7064;
+  margin-left: 20%;
+  margin-right: 30%;
+  font-size: 28px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 700px;
+}
+
+.resive_go {
+  margin-left: 20px;
+  background-color: #5e9b44;
+  font-size: 28px;
+  color: #ffffff;
+  border: 0;
+  width: 250px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+.resive_from_send {
+  width: 800px;
+  text-align: center;
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+.register_from_input {
+  width: 500px;
+  height: 60px;
+  margin-left: 3%;
+  background-color: #ffffff;
+  font-size: 25px;
+}
+
+.send {
+  text-align: center;
+  display: inline;
+  width: 50%;
+}
+
+#small-title {
+  text-align: center;
+  font-size: 64px;
+  width: 100%;
+  margin-top: 5%;
+}
+.eye {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  #small-title {
+    font-size: 36px;
+    margin-top: 100px;
+  }
+
+  .revise_rule {
+    font-size: 20px;
+    margin-left: 30px;
+    width: 300px;
+    justify-content: center;
+    line-height: 28px;
+    /* border: 2px solid orange; */
+  }
+
+  .short {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .revise_from_title {
+    font-size: 16px;
+    width: 100px;
+  }
+
+  .register_from_input {
+    width: 200px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .revise_first {
+    margin-left: 0;
+    width: 350px;
+  }
+
+  .eye {
+    width: 30px;
+    height: 30px;
+  }
+
+  .resive_from_send {
+    width: 200px;
+    margin-left: 65px;
+  }
+
+  .resive_go {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  /* body {
+    background-color: red;
+    border: 2px solid orange;
+  } */
+}

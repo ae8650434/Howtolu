@@ -1,0 +1,233 @@
+body {
+  background-color: #e8e8e8;
+}
+
+/* login頁面的CSS */
+.short {
+  margin-left: 8%; 
+  margin-right: 8%;
+}
+
+.head {
+  background-color: blue; 
+  height: 100px;
+  margin: 0;
+}
+
+#rule {
+  color: #ff7064;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 28px;
+  line-height: 45px;
+  text-align: justify;
+  margin-top: 20px;
+}
+
+#small-title {
+  text-align: center;
+  font-size: 64px;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.login-label {
+  font-size: 36px;
+  width: 14%;
+}
+
+#la {
+  padding: 20px;
+  font-size: 32px;
+}
+
+.login {
+  width: 500px;
+  height: 60px;
+  margin-left: 1%;
+  background-color: #ffffff;
+  font-size: 28px;
+}
+
+#check {
+  width: 50px;
+  height: 50px;
+  margin-left: 15%;
+}
+
+#login {
+  margin-top: 5%;
+  width: 100%;
+  margin-bottom: 15%;
+  background-color: #ffffff;
+}
+
+.first {
+  text-align: left;
+  width: 790px;
+  display: flex;
+  align-items: center;
+  margin-left: 25%;
+  margin-right: 20%;
+  margin-bottom: 1%;
+}
+
+.warning {
+  color: #fc0707;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.warning-title {
+  align-items: center;
+  text-align: left;
+  width: 250px;
+  margin-left: 425px;
+}
+.send {
+  text-align: center;
+  display: inline;
+  width: 50%;
+}
+
+.go {
+  font-size: 40px;
+  width: 250px;
+  height: 90px;
+  background-color: #5e9b44;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  /* margin-left: 27%; */
+}
+
+#forget {
+  text-decoration: none;
+  font-size: 40px;
+  padding-left: 150px;
+}
+
+.remember {
+  align-items: center;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  margin-left: 29.5%;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 20px;
+}
+
+.pic {
+  width: 20px;
+  height: 20px;
+}
+
+#eye {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width:400px){
+  #rule {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  #small-title {
+    font-size: 36px;
+  }
+
+  .login-label {
+    font-size: 20px;
+    width: 50px;
+    margin-left: 40px;
+    /* border: 2px solid orange; */
+  }
+
+  .first {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 350px;
+    /* border: 2px solid red; */
+  }
+
+  .login {
+    width: 200px;
+    height: 30px;
+    margin-left: 25px;
+    font-size: 15px;
+    /* border: 2px solid orange; */
+  }
+
+  #eye {
+    width: 30px;
+    height: 30px;
+    /* border: 2px solid orange; */
+  }
+
+  #check {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .remember {
+    margin-left: 100px;
+    /* border: 2px solid orange; */
+    width: 250px;
+  }
+
+  #la{
+    font-size: 20px;
+  }
+
+  .go {
+    width: 130px;
+    height: 50px;
+    font-size: 28px;
+  }
+
+  #forget {
+    font-size: 28px;
+    padding-left: 40px;
+    width: 150px;
+    height: 100px;
+  }
+
+  body {
+    /* height: 1000px; */
+    margin-bottom: 0;
+    /* background-color: #fc0707; */
+  }
+  
+  #login {
+    margin-bottom: 3%;
+  }
+
+  .warning-title {
+    margin-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 220px;
+  }
+
+  .warning {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* border: 2px solid orange; */
+    font-size: 15px;
+    margin-left: 32px;
+  }
+
+  .short {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  /* .head {
+    width: 390px;
+  } */
+}

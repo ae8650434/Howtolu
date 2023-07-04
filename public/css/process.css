@@ -1,0 +1,97 @@
+body {
+  background-color: #E8E8E8;
+}
+
+#process * {
+  box-sizing: border-box;
+}
+
+#process {
+  margin-top: 200px;
+  height: 500px;
+}
+#process .container {
+  max-width: 1200px;
+  margin: auto;
+}
+#process .d-flex {
+  display: flex;
+}
+#process .justify-content-center {
+  justify-content: center;
+}
+#process .justify-content-between {
+  justify-content: space-between;
+}
+#process .align-items-center {
+  align-items: center;
+}
+#process .align-items-stretch {
+  align-items: stretch;
+}
+#process .align-items-start {
+  align-items: start;
+}
+#process .d-block {
+  display: block;
+}
+#process .flex-grow-1 {
+  flex-grow: 1;
+}
+#process .flex-grow-0 {
+  flex-grow: 0;
+}
+#process p {
+  margin: 0;
+  padding: 0;
+}
+#process h1 {
+  font-size: 38px;
+  text-align: center;
+}
+#process hr {
+  height: 5px;
+  background-color: #000;
+  margin-bottom: 30px;
+}
+#process img {
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+#process .step {
+  font-size: 34px;
+  color: #dbaf74;
+}
+#process .mt-row {
+  margin-top: 87px;
+}
+#process .text-center {
+  text-align: center;
+}
+#process .row {
+  gap: 20px;
+}
+#process .row + .row {
+  margin-top: 50px;
+}
+#process .row .card .card--header {
+  background-color: #ffffe0;
+  border-radius: 10px 10px 0px 0px;
+  line-height: 1.5;
+  text-align: center;
+  font-size: 32px;
+  padding: 20px 50px;
+}
+#process .row .card .card--body {
+  font-size: 30px;
+  border-radius: 0px 0px 10px 10px;
+  background-color: #ffffff;
+  padding: 30px 100px;
+}
+#process .row .card .card--body li + li {
+  margin-top: 25px;
+}
+#process .row img {
+  width: 300px;
+}/*# sourceMappingURL=process.css.map */

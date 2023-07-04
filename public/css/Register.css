@@ -1,0 +1,383 @@
+body{
+  background-color: #e8e8e8;
+}
+
+/* register頁面CSS */
+.head {
+  background-color: blue;
+  height: 100px;
+  margin: 0;
+}
+
+.short {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.register_login {
+  margin-top: 5%;
+  width: 100%;
+  /* background-color: aqua; */
+  margin-bottom: 15%;
+}
+
+.register_first {
+  text-align: left;
+  width: 790px;
+  display: flex;
+  align-items: center;
+  margin-left: 16%;
+  margin-right: 20%;
+  margin-bottom: 1%;
+}
+
+.register_from_title {
+  font-size: 32px;
+  text-align: right;
+  width: 200px;
+}
+
+.register_from_input {
+  width: 500px;
+  height: 60px;
+  margin-left: 3%;
+  background-color: #ffffff;
+  font-size: 25px;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 20px;
+}
+
+.register_from_checkbox {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  margin-left: 225px;
+}
+
+.register_from_checkbox_word {
+  font-size: 30px;
+  padding-left: 20px;
+}
+
+.register_from_checkbox_link {
+  font-size: 30px;
+  text-decoration: underline;
+  color: blue;
+}
+.register_from_link {
+  display: inline;
+  font-size: 20px;
+}
+
+.register_from_button {
+  text-align: center;
+  display: inline;
+  width: 200px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #5e9b44;
+  border: 0 solid;
+  font-size: 30px;
+  color: #ffffff;
+  margin-right: 40px;
+}
+
+.register_from_forget_password {
+  padding-left: 50px;
+}
+
+.register_from_send {
+  width: 800px;
+  text-align: center;
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+#rule {
+  color: #ff7064;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 28px;
+  line-height: 45px;
+  text-align: justify;
+  margin-top: 20px;
+}
+
+#small-title {
+  text-align: center;
+  font-size: 48px;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.warning {
+  color: #fc0707;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.warning-title {
+  align-items: center;
+  text-align: left;
+  width: 250px;
+  margin-left: 425px;
+}
+
+.eye {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+#verification {
+  width: 150px;
+  height: 100%;
+  background-color: #dbaf74 !important;
+  border-radius: 10px;
+  font-size: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reflash_div {
+  display: flex;
+  /* border: 2px solid orange; */
+  margin-left: 420px;
+  align-items: center;
+  /* height: 300px; */
+  width: 210px;
+}
+
+#reflash {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  /* margin-bottom: 6px; */
+}
+
+.pic {
+  width: 20px; 
+  height: 20px
+}
+
+/* 彈窗CSS */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  text-align: 1.5;
+}
+
+#open_btn {
+  background: #009900;
+}
+
+#background {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#div1 {
+  background: #eeeeee;
+  width: 60%;
+  z-index: 1;
+  margin: 10% auto;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+span {
+  color: white;
+  padding-top: 5px;
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+#div2 {
+  background: #eeeeee !important;
+  margin: auto;
+  height: 400px;
+  padding: 0 20px;
+}
+
+#close {
+  padding: 5px;
+  background: #dbaf74 !important;
+}
+
+#close-button {
+  float: right;
+  font-size: 40px;
+  background: #dbaf74 !important;
+}
+
+#foot {
+  padding: 5px 0;
+  text-align: center;
+  background: #dbaf74 !important;
+  color: white;
+}
+
+h2 {
+  margin: 10px 0;
+  color: white;
+  padding-left: 15px;
+  background: #dbaf74 !important;
+}
+
+h3 {
+  margin: 0 0px;
+  padding-top: 15px;
+  background: #eeeeee !important;
+}
+
+h4 {
+  background: #eeeeee !important;
+}
+
+#div2 p {
+  background: #eeeeee !important;
+}
+
+@media screen and (max-width: 400px) {
+  .short {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  #small-title {
+    font-size: 38px;
+    margin-top: 40px;
+  }
+
+  #rule {
+    font-size: 20px;
+    margin-left: 30px;
+    width: 300px;
+    justify-content: center;
+    line-height: 28px;
+    margin-top: 30px;
+    /* border: 2px solid orange; */
+  }
+
+  .register_from_title {
+    font-size: 16px;
+    width: 100px;
+    /* border: 2px solid orange; */
+    text-align: left;
+  }
+
+  .register_from_input {
+    width: 230px;
+    height: 40px;
+    font-size: 15px;
+    margin-left: 0;
+  }
+
+  input::placeholder {
+    font-size: 2px;
+  }
+
+  .register_first {
+    width: 350px;
+    /* border: 2px solid orange; */
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .eye {
+    width: 20px;
+    height: 20px;
+  }
+
+  .small {
+    width: 80px;
+  }
+
+  .warning {
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .warning-title {
+    margin-left: 110px;
+    height: 25px;
+    width: 190px;
+    /* border: 2px solid orange; */
+  }
+
+  .reflash_div {
+    margin-left: 120px;
+  }
+
+  #verification {
+    font-size: 25px;
+    width: 80px;
+    height: 30px;
+  }
+
+  .register_from_checkbox_word {
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  .register_from_checkbox_link {
+    font-size: 18px;
+  }
+
+  .register_from_checkbox {
+    margin-left: 030px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .register_from_link {
+    font-size: 18px;
+    /* border: 2px solid orange; */
+  }
+
+  .register_from_button {
+    width: 70px;
+    height: 40px;
+    margin-right: 10px;
+    /* border: 2px solid orange; */
+  }
+
+  .register_from_send {
+    margin-left: 0;
+    /* border: 2px solid orange; */
+    width: 350px;
+  }
+
+  .register_from_forget_password {
+    width: 100px;
+    padding-left: 260px;
+  }
+
+  #div1 {
+    margin: 40% auto;
+    width: 80%;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  #close-button {
+    font-size: 30px;
+  }
+
+  .pic {
+    width: 10px;
+    height: 10px;
+  }
+}
