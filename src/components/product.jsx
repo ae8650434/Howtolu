@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/product.css'
 
 class Product extends Component {
     state = {}
@@ -11,9 +12,9 @@ class Product extends Component {
 
 
     <div id="container">
-        <div id="categories" class="categories">
+        <div id="categories" className="categories">
             <p>商品分類</p>
-            <ul class="categoriesUl">
+            <ul className="categoriesUl">
                 <li><a href="https://www.google.com/">寢室帳篷</a></li>
                 <li><a href="">客廳帳&天幕</a></li>
                 <li><a href="">寢室用具</a></li>
@@ -28,55 +29,55 @@ class Product extends Component {
         </div>
 
 
-        <div class="productcotent">
+        <div className="productcotent">
 
             <figure>
                 <img src="./public/image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
-                <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
                 <img src="./public/image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
-                <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
                 <img src="./public/image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
-                <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
             </figure>
 
         </div>
         <div>
 
 
-            <div class="productcotent2">
+            <div className="productcotent2">
                 <figure>
                     <img src="./public/image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
-                    <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                    <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
                 </figure>
                 <figure>
                     <img src="./public/image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
-                    <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                    <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
                 </figure>
                 <figure>
                     <img src="./public/image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
-                    <a href="./equip_detail.html"><button class="btnq">立即預約</button></a>
+                    <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
                 </figure>
             </div>
 
@@ -86,7 +87,7 @@ class Product extends Component {
         </div>
     </div>
 
-    <div class="br1">
+    <div className="br1">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -112,9 +113,9 @@ class Product extends Component {
 
     <div>
 
-        <div class="categories1">
+        <div className="categories1">
             <p>商品分類</p>
-            <ul class="categoriesUl1">
+            <ul className="categoriesUl1">
                 <li><a href="https://www.google.com/">寢室帳篷</a></li>
                 <li><a href="">客廳帳&天幕</a></li>
                 <li><a href="">寢室用具</a></li>
@@ -131,7 +132,7 @@ class Product extends Component {
     <br/><br/>
     
 
-    <div class="br1">
+    <div className="br1">
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
 
