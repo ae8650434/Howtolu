@@ -32,21 +32,21 @@ class Product extends Component {
         <div className="productcotent">
 
             <figure>
-                <img src="./public/image/dog01.jpeg"/>
+                <img src="./image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
                 <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
-                <img src="./public/image/dog01.jpeg"/>
+                <img src="./image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
                 <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
-                <img src="./public/image/dog01.jpeg"/>
+                <img src="./image/dog01.jpeg"/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
@@ -59,21 +59,21 @@ class Product extends Component {
 
             <div className="productcotent2">
                 <figure>
-                    <img src="./public/image/dog01.jpeg"/>
+                    <img src="./image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
                     <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
                 </figure>
                 <figure>
-                    <img src="./public/image/dog01.jpeg"/>
+                    <img src="./image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
                     <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
                 </figure>
                 <figure>
-                    <img src="./public/image/dog01.jpeg"/>
+                    <img src="./image/dog01.jpeg"/>
                     <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                     <p></p>
                     <figcaption>NT$1,980 - 3 日</figcaption>
