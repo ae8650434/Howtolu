@@ -76,7 +76,7 @@
 }
 
 /* 圖片 */
-img {
+.image> a img {
     width: 500px;
     height: 500px;
     background-color: white;
@@ -91,7 +91,7 @@ img {
         height: 380px;
     }
 
-    img {
+    .image> a img {
         width: 380px;
         height: 380px;
         margin: 0;

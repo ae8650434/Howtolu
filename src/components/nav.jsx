@@ -1,18 +1,18 @@
 import React from 'react';
 import navstyle from '../css/nav.module.css'
  
-import { NavLink } from 'react-router-dom';
+
  
 const Navigation = () => {
     return (
-       <div>       
+        <div id={navstyle["nav_bar"]}>      
          <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
           <div id={navstyle['selnav']} >
                 <ul id={navstyle["navul"]}>
-                    <a href="/index.html"><li className={navstyle.tili}>首頁</li></a>
+                    <a href="/"><li className={navstyle.tili}>首頁</li></a>
                    <li className={navstyle.tili}>所有商品
                         <ul>
-                            <a href="/index.html"><li className={navstyle.conli}>設備出租</li></a>  
+                            <a href="/product"><li className={navstyle.conli}>設備出租</li></a>  
                             <a href=""><li className={navstyle.conli}>食材購買</li></a>                              
                         </ul>
                     </li>
@@ -30,7 +30,7 @@ const Navigation = () => {
                             <li  className={navstyle.conli}>表單填寫
                                 <ul id={navstyle['a']}>
                                     <a href=""><li >Google表單</li></a>  
-                                    <a href="./public/image/logo-removebg-preview.png" download><li >Excel表單下載</li></a>  
+                                    <a href="/image/logo.png" download><li >Excel表單下載</li></a>  
                                     
                                 </ul>
                             </li>  
@@ -40,8 +40,8 @@ const Navigation = () => {
                     
                     <li  className={navstyle.tili}>會員專區
                         <ul>
-                            <a href=""><li className={navstyle.conli}>會員資料</li></a>  
-                            <a href=""><li className={navstyle.conli}>訂單查詢</li></a>  
+                            <a href="/info"><li className={navstyle.conli}>會員資料</li></a>  
+                            <a href="/order"><li className={navstyle.conli}>訂單查詢</li></a>  
                             
                         </ul>
                     </li>
@@ -49,16 +49,20 @@ const Navigation = () => {
                 </ul>
             </div>
             <div id={navstyle['nav_icon']}>
-                <a href="/index.html"> <button id={navstyle['navcarbtn']}></button></a>
-                <button id={navstyle['navmembtn']}></button>
-                <ul id={navstyle['memul']} className={navstyle.memul}>
-                    <a href=""><li>會員登入</li></a>
-                    <a href=""><li>註冊會員</li></a>
+                <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
+                <button id={navstyle['navmembtn']} onClick={navmembtn}></button>
+                <ul id={navstyle['memul']}  className={navstyle.memul}>
+                    <a href="/login"><li>會員登入</li></a>
+                    <a href="/register"><li>註冊會員</li></a>
                 </ul>
                 
             </div>
        </div>
     );
+    
+    function navmembtn(){
+      console.log(  document.getElementById("nav_memul__3nlAf").className)
+    }
+
 }
- 
 export default Navigation;

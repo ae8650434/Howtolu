@@ -1,7 +1,3 @@
-body {
-  background-color: #e8e8e8;
-}
-
 /* login頁面的CSS */
 .short {
   margin-left: 8%; 
@@ -24,14 +20,14 @@ body {
   margin-top: 20px;
 }
 
-#small-title {
+#smalltitle {
   text-align: center;
   font-size: 64px;
   width: 100%;
   margin-top: 5%;
 }
 
-.login-label {
+.loginlabel {
   font-size: 36px;
   width: 14%;
 }
@@ -78,7 +74,7 @@ body {
   font-size: 20px;
 }
 
-.warning-title {
+.warningtitle {
   align-items: center;
   text-align: left;
   width: 250px;
@@ -136,11 +132,11 @@ input::-webkit-input-placeholder {
     line-height: 28px;
   }
 
-  #small-title {
+  #smalltitle {
     font-size: 36px;
   }
 
-  .login-label {
+  .loginlabel {
     font-size: 20px;
     width: 50px;
     margin-left: 40px;
@@ -207,7 +203,7 @@ input::-webkit-input-placeholder {
     margin-bottom: 3%;
   }
 
-  .warning-title {
+  .warningtitle {
     margin-left: 80px;
     margin-top: 10px;
     margin-bottom: 10px;
