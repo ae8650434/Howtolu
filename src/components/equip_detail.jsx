@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../css/equip_detail.module.css';
 
-
-
-
-
 class EquipDetail extends Component {
     render() {
         return (
@@ -45,16 +41,17 @@ class EquipDetail extends Component {
                             </ul>
                             <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
                         </div>
+        
                         <div className={styles.myform}>
-                            <form id='myform' method='get' action='#'>
-                                <div id="datepicker_div"></div>
+                            <form id={styles['myform']} method='get' action='#'>
+                                <div id={styles["datepicker_div"]}></div>
                                 <label for="">數量：</label>
                                 <input type='button' value='-' className={styles.qtyminus} field='quantity' />
                                 <input type='button' name='quantity' value='0' className={styles.qty} />
                                 <input type='button' value='+' className={styles.qtyplus} field='quantity' />
                                 <input type='submit' value='立即預約' className={styles.reserve} />
                                 <p><span>庫存量:</span><span>10個</span></p>
-                                <p id="bee"></p>
+                                <p id={styles["bee"]}></p>
                             </form>
                         </div>
                     </div>

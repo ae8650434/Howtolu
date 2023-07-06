@@ -9,6 +9,7 @@ import Register from './components/register';
 import Revise from './components/revise';
 import Reset from './components/reset';
 import Info from './components/info';
+import EquipDetail from './components/equip_detail';
  
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
              <Route path="/revise" component={Revise} exact/>
              <Route path="/reset" component={Reset} exact/>
              <Route path="/info" component={Info} exact/>
+             <Route path="/equip_detail" component={EquipDetail} exact/>
             <Route component={Error}/>
            </Switch>
         </div> 
