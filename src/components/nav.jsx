@@ -9,10 +9,10 @@ const Navigation = () => {
          <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
           <div id={navstyle['selnav']} >
                 <ul id={navstyle["navul"]}>
-                    <a href="/index.html"><li className={navstyle.tili}>首頁</li></a>
+                    <a href="/"><li className={navstyle.tili}>首頁</li></a>
                    <li className={navstyle.tili}>所有商品
                         <ul>
-                            <a href="/index.html"><li className={navstyle.conli}>設備出租</li></a>  
+                            <a href="/product"><li className={navstyle.conli}>設備出租</li></a>  
                             <a href=""><li className={navstyle.conli}>食材購買</li></a>                              
                         </ul>
                     </li>
@@ -50,8 +50,8 @@ const Navigation = () => {
             </div>
             <div id={navstyle['nav_icon']}>
                 <a href="/index.html"> <button id={navstyle['navcarbtn']}></button></a>
-                <button id={navstyle['navmembtn']}></button>
-                <ul id={navstyle['memul']} className={navstyle.memul}>
+                <button id={navstyle['navmembtn']} onClick={navmembtn}></button>
+                <ul id={navstyle['memul']}  className={navstyle.memul}>
                     <a href=""><li>會員登入</li></a>
                     <a href=""><li>註冊會員</li></a>
                 </ul>
@@ -59,6 +59,10 @@ const Navigation = () => {
             </div>
        </div>
     );
+    
+    function navmembtn(){
+      console.log(  document.getElementById('memul'))
+    }
+
 }
- 
 export default Navigation;
