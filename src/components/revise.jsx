@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Revise.css'
+import styles from '../css/Revise.module.css'
 
 class Revise extends Component {
     
@@ -22,38 +22,38 @@ class Revise extends Component {
         const { passwordType2, eyeOpacity2,eyeSrc2 } = this.state
 
         return (
-            <div class="short">
+            <div className={styles.short}>
             <div style={{textAlign: "center"}}>
-              <div id="small-title">修改密碼</div>
+              <div id={styles["small-title"]}>修改密碼</div>
               <hr />
-              <div class="revise_rule">
+              <div className={styles.revise_rule}>
                 ***為保護您的個人資料安全，請務必修改密碼。
               </div>
-              <form action="" method="" id="revise_login">
-                <div class="revise_first">
-                  <label for="" class="revise_from_title">e-mail</label>
-                  <input type="email" class="register_from_input" required/>
+              <form action="" method="" id={styles.revise_login}>
+                <div className={styles.revise_first}>
+                  <label for="" className={styles.revise_from_title}>e-mail</label>
+                  <input type="email" className={styles.register_from_input} required/>
                 </div>
                 <br /><br />
-                <div class="revise_first">
-                  <label for="" class="revise_from_title">設定密碼</label>
-                  <input type={passwordType} class="register_from_input" id="password" pattern="[\da-zA-Z]{8,16}" required/>
-                  <img src={eyeSrc} id="eye" style={{opacity: eyeOpacity}} class="eye" onClick={this.eyeClick}/>
+                <div className={styles.revise_first}>
+                  <label for="" className={styles.revise_from_title}>設定密碼</label>
+                  <input type={passwordType} className={styles.register_from_input} id="password" pattern="[\da-zA-Z]{8,16}" required/>
+                  <img src={eyeSrc} id="eye" style={{opacity: eyeOpacity}} className={styles.eye} onClick={this.eyeClick}/>
                 </div>
                 <br /><br />
-                <div class="revise_first">
-                  <label for="" class="revise_from_title">再次確認密碼</label>
-                  <input type={passwordType2} class="register_from_input" pattern="[\da-zA-Z]{8,16}" id='password2' required/>
-                  <img src={eyeSrc2} id="eye1" style={{opacity: eyeOpacity2}} class="eye" onClick={this.eyeClick2}/>
+                <div className={styles.revise_first}>
+                  <label for="" className={styles.revise_from_title}>再次確認密碼</label>
+                  <input type={passwordType2} className={styles.register_from_input} pattern="[\da-zA-Z]{8,16}" id='password2' required/>
+                  <img src={eyeSrc2} id="eye1" style={{opacity: eyeOpacity2}} className={styles.eye} onClick={this.eyeClick2}/>
                 </div>
                 <br />
                 <hr />
-                <div class="resive_from_send">
+                <div className={styles.resive_from_send}>
                   <input
                     type="button"
                     value="確定送出"
                     id="register"
-                    class="resive_go"
+                    className={styles.resive_go}
                     onClick={this.handleRevise}
                   />
                 </div>
