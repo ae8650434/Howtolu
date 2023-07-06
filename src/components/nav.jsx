@@ -30,7 +30,7 @@ const Navigation = () => {
                             <li  className={navstyle.conli}>表單填寫
                                 <ul id={navstyle['a']}>
                                     <a href=""><li >Google表單</li></a>  
-                                    <a href="./public/image/logo-removebg-preview.png" download><li >Excel表單下載</li></a>  
+                                    <a href="/image/logo.png" download><li >Excel表單下載</li></a>  
                                     
                                 </ul>
                             </li>  
