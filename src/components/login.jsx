@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import '../css/login.moudle.css'
+import '../css/Login.css'
 
 class Login extends Component {
     // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
