@@ -43,7 +43,7 @@ class Product extends Component {
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
-                <a href="./equip_detail.html"><button className="btnq">立即預約</button></a>
+                <a href="/equip_detail"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
                 <img src="./image/dog01.jpeg"/>
