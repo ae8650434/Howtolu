@@ -4,6 +4,7 @@ import Navigation from './components/nav';
 import Home from './components/index';
 import Error from './components/error';
 import Product from './components/product';
+import Revise from './components/revise';
  
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/product" component={Product} exact/>
+            <Route path="/revise" component={Revise} exact/>
             <Route component={Error}/>
            </Switch>
         </div> 
