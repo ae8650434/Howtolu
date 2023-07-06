@@ -61,7 +61,7 @@ const Navigation = () => {
     );
     
     function navmembtn(){
-      console.log(  document.getElementById('nav_memul__3nlAf').className)
+      console.log(  document.getElementById("nav_memul__3nlAf").className)
     }
 
 }
