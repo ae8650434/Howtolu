@@ -24,7 +24,7 @@
     list-style: none;
     display: inline;
     height: 100px;
-   
+    color: #DBAF74;
 }
 #navul a{
     text-decoration:none ;
@@ -68,6 +68,9 @@
     text-decoration:none ;
     color: #a16f2c;
 }
+#navul :hover{
+    color: #a16f2c;
+}
 #navul .conli:hover{
   
     color: #a16f2c;
@@ -109,7 +112,7 @@
     padding:5px 0px;
 }
 #navmembtn{
-    background-image: url("/public/image/mem-removebg-preview.png");
+    background-image: url("/public/image/mem.png");
     padding: auto;
 }
 
