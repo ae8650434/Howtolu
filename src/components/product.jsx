@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/product.css'
-
+import '../js/product.js'
 class Product extends Component {
     state = {}
     render() {
@@ -17,7 +17,7 @@ class Product extends Component {
             <ul className="categoriesUl">
                 <li><a href="https://www.google.com/">寢室帳篷</a></li>
                 <li><a href="">客廳帳&天幕</a></li>
-                <li><a href="">寢室用具</a></li>
+                <li><a href="">寢室用</a></li>
                 <li><a href="">戶外用品</a></li>
                 <li><a href="">爐具</a></li>
                 <li><a href="">保鮮保冷</a></li>
@@ -133,9 +133,9 @@ class Product extends Component {
     
 
     <div className="br1">
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
-
+            </React.Fragment >
 
 
 
@@ -143,9 +143,14 @@ class Product extends Component {
 
 
             
-            </React.Fragment >
         );
-    }
+    
+    
 }
+}
+
+
+
+
 
 export default Product;
