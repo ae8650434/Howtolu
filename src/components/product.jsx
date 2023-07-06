@@ -17,7 +17,7 @@ class Product extends Component {
             <ul className="categoriesUl">
                 <li><a href="https://www.google.com/">寢室帳篷</a></li>
                 <li><a href="">客廳帳&天幕</a></li>
-                <li><a href="">寢室用</a></li>
+                <li><a href="">寢室用具</a></li>
                 <li><a href="">戶外用品</a></li>
                 <li><a href="">爐具</a></li>
                 <li><a href="">保鮮保冷</a></li>
