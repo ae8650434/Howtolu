@@ -3,9 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navigation from './components/nav';
 import Home from './components/index';
 import Error from './components/error';
-<<<<<<< HEAD
-import Cart from './components/cart';
-=======
 import Product from './components/product';
 import Login from './components/login';
 import Register from './components/register';
@@ -13,7 +10,7 @@ import Revise from './components/revise';
 import Reset from './components/reset';
 import Info from './components/info';
 import EquipDetail from './components/equip_detail';
->>>>>>> 8e2fcc94b07c71daf48ddc7a453c37808d4e96da
+import Cart from './components/cart';
  
 class App extends Component {
   render() {
@@ -23,9 +20,6 @@ class App extends Component {
           <Navigation />
             <Switch>
             <Route path="/" component={Home} exact/>
-<<<<<<< HEAD
-            <Route path="/cart" component={Cart} exact/>
-=======
             <Route path="/product" component={Product} exact/>
             <Route path="/login" component={Login} exact/>
              <Route path="/register" component={Register} exact/>
@@ -33,7 +27,7 @@ class App extends Component {
              <Route path="/reset" component={Reset} exact/>
              <Route path="/info" component={Info} exact/>
              <Route path="/equip_detail" component={EquipDetail} exact/>
->>>>>>> 8e2fcc94b07c71daf48ddc7a453c37808d4e96da
+             <Route path="/cart" component={Cart} exact/>
             <Route component={Error}/>
            </Switch>
         </div> 
