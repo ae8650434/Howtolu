@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/product.css'
-
+import '../js/product.js'
 class Product extends Component {
     state = {}
     render() {
@@ -133,9 +133,9 @@ class Product extends Component {
     
 
     <div className="br1">
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
-
+            </React.Fragment >
 
 
 
@@ -143,9 +143,14 @@ class Product extends Component {
 
 
             
-            </React.Fragment >
         );
-    }
+    
+    
 }
+}
+
+
+
+
 
 export default Product;
