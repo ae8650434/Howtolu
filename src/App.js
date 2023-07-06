@@ -10,11 +10,8 @@ import Revise from './components/revise';
 import Reset from './components/reset';
 import Info from './components/info';
 import EquipDetail from './components/equip_detail';
-<<<<<<< HEAD
-import Order_list from './components/order_list';
-=======
 import Cart from './components/cart';
->>>>>>> refs/remotes/origin/main
+import Order_list from './components/order_list';
  
 class App extends Component {
   render() {
