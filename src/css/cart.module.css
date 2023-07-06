@@ -22,7 +22,6 @@
     font-size: 35px;
     padding: 10px;
     cursor: pointer;
-/
 }
 
 #buy span {
@@ -151,4 +150,12 @@
     border: none;
     background-color: #ffffff;
     cursor: pointer;
+}
+
+#disFlex {
+    display: flex;
+}
+
+#process1 {
+    color: orange;
 }
