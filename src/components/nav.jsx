@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Navigation = () => {
     return (
        <div>       
-          <NavLink to="/"><img src="/image/logo.png" alt="" /></NavLink>
+         <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
           <div id={navstyle['selnav']} >
                 <ul id={navstyle["navul"]}>
                     <a href="/index.html"><li className={navstyle.tili}>首頁</li></a>
