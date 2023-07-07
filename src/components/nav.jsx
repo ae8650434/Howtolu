@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import navstyle from '../css/nav.module.css'
  
 
  
-const Navigation = () => {
-    return (
+class  Navigation extends Component{
+     state ={
+        "id":"nav"
+    }
+    render(){
+
+        return (
+            
         <div id={navstyle["nav_bar"]}>      
          <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
           <div id={navstyle['selnav']} >
@@ -50,7 +56,7 @@ const Navigation = () => {
             </div>
             <div id={navstyle['nav_icon']}>
                 <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
-                <button id={navstyle['navmembtn']} onClick={navmembtn}></button>
+                <button id={navstyle['navmembtn']} ></button>
                 <ul id={navstyle['memul']}  className={navstyle.memul}>
                     <a href="/login"><li>會員登入</li></a>
                     <a href="/register"><li>註冊會員</li></a>
@@ -59,10 +65,9 @@ const Navigation = () => {
             </div>
        </div>
     );
-    
-    function navmembtn(){
-      console.log(  document.getElementById("nav_memul__3nlAf").className)
     }
-
+    
+  
+    
 }
 export default Navigation;

@@ -1,8 +1,71 @@
 import React, { Component } from 'react';
+import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
+import '../css/calendar.css'
 
 class EquipDetail extends Component {
+    constructor(props) {
+        super(props);
+
+        // 設定星期
+        const today = new Date();
+        const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+        const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+        this.state = {
+            value: new Date(),
+            today: today,
+            maxDate: maxDate,
+            minDate: minDate,
+            selectedDate: null,
+        };
+    }
+
+    // 星期二、五可以點選 其他禁用
+    isDisabled(date) {
+        const day = date.getDay();
+        return day !== 2 && day !== 5;
+    }
+
+    // 點選星期二 會選取星期三、四；點選星期五 會選取星期六、日
+    onClickDay(date) {
+        this.setState({
+            selectedDate: date,
+        });
+    }
+
+    // 格式化日期 yyyy/mm/dd
+    formatDateString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}/${month}/${day}`;
+    }
+
+    // 渲染選定日期的連續三天的日期
+    renderDates() {
+        const { selectedDate } = this.state;
+
+        if (selectedDate) {
+            const startDate = new Date(selectedDate);
+            const endDate = new Date(selectedDate);
+            endDate.setDate(endDate.getDate() + 2);
+            // 存儲格式化後的日期
+            const dates = [];
+
+            while (startDate <= endDate) {
+                dates.push(this.formatDateString(startDate));
+                startDate.setDate(startDate.getDate() + 1);
+            }
+
+            return dates.map((date, index) => (
+                <div key={index}>{date}</div>
+            ));
+        }
+        return null;
+    }
     render() {
+        const { value, maxDate, minDate } = this.state;
         return (
             <React.Fragment>
                 <div className={styles.categories}>
@@ -41,10 +104,21 @@ class EquipDetail extends Component {
                             </ul>
                             <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
                         </div>
-        
+
                         <div className={styles.myform}>
                             <form id={styles['myform']} method='get' action='#'>
-                                <div id={styles["datepicker_div"]}></div>
+                                <div className={styles.calendar}>
+                                    <Calendar
+                                        locale="en-US"
+                                        //  onChange={onChange}
+                                        onClickDay={this.onClickDay.bind(this)}
+                                        value={value}
+                                        maxDate={maxDate}
+                                        minDate={minDate}
+                                        tileDisabled={({ date }) => this.isDisabled(date)}
+                                    />
+                                </div>
+                                <div>{this.renderDates()}</div>
                                 <label for="">數量：</label>
                                 <input type='button' value='-' className={styles.qtyminus} field='quantity' />
                                 <input type='button' name='quantity' value='0' className={styles.qty} />
@@ -137,3 +211,6 @@ class EquipDetail extends Component {
 }
 
 export default EquipDetail;
+
+
+
