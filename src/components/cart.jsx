@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import cartstyle from '../css/cart.module.css'
-// import cartjs from '../js/cart.js'
+import cartjs from '../js/cart.js'
 
 class cart extends Component {
     state = {}
