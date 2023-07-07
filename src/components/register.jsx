@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import '../css/Register.css'
+import styles from '../css/Register.module.css'
 
 
 class Register extends Component {
@@ -27,63 +27,63 @@ class Register extends Component {
         
         return (
             
-    <div className="short">
-      <div id="rule">
+    <div className={styles.short}>
+      <div id={styles["rule"]}>
         【HowTo露反詐騙提醒】HowTo露客服人員不會要求您到ATM操作退款或信用卡退刷，這是詐騙手法，
         請提高警覺!!如有接獲類似電話或簡訊，請立即撥打165防詐騙專線，或洽客服04-23265860確認，謝謝
       </div>
     
       <div style={{textaAlign: 'center'}}>
-        <div id="small-title">登入HowTo露會員</div>
+        <div id={styles["small-title"]}>登入HowTo露會員</div>
         <hr />
 
-        <form action="" method="" className="register_login">
-          <div className="register_first">
-            <label for="" className="register_from_title">手機號碼</label>
-            <input type="text" placeholder="格式：0912345678" className="register_from_input" pattern="0\d{9}" required/>
+        <form action="" method="" className={styles.register_login}>
+          <div className={styles.register_first}>
+            <label for="" className={styles.registerfromtitle}>手機號碼</label>
+            <input type="text" placeholder="格式：0912345678" className={styles.register_from_input} pattern="0\d{9}" required/>
           </div>
-          <div className="warning-title">
-            <img src="/image/warning.png" className="pic"/>
-            <span className="warning">請輸入有效的手機號碼</span>
+          <div className={styles.warning_title}>
+            <img src="/image/warning.png" className={styles.pic}/>
+            <span className={styles.warning}>請輸入有效的手機號碼</span>
           </div>
-          <div className="register_first">
-            <label for="" className="register_from_title">e-mail</label>
-            <input type="email" className="register_from_input"  required/>
+          <div className={styles.register_first}>
+            <label for="" className={styles.register_from_title}>e-mail</label>
+            <input type="email" className={styles.register_from_input}  required/>
           </div>
-          <div className="warning-title">
-            <img src="/image/warning.png" className="pic"/>
-            <span className="warning">請輸入有效的e-mail</span>
+          <div className={styles.warning_title}>
+            <img src="/image/warning.png" className={styles.pic}/>
+            <span className={styles.warning}>請輸入有效的e-mail</span>
           </div>
-          <div className="register_first">
-            <label for="" className="register_from_title">設定密碼</label>
-            <input type={passwordType} className="register_from_input" placeholder="  密碼長度需8-16字元，含一個英文字母與數字" id="password" pattern="^(?=.[a-zA-Z])(?=.\d)[^\s]{8,16}$" required/>
-            <img src={eyeSrc} style={{opacity: eyeOpacity}} id="eye" className="eye" onClick={this.eyeClick}/>
+          <div className={styles.register_first}>
+            <label for="" className={styles.register_from_title}>設定密碼</label>
+            <input type={passwordType} className={styles.register_from_input} placeholder="  密碼長度需8-16字元，含一個英文字母與數字" id="password" pattern="^(?=.[a-zA-Z])(?=.\d)[^\s]{8,16}$" required/>
+            <img src={eyeSrc} style={{opacity: eyeOpacity}} id="eye" className={styles.eye} onClick={this.eyeClick}/>
           </div>
-          <div className="register_first">
-            <label for="" className="register_from_title">再次確認密碼</label>
-            <input type={passwordType2} className="register_from_input" placeholder="   再次確認密碼" id="checkeye" pattern="[\da-zA-Z]{8,16}" required/>
-            <img src={eyeSrc2} style={{opacity: eyeOpacity2}} className="eye" onClick={this.eyeClick2}/>
+          <div className={styles.register_first}>
+            <label for="" className={styles.register_from_title}>再次確認密碼</label>
+            <input type={passwordType2} className={styles.register_from_input} placeholder="   再次確認密碼" id="checkeye" pattern="[\da-zA-Z]{8,16}" required/>
+            <img src={eyeSrc2} style={{opacity: eyeOpacity2}} className={styles.eye} onClick={this.eyeClick2}/>
           </div>
-          <div className="register_first">
-            <label for="" className="register_from_title">驗證碼</label>
-            <input type="text" className="register_from_input" id="cnumber" required/>
+          <div className={styles.register_first}>
+            <label for="" className={styles.register_from_title}>驗證碼</label>
+            <input type="text" className={styles.register_from_input}id="cnumber" required/>
           </div>
-          <div className="reflash_div">
+          <div className={styles.reflash_div}>
           <p id="verification">{this.state.verification}</p>
-          <img src="/image/reflash.png" id="reflash" onClick={this.generateCode}/>
+          <img src="/image/reflash.png" id={styles["reflash"]} onClick={this.generateCode}/>
           </div>
-          <div className="register_first">
-            <input type="checkbox" className="register_from_checkbox" id="checkbox"/>
-            <p className="register_from_checkbox_word">我同意</p>
-            <a className="register_from_checkbox_link" id="terms" onClick={this.handleTermsClick}>HowTo露會員服務條款</a>
+          <div className={styles.register_first}>
+            <input type="checkbox" className={styles.register_from_checkbox} id="checkbox"/>
+            <p className={styles.register_from_checkbox_word}>我同意</p>
+            <a className={styles.register_from_checkbox_link} id="terms" onClick={this.handleTermsClick}>HowTo露會員服務條款</a>
           </div>
           <hr />
-          <div className="register_from_send">
-            <input type="button" value="註冊" id="register" className="register_from_link register_from_button" onClick={this.handleRegisterClick}/>
-            <p className="register_from_link">我已經是會員了！</p>
-            <a href="./login" className="register_from_link">請點這裡登入</a>
+          <div className={styles.register_from_send}>
+            <input type="button" value="註冊" id="register" className={`${styles.register_from_link} ${styles.register_from_button}`} onClick={this.handleRegisterClick}/>
+            <p className={styles.register_from_link}>我已經是會員了！</p>
+            <a href="./login" className={styles.register_from_link}>請點這裡登入</a>
             <br />
-            <a href="./Reset.html" className="register_from_link register_from_forget_password">忘記密碼?</a>
+            <a href="./Reset.html" className={`${styles.register_from_link} ${styles.register_from_forget_password}`}>忘記密碼?</a>
           </div>
         </form>
       </div>
