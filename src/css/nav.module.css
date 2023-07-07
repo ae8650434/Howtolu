@@ -118,14 +118,14 @@
     padding: auto;
 }
 
-#memul{
+.memul{
     position: absolute;
     padding: 0;
     margin: 3px;
     background-color:whitesmoke;
 }
 
-#memul a{
+.memul a{
     list-style: none;
 
     width: 100px;
@@ -133,10 +133,11 @@
    margin: 10px;
 }
 
-#memul li{
+.memul li{
     font-size: 40px;
     width: 200px;
 }
     .memul{
         display: none;
+        
     }
