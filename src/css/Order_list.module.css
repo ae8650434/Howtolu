@@ -58,7 +58,7 @@
   font-size: 34px;
   text-align: left;
   border: 1px solid black;
-  background-color: #5E9B44;
+  background-color: #BD903D;
 }
 
 .info_order_word {
@@ -72,7 +72,7 @@
 }
 
 .info_order_word_bg {
-  background-color: #5E9B44;
+  background-color: #D4C19F;
 }
 
 .info_order_list_word {
@@ -108,7 +108,7 @@
 }
 
 .order_list_table {
-  display: flex;
+  /* display: flex; */
   overflow-x: auto;
   border-collapse: collapse;
 }
