@@ -20,5 +20,18 @@ app.get('/:pid', function (req, res) {
         )
         
 })
+app.get('/list', function (req, res) {
+    var sql = 'SELECT * FROM product';
+    DB.query(
+        sql, function (err, data) {
+            if (err) {
+                res.send("無法查詢資料");
+            } else {
+                res.send( JSON.stringify(data) );
+            }
+        }
+        )
+        
+})
 
 module.exports = app;

@@ -12,6 +12,7 @@ import Info from './components/info';
 import EquipDetail from './components/equip_detail';
 import Cart from './components/cart';
 import Order_list from './components/order_list';
+
  
 class App extends Component {
   render() {
