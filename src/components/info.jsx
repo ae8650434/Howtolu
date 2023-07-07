@@ -8,8 +8,8 @@ class Info extends Component {
 
             <div className={styles.short}>
             <ul className={styles.info_ul}>
-                <li className={styles.info_li}><a href="./Info.html" style={{textDecoration: "none"}}><p className={styles.info_li_first}>編輯會員資料</p></a></li>
-                <li className={styles.info_li}><a href="./Order.html" style={{textDecoration: "none"}}><p className={styles.form}>訂單查詢</p></a></li>
+                <li className={styles.info_li}><a href="/info" style={{textDecoration: "none"}}><p className={styles.info_li_first}>編輯會員資料</p></a></li>
+                <li className={styles.info_li}><a href="/order_list" style={{textDecoration: "none"}}><p className={styles.form}>訂單查詢</p></a></li>
                 <li className={styles.info_li}>
                 <a href="" style={{textDecoration: "none"}}>登出</a>
                 </li>
