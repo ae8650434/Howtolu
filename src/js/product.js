@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
         var scrollDistance = 250;
         var myDiv = document.getElementById('categories');
 
-        if (window.pageYOffset > scrollDistance) {
+        if (window.pageYOffset > scrollDistance) {  // 修改這行
             myDiv.style.display = 'none';
         } else {
             myDiv.style.display = 'block';
@@ -25,18 +25,17 @@ window.addEventListener('load', function () {
     window.addEventListener('resize', checkMediaQuery);
 
 
-    var x = 2
+    var x = 2;
     function apple() {
-        var y = document.getElementById('xx')
-        if (x % 2 == 0) {
+        var y = document.getElementById('xx');
+        if (x % 2 === 0) {  // 修改這行
             y.style.display = "block";
-            console.log(x)
+            console.log(x);
         } else {
             y.style.display = "none";
         }
         x++;
-
     }
 
+    apple()
 });
-

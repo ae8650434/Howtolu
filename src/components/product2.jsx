@@ -147,6 +147,8 @@ class Product2 extends Component {
 
 
     }
+
+    
 }
 
 
