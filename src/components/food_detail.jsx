@@ -47,8 +47,8 @@ class FoodDetail extends Component {
                 </div>
                 <div>
                     <div className={styles.image_food}>
-                        <a target="_blank" href="./public/image/比利時CanvasCamp鐘型帳(2~6人).png">
-                            <img src="./public/image/比利時CanvasCamp鐘型帳(2~6人).png" /></a>
+                        <a target="_blank" href="/image/food_3.png">
+                            <img src="/image/food_3.png" /></a>
                     </div>
                     <div className={styles.commodityall_food}>
                         <div className={styles.commodity_food}>
@@ -80,15 +80,15 @@ class FoodDetail extends Component {
                 </div>
                 <div className={styles.food_information}>
                     <p>套餐明細</p>
-                    <div className={styles.image_food}>
-                        <img src="./public/image/比利時CanvasCamp鐘型帳(2~6人).png" />
+                    <div className={styles.image_fdetails}>
+                        <img className={styles.image_f} src="/image/fdetails_3.png" />
                     </div>
                 </div>
                 <div className={styles.informationImg_food}>
                     <p>經常一起選購商品：</p>
                     <div>
                         <div className={styles.container_food}>
-                            <a href=""> <img src="./public/image/Barebones LED手提鐵路復古營燈(白).jpg" alt="Avatar" className={styles.cimage} />
+                            <a href=""> <img src="/image/food_9.png" alt="Avatar" style={{width:'350px',height:'350px'}} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
                                         <p>黑胡椒牛小排</p>
@@ -101,7 +101,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src="./public/image/DOD 來日天幕 TT5-631-TN.png" alt="Avatar" className={styles.cimage} />
+                            <a href=""><img src="/image/food_14.png" alt="Avatar" style={{width:'350px',height:'350px'}} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
                                         <p>筊白筍</p>
@@ -114,7 +114,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src="./public/image/KZM KAZMI 可調式高背摺疊椅(沙色).jpg" alt="Avatar" className={styles.cimage} />
+                            <a href=""><img src="/image/food_16.png" style={{width:'350px',height:'350px'}} alt="Avatar" className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
                                         <p>枸杞絲瓜鋁盒</p>

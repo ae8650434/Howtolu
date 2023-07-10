@@ -67,15 +67,18 @@
     line-height: 100px;
     margin-left: 500px;
     margin-right: 70px;
+    margin-top: 50px;
     display: inline-block;
     vertical-align: top;
     /* background-color: aqua; */
 }
 
 /* 圖片 */
-img {
+.image_food> a img {
     width: 500px;
     height: 500px;
+    background-color: white;
+    border-radius: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -86,7 +89,7 @@ img {
         height: 380px;
     }
 
-    img {
+    .image_food> a img {
         width: 380px;
         height: 380px;
         margin: 0;
@@ -244,6 +247,7 @@ input.qtyminus {
     color: #FC0707;
 }
 
+
 @media screen and (max-width: 768px) {
     #myform_food {
         width: 300px;
@@ -277,6 +281,7 @@ input.qtyminus {
     height: 700px;
     margin-left: 500px;
     line-height: 60px;
+    margin-bottom: 100px;
     /* background-color: blue; */
 }
 
@@ -284,6 +289,11 @@ input.qtyminus {
     font-size: 36px;
 }
 
+.image_f{
+    width: 700px;
+    height: 700px;
+    margin-left: 200px;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -318,10 +328,12 @@ input.qtyminus {
     width: 65%;
     height: 350px;
     margin-left: 500px;
+    margin-bottom: 150px;
 }
 
 .informationImg_food>p{
     font-size: 32px;
+    margin-bottom: 50px;
 }
 
 .informationImg_food>div{
@@ -331,16 +343,16 @@ input.qtyminus {
     position: relative;
     float: left;
     width: 350px;
+    /* height: 350px; */
     border: solid 2px #DBAF74;
     border-radius: 10px;
     margin-left: 20px;
     margin-bottom: 30px;
 }
 
-.cimage {
+.cimage_food {
     display: block;
     width: 350px;
-    height: 350px;
     height: auto;
     background-color: white;
     border-radius: 10px;
@@ -403,7 +415,7 @@ input.qtyminus {
         margin-left: 15px;
         margin-top: 10px;
     }
-    .cimage{
+    .cimage_food{
         width: 250px;
         height: 250px;
     }

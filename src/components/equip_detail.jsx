@@ -177,7 +177,7 @@ class EquipDetail extends Component {
                         <p>經常一起租借裝備：</p>
                         <div>
                             <div className={styles.container}>
-                                <a href=""> <img className={styles.cimage} src="/image/product_22.png" alt="Avatar" />
+                                <a href=""> <img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_22.png" alt="Avatar" />
                                     <div className={styles.overlay}>
                                         <div className={styles.imgtext}>
                                             <p>LED手提鐵路復古營燈(白)</p>
@@ -191,7 +191,7 @@ class EquipDetail extends Component {
                                 </a>
                             </div>
                             <div className={styles.container}>
-                                <a href=""><img className={styles.cimage} src="/image/product_9.png" alt="Avatar" />
+                                <a href=""><img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_9.png" alt="Avatar" />
                                     <div className={styles.overlay}>
                                         <div className={styles.imgtext}>
                                             <p>天幕</p>
@@ -205,7 +205,7 @@ class EquipDetail extends Component {
                                 </a>
                             </div>
                             <div className={styles.container}>
-                                <a href=""><img className={styles.cimage} src="/image/product_16.png" alt="Avatar" />
+                                <a href=""><img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_16.png" alt="Avatar" />
                                     <div className={styles.overlay}>
                                         <div className={styles.imgtext}>
                                             <p>可調式高背摺疊椅(沙色)</p>
