@@ -93,9 +93,9 @@ class EquipDetail extends Component {
         }
     };
 
-    formSubmit = (e) => {
-        e.preventDefault();
-    };
+    // formSubmit = (e) => {
+    //     e.preventDefault();
+    // };
     render() {
         const { value, maxDate, minDate } = this.state;
         return (
@@ -154,7 +154,7 @@ class EquipDetail extends Component {
                                 <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
                                 <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
                                 <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
-                                <input type='submit' value='立即預約' className={styles.reserve} />
+                                <input type='button' value='立即預約' className={styles.reserve} />
                                 <p><span>庫存量:</span><span>10個</span></p>
                             </form>
                         </div>

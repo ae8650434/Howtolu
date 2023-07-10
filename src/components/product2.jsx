@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import '../css/product.css'
-<<<<<<< HEAD
 // import '../js/product.js'
-=======
-//import '../js/product.js'
->>>>>>> refs/remotes/origin/main
 class Product2 extends Component {
     state = {}
     render() {
@@ -40,7 +36,7 @@ class Product2 extends Component {
                             <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                             <p></p>
                             <figcaption>NT$1,980 - 3 日</figcaption>
-                            <a href="/equip_detail"><button className="btnq">立即預約</button></a>
+                            <a href="/food_detail"><button className="btnq">立即預約</button></a>
                         </figure>
                         <figure>
                             <img src="./image/dog01.jpeg" />
