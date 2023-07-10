@@ -20,3 +20,5 @@ app.get('/:pid', function (req, res) {
         )
         
 })
+
+module.exports = app;
