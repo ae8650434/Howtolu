@@ -219,11 +219,11 @@
 #myform {
     font-size: 34px;
     width: 600px;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 /* 字體 */
-#myform,
+
 .qty,
 .qtyminus,
 .qtyplus,

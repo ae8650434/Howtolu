@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
-import '../css/calendar.css'
+import '../css/calendar.css';
 
 class EquipDetail extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class EquipDetail extends Component {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
-        return `${year}/${month}/${day}`;
+        return `${year}-${month}-${day}`;
     }
 
     // 渲染選定日期的連續三天的日期
@@ -58,12 +58,44 @@ class EquipDetail extends Component {
                 startDate.setDate(startDate.getDate() + 1);
             }
 
-            return dates.map((date, index) => (
-                <div key={index}>{date}</div>
+            const arryDate = dates.map((date, index) => (
+                <span key={index}>{date}</span>
             ));
+            return (
+                <React.Fragment>
+                    <p>租借日：{arryDate[0]}</p>
+                    <p >歸還日：{arryDate[2]}</p>
+                </React.Fragment>
+            );
         }
         return null;
     }
+     // 數量按鈕
+    qtyplusBn = (e) => {
+        e.preventDefault();
+        const fieldName = e.target.getAttribute('field');
+        const currentVal = parseInt(this[fieldName].value);
+        if (!isNaN(currentVal)) {
+            this[fieldName].value = currentVal + 1;
+        } else {
+            this[fieldName].value = 0;
+        }
+    };
+   
+    qtyminusBn = (e) => {
+        e.preventDefault();
+        const fieldName = e.target.getAttribute('field');
+        const currentVal = parseInt(this[fieldName].value);
+        if (!isNaN(currentVal) && currentVal > 0) {
+            this[fieldName].value = currentVal - 1;
+        } else {
+            this[fieldName].value = 0;
+        }
+    };
+
+    // formSubmit = (e) => {
+    //     e.preventDefault();
+    // };
     render() {
         const { value, maxDate, minDate } = this.state;
         return (
@@ -106,11 +138,10 @@ class EquipDetail extends Component {
                         </div>
 
                         <div className={styles.myform}>
-                            <form id={styles['myform']} method='get' action='#'>
-                                <div className={styles.calendar}>
+                            <form id={styles['myform']} method='get' action='#' onSubmit={this.formSubmit}>
+                                <div>
                                     <Calendar
                                         locale="en-US"
-                                        //  onChange={onChange}
                                         onClickDay={this.onClickDay.bind(this)}
                                         value={value}
                                         maxDate={maxDate}
@@ -119,13 +150,12 @@ class EquipDetail extends Component {
                                     />
                                 </div>
                                 <div>{this.renderDates()}</div>
-                                <label for="">數量：</label>
-                                <input type='button' value='-' className={styles.qtyminus} field='quantity' />
-                                <input type='button' name='quantity' value='0' className={styles.qty} />
-                                <input type='button' value='+' className={styles.qtyplus} field='quantity' />
-                                <input type='submit' value='立即預約' className={styles.reserve} />
+                                <label htmlFor='quantity'>數量：</label>
+                                <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
+                                <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
+                                <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
+                                <input type='button' value='立即預約' className={styles.reserve} />
                                 <p><span>庫存量:</span><span>10個</span></p>
-                                <p id={styles["bee"]}></p>
                             </form>
                         </div>
                     </div>
@@ -211,6 +241,7 @@ class EquipDetail extends Component {
 }
 
 export default EquipDetail;
+
 
 
 
