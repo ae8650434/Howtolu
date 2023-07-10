@@ -97,7 +97,7 @@ class cart extends Component {
                 <div style={{ fontSize: 40 }}>
                     上傳檔案(excel)：<input style={{ fontSize: 25 }} type="file" />
                     <input style={{ fontSize: 25 }} type="submit" value="上傳" />
-                </div><br /><br /><br /><br /><br />
+                </div><br /><br /><br /><br />
 
             {/* 購物流程 */}
                 {/* <div id={cartstyle['process']}>
@@ -135,7 +135,7 @@ class cart extends Component {
             {/* 放大鏡 */}
                 <div id={cartstyle["magnifier"]}>
                     <img style={{width: 220}} src="/image/magnifier.png" alt=""/>
-                    <a href="./product.html"><button id={cartstyle["nullshopping"]}><span>前往商城逛逛</span></button></a>
+                    <a href="/product"><button id={cartstyle["nullshopping"]}><span>前往商城逛逛</span></button></a>
                 </div>
 
                 {/* <div id={cartstyle['shopping']}>
@@ -206,7 +206,7 @@ class cart extends Component {
                         </div>
 
                     </div>
-                </div><br />               */}
+                </div><br />  */}
             {/* 總計跟前往結帳 */}
                 {/* <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT100000</span>
