@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
-import cartstyle from '../css/cart.module.css'
-import cartjs from '../js/cart.js'
+import cartstyle from '../css/cart.module.css';
 
 class cart extends Component {
-    state = {}
+    state = {    }
     styleO = {
         color: 'orange'
-    }
-    styleB = {
-        backgroundColor: ''
-    }
-    number = {
-        value: 1
     }
 
     render() {
         return (
-
-
-            <body style={this.styleB}>
-
+            <>
                 <br /><br /><br />
             {/* 上傳excel */}
                 <div style={{ fontSize: 40 }}>
@@ -40,7 +30,7 @@ class cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-
+                        
                         <div id={cartstyle['text1']}>
                             <img id={cartstyle["imgw"]} src="/image/Snow Peak 卡式瓦斯爐.jpg" alt="" />
                             <div id={cartstyle['shopping3']}>
@@ -50,9 +40,9 @@ class cart extends Component {
                                 <p></p>
                                 <div id={cartstyle['disFlex']}>
                                     <b id={cartstyle["moneySize"]}>金額:35000</b>
-                                    <input id={cartstyle["numberstyle"]} type="number" min={1}/>
+                                    <input id={cartstyle["numberstyle"]} type="number" min={1} />
                                     <button id={cartstyle["butRubbish"]}
-                                        onclick={()=>cartjs.del(1)}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                        onclick={this.del}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
                                 </div> <br /><br />
                             </div>
                         </div>
@@ -67,7 +57,7 @@ class cart extends Component {
                                         <b id={cartstyle["moneySize"]}>金額:35000</b>
                                         <input id={cartstyle["numberstyle"]} type="number" value="1" min="1" />
                                         <button id={cartstyle["butRubbish"]}
-                                            onclick={()=>cartjs.del(2)}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                            onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
                                     </div>
                                 </div><br /><br />
                             </div>
@@ -84,7 +74,7 @@ class cart extends Component {
                                     <b id={cartstyle["moneySize"]}>金額:35000</b>
                                     <input id={cartstyle["numberstyle"]} type="number" value="1" min="1" />
                                     <button id={cartstyle["butRubbish"]}
-                                        onclick={()=>cartjs.del(3)}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                        onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
                                 </div> <br /><br />
                             </div>
                         </div>
@@ -99,22 +89,21 @@ class cart extends Component {
                                         <b id={cartstyle["moneySize"]}>金額:35000</b>
                                         <input id={cartstyle["numberstyle"]} type="number" value="1" min="1" />
                                         <button id={cartstyle["butRubbish"]}
-                                            onclick={()=>cartjs.del(4)}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                            onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
                                     </div>
                                 </div><br /><br />
                             </div>
                         </div>
                     </div>
-                </div>
-                <br />
+                </div><br />              
             {/* 總計跟前往結帳 */}
                 <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT100000</span>
                     <a href="./index.html"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div>
-            </body>
-
+                </div><br /><br />
+            </>
         );
     }
+
 }
 export default cart;

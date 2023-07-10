@@ -14,8 +14,8 @@ class Order_list extends Component {
         return (
             <div className={styles.short}>
                 <ul className={styles.info_ul}>
-                    <li className={styles.info_li}><a href="./Info.html" style={{textDecoration: "none"}}><p className="form">編輯會員資料</p></a></li>
-                    <li className={styles.info_li}><a href="./Order.html" style={{textDecoration: "none"}}><p className="info_li_order form">訂單查詢</p></a></li>
+                    <li className={styles.info_li}><a href="/info" style={{textDecoration: "none"}}><p className="form">編輯會員資料</p></a></li>
+                    <li className={styles.info_li}><a href="/order_list" style={{textDecoration: "none"}}><p className="info_li_order form">訂單查詢</p></a></li>
                     <li className={styles.info_li}>
                     <a href="" style={{textDecoration: "none"}} className={styles.form}>登出</a>
                     </li>
@@ -86,7 +86,8 @@ class Order_list extends Component {
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>NT$150</td>
             </tr>
           </table>
-        </div>
+          </div>
+        
     </div>
         );
     }

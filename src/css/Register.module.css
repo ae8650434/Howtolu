@@ -174,7 +174,7 @@ body {
 }
 
 #background {
-  display: none;
+  display: block;
   position: fixed;
   left: 0;
   top: 0;
@@ -192,12 +192,6 @@ body {
   border-radius: 10px;
 }
 
-span {
-  color: white;
-  padding-top: 5px;
-  cursor: pointer;
-  padding-right: 15px;
-}
 
 #div2 {
   background: #eeeeee !important;
@@ -214,6 +208,10 @@ span {
 #close-button {
   float: right;
   font-size: 40px;
+  color: white;
+  padding-top: 5px;
+  cursor: pointer;
+  padding-right: 15px;
   background: #dbaf74 !important;
 }
 

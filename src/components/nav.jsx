@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import navstyle from '../css/nav.module.css'
  
 
  
-const Navigation = () => {
-    return (
-        <div id={navstyle["nav_bar"]}>      
+class  Navigation extends Component{
+     state ={
+        id:"nav_bar"
+    }
+    render(){
+
+        return (
+            
+        <div id={navstyle[this.state.id]}>      
          <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
           <div id={navstyle['selnav']} >
                 <ul id={navstyle["navul"]}>
@@ -50,19 +56,25 @@ const Navigation = () => {
             </div>
             <div id={navstyle['nav_icon']}>
                 <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
-                <button id={navstyle['navmembtn']} onClick={navmembtn}></button>
-                <ul id={navstyle['memul']}  className={navstyle.memul}>
+                <button id={navstyle['navmembtn']} onClick={this.btnmem}></button>
+                <ul id='memul'  className={navstyle.memul}>
                     <a href="/login"><li>會員登入</li></a>
                     <a href="/register"><li>註冊會員</li></a>
                 </ul>
                 
             </div>
        </div>
-    );
-    
-    function navmembtn(){
-      console.log(  document.getElementById("nav_memul__3nlAf").className)
+    );  
     }
-
+    
+   btnmem=()=>{
+         
+        if(document.getElementById("memul").style.display =="block"){
+            document.getElementById("memul").style.display ="none";
+        }else{
+            document.getElementById("memul").style.display ="block";
+        }
+    }
+    
 }
 export default Navigation;

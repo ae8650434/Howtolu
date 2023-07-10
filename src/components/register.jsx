@@ -15,7 +15,8 @@ class Register extends Component {
           eyeOpacity2: 1,
           eyeSrc2: './image/eye.png',
 
-          verification: ''
+          verification: '',
+          handleOpen: false
         };
         this.generateCode = this.generateCode.bind(this)
       }
@@ -24,6 +25,7 @@ class Register extends Component {
     render() { 
         const { passwordType, eyeOpacity,eyeSrc } = this.state
         const { passwordType2, eyeOpacity2,eyeSrc2 } = this.state
+        const {handleOpen} = this.state
         
         return (
             
@@ -39,7 +41,7 @@ class Register extends Component {
 
         <form action="" method="" className={styles.register_login}>
           <div className={styles.register_first}>
-            <label for="" className={styles.registerfromtitle}>手機號碼</label>
+            <label for="" className={styles.register_from_title}>手機號碼</label>
             <input type="text" placeholder="格式：0912345678" className={styles.register_from_input} pattern="0\d{9}" required/>
           </div>
           <div className={styles.warning_title}>
@@ -69,7 +71,7 @@ class Register extends Component {
             <input type="text" className={styles.register_from_input}id="cnumber" required/>
           </div>
           <div className={styles.reflash_div}>
-          <p id="verification">{this.state.verification}</p>
+          <p id={styles.verification}>{this.state.verification}</p>
           <img src="/image/reflash.png" id={styles["reflash"]} onClick={this.generateCode}/>
           </div>
           <div className={styles.register_first}>
@@ -87,14 +89,15 @@ class Register extends Component {
           </div>
         </form>
       </div>
-
-      <div id="background" class="back">
-      <div id="div1" class="content">
-        <div id="close">
-          <span id="close-button" onClick={this.handleCloseClick}>×</span>
+      
+      {handleOpen && 
+      <div id={styles["background"]}>
+      <div id={styles["div1"]} className={styles.content}>
+        <div id={styles["close"]}>
+          <span id={styles["close-button"]} onClick={this.handleCloseClick}>×</span>
           <h2>HowTo露會員服務條款</h2>
         </div>
-        <div id="div2">
+        <div id={styles["div2"]}>
           <h3>會員服務條款</h3>
           <h4>一、認知與接受條款</h4>
           <p>
@@ -138,7 +141,7 @@ class Register extends Component {
         <br/>
       </div>
       </div>
-    </div>
+    </div> }
 
     </div>
         );
@@ -194,11 +197,11 @@ class Register extends Component {
 
     // 彈窗的開啟與關閉
     handleTermsClick = () => {
-        document.getElementById ('background').style.display = 'block'
+        this.setState({handleOpen: true})
     }
 
     handleCloseClick = () => {
-        document.getElementById('background').style.display = 'none'
+      this.setState({handleOpen: false})
     }
 
     //密碼不同時阻止表單送出
