@@ -34,12 +34,19 @@ class App extends Component {
             <Route path="/info" component={Info} exact />
             <Route path="/order_list" component={Order_list} exact />
             <Route path="/equip_detail" component={EquipDetail} exact />
+<<<<<<< HEAD
+            <Route path="/food_detail" component={FoodDetail} exact />
+            <Route path="/cart" component={Cart} exact />
+=======
             <Route path="/FoodDetail" component={EquipDetail} exact />
             <Route path="/cart" component={Cart} exact/>
+>>>>>>> 18e93f96d5b1a44a38516385386ad962dbefcc43
             <Route component={Error} />
           </Switch>
           <Footer />
         </div>
+
+
       </BrowserRouter>
     );
   }
