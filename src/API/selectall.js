@@ -6,6 +6,7 @@ var app = express.Router();
 var DB = require("./DB.js");
 
 // 設置路由
+
 app.get('/', function (req, res) {
     var sql = 'SELECT * FROM product';
     DB.query(
