@@ -5,12 +5,12 @@ var selectall=require("./selectall.js")
 var select=require("./select.js")
 var register=require("./register_insert.js")
 var login=require("./login_select.js")
-
+var cors = require("cors");
 app.use("/product/list",selectall)
 app.use("/product",select)
 app.use("/register",register)
 app.use("/login",login)
-
+app.use(cors());
 
 
 var login = require('./login_select.js')
