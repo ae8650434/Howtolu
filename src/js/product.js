@@ -23,17 +23,20 @@ window.addEventListener('load', function () {
     checkMediaQuery();
 
     window.addEventListener('resize', checkMediaQuery);
+
+
+    var x = 2
+    function apple() {
+        var y = document.getElementById('xx')
+        if (x % 2 == 0) {
+            y.style.display = "block";
+            console.log(x)
+        } else {
+            y.style.display = "none";
+        }
+        x++;
+
+    }
+
 });
 
-var x = 2
-function apple() {
-    var y = document.getElementById('xx')
-    if (x % 2 == 0) {
-        y.style.display = "block";
-        console.log(x)
-    } else {
-        y.style.display = "none";
-    }
-    x++;
-    
-}
