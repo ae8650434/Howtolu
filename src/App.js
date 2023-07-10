@@ -13,6 +13,7 @@ import Info from './components/info';
 import EquipDetail from './components/equip_detail';
 // import Cart from './components/cart';
 import Order_list from './components/order_list';
+import Footer from './components/footer';
 
  
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
              {/* <Route path="/cart" component={Cart} exact/> */}
             <Route component={Error}/>
            </Switch>
+           <Footer />
         </div> 
       </BrowserRouter>
     );
