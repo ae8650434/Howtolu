@@ -3,12 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navigation from './components/nav';
 import Home from './components/index';
 import Error from './components/error';
-<<<<<<< HEAD
 import Product from './components/product';
 import Product2 from './components/product2';
-=======
-// import Product from './components/product';
->>>>>>> refs/remotes/origin/main
 import Login from './components/login';
 import Register from './components/register';
 import Revise from './components/revise';
@@ -27,12 +23,8 @@ class App extends Component {
           <Navigation />
             <Switch>
             <Route path="/" component={Home} exact/>
-<<<<<<< HEAD
             <Route path="/product" component={Product} exact/>
             <Route path="/product2" component={Product2} exact/>
-=======
-            {/* <Route path="/product" component={Product} exact/> */}
->>>>>>> refs/remotes/origin/main
             <Route path="/login" component={Login} exact/>
              <Route path="/register" component={Register} exact/>
              <Route path="/revise" component={Revise} exact/>
