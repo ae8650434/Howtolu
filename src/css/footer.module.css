@@ -1,6 +1,7 @@
 #footerdiv{
     background-color: #DBAF74;
     z-index: 11;
+    margin-top: 100px;
 }
 #footerdiv p{
     margin:0 100px ;
