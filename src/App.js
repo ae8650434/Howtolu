@@ -4,6 +4,7 @@ import Navigation from './components/nav';
 import Home from './components/index';
 import Error from './components/error';
 import Product from './components/product';
+import Product2 from './components/product2';
 import Login from './components/login';
 import Register from './components/register';
 import Revise from './components/revise';
@@ -22,6 +23,7 @@ class App extends Component {
             <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/product" component={Product} exact/>
+            <Route path="/product2" component={Product2} exact/>
             <Route path="/login" component={Login} exact/>
              <Route path="/register" component={Register} exact/>
              <Route path="/revise" component={Revise} exact/>

@@ -13,7 +13,7 @@ const Navigation = () => {
                    <li className={navstyle.tili}>所有商品
                         <ul>
                             <a href="/product"><li className={navstyle.conli}>設備出租</li></a>  
-                            <a href=""><li className={navstyle.conli}>食材購買</li></a>                              
+                            <a href="/product2"><li className={navstyle.conli}>食材購買</li></a>                              
                         </ul>
                     </li>
                    <li className={navstyle.tili}>租借內容
