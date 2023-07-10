@@ -5,7 +5,7 @@ import axios from 'axios'
 //import '../js/product.js'
 class Product extends Component {
     state = {
-        product:[]
+        productList:[]
     }
     render() {
         return (
@@ -43,7 +43,7 @@ class Product extends Component {
                 <a href="/equip_detail"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
-                <img src="/image/food_1.png"/>
+                <img src={"/image/food_1.png"}/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
@@ -151,17 +151,14 @@ class Product extends Component {
     
     
 }
+componentDidMount = async () => {
+    var result = await axios.get('http://localhost:8000/product/list');
+    var newState = {...this.state};
+    newState.productList = result.data;
+    console.log('妳好',newState.productList)
+   // this.setState(newState);
+}
 
-componentDidMount() {
-    // 获取数据库中的图片信息
-    axios.get('http://localhost:8000/product/list')
-      .then(response => {
-        this.setState({ productList: response.data });
-      })
-      .catch(error => {
-        console.error('获取数据失败', error);
-      });
-  }
 
  
 }
