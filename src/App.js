@@ -11,10 +11,7 @@ import Revise from './components/revise';
 import Reset from './components/reset';
 import Info from './components/info';
 import EquipDetail from './components/equip_detail';
-<<<<<<< HEAD
 import FoodDetail from './components/food_detail';
-=======
->>>>>>> 48dc41c377bf93f3769839edcb754a8b57012118
 import Cart from './components/cart';
 import Order_list from './components/order_list';
 import Footer from './components/footer';
@@ -26,7 +23,6 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Navigation />
-<<<<<<< HEAD
             <Switch>
             <Route path="/" component={Home} exact/>
             <Route path="/product" component={Product} exact/>
@@ -39,11 +35,11 @@ class App extends Component {
              <Route path="/order_list" component={Order_list} exact/>
              <Route path="/equip_detail" component={EquipDetail} exact/>
              <Route path="/food_detail" component={FoodDetail} exact/>
-             {/* <Route path="/cart" component={Cart} exact/> */}
+             <Route path="/cart" component={Cart} exact/>
             <Route component={Error}/>
            </Switch>
+           <Footer />
         </div> 
-=======
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/product" component={Product} exact />
@@ -60,7 +56,6 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
->>>>>>> 48dc41c377bf93f3769839edcb754a8b57012118
       </BrowserRouter>
     );
   }
