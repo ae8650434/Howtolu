@@ -5,7 +5,7 @@
     justify-items: center;
     position: relative;
     top: 0;
-    background-color: white;
+    background-color:#D8DA7D;
     z-index: 10;
 
 }
@@ -26,17 +26,17 @@
     list-style: none;
     display: inline;
     height: 100px;
-    color: #DBAF74;
+    color: #635538;
 }
 #navul a{
     text-decoration:none ;
-    color: #DBAF74;
+    color: #635538;
 }
 .tili{
     font-size: 40px;
     display: inline-block;
     margin: 15px;
-    /* color: #DBAF74; */
+    /* color: #635538; */
 }
 #navul ul{
     list-style: none;
@@ -59,7 +59,7 @@
 }
 #navul .conli{
  
-    color: #DBAF74;
+    color: #635538;
 }
 
 #navul ul a:hover {

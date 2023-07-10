@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import '../css/product.css'
+import axios from 'axios'
+
 //import '../js/product.js'
 class Product extends Component {
-    state = {}
+    state = {
+        productList:[]
+    }
     render() {
         return (
             <React.Fragment>
@@ -39,7 +43,7 @@ class Product extends Component {
                 <a href="/equip_detail"><button className="btnq">立即預約</button></a>
             </figure>
             <figure>
-                <img src="./image/dog01.jpeg"/>
+                <img src={"/image/food_1.png"}/>
                 <figcaption>比利時CanvasCamp鐘型帳(2~6人)</figcaption>
                 <p></p>
                 <figcaption>NT$1,980 - 3 日</figcaption>
@@ -117,15 +121,15 @@ class Product extends Component {
             <p>商品分類</p>
             <ul className="categoriesUl1">
                 <li><a href="https://www.google.com/">寢室帳篷</a></li>
-                <li><a href="">客廳帳&天幕</a></li>
-                <li><a href="">寢室用具</a></li>
-                <li><a href="">戶外用品</a></li>
-                <li><a href="">爐具</a></li>
-                <li><a href="">保鮮保冷</a></li>
-                <li><a href="">燈具</a></li>
-                <li><a href="">影音設備</a></li>
-                <li><a href="">保暖裝備</a></li>
-                <li><a href="">常用配件</a></li>
+                <li><a href="#">客廳帳&天幕</a></li>
+                <li><a href="#">寢室用具</a></li>
+                <li><a href="#">戶外用品</a></li>
+                <li><a href="#">爐具</a></li>
+                <li><a href="#">保鮮保冷</a></li>
+                <li><a href="#">燈具</a></li>
+                <li><a href="#">影音設備</a></li>
+                <li><a href="#">保暖裝備</a></li>
+                <li><a href="#">常用配件</a></li>
             </ul>
         </div>
     </div>
@@ -147,6 +151,16 @@ class Product extends Component {
     
     
 }
+componentDidMount = async () => {
+    var result = await axios.get('http://localhost:8000/product/list');
+    var newState = {...this.state};
+    newState.productList = result.data;
+    console.log('妳好',newState.productList)
+   // this.setState(newState);
+}
+
+
+ 
 }
 
 

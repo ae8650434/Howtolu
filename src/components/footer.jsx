@@ -5,8 +5,8 @@ class footer extends Component {
     render() { 
         return ( 
             <>
-            <div id="footprivacy" class={footstyle.footprivacy}>
-            <div class={footstyle.footin}>
+            <div id="footprivacy" className={footstyle.footprivacy}>
+            <div className={footstyle.footin}>
                 <h3>隱私權政策</h3>
                 <div>
                     
