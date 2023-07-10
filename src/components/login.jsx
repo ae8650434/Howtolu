@@ -47,7 +47,7 @@ class Login extends Component {
           <div id={styles['smalltitle']}>登入HowTo露會員</div>
           <hr />
 
-          <form action="/login/member" method="post" onSubmit={this.okButtonClick}>
+          <form action="http://localhost:8000/login/member" method="post" onSubmit={this.okButtonClick}>
             <div style={{ textAlign: 'center', marginTop: '30px' }}>
               <div className={styles.first}>
                 <label htmlFor="account" className={styles.loginlabel}>帳號</label>
@@ -120,40 +120,45 @@ class Login extends Component {
     );
   }
 
-  okButtonClick =
-    async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:8000/login/member", // 修改为正确的后端路由
-          this.state.user, // 直接传递对象作为请求体数据
-          {
-            headers: {
-              "Content-Type": "application/json"
-            }
-            
+  okButtonClick = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/login/member", // 修改为正确的后端路由
+        this.state.user, // 直接传递对象作为请求体数据
+        {
+          headers: {
+            "Content-Type": "application/json"
           }
-        );
-        // 处理成功响应
+        }
+      );
+  
+      if (response.status === 200) {
+        // 响应状态码为200，表示成功
         console.log("Account:", this.state.user.account); // 在控制台输出账号值
         console.log("Password:", this.state.user.password); // 在控制台输出密码值
         console.log(response.data); // 在控制台打印响应数据
-      } catch (error) {
-        // 处理错误响应
-        if (error.response) {
-          // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-          console.error(error.response.data);
-        } else if (error.request) {
-          // 请求已发出，但未收到响应
-          console.error("No Response");
-        } else {
-          // 其他错误
-          console.error(error);
-        }
+  
+        // 根据业务需求进行其他操作，例如页面跳转等
+        window.location = "/"; // 重定向到首页
+      } else {
+        // 其他状态码处理
+        console.error(response.data);
+        // 进行相应的错误处理逻辑
       }
-      // window.location = "/";
-      // alert("Done");
-      // console.log(this.state.todoItem);
+    } catch (error) {
+      // 处理错误响应
+      if (error.response) {
+        // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+        console.error(error.response.data);
+      } else if (error.request) {
+        // 请求已发出，但未收到响应
+        console.error("No Response");
+      } else {
+        // 其他错误
+        console.error(error);
+      }
     }
+  };
 }
 
 
