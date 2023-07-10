@@ -6,15 +6,15 @@ var app = express.Router();
 var DB = require("./DB.js");
 
 // 設置路由
-app.get('/:pid', function (req, res) {
-    var sql = 'SELECT * FROM product where pid=?';
-    // console.log("我想看一下",req.params)
+
+app.get('/', function (req, res) {
+    var sql = 'SELECT * FROM product';
     DB.query(
-        sql, [req.params.pid], function (err, data) {
+        sql, function (err, data) {
             if (err) {
                 res.send("無法查詢資料");
             } else {
-                res.json(data);
+                res.send( JSON.stringify(data) );
             }
         }
         )
