@@ -1,5 +1,5 @@
 /* 導覽列 */
-.nav {
+/* .nav {
     height: 100px;
     background-color: #6ac13c;
     margin-bottom: 10px;
@@ -11,7 +11,7 @@
         position: relative;
         margin: 0px;
     }
-}
+} */
 
 
 /* categories商品分類 */
@@ -255,8 +255,9 @@ input.qtyminus {
 /* 預約按鈕 */
 .reserve {
     margin-left: 20px;
-    background-color: #5BB873;
-    border: #5BB873;
+    background-color: #5E9B44;
+    border: #5E9B44;
+    color:  #FFFFFF;
     border-radius: 8px;
     width: 200px;
     height: 50px;
@@ -346,10 +347,12 @@ input.qtyminus {
     width: 65%;
     height: 350px;
     margin-left: 500px;
+    margin-bottom: 150px;
 }
 
 .informationImg>p{
     font-size: 32px;
+    margin-bottom: 50px;
 }
 
 .informationImg>div{
