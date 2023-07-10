@@ -1,85 +1,161 @@
 import React, { Component, useState } from 'react';
 import styles from '../css/Login.module.css'
+import axios from 'axios';
 
 class Login extends Component {
-    // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
-    constructor(props) {
-        super(props);
-        this.state = {
-          passwordType: 'password',
-          eyeOpacity: 1,
-          eyeSrc: './image/eye.png'
-        };
+  // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
+  constructor(props) {
+    super(props);
+    this.state = {
+      passwordType: 'password',
+      eyeOpacity: 1,
+      eyeSrc: './image/eye.png',
+      user: {
+        account: '',
+        password: '',
+        isComplete: 1
       }
+    };
+  }
 
-      eyeClick = () => {
-        const { passwordType, eyeSrc } = this.state;
-        if (passwordType === 'text') {
-          this.setState({
-            passwordType: 'password',
-            eyeOpacity: 1,
-            eyeSrc: './image/eye.png'
-          });
-        } else {
-          this.setState({
-            passwordType: 'text',
-            eyeOpacity: 0.5,
-            eyeSrc: eyeSrc === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
-          });
-        }
-      };
-
-    render() {
-        const { passwordType, eyeOpacity, eyeSrc } = this.state;
-        return (
-                <div className={styles.short}>
-                <div id={styles['rule']}>
-                    【HowTo露反詐騙提醒】HowTo露客服人員不會要求您到ATM操作退款或信用卡退刷，這是詐騙手法，
-                    請提高警覺!!如有接獲類似電話或簡訊，請立即撥打165防詐騙專線，或洽客服04-23265860確認，謝謝
-                </div>
-                <div style={{textAlign: 'center'}}>
-                    <div id={styles['smalltitle']}>登入HowTo露會員</div>
-                    <hr />
-
-                    <form action="" method="">
-                    <div style={{textAlign: 'center', marginTop: '30px'}}>
-                        <div className={styles.first}>
-                        <label for="account" className={styles.loginlabel}>帳號</label>
-                        <input type="text" name="account" id="account" className={styles.login} />
-                        </div>
-                        <div className={styles.warningtitle}>  
-                        <p className={styles.warning}><img src="/image/warning.png" className={styles.pic}
-                        />  此手機號碼尚未註冊</p>
-                        </div>
-
-                        <div className={styles.first}> 
-                        <label for="password" className={styles.loginlabel}>密碼</label>
-                        <input type={passwordType} name="password" id="password" className={styles.login}/>
-                        <img src={eyeSrc} style={{ opacity: eyeOpacity }} id={styles['eye']} onClick={this.eyeClick}/>
-                        </div>
-
-                        <div className={styles.warningtitle}>
-                        <p className={styles.warning}><img src="/image/warning.png" className={styles.pic}/>  密碼錯誤</p>
-                        </div>
-                        <div className={styles.remember}>
-                        <input type="checkbox" id={styles['check']} />
-                        <label for="check" id={styles['la']}>記住帳號密碼</label>
-                        </div>
-                    </div>
-                    <hr />
-                    <br /><br />
-                    <div className={styles.send}>
-                        <input type="submit" value="登入" className={styles.go} id="log"/>
-                        <a href="./Reset.html" id={styles["forget"]}>忘記密碼?</a>
-                    </div>
-                    </form>
-                </div>
-                </div>
-        );
+  eyeClick = () => {
+    const { passwordType, eyeSrc } = this.state;
+    if (passwordType === 'text') {
+      this.setState({
+        passwordType: 'password',
+        eyeOpacity: 1,
+        eyeSrc: './image/eye.png'
+      });
+    } else {
+      this.setState({
+        passwordType: 'text',
+        eyeOpacity: 0.5,
+        eyeSrc: eyeSrc === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
+      });
     }
-    
-   
+  };
 
+  render() {
+    const { passwordType, eyeOpacity, eyeSrc } = this.state;
+    return (
+      <div className={styles.short}>
+        <div id={styles['rule']}>
+          【HowTo露反詐騙提醒】HowTo露客服人員不會要求您到ATM操作退款或信用卡退刷，這是詐騙手法，
+          請提高警覺!!如有接獲類似電話或簡訊，請立即撥打165防詐騙專線，或洽客服04-23265860確認，謝謝
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div id={styles['smalltitle']}>登入HowTo露會員</div>
+          <hr />
+
+          <form action="/login/member" method="post" onSubmit={this.okButtonClick}>
+            <div style={{ textAlign: 'center', marginTop: '30px' }}>
+              <div className={styles.first}>
+                <label htmlFor="account" className={styles.loginlabel}>帳號</label>
+                <input type="text" name="account"
+                  id="account"
+                  className={styles.login}
+                  value={this.state.user.account}
+                  onChange={
+                    (e) => {
+                      var newState = { ...this.state };
+                      newState.user.account = e.target.value;
+                      this.setState(newState);
+                    }
+                  }
+                />
+              </div>
+              <div className={styles.warningtitle}>
+                <p className={styles.warning}><img src="/image/warning.png" className={styles.pic}
+                />  此手機號碼尚未註冊</p>
+              </div>
+
+              <div className={styles.first}>
+                <label htmlFor="password" className={styles.loginlabel}>密碼</label>
+                <input type={passwordType} name="password"
+                  id="password"
+                  className={styles.login}
+                  value={this.state.user.password}
+                  onChange={
+                    (e) => {
+                      var newState = { ...this.state };
+                      newState.user.password = e.target.value;
+                      this.setState(newState);
+                    }
+                  }
+                />
+                <img src={eyeSrc} style={{ opacity: eyeOpacity }} id={styles['eye']} onClick={this.eyeClick} />
+              </div>
+
+              <div className={styles.warningtitle}>
+                <p className={styles.warning}><img src="/image/warning.png" className={styles.pic} />  密碼錯誤</p>
+              </div>
+              <div className={styles.remember}>
+                <input type="checkbox" id={styles['check']} checked={this.state.user.isComplete ? 0 : 1}
+                  onChange={
+                    (e) => {
+                      var newState = { ...this.state };
+                      newState.user.isComplete = e.target.checked ? 0 : 1
+                      this.setState(newState);
+                    }
+                  }
+                />
+                <label htmlFor="check" id={styles['la']}>記住帳號密碼</label>
+              </div>
+            </div>
+            <hr />
+            
+            <br /><br />
+            <div className={styles.send}>
+              <input type="submit"
+                value="登入"
+                className={styles.go}
+                id="log"
+              />
+              <a href="/reset" id={styles["forget"]}>忘記密碼?</a>
+              <br /><br /><br /><br />
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  okButtonClick =
+    async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/login/member", // 修改为正确的后端路由
+          this.state.user, // 直接传递对象作为请求体数据
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+            
+          }
+        );
+        // 处理成功响应
+        console.log("Account:", this.state.user.account); // 在控制台输出账号值
+        console.log("Password:", this.state.user.password); // 在控制台输出密码值
+        console.log(response.data); // 在控制台打印响应数据
+      } catch (error) {
+        // 处理错误响应
+        if (error.response) {
+          // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+          console.error(error.response.data);
+        } else if (error.request) {
+          // 请求已发出，但未收到响应
+          console.error("No Response");
+        } else {
+          // 其他错误
+          console.error(error);
+        }
+      }
+      // window.location = "/";
+      // alert("Done");
+      // console.log(this.state.todoItem);
+    }
 }
- 
+
+
+
 export default Login;

@@ -66,8 +66,8 @@ class Info extends Component {
                 </div>
             </div>
             </form>
+            <br /><br /><br /><br />
         </div>
-      
         );
     }
 }

@@ -7,7 +7,7 @@ var bcrypt = require("bcrypt");
 
 // console.log(password)
 
-app.post("/register_member", express.urlencoded(), (req, res) => {
+app.post("/", express.urlencoded(), (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
   var email = req.body.email;
