@@ -51,7 +51,9 @@
 }
 .footin button{    
     font-size: 40px;
+    background-color: #5E9B44;
     position: absolute;
     right: 20px;
     border-radius: 5px;
+    color: #FFFFFF;
 }
