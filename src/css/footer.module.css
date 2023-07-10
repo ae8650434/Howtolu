@@ -1,6 +1,6 @@
 #footerdiv{
     background-color: #DBAF74;
-   
+    z-index: 11;
 }
 #footerdiv p{
     margin:0 100px ;
@@ -18,10 +18,11 @@
 .footprivacy{
     display: none;
     position: fixed;
-    top:100px;
+    top:0px;
     bottom: 0;
     background-color: rgb(128, 128, 128,0.8);
     width: 100%;
+    z-index: 12;
 }
 
 .footin{
