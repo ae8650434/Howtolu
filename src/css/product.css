@@ -186,6 +186,10 @@ figure {
     font-size: 40px;
 }
 
+figcaption{
+    font-size: 34px;
+}
+
 @media(max-width: 393px) {
     body {
         overflow-x: hidden;

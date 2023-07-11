@@ -19,14 +19,18 @@ class Product3 extends Component {
                                 <img src={`/image/${x.p_img}`} />
                                 <figcaption>{x.pname}</figcaption>                          
                                 <figcaption>NT${x.price} - {x.day} 日</figcaption>
-                                <a href="/equip_detail"><button className="btnq">立即預約</button></a>
+                                <a href={`/equip_detail/${x.pid}`}><button className="btnq">立即預約</button></a>
                             </figure>
                         </div>)
                     })}
                 </div>
             </div>
         );
+
+        
     }
+
+   
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/product/list');
         var newState = { ...this.state };
