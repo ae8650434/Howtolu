@@ -1,9 +1,36 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
 import '../css/calendar.css';
 
 class EquipDetail extends Component {
+    states = {
+<<<<<<< HEAD
+        product:
+        {
+            pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+            description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+            pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+        }
+=======
+        product: 
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }
+    }
+
+    state = {
+        product: 
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }
+>>>>>>> 64c197b83c5e790739ed438ac19b9044be4972c4
+    }
     constructor(props) {
         super(props);
 
@@ -93,6 +120,7 @@ class EquipDetail extends Component {
         }
     };
 
+    // 要寫按鈕送出後 1.要回到商品頁2.進購物車資料庫
     // formSubmit = (e) => {
     //     e.preventDefault();
     // };
@@ -100,143 +128,163 @@ class EquipDetail extends Component {
         const { value, maxDate, minDate } = this.state;
         return (
             <React.Fragment>
-                    <div className={styles.categories}>
-                        <p>商品分類</p>
-                        <ul className={styles.categoriesUl}>
-                            <li><a href="">寢室帳篷</a></li>
-                            <li><a href="">客廳帳&天幕</a></li>
-                            <li><a href="">寢室用具</a></li>
-                            <li><a href="">戶外用品</a></li>
-                            <li><a href="">爐具</a></li>
-                            <li><a href="">保鮮保冷</a></li>
-                            <li><a href="">燈具</a></li>
-                            <li><a href="">影音設備</a></li>
-                            <li><a href="">保暖裝備</a></li>
-                            <li><a href="">常用配件</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div className={styles.image}>
-                            <a target="_blank" href="/image/product_1.png">
-                                <img src="/image/product_1.png" /></a>
-                        </div>
-                        <div className={styles.commodityall}>
-                            <div className={styles.commodity}>
-                                <p>鐘型帳(2~6人)</p>
-                                <p>
-                                    <span>NT$</span>
-                                    <span>1,800</span>
-                                    <span>— 3日</span>
-                                </p>
-                                <ul>
-                                    <li>純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用</li>
-                                    <li>建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋)</li>
-                                    <li>建議搭帳人數：1人以上</li>
-                                    <li>適用場地 : 草皮區</li>
-                                </ul>
-                                <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
-                            </div>
 
-                            <div className={styles.myform}>
-                                <form id={styles['myform']} method='get' action='#' onSubmit={this.formSubmit}>
-                                    <div>
-                                        <Calendar
-                                            locale="en-US"
-                                            onClickDay={this.onClickDay.bind(this)}
-                                            value={value}
-                                            maxDate={maxDate}
-                                            minDate={minDate}
-                                            tileDisabled={({ date }) => this.isDisabled(date)}
+                <div className={styles.categories}>
+                    <p>商品分類</p>
+                    <ul className={styles.categoriesUl}>
+                        <li><a href="">寢室帳篷</a></li>
+                        <li><a href="">客廳帳&天幕</a></li>
+                        <li><a href="">寢室用具</a></li>
+                        <li><a href="">戶外用品</a></li>
+                        <li><a href="">爐具</a></li>
+                        <li><a href="">保鮮保冷</a></li>
+                        <li><a href="">燈具</a></li>
+                        <li><a href="">影音設備</a></li>
+                        <li><a href="">保暖裝備</a></li>
+                        <li><a href="">常用配件</a></li>
+                    </ul>
+                </div>
+              
+                <div>
+                    <div className={styles.image}>
+                        <a target="_blank" href="/image/product_1.png">
+                            <img src="/image/product_1.png" /></a>
+                    </div>
+                    <div className={styles.commodityall}>
+                        <div className={styles.commodity}>
+                            <p>{console.log(this.states.product.pname)}</p>
+                            <p>
+                                <span>NT$</span>
+                                <span>1,800</span>
+                                <span>— 3日</span>
+                            </p>
+                            <ul>
+                                <li>純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用</li>
+                                <li>建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋)</li>
+                                <li>建議搭帳人數：1人以上</li>
+                                <li>適用場地 : 草皮區</li>
+                            </ul>
+                            <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
+                        </div>
+
+                        <div className={styles.myform}>
+                            <form id={styles['myform']} method='get' action='#' onSubmit={this.formSubmit}>
+                                <div>
+                                    <Calendar
+                                        locale="en-US"
+                                        onClickDay={this.onClickDay.bind(this)}
+                                        value={value}
+                                        maxDate={maxDate}
+                                        minDate={minDate}
+                                        tileDisabled={({ date }) => this.isDisabled(date)}
                                         />
-                                    </div>
-                                    <div>{this.renderDates()}</div>
-                                    <label htmlFor='quantity'>數量：</label>
-                                    <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
-                                    <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
-                                    <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
-                                    <input type='button' value='立即預約' className={styles.reserve} />
-                                    <p><span>庫存量:</span><span>10個</span></p>
-                                </form>
-                            </div>
+                                </div>
+                                <div>{this.renderDates()}</div>
+                                <label htmlFor='quantity'>數量：</label>
+                                <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
+                                <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
+                                <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
+                                <input type='button' value='立即預約' className={styles.reserve} />
+                                <p><span>庫存量:</span><span>10個</span></p>
+                            </form>
                         </div>
                     </div>
-                    <div className={styles.information}>
-                        <p>商品資訊</p>
-                        <ul>
-                            <li>套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋</li>
-                            <li>隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊</li>
-                            <li>面積：4.83坪</li>
-                            <li>直徑：450cm</li>
-                            <li>高度：274cm</li>
-                            <li>門高：167cm</li>
-                            <li>最大容量：6人</li>
-                            <li>總重量: 36 kg</li>
-                        </ul>
-                    </div>
-                    <div className={styles.informationImg}>
-                        <p>經常一起租借裝備：</p>
-                        <div>
-                            <div className={styles.container}>
-                                <a href=""> <img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_22.png" alt="Avatar" />
-                                    <div className={styles.overlay}>
-                                        <div className={styles.imgtext}>
-                                            <p>LED手提鐵路復古營燈(白)</p>
-                                            <p>
-                                                <span>NT$</span>
-                                                <span>200</span>
-                                                <span>— 3日</span>
-                                            </p>
-                                        </div>
+                </div>
+                <div className={styles.information}>
+                    <p>商品資訊</p>
+                    <ul>
+                        <li>套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋</li>
+                        <li>隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊</li>
+                        <li>面積：4.83坪</li>
+                        <li>直徑：450cm</li>
+                        <li>高度：274cm</li>
+                        <li>門高：167cm</li>
+                        <li>最大容量：6人</li>
+                        <li>總重量: 36 kg</li>
+                    </ul>
+                </div>
+                <div className={styles.informationImg}>
+                    <p>經常一起租借裝備：</p>
+                    <div>
+                        <div className={styles.container}>
+                            <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_22.png" alt="Avatar" />
+                                <div className={styles.overlay}>
+                                    <div className={styles.imgtext}>
+                                        <p>LED手提鐵路復古營燈(白)</p>
+                                        <p>
+                                            <span>NT$</span>
+                                            <span>200</span>
+                                            <span>— 3日</span>
+                                        </p>
                                     </div>
-                                </a>
-                            </div>
-                            <div className={styles.container}>
-                                <a href=""><img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_9.png" alt="Avatar" />
-                                    <div className={styles.overlay}>
-                                        <div className={styles.imgtext}>
-                                            <p>天幕</p>
-                                            <p>
-                                                <span>NT$</span>
-                                                <span>300</span>
-                                                <span>— 3日</span>
-                                            </p>
-                                        </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className={styles.container}>
+                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_9.png" alt="Avatar" />
+                                <div className={styles.overlay}>
+                                    <div className={styles.imgtext}>
+                                        <p>天幕</p>
+                                        <p>
+                                            <span>NT$</span>
+                                            <span>300</span>
+                                            <span>— 3日</span>
+                                        </p>
                                     </div>
-                                </a>
-                            </div>
-                            <div className={styles.container}>
-                                <a href=""><img className={styles.cimage} style={{width:'350px',height:'350px'}} src="/image/product_16.png" alt="Avatar" />
-                                    <div className={styles.overlay}>
-                                        <div className={styles.imgtext}>
-                                            <p>可調式高背摺疊椅(沙色)</p>
-                                            <p>
-                                                <span>NT$</span>
-                                                <span>150</span>
-                                                <span>— 3日</span>
-                                            </p>
-                                        </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className={styles.container}>
+                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_16.png" alt="Avatar" />
+                                <div className={styles.overlay}>
+                                    <div className={styles.imgtext}>
+                                        <p>可調式高背摺疊椅(沙色)</p>
+                                        <p>
+                                            <span>NT$</span>
+                                            <span>150</span>
+                                            <span>— 3日</span>
+                                        </p>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div className={styles.categories_min}>
-                        <p>商品分類</p>
-                        <ul className={styles.categoriesUl_min}>
-                            <li><a href="">寢室帳篷</a></li>
-                            <li><a href="">客廳帳&天幕</a></li>
-                            <li><a href="">寢室用具</a></li>
-                            <li><a href="">戶外用品</a></li>
-                            <li><a href="">爐具</a></li>
-                            <li><a href="">保鮮保冷</a></li>
-                            <li><a href="">燈具</a></li>
-                            <li><a href="">影音設備</a></li>
-                            <li><a href="">保暖裝備</a></li>
-                            <li><a href="">常用配件</a></li>
-                        </ul>
-                    </div>
+                </div>
+
+
+    
+<div className={styles.categories_min}>
+                    <p>商品分類</p>
+                    <ul className={styles.categoriesUl_min}>
+                        <li><a href="">寢室帳篷</a></li>
+                        <li><a href="">客廳帳&天幕</a></li>
+                        <li><a href="">寢室用具</a></li>
+                        <li><a href="">戶外用品</a></li>
+                        <li><a href="">爐具</a></li>
+                        <li><a href="">保鮮保冷</a></li>
+                        <li><a href="">燈具</a></li>
+                        <li><a href="">影音設備</a></li>
+                        <li><a href="">保暖裝備</a></li>
+                        <li><a href="">常用配件</a></li>
+                    </ul>
+                </div>
             </React.Fragment>
-        );
+            
+            );
+        }
+    componentDidMount = async () => {
+        var pid = this.props.match.params.pid;
+        var url = `http://localhost:8000/product/${pid}`;
+        var result = await axios.get(url);
+        var newStates = { ...this.states };
+        newStates.product = result.data;
+        // console.log("555",newState.product)
+<<<<<<< HEAD
+        this.setState(newState);
+=======
+        this.setState(newStates);          
+>>>>>>> 64c197b83c5e790739ed438ac19b9044be4972c4
+        // console.log("123",newState.product); //undefined
     }
 }
 
