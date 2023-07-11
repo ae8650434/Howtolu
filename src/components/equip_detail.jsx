@@ -6,12 +6,51 @@ import '../css/calendar.css';
 
 class EquipDetail extends Component {
     states = {
+<<<<<<< HEAD
         product:
         {
             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
         }
+    }
+
+    state = {
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/main
+        product: 
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }
+    }
+
+    state = {
+        product: 
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 20fe92e51856fcfd5890ba42baffca4edf377243
+        product:
+        {
+            pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+            description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+            pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+        }
+<<<<<<< HEAD
+=======
+>>>>>>> f914be1e5e7dd482e6d3b5fa95780a379e686000
+>>>>>>> refs/remotes/origin/main
+>>>>>>> 20fe92e51856fcfd5890ba42baffca4edf377243
     }
     constructor(props) {
         super(props);
@@ -108,6 +147,7 @@ class EquipDetail extends Component {
     // };
     render() {
         const { value, maxDate, minDate } = this.state;
+        const productArray = this.states.product.description.split(";");
         return (
             <React.Fragment>
 
@@ -126,7 +166,7 @@ class EquipDetail extends Component {
                         <li><a href="">常用配件</a></li>
                     </ul>
                 </div>
-              
+
                 <div>
                     <div className={styles.image}>
                         <a target="_blank" href="/image/product_1.png">
@@ -134,18 +174,23 @@ class EquipDetail extends Component {
                     </div>
                     <div className={styles.commodityall}>
                         <div className={styles.commodity}>
-                            <p>{console.log(this.states.product.pname)}</p>
+                            <p>{this.states.product.pname}</p>
                             <p>
                                 <span>NT$</span>
-                                <span>1,800</span>
-                                <span>— 3日</span>
+                                <span>{this.states.product.price}</span>
+                                <span>— {this.states.product.day}日</span>
                             </p>
                             <ul>
+                                {productArray.map((data, index) => (
+                                    <li key={index}>{data.trim()}</li>
+                                ))}
+                            </ul>
+                            {/* <ul>
                                 <li>純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用</li>
                                 <li>建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋)</li>
                                 <li>建議搭帳人數：1人以上</li>
                                 <li>適用場地 : 草皮區</li>
-                            </ul>
+                            </ul> */}
                             <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
                         </div>
 
@@ -159,7 +204,7 @@ class EquipDetail extends Component {
                                         maxDate={maxDate}
                                         minDate={minDate}
                                         tileDisabled={({ date }) => this.isDisabled(date)}
-                                        />
+                                    />
                                 </div>
                                 <div>{this.renderDates()}</div>
                                 <label htmlFor='quantity'>數量：</label>
@@ -234,8 +279,8 @@ class EquipDetail extends Component {
                 </div>
 
 
-    
-<div className={styles.categories_min}>
+
+                <div className={styles.categories_min}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_min}>
                         <li><a href="">寢室帳篷</a></li>
@@ -251,9 +296,9 @@ class EquipDetail extends Component {
                     </ul>
                 </div>
             </React.Fragment>
-            
-            );
-        }
+
+        );
+    }
     componentDidMount = async () => {
         var pid = this.props.match.params.pid;
         var url = `http://localhost:8000/product/${pid}`;
@@ -261,7 +306,19 @@ class EquipDetail extends Component {
         var newStates = { ...this.states };
         newStates.product = result.data;
         // console.log("555",newState.product)
+<<<<<<< HEAD
         this.setState(newStates);
+=======
+<<<<<<< HEAD
+        this.setState(newStates);          
+=======
+<<<<<<< HEAD
+        this.setState(newStates);          
+=======
+        this.setState(newStates);
+>>>>>>> f914be1e5e7dd482e6d3b5fa95780a379e686000
+>>>>>>> refs/remotes/origin/main
+>>>>>>> 20fe92e51856fcfd5890ba42baffca4edf377243
         // console.log("123",newState.product); //undefined
     }
 }
