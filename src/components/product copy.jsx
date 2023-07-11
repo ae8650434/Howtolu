@@ -75,7 +75,7 @@ class Product3 extends Component {
                   <img src={`/image/${x.f_img}`} />
                   <figcaption>{x.fname}</figcaption>
                   <figcaption>NT${x.price}</figcaption>
-                  <a href={`/equip_detail/${x.fid}`}><button className="btnq">選購</button></a>
+                  <a href={`/food_detail/${x.fid}`}><button className="btnq">選購</button></a>
                 </figure>
               </div>
             );
