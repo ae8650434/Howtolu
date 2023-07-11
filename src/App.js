@@ -39,20 +39,7 @@ class App extends Component {
             <Route path="/equip_detail/:pid" component={EquipDetail} exact />
             <Route path="/food_detail/:fid" component={FoodDetail} exact />
             <Route path="/cart" component={Cart} exact />
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f914be1e5e7dd482e6d3b5fa95780a379e686000
->>>>>>> refs/remotes/origin/main
->>>>>>> 20fe92e51856fcfd5890ba42baffca4edf377243
->>>>>>> 55d57cfb10c62bced4c498e1751005435a65cee6
             <Route component={Error} />
           </Switch>
           <Footer />
