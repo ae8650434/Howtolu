@@ -7,8 +7,8 @@ var bcrypt = require("bcrypt");
 
 // console.log(password)
 
-app.post("/", express.urlencoded(), (req, res) => {
-  var name = req.body.name;
+app.post("/", (req, res) => {
+  var mname = req.body.mname;
   var phone = req.body.phone;
   var email = req.body.email;
   var rowpassword = req.body.password;
@@ -21,19 +21,20 @@ app.post("/", express.urlencoded(), (req, res) => {
       res.status(500).send("Error during password hashing");
       return;
     }
+    
 
     var sql =
       "INSERT INTO member(name, tel, password, mail, register_time) VALUES (?,?,?,?,?)";
-    DB.query(sql, [name, phone, hash, email, date], (err, data) => {
+    DB.query(sql, [mname, phone, hash, email, date], (err, data) => {
       if (err) {
         console.error(err);
-        res.status(500).send("Error during registration");
-        return;
+        return res.status(500).send('Error during registration');
       }
-      
-      res.send('Registration successful');
+
+      res.status(200).send('Registration successful');
     });
   });
 });
+
 
 module.exports = app;
