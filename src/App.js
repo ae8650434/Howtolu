@@ -33,9 +33,21 @@ class App extends Component {
             <Route path="/reset" component={Reset} exact />
             <Route path="/info" component={Info} exact />
             <Route path="/order_list" component={Order_list} exact />
+<<<<<<< HEAD
+            <Route path="/equip_detail" component={EquipDetail} exact />
+            <Route path="/FoodDetail" component={FoodDetail} exact />
+            <Route path="/cart" component={Cart} exact/>
+=======
+<<<<<<< HEAD
+            <Route path="/equip_detail" component={EquipDetail} exact />
+            <Route path="/FoodDetail" component={FoodDetail} exact />
+            <Route path="/cart" component={Cart} exact/>
+=======
             <Route path="/equip_detail/:pid" component={EquipDetail} exact />
             <Route path="/food_detail/:fid" component={FoodDetail} exact />
             <Route path="/cart" component={Cart} exact />
+>>>>>>> 18965a81c539b2e18c3e3b496c3f0ba49a9d2a0a
+>>>>>>> refs/remotes/origin/main
             <Route component={Error} />
           </Switch>
           <Footer />

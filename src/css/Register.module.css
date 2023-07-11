@@ -232,15 +232,18 @@ h2 {
 h3 {
   margin: 0 0px;
   padding-top: 15px;
-  background: #eeeeee !important;
+  font-size: 30px;
+  /* background: #eeeeee !important; */
 }
 
 h4 {
-  background: #eeeeee !important;
+  /* background: #eeeeee !important; */
+  font-size: 32px;
 }
 
 #div2 p {
-  background: #eeeeee !important;
+  /* background: #eeeeee !important; */
+  font-size: 30px;
 }
 
 @media screen and (max-width: 400px) {

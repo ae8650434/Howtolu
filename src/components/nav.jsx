@@ -36,7 +36,7 @@ class  Navigation extends Component{
                             <li  className={navstyle.conli}>表單填寫
                                 <ul id={navstyle['a']}>
                                     <a href=""><li >Google表單</li></a>  
-                                    <a href="/image/logo.png" download><li >Excel表單下載</li></a>  
+                                    <a href="/excel/HowTo露(表單回覆).xlsx" download><li >Excel表單下載</li></a>  
                                     
                                 </ul>
                             </li>  

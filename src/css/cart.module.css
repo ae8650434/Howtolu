@@ -15,9 +15,9 @@
 
 #buy {
     border-radius: 20px;
-    background-color: #DBAF74;
+    background-color: #5E9B44;
     border: none;
-    color: rgb(255, 255, 255);
+    color: #FFFFFF;
     text-align: center;
     font-size: 35px;
     padding: 10px;
@@ -47,9 +47,9 @@
     right: 0;
 }
 
-#buy:hover{
+/* #buy:hover{
     background-color: #5bb873;
-}
+} */
 
 #null{
     background-color: #ffffff;
@@ -91,9 +91,9 @@
 
 #nullshopping {
     border-radius: 20px;
-    background-color: #DBAF74;
+    background-color: #5E9B44;
     border: none;
-    color: rgb(255, 255, 255);
+    color: #FFFFFF;
     text-align: center;
     font-size: 34px;
     padding: 10px;
@@ -125,9 +125,9 @@
     right: 0;
 }
 
-#nullshopping:hover{
+/* #nullshopping:hover{
     background-color: #5bb873;
-}
+} */
 
 #imgRubbish{
     width: 20px;

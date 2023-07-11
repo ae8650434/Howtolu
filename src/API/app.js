@@ -13,7 +13,7 @@ app.use(cors());
 app.use("/product/list",selectall)
 app.use("/product",select)
 app.use("/register",register)
-app.use("/login",login)
+app.use("/login/member",login)
 
 
 var login = require('./login_select.js')
