@@ -25,7 +25,7 @@
   align-items: center;
   margin-left: 16%;
   margin-right: 20%;
-  margin-bottom: 1%;
+  margin-bottom: 30px;
 }
 
 .register_from_title {
@@ -128,7 +128,7 @@ input::-webkit-input-placeholder {
   margin-left: 10px;
 }
 
-#verification {
+.verification {
   width: 150px;
   height: 100%;
   background-color: #dbaf74 !important;
@@ -317,7 +317,7 @@ h4 {
     margin-left: 120px;
   }
 
-  #verification {
+  .verification {
     font-size: 25px;
     width: 80px;
     height: 30px;
