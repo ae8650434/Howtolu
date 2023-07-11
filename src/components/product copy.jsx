@@ -26,7 +26,11 @@ class Product3 extends Component {
                 </div>
             </div>
         );
+
+        
     }
+
+   
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/product/list');
         var newState = { ...this.state };
