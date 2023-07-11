@@ -87,7 +87,7 @@ class Order_list extends Component {
             </tr>
           </table>
           </div>
-        
+          <br /><br /><br /><br />
     </div>
         );
     }
