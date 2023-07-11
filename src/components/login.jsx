@@ -99,7 +99,7 @@ class Login extends Component {
                     }
                   }
                 />
-                <label htmlFor="check" id={styles['la']}>記住帳號密碼</label>
+                <label htmlFor="check" id={styles['la']} name='remember'>記住帳號密碼</label>
               </div>
             </div>
             <hr />

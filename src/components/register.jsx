@@ -16,7 +16,14 @@ class Register extends Component {
           eyeSrc2: './image/eye.png',
 
           verification: '',
-          handleOpen: false
+          handleOpen: false,
+
+          user: {
+            mname: '王大明',
+            phone: '0911111111',
+            email: 'bbb@gmail.com',
+            password: 'winnie1234567890'
+          }
         };
         this.generateCode = this.generateCode.bind(this)
       }
@@ -35,57 +42,115 @@ class Register extends Component {
         請提高警覺!!如有接獲類似電話或簡訊，請立即撥打165防詐騙專線，或洽客服04-23265860確認，謝謝
       </div>
     
-      <div style={{textaAlign: 'center'}}>
+      <div style={{textAlign: 'center'}}>
         <div id={styles["small-title"]}>登入HowTo露會員</div>
         <hr />
 
-        <form action="" method="" className={styles.register_login}>
+        <form action="http://localhost:8000/register" method="post" className={styles.register_login}>
+        <div className={styles.register_first}>
+            <label htmlFor="" className={styles.register_from_title}>姓名</label>
+            <input type="text"
+            className={styles.register_from_input} 
+            value={this.state.user.mname}
+            onChange={
+              (e) => {
+                var newState = { ...this.state };
+                newState.user.mname = e.target.value;
+                this.setState(newState);
+              }
+            }
+            required/>
+          </div>
           <div className={styles.register_first}>
-            <label for="" className={styles.register_from_title}>手機號碼</label>
-            <input type="text" placeholder="格式：0912345678" className={styles.register_from_input} pattern="0\d{9}" required/>
+            <label htmlFor="" className={styles.register_from_title}>手機號碼</label>
+            <input type="text" 
+            placeholder="格式：0912345678" 
+            className={styles.register_from_input} 
+            pattern="0\d{9}" 
+            value={this.state.user.phone}
+            onChange={
+              (e) => {
+                var newState = { ...this.state };
+                newState.user.phone = e.target.value;
+                this.setState(newState);
+              }
+            }
+            required/>
           </div>
           <div className={styles.warning_title}>
             <img src="/image/warning.png" className={styles.pic}/>
             <span className={styles.warning}>請輸入有效的手機號碼</span>
           </div>
           <div className={styles.register_first}>
-            <label for="" className={styles.register_from_title}>e-mail</label>
-            <input type="email" className={styles.register_from_input}  required/>
+            <label htmlFor="" className={styles.register_from_title}>e-mail</label>
+            <input type="email" 
+            className={styles.register_from_input}
+            value={this.state.user.email}
+            onChange={
+              (e) => {
+                var newState = { ...this.state };
+                newState.user.email = e.target.value;
+                this.setState(newState);
+              }
+            }
+            required/>
           </div>
           <div className={styles.warning_title}>
             <img src="/image/warning.png" className={styles.pic}/>
             <span className={styles.warning}>請輸入有效的e-mail</span>
           </div>
           <div className={styles.register_first}>
-            <label for="" className={styles.register_from_title}>設定密碼</label>
-            <input type={passwordType} className={styles.register_from_input} placeholder="  密碼長度需8-16字元，含一個英文字母與數字" id="password" pattern="^(?=.[a-zA-Z])(?=.\d)[^\s]{8,16}$" required/>
+            <label htmlFor="" className={styles.register_from_title}>設定密碼</label>
+            <input type={passwordType} 
+            className={styles.register_from_input} 
+            placeholder="  密碼長度需8-16字元，含一個英文字母與數字" 
+            id="password" 
+            pattern="^(?=.[a-zA-Z])(?=.\d)[^\s]{8,16}$" 
+            value={this.state.user.password}
+            onChange={
+              (e) => {
+                var newState = { ...this.state };
+                newState.user.password = e.target.value;
+                this.setState(newState);
+              }
+            }
+            required/>
             <img src={eyeSrc} style={{opacity: eyeOpacity}} id="eye" className={styles.eye} onClick={this.eyeClick}/>
           </div>
           <div className={styles.register_first}>
-            <label for="" className={styles.register_from_title}>再次確認密碼</label>
-            <input type={passwordType2} className={styles.register_from_input} placeholder="   再次確認密碼" id="checkeye" pattern="[\da-zA-Z]{8,16}" required/>
+            <label htmlFor="" className={styles.register_from_title}>再次確認密碼</label>
+            <input type={passwordType2} 
+            className={styles.register_from_input} 
+            placeholder="   再次確認密碼" 
+            id="checkeye" 
+            pattern="[\da-zA-Z]{8,16}" 
+            required/>
             <img src={eyeSrc2} style={{opacity: eyeOpacity2}} className={styles.eye} onClick={this.eyeClick2}/>
           </div>
           <div className={styles.register_first}>
-            <label for="" className={styles.register_from_title}>驗證碼</label>
+            <label htmlFor="" className={styles.register_from_title}>驗證碼</label>
             <input type="text" className={styles.register_from_input}id="cnumber" required/>
           </div>
           <div className={styles.reflash_div}>
-          <p id={styles.verification}>{this.state.verification}</p>
+          <p id='verification' className={styles.verification}>{this.state.verification}</p>
           <img src="/image/reflash.png" id={styles["reflash"]} onClick={this.generateCode}/>
           </div>
           <div className={styles.register_first}>
             <input type="checkbox" className={styles.register_from_checkbox} id="checkbox"/>
-            <p className={styles.register_from_checkbox_word}>我同意</p>
+            <p className={styles.register_from_checkbox_word} id='agree'>我同意</p>
             <a className={styles.register_from_checkbox_link} id="terms" onClick={this.handleTermsClick}>HowTo露會員服務條款</a>
           </div>
           <hr />
           <div className={styles.register_from_send}>
-            <input type="button" value="註冊" id="register" className={`${styles.register_from_link} ${styles.register_from_button}`} onClick={this.handleRegisterClick}/>
+            <input type="button" 
+            value="註冊" 
+            id="register" 
+            className={`${styles.register_from_link} ${styles.register_from_button}`} 
+            onClick={this.handleRegisterClick}/>
             <p className={styles.register_from_link}>我已經是會員了！</p>
-            <a href="./login" className={styles.register_from_link}>請點這裡登入</a>
+            <a href="/login" className={styles.register_from_link}>請點這裡登入</a>
             <br />
-            <a href="./Reset.html" className={`${styles.register_from_link} ${styles.register_from_forget_password}`}>忘記密碼?</a>
+            <a href="/reset" className={`${styles.register_from_link} ${styles.register_from_forget_password}`}>忘記密碼?</a>
           </div>
         </form>
       </div>
@@ -206,7 +271,7 @@ class Register extends Component {
     }
 
     //密碼不同時阻止表單送出
-    handleRegisterClick = (e) => {
+    handleRegisterClick = () => {
         const password = document.getElementById('password').value;
         const checkeye = document.getElementById('checkeye').value;
         const cnumber = document.getElementById('cnumber').value;
@@ -215,19 +280,15 @@ class Register extends Component {
     
         if (password !== checkeye && cnumber !== verification) {
           alert('請再次確認密碼及驗證碼是否正確');
-          e.preventDefault();
         } else if (password !== checkeye) {
           alert('請再次確認密碼是否相同');
-          e.preventDefault();
         } else if (cnumber !== verification) {
           alert('請確認驗證碼是否正確');
-          e.preventDefault();
         }
     
         if (!isCheck) {
-          document.querySelector('.register_from_checkbox_word').style.color = 'red';
+          document.getElementById('agree').style.color = 'red';
           document.getElementById('terms').style.color = 'red';
-          e.preventDefault();
         }
       }
 
