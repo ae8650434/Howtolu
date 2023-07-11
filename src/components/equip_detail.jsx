@@ -5,6 +5,15 @@ import styles from '../css/equip_detail.module.css';
 import '../css/calendar.css';
 
 class EquipDetail extends Component {
+    states = {
+        product: 
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }
+    }
+
     state = {
         product: 
             {
@@ -126,6 +135,7 @@ class EquipDetail extends Component {
                         <li><a href="">常用配件</a></li>
                     </ul>
                 </div>
+              
                 <div>
                     <div className={styles.image}>
                         <a target="_blank" href="/image/product_1.png">
@@ -133,7 +143,7 @@ class EquipDetail extends Component {
                     </div>
                     <div className={styles.commodityall}>
                         <div className={styles.commodity}>
-                            <p>{console.log(this.state.product)}</p>
+                            <p>{console.log(this.states.product.pname)}</p>
                             <p>
                                 <span>NT$</span>
                                 <span>1,800</span>
@@ -158,7 +168,7 @@ class EquipDetail extends Component {
                                         maxDate={maxDate}
                                         minDate={minDate}
                                         tileDisabled={({ date }) => this.isDisabled(date)}
-                                    />
+                                        />
                                 </div>
                                 <div>{this.renderDates()}</div>
                                 <label htmlFor='quantity'>數量：</label>
@@ -231,7 +241,10 @@ class EquipDetail extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={styles.categories_min}>
+
+
+    
+<div className={styles.categories_min}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_min}>
                         <li><a href="">寢室帳篷</a></li>
@@ -247,17 +260,17 @@ class EquipDetail extends Component {
                     </ul>
                 </div>
             </React.Fragment>
-
-        );
-    }
+            
+            );
+        }
     componentDidMount = async () => {
         var pid = this.props.match.params.pid;
         var url = `http://localhost:8000/product/${pid}`;
         var result = await axios.get(url);
-        var newState = { ...this.state };
-        newState.product = result.data;
+        var newStates = { ...this.states };
+        newStates.product = result.data;
         // console.log("555",newState.product)
-        this.setState(newState);          
+        this.setState(newStates);          
         // console.log("123",newState.product); //undefined
     }
 }
