@@ -8,7 +8,7 @@ var DB = require("./DB.js");
 // 設置路由
 
 app.get('/', function (req, res) {
-    var sql = 'SELECT * FROM car';
+    var sql = 'SELECT * FROM product_class';
     DB.query(
         sql, function (err, data) {
             if (err) {

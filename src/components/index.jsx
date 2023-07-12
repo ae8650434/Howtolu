@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import About from './index/about.jsx'
+import Productlink from './index/productlink.jsx'
  
 const home = () => {
     return (
-       <div>
-          <h1>Home</h1>
-           <p>Home page body content</p>
-       </div>
+       <>
+          <About/>
+          <Productlink/>
+        </>
+       
     );
 }
  

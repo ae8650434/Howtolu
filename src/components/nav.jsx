@@ -24,7 +24,7 @@ class  Navigation extends Component{
                     </li>
                    <li className={navstyle.tili}>租借內容
                         <ul>
-                            <a href=""><li className={navstyle.conli}>租借流程</li></a>  
+                            <a href="../process.html"><li className={navstyle.conli}>租借流程</li></a>  
                             <a href="" ><li className={navstyle.conli}>租借規範</li></a>  
                             
                         </ul>
@@ -35,7 +35,7 @@ class  Navigation extends Component{
                             <a href=""><li className={navstyle.conli}>表單上傳</li></a>  
                             <li  className={navstyle.conli}>表單填寫
                                 <ul id={navstyle['a']}>
-                                    <a href=""><li >Google表單</li></a>  
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBpC90D4LAPmwi5iGMOShmuA6D1Lj0IvsvNUr7HUmzzhWzrQ/viewform"><li >Google表單</li></a>  
                                     <a href="/excel/HowTo露(表單回覆).xlsx" download><li >Excel表單下載</li></a>  
                                     
                                 </ul>

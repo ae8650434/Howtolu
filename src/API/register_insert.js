@@ -7,6 +7,29 @@ var bcrypt = require("bcrypt");
 
 // console.log(password)
 
+
+app.get('/checkPhone/:phone', (req, res) => {
+  const mphone = req.params.phone;
+
+  // 在这里编写根据手机号检查是否已注册的逻辑
+
+  var checkUserSql = "SELECT * FROM member WHERE tel = ?";
+     DB.query(checkUserSql, [mphone], (err, rows) => {
+       if (err) {
+         console.error(err);
+         return res.status(500).send('Error during user check');
+       }
+       
+       if (rows.length > 0) {
+         // 手機號碼已存在，返回錯誤訊息
+         return res.status(400).send('User with this phone number already exists');
+       }else {
+         return res.status(200).json({ message: '手机号可用' });
+       }
+
+      })
+    })
+
 app.post("/", (req, res) => {
   var mname = req.body.mname;
   var phone = req.body.phone;
@@ -22,6 +45,8 @@ app.post("/", (req, res) => {
       return;
     }
     
+     // 先查詢資料庫是否已存在相同手機號碼的用戶
+
 
     var sql =
       "INSERT INTO member(name, tel, password, mail, register_time) VALUES (?,?,?,?,?)";

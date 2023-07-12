@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
+import Excel from'./excel.jsx';
 
 class cart extends Component {
     state = { }
@@ -90,14 +91,9 @@ class cart extends Component {
         const { value, maxDate, minDate, datepicker } = this.state;
 
         return (
-            <React.Fragment>
-            
-                <br /><br /><br />
-            {/* 上傳excel */}
-                <div style={{ fontSize: 40 }}>
-                    上傳檔案(excel)：<input style={{ fontSize: 25 }} type="file" />
-                    <input style={{ fontSize: 25 }} type="submit" value="上傳" />
-                </div><br /><br /><br /><br />
+            <React.Fragment> 
+                 <br /><br /><br />
+                <Excel/>    
 
             {/* 購物流程 */}
                 {/* <div id={cartstyle['process']}>
@@ -132,17 +128,11 @@ class cart extends Component {
               </form>
             </div><br /><br /><br /><br /><br /> */}
 
-            {/* 放大鏡 */}
-                <div id={cartstyle["magnifier"]}>
-                    <img style={{width: 220}} src="/image/magnifier.png" alt=""/>
-                    <a href="/product"><button id={cartstyle["nullshopping"]}><span>前往商城逛逛</span></button></a>
-                </div>
-
                 {/* <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
-                            <img id={cartstyle["imgw"]} src="/image/Snow Peak 卡式瓦斯爐.jpg" alt="" />
+                            <img id={cartstyle["imgw"]} src="./image/camping_1.jpg" alt="" />
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b>Snow Peak 卡式瓦斯爐</b></span>
                                 <br /><br /><br /><br />
@@ -158,7 +148,7 @@ class cart extends Component {
                         </div>
 
                         <div id={cartstyle['text2']}>
-                            <img id={cartstyle["imgw"]} src="/image/筊白筍.jpeg" alt="" />
+                            <img id={cartstyle["imgw"]} src="./image/food_11.png" alt="" />
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b>筊白筍</b></span>
                                 <br /><br /><br /><br />
@@ -217,4 +207,5 @@ class cart extends Component {
         );       
     }
 }
+
 export default cart;
