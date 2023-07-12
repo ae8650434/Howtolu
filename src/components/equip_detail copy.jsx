@@ -20,6 +20,16 @@ class EquipDetail extends Component {
                 pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
                 description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
                 pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            },
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            },
+            {
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
             }]
     }
 
@@ -196,7 +206,7 @@ class EquipDetail extends Component {
                 </div>
                 <div className={styles.informationImg}>
                     <p>經常一起租借裝備：</p>
-                    <p>{console.log(this.stateAll.productList[0].p_img)}</p>
+                    <p>{console.log(this.stateAll.productList)}</p>
                     <div>
                         <div className={styles.container}>
                             <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
@@ -216,15 +226,31 @@ class EquipDetail extends Component {
                         </div>
                         <div className={styles.container}>
                             <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
-                                src={`/image/${this.stateAll.productList[0].p_img}`} alt="Avatar" />
+                                src={`/image/${this.stateAll.productList[1].p_img}`} alt="Avatar" />
                                 {/* <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_22.png" alt="Avatar" /> */}
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
-                                        <p>{this.stateAll.productList[0].pname}</p>
+                                        <p>{this.stateAll.productList[1].pname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.stateAll.productList[0].price}</span>
-                                            <span>— {this.stateAll.productList[0].day}日</span>
+                                            <span>{this.stateAll.productList[1].price}</span>
+                                            <span>— {this.stateAll.productList[1].day}日</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className={styles.container}>
+                            <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.stateAll.productList[2].p_img}`} alt="Avatar" />
+                                {/* <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_22.png" alt="Avatar" /> */}
+                                <div className={styles.overlay}>
+                                    <div className={styles.imgtext}>
+                                        <p>{this.stateAll.productList[2].pname}</p>
+                                        <p>
+                                            <span>NT$</span>
+                                            <span>{this.stateAll.productList[2].price}</span>
+                                            <span>— {this.stateAll.productList[2].day}日</span>
                                         </p>
                                     </div>
                                 </div>
@@ -285,22 +311,22 @@ class EquipDetail extends Component {
             abc = abc
         }
 
-        // if (bbb >= 33) {
-        //     bbb -= 33
-        // } else {
-        //     bbb = bbb
-        // }
+        if (bbb >= 33) {
+            bbb -= 33
+        } else {
+            bbb = bbb
+        }
 
-        // if (ccc >= 33) {
-        //     ccc -= 33
-        // } else {
-        //     ccc = ccc
-        // }
+        if (ccc >= 33) {
+            ccc -= 33
+        } else {
+            ccc = ccc
+        }
         // console.log(abc);
         this.stateAll.productList[0] = this.stateAll.productList[abc]
         this.stateAll.productList[1] = this.stateAll.productList[bbb]
-        console.log(this.stateAll.productList[1])
-        // this.stateAll.productList[2] = this.stateAll.productList[ccc]
+        // console.log(this.stateAll.productList[1])
+        this.stateAll.productList[2] = this.stateAll.productList[ccc]
     }
 }
 
