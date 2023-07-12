@@ -1,7 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect  } from 'react';
 import styles from '../css/Register.module.css'
 import axios from 'axios';
+import Modal from 'react-modal';
+import { withRouter } from 'react-router-dom';
 
+
+Modal.setAppElement('#root'); // 設定應用的根元素
 
 class Register extends Component {
   // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
@@ -18,6 +22,7 @@ class Register extends Component {
 
       verification: '',
       handleOpen: false,
+      registerSuccess: false,
 
       user: {
         mname: '',
@@ -45,7 +50,8 @@ class Register extends Component {
       eyeOpacity2,
       eyeSrc2,
       handleOpen,
-      errors
+      errors,
+      registerSuccess
     } = this.state;
 
     return (
@@ -90,14 +96,14 @@ class Register extends Component {
                   }
                 }
                 required />
-                </div>
-              {errors.phone && (
-                <div className={styles.warning_title}>
-                  <img src="/image/warning.png" className={styles.pic} />
-                  <span className={styles.warning}>{errors.phone}</span>
-                </div>
-              )}
-            
+            </div>
+            {errors.phone && (
+              <div className={styles.warning_title}>
+                <img src="/image/warning.png" className={styles.pic} />
+                <span className={styles.warning}>{errors.phone}</span>
+              </div>
+            )}
+
             <div className={styles.register_first}>
               <label htmlFor="" className={styles.register_from_title}>e-mail</label>
               <input type="email"
@@ -111,14 +117,14 @@ class Register extends Component {
                   }
                 }
                 required /></div>
-              {errors.email && (
-                <div className={styles.warning_title}>
-                  <img src="/image/warning.png" className={styles.pic} />
-                  <span className={styles.warning}>{errors.email}</span>
-                </div>
-              )}
-            
-            
+            {errors.email && (
+              <div className={styles.warning_title}>
+                <img src="/image/warning.png" className={styles.pic} />
+                <span className={styles.warning}>{errors.email}</span>
+              </div>
+            )}
+
+
             <div className={styles.register_first}>
               <label htmlFor="" className={styles.register_from_title}>設定密碼</label>
               <input type={passwordType}
@@ -140,13 +146,13 @@ class Register extends Component {
                 id="eye"
                 className={styles.eye}
                 onClick={this.eyeClick} /></div>
-              {errors.password && (
-                <div className={styles.warning_title}>
-                  <img src="/image/warning.png" className={styles.pic} />
-                  <span className={styles.warning}>{errors.password}</span>
-                </div>
-              )}
-            
+            {errors.password && (
+              <div className={styles.warning_title}>
+                <img src="/image/warning.png" className={styles.pic} />
+                <span className={styles.warning}>{errors.password}</span>
+              </div>
+            )}
+
             <div className={styles.register_first}>
               <label htmlFor="" className={styles.register_from_title}>再次確認密碼</label>
               <input type={passwordType2}
@@ -155,10 +161,10 @@ class Register extends Component {
                 id="checkeye"
                 pattern="[\da-zA-Z]{8,16}"
                 required />
-              <img src={eyeSrc2} 
-              style={{ opacity: eyeOpacity2 }} 
-              className={styles.eye} 
-              onClick={this.eyeClick2} />
+              <img src={eyeSrc2}
+                style={{ opacity: eyeOpacity2 }}
+                className={styles.eye}
+                onClick={this.eyeClick2} />
             </div>
             <div className={styles.register_first}>
               <label htmlFor="" className={styles.register_from_title}>驗證碼</label>
@@ -242,7 +248,39 @@ class Register extends Component {
             </div>
           </div>}
 
+        <Modal
+          isOpen={registerSuccess}
+          onRequestClose={this.closeSuccessModal}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+        >
+          <div className={styles.content}>
+            <svg width="300" height="300">
+              <circle
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                cx="140" cy="140" r="120"
+                className={styles.circle}
+              />
+              <polyline
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                points="80,150 140,220 220,75"
+                className={styles.tick}
+              />
+            </svg>
+            <p className={styles.h2}>註冊成功</p>
+            <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+          </div>
+        </Modal>
+
+
+
       </div>
+
+
     );
   }
 
@@ -303,6 +341,19 @@ class Register extends Component {
     this.setState({ handleOpen: false })
   }
 
+  // 關閉彈窗
+  closeSuccessModal = () => {
+    this.setState({ registerSuccess: false });
+    const { history } = this.props;
+    history.push('/login');
+  };
+
+  // abc = () => {
+  //   this.setState({ registerSuccess: true });
+  // }
+
+
+
   //密碼不同時阻止表單送出
 
   handleRegisterClick = async (e) => {
@@ -312,55 +363,66 @@ class Register extends Component {
     const { verification } = this.state;
     const isCheck = document.getElementById('checkbox').checked;
 
-     // 進行表單驗證
-  const regexPattern = {
-    phone: /^0\d{9}$/,
-    email: /^\S+@\S+\.\S+$/,
-    password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
-  };
+    // 進行表單驗證
+    const regexPattern = {
+      phone: /^0\d{9}$/,
+      email: /^\S+@\S+\.\S+$/,
+      password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
+    };
 
-  const errors = {
-    phone: '',
-    email: '',
-    password: ''
-  };
+    const errors = {
+      phone: '',
+      email: '',
+      password: ''
+    };
 
-  if (!regexPattern.phone.test(phone)) {
-    errors.phone = '請輸入有效的手機號碼';
-  }
+    if (!regexPattern.phone.test(phone)) {
+      errors.phone = '請輸入有效的手機號碼';
+    }
 
-  if (!regexPattern.email.test(email)) {
-    errors.email = '請輸入有效的e-mail';
-  }
+    if (!regexPattern.email.test(email)) {
+      errors.email = '請輸入有效的e-mail';
+    }
 
-  if (!regexPattern.password.test(password)) {
-    errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
-  }
+    if (!regexPattern.password.test(password)) {
+      errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
+    }
 
-  if (password !== document.getElementById('checkeye').value) {
-    errors.password = '請再次確認密碼是否相同';
-  }
+    if (password !== document.getElementById('checkeye').value) {
+      errors.password = '請再次確認密碼是否相同';
+    }
 
-  if (verification !== document.getElementById('cnumber').value) {
-    errors.verification = '請確認驗證碼是否正確';
-  }
+    if (verification !== document.getElementById('cnumber').value) {
+      errors.verification = '請確認驗證碼是否正確';
+    }
 
-  this.setState({ errors });
-  
-  if (!isCheck) {
+    this.setState({ errors });
+
+    if (!isCheck) {
       document.getElementById('agree').style.color = 'red';
       document.getElementById('terms').style.color = 'red';
       return;
     }
 
-  if (Object.values(errors).some(error => error !== '')) {
-    // 若有錯誤存在，不執行後續提交邏輯
-    return;
-  }
+    if (Object.values(errors).some(error => error !== '')) {
+      // 若有錯誤存在，不執行後續提交邏輯
+      return;
+    }
 
 
 
     try {
+
+      const checkResponse = await axios.get(`http://localhost:8000/register/checkPhone/${phone}`);
+
+      if (checkResponse.data.exists) {
+        errors.phone = '手機號碼已經註冊';
+        this.setState({ errors });
+        return;
+      }
+
+
+
       const response = await axios.post(
         "http://localhost:8000/register",
         this.state.user, // 直接传递对象作为请求体数据
@@ -371,10 +433,12 @@ class Register extends Component {
         }
       );
 
+
       if (response.status === 200) {
         // 响应状态码为200，表示成功
         // 在此处处理成功响应的逻辑
-        alert('註冊成功')
+        this.setState({ registerSuccess: true }); // 设置注册成功状态为 true
+        // alert('註冊成功')
       } else {
         // 其他状态码处理
         console.error(response.data);
@@ -384,12 +448,16 @@ class Register extends Component {
       // 处理错误响应
       if (error.response) {
         // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+        if (error.response.status === 400) {
+          errors.phone = '手機號碼已經註冊';
+          this.setState({ errors });
+        }
         console.error(error.response.data);
       } else if (error.request) {
-        // 请求已发出，但未收到响应
+        // 請求已發出，但未收到回應
         console.error("No Response");
       } else {
-        // 其他错误
+        // 其他錯誤
         console.error(error);
       }
     }

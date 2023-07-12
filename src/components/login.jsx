@@ -14,7 +14,13 @@ class Login extends Component {
         account: '',
         password: '',
         isComplete: 1
+      },
+
+      errors: {
+        account: '',
+        password: ''
       }
+
     };
   }
 
@@ -36,7 +42,7 @@ class Login extends Component {
   };
 
   render() {
-    const { passwordType, eyeOpacity, eyeSrc } = this.state;
+    const { passwordType, eyeOpacity, eyeSrc, errors } = this.state;
     return (
       <div className={styles.short}>
         <div id={styles['rule']}>
@@ -65,8 +71,11 @@ class Login extends Component {
                 />
               </div>
               <div className={styles.warningtitle}>
-                <p className={styles.warning}><img src="/image/warning.png" className={styles.pic}
-                />  此手機號碼尚未註冊</p>
+                {errors.account && (
+                  <p className={styles.warning}>
+                    <img src="/image/warning.png" className={styles.pic} /> {errors.account}
+                  </p>
+                )}
               </div>
 
               <div className={styles.first}>
@@ -85,9 +94,12 @@ class Login extends Component {
                 />
                 <img src={eyeSrc} style={{ opacity: eyeOpacity }} id={styles['eye']} onClick={this.eyeClick} />
               </div>
-
               <div className={styles.warningtitle}>
-                <p className={styles.warning}><img src="/image/warning.png" className={styles.pic} />  密碼錯誤</p>
+                {errors.password && (
+                  <p className={styles.warning}>
+                    <img src="/image/warning.png" className={styles.pic} /> {errors.password}
+                  </p>
+                )}
               </div>
               <div className={styles.remember}>
                 <input type="checkbox" id={styles['check']} checked={this.state.user.isComplete ? 0 : 1}
@@ -103,7 +115,7 @@ class Login extends Component {
               </div>
             </div>
             <hr />
-            
+
             <br /><br />
             <div className={styles.send}>
               <input type="submit"
@@ -120,7 +132,9 @@ class Login extends Component {
     );
   }
 
-  okButtonClick = async () => {
+  okButtonClick = async (e) => {
+    e.preventDefault(); // 阻止表單提交的默認行為
+
     try {
       const response = await axios.post(
         "http://localhost:8000/login/member", // 修改为正确的后端路由
@@ -131,31 +145,52 @@ class Login extends Component {
           }
         }
       );
-  
+
       if (response.status === 200) {
         // 响应状态码为200，表示成功
         console.log("Account:", this.state.user.account); // 在控制台输出账号值
         console.log("Password:", this.state.user.password); // 在控制台输出密码值
         console.log(response.data); // 在控制台打印响应数据
-  
+
         // 根据业务需求进行其他操作，例如页面跳转等
         window.location = "/"; // 重定向到首页
       } else {
         // 其他状态码处理
         console.error(response.data);
         // 进行相应的错误处理逻辑
+        this.setState({
+          errors: {
+            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
+            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
+          }
+        });
       }
     } catch (error) {
       // 处理错误响应
       if (error.response) {
         // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-        console.error(error.response.data);
+        this.setState({
+          errors: {
+            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
+            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
+          }
+        });
       } else if (error.request) {
         // 请求已发出，但未收到响应
-        console.error("No Response");
+        this.setState({
+          errors: {
+            account: "未收到响应", // 根据实际情况设置错误信息
+            password: "未收到响应" // 根据实际情况设置错误信息
+          }
+        });
       } else {
         // 其他错误
-        console.error(error);
+        this.setState({
+          errors: {
+            account: "发生错误", // 根据实际情况设置错误信息
+            password: "发生错误" // 根据实际情况设置错误信息
+          }
+        });
       }
     }
   };
