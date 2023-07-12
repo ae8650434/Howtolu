@@ -1,17 +1,21 @@
-import React , { Component } from 'react';
+import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
+import Cart from './cart.jsx';
+import cartstyle from '../css/cart.module.css';
 
-function excel(){
+function Excel() {
+    const [items, setItems] = useState([]);
+
     const readExcel = (file) => {
-
-        const promise = new Promise((resolve,reject)=>{
+        const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
             fileReader.readAsArrayBuffer(file);
 
-            fileReader.onload=(e)=>{
-                const bufferArray=e.target.result;
+            fileReader.onload = (e) => {
 
-                const wb = XLSX.read(bufferArray,{type:'buffer'});
+                const bufferArray = e.target.result;
+
+                const wb = XLSX.read(bufferArray, { type: 'buffer' });
 
                 const wsname = wb.SheetNames[0];
 
@@ -22,25 +26,60 @@ function excel(){
                 resolve(data);
             };
 
-            fileReader.onerror = (error)=>{
+            fileReader.onerror = (error) => {
                 reject(error);
             };
         });
-        promise.then((d)=>{
-            console.log(d[0]['物品'])
-            console.log(d[0]['數量(填入數字即可)'])
-        })
+
+        promise.then((d) => {
+            const noItems = d.filter(
+                (row) => row['數量(填入數字即可)'] !== undefined
+            );
+            setItems(noItems);
+        });
     };
 
-    return(
-        <div style={{ fontSize: 40 }} >
-            上傳檔案(excel)：<input type="file" style={{ fontSize: 25 }} onChange={(e)=>{
-            const file=e.target.files[0];
-            readExcel(file)
-            }} />
-        </div>
+    return (
+        <>
+            {/* 上傳檔案 */}
+            <div style={{ fontSize: 40 }}>
+                上傳檔案(excel)：
+                <input
+                    type="file"
+                    style={{ fontSize: 25 }}
+                    onChange={(e) => {
+                        const file = e.target.files[0];
+                        readExcel(file);
+                    }}/>
+
+                {/* excel插入後的格式 */}
+                {items && (
+                    <table>
+                        <tbody>
+                            {items.map((row, index) => (
+                                <tr key={index}>
+                                    <td>{row['物品']}</td>
+                                    <td>{row['數量(填入數字即可)']}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}<br /><br />
+
+                {/* excel插入後nullCart消失 */}
+                {!items.length && (
+                    <div id={cartstyle["magnifier"]}>
+                        <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
+                        <a href="/product">
+                            <button id={cartstyle["nullshopping"]}>
+                                <span>前往商城逛逛</span>
+                            </button>
+                        </a>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 
- 
-export default excel;
+export default Excel;
