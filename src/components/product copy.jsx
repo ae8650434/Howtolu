@@ -61,7 +61,6 @@ export class Product4 extends Component {
       <div className="product-container">
         <div></div>
         <div className='row'>
-<<<<<<< HEAD
           {this.state.productList.map((x) => (
             <div key={x.fid} className='good' id='right'>
               <figure>
@@ -72,20 +71,6 @@ export class Product4 extends Component {
               </figure>
             </div>
           ))}
-=======
-          {this.state.productList.map((x) => {
-            return (
-              <div className='good' id='right'>
-                <figure>
-                  <img src={`/image/${x.f_img}`} />
-                  <figcaption>{x.fname}</figcaption>
-                  <figcaption>NT${x.price}</figcaption>
-                  <a href={`/equip_detail/${x.fid}`}><button className="btnq">選購</button></a>
-                </figure>
-              </div>
-            );
-          })}
->>>>>>> refs/remotes/origin/main
         </div>
       </div>
     );
