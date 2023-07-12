@@ -16,6 +16,7 @@ app.use("/product",select)
 app.use("/register",register)
 app.use("/login/member",login)
 
+
 var session = expressSession({
     secret: 'member',
     resave: true,
