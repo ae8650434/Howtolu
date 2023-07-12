@@ -4,7 +4,6 @@ var express = require("express");
 var app = express.Router();
 var bcrypt = require("bcrypt");
 var session = require("express-session");
-const axios = require("axios");
 
 
 
@@ -39,28 +38,29 @@ app.post("/", (req, res) => {
       console.log('用戶不存在')
       console.log(account)
       console.log(password)
-      res.status(404).send("User Not Found");
-      return;
+      return res.status(404).json({ error: "User Not Found" });
     }
   
     var hashedPassword = data[0].password;
     var isPasswordMatched = bcrypt.compareSync(password, hashedPassword);
     if (isPasswordMatched) {
+      
+      if (remember == 0) {
+        req.session = data[0];
+        req.session.userName = data[0].name;
+        req.session.userPassword = hashedPassword;
+      }
       // 密码正确的情况
       // 执行其他操作或返回成功响应
       // req.session = data[0];
       // req.session.userName = data[0].name;
       // req.session.userPassword = hashedPassword;
       // 登录成功，返回成功响应
-      res.status(200).json({ message: "Login successful" });
+      return res.status(200).json({ message: "Login successful" });
       // res.redirect('http://localhost:3000/');
     } else {
       // 密码不正确的情况
-      res.status(401).send("Invalid Password");
-    }
-
-    if(remember == 0){
-      req.session = data[0];
+      return res.status(401).json({ error: "Invalid Password" });
     }
   });
 });

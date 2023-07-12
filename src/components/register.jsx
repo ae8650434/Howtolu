@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect  } from 'react';
 import styles from '../css/Register.module.css'
 import axios from 'axios';
 import Modal from 'react-modal';
@@ -248,7 +248,7 @@ class Register extends Component {
             </div>
           </div>}
 
-          <Modal
+        <Modal
           isOpen={registerSuccess}
           onRequestClose={this.closeSuccessModal}
           className={styles.modal}
@@ -275,8 +275,8 @@ class Register extends Component {
             <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
           </div>
         </Modal>
-          
-        
+
+
 
       </div>
 
@@ -412,6 +412,17 @@ class Register extends Component {
 
 
     try {
+
+      const checkResponse = await axios.get(`http://localhost:8000/register/checkPhone/${phone}`);
+
+      if (checkResponse.data.exists) {
+        errors.phone = '手機號碼已經註冊';
+        this.setState({ errors });
+        return;
+      }
+
+
+
       const response = await axios.post(
         "http://localhost:8000/register",
         this.state.user, // 直接传递对象作为请求体数据
@@ -421,6 +432,7 @@ class Register extends Component {
           }
         }
       );
+
 
       if (response.status === 200) {
         // 响应状态码为200，表示成功
@@ -436,12 +448,16 @@ class Register extends Component {
       // 处理错误响应
       if (error.response) {
         // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+        if (error.response.status === 400) {
+          errors.phone = '手機號碼已經註冊';
+          this.setState({ errors });
+        }
         console.error(error.response.data);
       } else if (error.request) {
-        // 请求已发出，但未收到响应
+        // 請求已發出，但未收到回應
         console.error("No Response");
       } else {
-        // 其他错误
+        // 其他錯誤
         console.error(error);
       }
     }
