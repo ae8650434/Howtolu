@@ -15,6 +15,8 @@ import FoodDetail from './components/food_detail';
 import Cart from './components/cart';
 import Order_list from './components/order_list';
 import Footer from './components/footer';
+import ProductCopy from './components/product copy';
+
 
 
 class App extends Component {
@@ -25,8 +27,9 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/product" component={Product} exact /> 
+            <Route path="/product/:Classification" component={Product} exact /> 
             <Route path="/product2" component={Product2} exact /> 
+            <Route path="/product3" component={ProductCopy} exact /> 
             <Route path="/login" component={Login} exact />
             <Route path="/register" component={Register} exact />
             <Route path="/revise" component={Revise} exact />
