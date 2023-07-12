@@ -11,13 +11,13 @@ class Product3 extends Component {
     const { productList, selectedCategory } = this.props;
 
     let filteredList = productList;
-    if (selectedCategory && selectedCategory === 1) {
-      filteredList = productList.filter((x) => x.pc_id === 1);
+    if (selectedCategory && selectedCategory === selectedCategory) {
+      filteredList = productList.filter((x) => x.pc_id === selectedCategory);
     }
 
     return (
       <div className="product-container">
-        <div></div>
+        <div id='qqq'></div>
         <div className='row'>
           {filteredList.map((x) => (
             <div key={x.pid} className='good' id='right'>
