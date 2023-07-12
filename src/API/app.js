@@ -7,6 +7,7 @@ var food=require("./food.js")
 var register=require("./register_insert.js")
 var login=require("./login_select.js")
 var reset=require("./reset.js")
+var productc=require("./product_class.js")
 var cors = require("cors");
 var expressSession = require("express-session");
 app.use( express.static("public")  );
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use("/product/list",selectall);
 app.use("/product",select);
+app.use("/productclass",productc);
 app.use("/register",register);
 app.use("/login/member",login);
 app.use("/food/list",food);
