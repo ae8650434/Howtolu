@@ -6,7 +6,7 @@ class about extends Component {
     render() { 
         return (  <>
             <div id={aboutstyle["about"]}>
-            <p class={aboutstyle.title}>簡單介紹的標題</p>
+            <p class={aboutstyle.title}>關於我們</p>
             <p class={aboutstyle.abouttext}>簡單、輕鬆、美好體驗</p>
             <br/>
             <p class={aboutstyle.abouttext}> 遠離都市塵囂與紛擾，擁抱大自然，沉澱心靈，使身心放鬆，創造美好時光
