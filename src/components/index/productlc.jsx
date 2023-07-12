@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import plcstyle from '../../css/about.module.css'
 class protlinkc extends Component {
-    state = {}
+    state = {productlink:[{"pc_id":1,"class":"寢室帳篷","image":"product_1.png","classname":"tent"}]}
     render() {
         return (
             <div class={plcstyle.proFlex}>
                 <a href="./product.html" class={plcstyle.proa}>
                     <div class={plcstyle.proinbox}>
-                        <img src="./public/image/DOD3人印地安帳-removebg-preview.png" alt="" class={plcstyle.proimg} />
-                        <span class={plcstyle.proSpan}>帳棚類</span>
+                        <img src="/image/product_1.png" alt="" class={plcstyle.proimg} />
+                        <span class={plcstyle.proSpan}>客廳帳&天幕</span>
                     </div>
                 </a>
             </div>
-        );
+        );        
     }
 }
 
