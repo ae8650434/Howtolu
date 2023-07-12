@@ -5,22 +5,24 @@ import styles from '../css/equip_detail.module.css';
 import '../css/calendar.css';
 
 class EquipDetail extends Component {
+    state = {}
     states = {
         product:
-        [{
-            pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
-            description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
-            pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-        }]
-    }
-    state = {
-        product: 
-            {
+            [{
                 pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
                 description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
                 pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-            }
+            }]
     }
+    stateAll = {
+        productList:
+            [{
+                pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+                description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+                pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+            }]
+    }
+
     constructor(props) {
         super(props);
 
@@ -114,33 +116,36 @@ class EquipDetail extends Component {
     // formSubmit = (e) => {
     //     e.preventDefault();
     // };
+
     render() {
         const { value, maxDate, minDate } = this.state;
-        {console.log(this.states.product[0])}
+        // { console.log(this.states.product[0]) }
         const productArray = this.states.product[0].description.split(";");
+        const productInfArray = this.states.product[0].information.split(";");
         return (
             <React.Fragment>
-
-                <div className={styles.categories}>
-                    <p>商品分類</p>
-                    <ul className={styles.categoriesUl}>
-                        <li><a href="">寢室帳篷</a></li>
-                        <li><a href="">客廳帳&天幕</a></li>
-                        <li><a href="">寢室用具</a></li>
-                        <li><a href="">戶外用品</a></li>
-                        <li><a href="">爐具</a></li>
-                        <li><a href="">保鮮保冷</a></li>
-                        <li><a href="">燈具</a></li>
-                        <li><a href="">影音設備</a></li>
-                        <li><a href="">保暖裝備</a></li>
-                        <li><a href="">常用配件</a></li>
-                    </ul>
+                <div id="container">
+                    <div className={styles.categories}>
+                        <p>商品分類</p>
+                        <ul className={styles.categoriesUl}>
+                            <li><a href="">寢室帳篷</a></li>
+                            <li><a href="">客廳帳&天幕</a></li>
+                            <li><a href="">寢室用具</a></li>
+                            <li><a href="">戶外用品</a></li>
+                            <li><a href="">爐具</a></li>
+                            <li><a href="">保鮮保冷</a></li>
+                            <li><a href="">燈具</a></li>
+                            <li><a href="">影音設備</a></li>
+                            <li><a href="">保暖裝備</a></li>
+                            <li><a href="">常用配件</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div>
                     <div className={styles.image}>
-                        <a target="_blank" href={`/image/${this.states.product[0].p_img}` }>
-                            <img src={`/image/${this.states.product[0].p_img}` }/></a>
+                        <a target="_blank" href={`/image/${this.states.product[0].p_img}`}>
+                            <img src={`/image/${this.states.product[0].p_img}`} /></a>
                     </div>
                     <div className={styles.commodityall}>
                         <div className={styles.commodity}>
@@ -155,12 +160,6 @@ class EquipDetail extends Component {
                                     <li key={index}>{data.trim()}</li>
                                 ))}
                             </ul>
-                            {/* <ul>
-                                <li>純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用</li>
-                                <li>建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋)</li>
-                                <li>建議搭帳人數：1人以上</li>
-                                <li>適用場地 : 草皮區</li>
-                            </ul> */}
                             <p className={styles.warn}>*提醒您請於預約下單後3日內完成付款，逾時訂單將會取消並釋出商品供他人預訂。</p>
                         </div>
 
@@ -182,7 +181,7 @@ class EquipDetail extends Component {
                                 <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
                                 <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
                                 <input type='button' value='立即預約' className={styles.reserve} />
-                                <p><span>庫存量:</span><span>10個</span></p>
+                                <p><span>庫存量:</span><span>{this.states.product[0].reserve}</span></p>
                             </form>
                         </div>
                     </div>
@@ -190,28 +189,25 @@ class EquipDetail extends Component {
                 <div className={styles.information}>
                     <p>商品資訊</p>
                     <ul>
-                        <li>套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋</li>
-                        <li>隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊</li>
-                        <li>面積：4.83坪</li>
-                        <li>直徑：450cm</li>
-                        <li>高度：274cm</li>
-                        <li>門高：167cm</li>
-                        <li>最大容量：6人</li>
-                        <li>總重量: 36 kg</li>
+                        {productInfArray.map((data, index) => (
+                            <li key={index}>{data.trim()}</li>
+                        ))}
                     </ul>
                 </div>
                 <div className={styles.informationImg}>
                     <p>經常一起租借裝備：</p>
                     <div>
                         <div className={styles.container}>
-                            <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_22.png" alt="Avatar" />
+                            <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.stateAll.productList[0].p_img}`} alt="Avatar" />
+                                {/* <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_22.png" alt="Avatar" /> */}
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
-                                        <p>LED手提鐵路復古營燈(白)</p>
+                                        <p>{this.stateAll.productList[0].pname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>200</span>
-                                            <span>— 3日</span>
+                                            <span>{this.stateAll.productList[0].price}</span>
+                                            <span>— {this.stateAll.productList[0].day}日</span>
                                         </p>
                                     </div>
                                 </div>
@@ -232,7 +228,9 @@ class EquipDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container}>
-                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_16.png" alt="Avatar" />
+                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.states.product[0].p_img}`} alt="Avatar" />
+                                {/* <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }} src="/image/product_16.png" alt="Avatar" /> */}
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
                                         <p>可調式高背摺疊椅(沙色)</p>
@@ -247,9 +245,6 @@ class EquipDetail extends Component {
                         </div>
                     </div>
                 </div>
-
-
-
                 <div className={styles.categories_min}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_min}>
@@ -270,16 +265,38 @@ class EquipDetail extends Component {
         );
     }
     componentDidMount = async () => {
+        // 查單一商品
         var pid = this.props.match.params.pid;
         var url = `http://localhost:8000/product/${pid}`;
         var result = await axios.get(url);
         var newStates = { ...this.states };
         newStates.product = result.data;
         // console.log("555",newState.product)
-        this.states=newStates;
+        this.states = newStates;
         this.setState(this.states);
+        // console.log("123",newState.product); 
+      
+        // 查全部商品
+        var urlAll = "http://localhost:8000/product/list";
+        var resultAll = await axios.get(urlAll);
+        var newStateAll = { ...this.stateAll };
+        newStateAll.productList = resultAll.data;
+        // console.log("123",newStateAll.productList);
+        this.stateAll = newStateAll;
+        this.setState(this.stateAll);
+        // console.log(typeof this.props.match.params.pid)
+        var abc = parseInt(this.props.match.params.pid);
+        abc+=5
+     
+        // console.log("555",newStateAll.productList[abc]);
+        if (abc>=33) {
+            abc-=33
+        } else {
+            abc=abc
+        }
+        // console.log(abc);
+        this.stateAll.productList[0]=this.stateAll.productList[abc]
         
-        // console.log("123",newState.product); //undefined
     }
 }
 
