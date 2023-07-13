@@ -5,23 +5,11 @@
     width: 100%;
 }
 
-<<<<<<< HEAD
 
 
 #qqq {
     /* background-color: aqua; */
     width: 20%;
-=======
-.good {
-    flex-basis: calc(33.3% - 10px);
-    margin: 0;
-}
-
-#qqq {
-    
-    width: 20%;
-    
->>>>>>> refs/remotes/origin/main
 }
 
 .row {
@@ -29,10 +17,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
 
 #right {
     display: flex;
