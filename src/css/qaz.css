@@ -2,28 +2,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
 }
 
-.good {
-    
-    
-    margin: 0;
-}
+
 
 #qqq {
-    background-color: aqua;
-    
+    /* background-color: aqua; */
+    width: 20%;
 }
 
 .row {
-    
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
 }
-.good>figure>{
-    position: relative;
-    right: 0px;
-}
+
 
 #right {
     display: flex;
