@@ -11,7 +11,6 @@ import Revise from './components/revise';
 import Reset from './components/reset';
 import Info from './components/info';
 import EquipDetail from './components/equip_detail';
-import EquipDetailc from './components/equip_detail copy';
 import FoodDetail from './components/food_detail';
 import Cart from './components/cart';
 import Order_list from './components/order_list';
@@ -38,7 +37,6 @@ class App extends Component {
             <Route path="/info" component={Info} exact />
             <Route path="/order_list" component={Order_list} exact />
             <Route path="/equip_detail/:pid" component={EquipDetail} exact />
-            <Route path="/equip_detailc/:pid" component={EquipDetailc} exact />
             <Route path="/food_detail/:fid" component={FoodDetail} exact />
             <Route path="/cart" component={Cart} exact />
             <Route component={Error} />

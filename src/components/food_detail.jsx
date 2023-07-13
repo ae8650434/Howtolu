@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import styles from '../css/food_detail.module.css';
 class FoodDetail extends Component {
     state = {}
+    states = {
+        food:
+            [{
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+            }]
+    }
+    stateAll = {
+        foodList:
+            [{
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+            },
+            {
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+            },
+            {
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+            }
+            ]
+    }
     qtyplusBn = (e) => {
         e.preventDefault();
         const fieldName = e.target.getAttribute('field');
@@ -28,6 +48,7 @@ class FoodDetail extends Component {
     //     e.preventDefault();
     // };
     render() {
+        const { fidNum } = this.props;
         return (
             <React.Fragment>
                 <div className={styles.categories_food}>
@@ -47,15 +68,15 @@ class FoodDetail extends Component {
                 </div>
                 <div>
                     <div className={styles.image_food}>
-                        <a target="_blank" href="/image/food_3.png">
-                            <img src="/image/food_3.png" /></a>
+                        <a target="_blank" href={`/image/${this.states.food[0].f_img}`}>
+                            <img src={`/image/${this.states.food[0].f_img}`} /></a>
                     </div>
                     <div className={styles.commodityall_food}>
                         <div className={styles.commodity_food}>
-                            <p>雙人套餐</p>
+                            <p>{this.states.food[0].fname}</p>
                             <p>
                                 <span>NT$</span>
-                                <span>1,300</span>
+                                <span>{this.states.food[0].price}</span>
                                 <span> — 1份</span>
                             </p>
                             <p>注意事項</p>
@@ -78,49 +99,54 @@ class FoodDetail extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={styles.food_information}>
-                    <p>套餐明細</p>
-                    <div className={styles.image_fdetails}>
-                        <img className={styles.image_f} src="/image/fdetails_3.png" />
+                <div >
+                    <div className={styles.food_information}>
+                        <p>{this.states.food[0].fdetails_text}</p>
+                        <div className={styles.image_fdetails}>
+                            <img className={styles.image_f} src={`/image/${this.states.food[0].fdetails_image}`} />
+                        </div>
                     </div>
                 </div>
                 <div className={styles.informationImg_food}>
-                    <p>經常一起選購商品：</p>
+                    <p>經常一起選購食材：</p>
                     <div>
                         <div className={styles.container_food}>
-                            <a href=""> <img src="/image/food_9.png" alt="Avatar" style={{width:'350px',height:'350px'}} className={styles.cimage_food} />
+                            <a href=""> <img src={`/image/${this.stateAll.foodList[0].f_img}`} alt="Avatar"
+                                style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
-                                        <p>黑胡椒牛小排</p>
+                                        <p>{this.stateAll.foodList[0].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>400</span>
+                                            <span>{this.stateAll.foodList[0].price}</span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src="/image/food_14.png" alt="Avatar" style={{width:'350px',height:'350px'}} className={styles.cimage_food} />
+                            <a href=""><img src={`/image/${this.stateAll.foodList[1].f_img}`} alt="Avatar"
+                                style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
-                                        <p>筊白筍</p>
+                                        <p>{this.stateAll.foodList[1].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>150</span>
+                                            <span>{this.stateAll.foodList[1].price}</span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src="/image/food_16.png" style={{width:'350px',height:'350px'}} alt="Avatar" className={styles.cimage_food} />
+                            <a href=""><img src={`/image/${this.stateAll.foodList[2].f_img}`} alt="Avatar"
+                                style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
-                                        <p>枸杞絲瓜鋁盒</p>
+                                        <p>{this.stateAll.foodList[2].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>90</span>
+                                            <span>{this.stateAll.foodList[2].price}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -146,6 +172,66 @@ class FoodDetail extends Component {
             </React.Fragment>
 
         );
+    }
+    componentDidMount = async () => {
+        // 查單一商品
+        var fid = this.props.match.params.fid;
+        if (fid>5) {
+            window.location="/reviseknjbl"
+        }
+        var url = `http://localhost:8000/food/${fid}`;
+        var result = await axios.get(url);
+        var newStates = { ...this.states };
+        newStates.food = result.data;
+        // console.log("555",newStates.food)
+        this.states = newStates;
+        this.setState(this.states);
+        // console.log("123",newStates.food);
+        // var fidNum = parseInt(this.props.match.params.fid);
+        // var  div = document.querySelector('.food_information')
+        // if (fidNum>5) {
+        //     div.style.display = 'none';
+        // } else {
+        //     div.style.display = 'block';
+        // } 
+
+        // 查全部商品
+        var urlAll = "http://localhost:8000/food/list";
+        var resultAll = await axios.get(urlAll);
+        var newStateAll = { ...this.stateAll };
+        newStateAll.foodList = resultAll.data;
+        // console.log("123",newStateAll.productList);
+        this.stateAll = newStateAll;
+        this.setState(this.stateAll);
+        // console.log(typeof this.props.match.params.pid)
+        var abc = parseInt(this.props.match.params.fid);
+        abc += 5
+        var bbb = abc + 1
+        var ccc = abc + 2
+        // console.log("555",newStateAll.productList[abc]);
+        if (abc >= 18) {
+            abc -= 18
+        } else {
+            abc = abc
+        }
+
+        if (bbb >= 18) {
+            bbb -= 18
+        } else {
+            bbb = bbb
+        }
+
+        if (ccc >= 18) {
+            ccc -= 18
+        } else {
+            ccc = ccc
+        }
+        // console.log(abc);
+        this.stateAll.foodList[0] = this.stateAll.foodList[abc]
+        this.stateAll.foodList[1] = this.stateAll.foodList[bbb]
+        // console.log(this.stateAll.productList[1])
+        this.stateAll.foodList[2] = this.stateAll.foodList[ccc]
+
     }
 }
 

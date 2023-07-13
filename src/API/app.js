@@ -9,6 +9,7 @@ var login=require("./login_select.js")
 var reset=require("./reset.js")
 var productc=require("./product_class.js")
 var cart=require("./cart.js")
+var food_detail=require("./food_detail.js")
 var cors = require("cors");
 var expressSession = require("express-session");
 app.use( express.static("public")  );
@@ -23,6 +24,7 @@ app.use("/productclass",productc);
 app.use("/register",register);
 app.use("/login/member",login);
 app.use("/food/list",food);
+app.use("/food",food_detail);
 app.use("/reset",reset);
 
 
