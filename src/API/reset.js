@@ -82,7 +82,7 @@ app.get("/:mail", function (req, res) {
                       return res.status(401).send("更新失敗");
                     } else {
                       console.log("O");
-                      return res.status(200).send(random);
+                      return res.status(200).json({random: random});
                     }
                   });
                 } else {
@@ -92,7 +92,7 @@ app.get("/:mail", function (req, res) {
                       return res.status(400).send("插入失敗");
                     } else {
                       console.log("X");
-                      return res.status(200).send(random);
+                      return res.status(200).json({random: random});
                     }
                   });
                 }
@@ -102,46 +102,7 @@ app.get("/:mail", function (req, res) {
         });
       }
     }
-
-    if (data.length > 0) {
-      var random = generateRandomCode();
-      sendVerificationCode(mail, random, (err) => {
-        if (err) {
-          return res.status(500).send("郵件發送失敗");
-        } else {
-          DB.query(msql, [mail], (err, result) => {
-            if (err) {
-              console.log("X");
-              return res.status(402).send("查詢失敗");
-            } else {
-              if (result.length > 0) {
-                DB.query(updatesql, [random, mail], (err, data) => {
-                  if (err) {
-                    console.log("X");
-                    return res.status(401).send("更新失敗");
-                  } else {
-                    console.log("O");
-                    return res.status(200).send("更新成功");
-                  }
-                });
-              } else {
-                DB.query(insertmsql, [data[0], mail, random], (err, data) => {
-                  if (err) {
-                    console.log("X");
-                    return res.status(400).send("插入失敗");
-                  } else {
-                    console.log("X");
-                    return res.status(200).send("新增成功");
-                  }
-                });
-              }
-            }
-          });
-        }
-      });
-    }
-  });
-});
+});})
 
 
 module.exports = app;

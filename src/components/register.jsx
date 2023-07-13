@@ -14,11 +14,11 @@ class Register extends Component {
     this.state = {
       passwordType: 'password',
       eyeOpacity: 1,
-      eyeSrc: './image/eye.png',
+      eyeSrc: './image/EyeSlash.png',
 
       passwordType2: 'password',
       eyeOpacity2: 1,
-      eyeSrc2: './image/eye.png',
+      eyeSrc2: './image/EyeSlash.png',
 
       verification: '',
       handleOpen: false,
@@ -254,7 +254,7 @@ class Register extends Component {
           className={styles.modal}
           overlayClassName={styles.overlay}
         >
-          <div className={styles.content}>
+          <div className={styles.content2}>
             <svg width="300" height="300">
               <circle
                 fill="none"

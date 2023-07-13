@@ -11,7 +11,8 @@ class Reset extends Component {
         verification: ''
       },
 
-      mail: ''
+      mail: '',
+      random: ''
 
     }
   }
@@ -47,25 +48,31 @@ class Reset extends Component {
                     }
                   }
                 />
-                
+
                 <input type="button" value="驗證碼" className={styles.reset_button} onClick={this.onButtonClick} />
               </div>
               {error.mail && (
-                  <div className={styles.warning_title}>
-                    <img src="/image/warning.png" className={styles.pic} />
-                    <span className={styles.warning}>{error.mail}</span>
-                  </div>
-                )}
+                <div className={styles.warning_title}>
+                  <img src="/image/warning.png" className={styles.pic} />
+                  <span className={styles.warning}>{error.mail}</span>
+                </div>
+              )}
               <br /><br />
               <div className={styles.reset_first}>
                 <label htmlFor="password" className={styles.reset_label}>驗證碼</label>
-                <input type="password" name="password" id="password" className={styles.reset_input} />
+                <input type="text" name="password" id="password" className={styles.reset_input} />
               </div>
+              {error.verification && (
+                <div className={styles.warning_title}>
+                  <img src="/image/warning.png" className={styles.pic} />
+                  <span className={styles.warning}>{error.verification}</span>
+                </div>
+              )}
             </div>
             <hr />
             <br /><br />
             <div className={styles.send}>
-              <input type="submit" value="確定送出" className={styles.go} />
+              <input type="button" value="確定送出" className={styles.go} onClick={this.send}/>
             </div>
           </form>
         </div>
@@ -77,18 +84,22 @@ class Reset extends Component {
 
   onButtonClick = async () => {
     // console.log('Button Clicked'); // 添加调试输出，检查按钮点击事件是否触发
-  console.log(this.state.mail)
+    console.log(this.state.mail)
     try {
       var response = await axios.get(`http://localhost:8000/reset/${this.state.mail}`)
-      
+
 
       console.log('Response:', response); // 添加调试输出，检查异步请求的响应
 
 
       if (response.status === 200) {
+        var newState = {...this.state}
+        newState.random = response.data.random
+        this.setState(newState)
+        console.log('3333',newState)
         console.log('成功')
       } else {
-        console.error(response.data);
+        // console.error(response.data);
       }
     } catch (error) {
       if (error.response) {
@@ -97,12 +108,28 @@ class Reset extends Component {
           this.setState({ error })
         } else if (error.response.status === 500) {
           error.mail = '郵件發送失敗'
+          this.setState({ error });
         } else {
           console.error(error);
         }
       }
     }
   }
+
+  send = () => {
+    var p = document.getElementById('password').value
+    var r = this.state.random
+    console.log('look', r)
+
+    if (p !== r) {
+      this.setState({ error: { verification: '驗證碼錯誤' } }, () => {
+        console.log(this.state.error);
+      });
+    } else {
+      window.location = '/revise';
+    }
+  }
+
 }
 
 export default Reset;

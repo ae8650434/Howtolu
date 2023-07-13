@@ -3,23 +3,23 @@ var DB = require("../API/DB");
 var express = require("express");
 var app = express.Router();
 var bcrypt = require("bcrypt");
-var expressSession = require("express-session");
+// var expressSession = require("express-session");
 // var session = require("express-session");
 
-var session = expressSession({
-  secret: 'member',
-  resave: false,
-  saveUninitialized: true,
+// var session = expressSession({
+//   secret: 'member',
+//   resave: false,
+//   saveUninitialized: true,
 
-  cookie:{
-      path:'/',
-      httpOnly:true,
-      secure:false,
-      maxAge: 60 * 1000
+//   cookie:{
+//       path:'/',
+//       httpOnly:true,
+//       secure:false,
+//       maxAge: 60 * 1000
       // maxAge: 7 * 24 * 60 * 60 * 1000, // 一星期的毫秒數
-  }
-});
-app.use(session)
+//   }
+// });
+// app.use(session)
 
 
 
