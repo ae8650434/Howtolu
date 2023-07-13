@@ -16,10 +16,10 @@
 
 /* categories商品分類 */
 .categories {
-    margin-left: 155px;
-    margin-right: 155px;
-    margin-top: 40px;
+    margin-left: 50px;
+    /* margin-top: 20px; */
     position: fixed;
+    float: left;
     top: 120px;
 }
 
@@ -35,7 +35,7 @@
     border-style: dotted;
     border-color: #C07F00;
     width: 250px;
-    line-height: 60px;
+    /* line-height: 60px; */
 }
 
 .categoriesUl>li a {
@@ -264,12 +264,12 @@ input.qtyminus {
     cursor: pointer;
 }
 
-.myform>p {
+/* .myform>p {
     font-size: 32px;
     margin-top: 20px;
     margin-left: 75px;
     color: #FC0707;
-}
+} */
 
 @media screen and (max-width: 768px) {
     #myform {
