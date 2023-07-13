@@ -6,16 +6,16 @@ class FoodDetail extends Component {
     states = {
         food:
             [{
-                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
             }]
     }
     stateAll = {
         foodList:
             [{
-                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
             },
             {
-                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+                "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
             },
             {
                 "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
@@ -101,7 +101,7 @@ class FoodDetail extends Component {
                 </div>
                 <div >
                     <div className={styles.food_information}>
-                        <p>{this.states.food[0].fdetails_text}</p>
+                        <p>套餐明細</p>
                         <div className={styles.image_fdetails}>
                             <img className={styles.image_f} src={`/image/${this.states.food[0].fdetails_image}`} />
                         </div>
