@@ -143,8 +143,10 @@ class Login extends Component {
   aku = () => {
     var s = document.getElementById('account').value
     localStorage.setItem('account',s)
+    sessionStorage.setItem('account',s)
     var p = document.getElementById('password').value
     localStorage.setItem('password', p)
+    sessionStorage.setItem('password', p)
   }
 
   componentDidMount = () => {
