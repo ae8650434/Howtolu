@@ -3,6 +3,7 @@ import styles from '../css/Login.module.css'
 import axios from 'axios';
 
 class Login extends Component {
+
   // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
   constructor(props) {
     super(props);
@@ -68,6 +69,9 @@ class Login extends Component {
                       this.setState(newState);
                     }
                   }
+                  onKeyUp={
+                    this.aku
+                  }
                 />
               </div>
               <div className={styles.warningtitle}>
@@ -90,6 +94,10 @@ class Login extends Component {
                       newState.user.password = e.target.value;
                       this.setState(newState);
                     }
+                  }
+
+                  onKeyUp={
+                    this.aku
                   }
                 />
                 <img src={eyeSrc} style={{ opacity: eyeOpacity }} id={styles['eye']} onClick={this.eyeClick} />
@@ -131,6 +139,23 @@ class Login extends Component {
       </div>
     );
   }
+
+  aku = () => {
+    var s = document.getElementById('account').value
+    localStorage.setItem('account',s)
+    var p = document.getElementById('password').value
+    localStorage.setItem('password', p)
+  }
+
+  componentDidMount = () => {
+    var a = localStorage.getItem('account')
+    var p = localStorage.getItem('password')
+    var newState = {...this.state}
+    newState.user.account = a
+    newState.user.password = p
+    this.setState(newState)
+  }
+
 
   okButtonClick = async (e) => {
     e.preventDefault(); // 阻止表單提交的默認行為

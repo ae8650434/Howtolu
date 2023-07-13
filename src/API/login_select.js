@@ -3,29 +3,39 @@ var DB = require("../API/DB");
 var express = require("express");
 var app = express.Router();
 var bcrypt = require("bcrypt");
-var session = require("express-session");
+var expressSession = require("express-session");
+// var session = require("express-session");
+
+var session = expressSession({
+  secret: 'member',
+  resave: false,
+  saveUninitialized: true,
+
+  cookie:{
+      path:'/',
+      httpOnly:true,
+      secure:false,
+      maxAge: 60 * 1000
+      // maxAge: 7 * 24 * 60 * 60 * 1000, // 一星期的毫秒數
+  }
+});
+app.use(session)
 
 
 
-app.post("/", (req, res) => {
+app.post("/", express.urlencoded(), function(req, res) {
   // 用變數抓取前端資料
   var account = req.body.account;
   var password = req.body.password;
-  var remember = req.body.remember;
-
-  console.log('Account:', account);
-  console.log('Password:', password);
+  var remember = req.body.isComplete;
 
   // 在这里执行其他操作，例如查询数据库、验证账号密码等
 
   // 返回响应给前端
-  // res.send('Received account and password');
-
-  // console.log('Hello')
-  //
+  
   var sql = "SELECT * FROM member WHERE tel = ?";
   DB.query(sql, [account], (err, data) => {
-
+    console.log('1111' , data)
     // res.json(data)
     if (err) {
       console.error(err);
@@ -44,20 +54,13 @@ app.post("/", (req, res) => {
     var hashedPassword = data[0].password;
     var isPasswordMatched = bcrypt.compareSync(password, hashedPassword);
     if (isPasswordMatched) {
-      
+      console.log('555',remember)
       if (remember == 0) {
-        req.session = data[0];
-        req.session.userName = data[0].name;
-        req.session.userPassword = hashedPassword;
+        req.session.howtolu= data[0];
+        console.log('12345',req.session)
       }
-      // 密码正确的情况
-      // 执行其他操作或返回成功响应
-      // req.session = data[0];
-      // req.session.userName = data[0].name;
-      // req.session.userPassword = hashedPassword;
       // 登录成功，返回成功响应
       return res.status(200).json({ message: "Login successful" });
-      // res.redirect('http://localhost:3000/');
     } else {
       // 密码不正确的情况
       return res.status(401).json({ error: "Invalid Password" });
