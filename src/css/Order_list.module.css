@@ -137,13 +137,9 @@
 .info_li_order{
   border-bottom: 5px solid #BBBB;
   border-radius: 2px;
-  background-color: #ffffff !important;
   /* background-color: #ff7064; */
 }
 
-.form {
-  background-color: #ffffff !important;
-}
 
 @media screen and (max-width:400px){
   .short {
