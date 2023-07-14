@@ -24,17 +24,18 @@ figure {
 .btnq {
     margin-top: 20px;
     border: none;
-    background-color: red;
-    color: white;
-    border-radius: 5px;
-    width: 100px;
-    height: 30px;
+    background-color: #5E9B44;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 200px;
+    height: 60px;
     cursor: pointer;
+    font-size: 30px;
 }
 
-.btnq:hover {
+/* .btnq:hover {
     background-color: hsl(0, 99%, 29%);
-}
+} */
 
 #menu {
     padding: 10px;
@@ -193,28 +194,35 @@ figcaption {
 .btn0 {
     margin-top: 20px;
     border: none;
-    background-color: red;
+    background-color: #DBAF74;
     color: white;
     border-radius: 5px;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
     cursor: pointer;
+    font-size: 34px;
+    width: 40px;
+    height: 36px;
 
 }
 .btnq1 {
     margin-top: 20px;
     border: none;
-    background-color: red;
+    background-color: #DBAF74;
     color: white;
     border-radius: 5px;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
     cursor: pointer;
+    font-size: 34px;
+    width: 40px;
+    height: 36px;
 
 }
 
 .count{
     margin: 0 5px 0 5px;
+    font-size: 34px;
 }
 
 @media(max-width: 393px) {

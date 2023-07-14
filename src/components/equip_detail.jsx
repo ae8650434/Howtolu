@@ -279,7 +279,7 @@ class EquipDetail extends Component {
         var newStateAll = { ...this.stateAll };
         var newstatesto={ ...this.statesAll};
         newStateAll.productList = resultAll.data;
-        newstatesto.productList=resultAll.data
+        var newstatesto = JSON.parse(JSON.stringify(newStateAll));
         // console.log("123",newStateAll.productList);
         this.stateAll = newStateAll;
         this.setState(this.stateAll);
@@ -307,7 +307,7 @@ class EquipDetail extends Component {
             ccc = ccc
         }
         // console.log(abc);
-        console.log(newstatesto);
+        // console.log(newstatesto);
         // console.log(this.stateAll);
         this.stateAll.productList[2] = newstatesto.productList[ccc]
         this.stateAll.productList[1] = newstatesto.productList[bbb]

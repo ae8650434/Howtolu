@@ -176,7 +176,7 @@
 
 }
 
-日曆css
+/* 日曆css */
 .calendar {
    margin-top: 30px;
     margin-left: 20px;
@@ -238,8 +238,7 @@
     height: 36px;
     text-align: center;
     border: 0;
-    margin: -4px;
-    background-color: #D9D9D9;
+    background-color: #FFFFFF;
 }
 
 input.qtyplus,
@@ -248,7 +247,6 @@ input.qtyminus {
     height: 36px;
     border: 1px solid #DBAF74;
     background: #DBAF74;
-    margin: -4px;
     cursor: pointer;
 }
 
@@ -258,10 +256,11 @@ input.qtyminus {
     background-color: #5E9B44;
     border: #5E9B44;
     color:  #FFFFFF;
-    border-radius: 8px;
+    border-radius: 10px;
     width: 200px;
-    height: 50px;
+    height: 60px;
     cursor: pointer;
+    font-size: 30px;
 }
 
 /* .myform>p {

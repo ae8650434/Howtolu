@@ -21,15 +21,15 @@
   width: 790px;
   display: flex;
   align-items: center;
-  margin-left: 15%;
-  margin-right: 20%;
+  margin-left: 25%;
+  /* margin-right: 20%; */
   margin-bottom: 1%;
 }
 
 .revise_rule {
   color: #ff7064;
-  margin-left: 20%;
-  margin-right: 30%;
+  margin-left: 30%;
+  /* margin-right: 30%; */
   font-size: 28px;
   line-height: 20px;
   text-align: center;
@@ -39,7 +39,7 @@
 }
 
 .resive_go {
-  margin-left: 20px;
+  margin-left: 55%;
   background-color: #5e9b44;
   font-size: 28px;
   color: #ffffff;
