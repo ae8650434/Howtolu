@@ -91,7 +91,7 @@ figure {
 }
 
 .categories>p {
-    font-size: 38px;
+    font-size: 40px;
     text-align: center;
     width: 250px;
     height: 50px;
@@ -132,7 +132,7 @@ figure {
     margin-bottom: 20px;
     margin-left: 0px;
     background-color: paleturquoise;
-    
+
 }
 
 
@@ -186,8 +186,35 @@ figure {
     font-size: 40px;
 }
 
-figcaption{
+figcaption {
     font-size: 34px;
+}
+
+.btn0 {
+    margin-top: 20px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
+.btnq1 {
+    margin-top: 20px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+.count{
+    margin: 0 5px 0 5px;
 }
 
 @media(max-width: 393px) {

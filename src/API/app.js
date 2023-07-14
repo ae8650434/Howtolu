@@ -9,6 +9,8 @@ var login=require("./login_select.js")
 var reset=require("./reset.js")
 var productc=require("./product_class.js")
 var cart=require("./cart.js")
+var food_detail=require("./food_detail.js")
+var revise = require('./revise.js')
 var cors = require("cors");
 var expressSession = require("express-session");
 app.use( express.static("public")  );
@@ -16,14 +18,7 @@ app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
 app.use(cors());
 
-app.use("/product/list",selectall);
-app.use("/cart",cart);
-app.use("/product",select);
-app.use("/productclass",productc);
-app.use("/register",register);
-app.use("/login/member",login);
-app.use("/food/list",food);
-app.use("/reset",reset);
+
 
 var session = expressSession({
     secret: 'member',
@@ -34,12 +29,23 @@ var session = expressSession({
         path:'/',
         httpOnly:true,
         secure:false,
-        maxAge: 10 * 1000
+        maxAge: 60 * 1000
         // maxAge: 7 * 24 * 60 * 60 * 1000, // 一星期的毫秒數
     }
 });
 app.use(session)
 
+
+app.use("/product/list",selectall);
+app.use("/cart",cart);
+app.use("/product",select);
+app.use("/productclass",productc);
+app.use("/register",register);
+app.use("/login/member",login);
+app.use("/food/list",food);
+app.use("/food",food_detail);
+app.use("/reset",reset);
+app.use('revise', revise)
 
 app.listen(8000,function(){
     console.log('啟動')

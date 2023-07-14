@@ -2,17 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
 }
 
-.good {
-    flex-basis: calc(33.3% - 10px);
-    margin: 0;
-}
+
 
 #qqq {
-    
+    /* background-color: aqua; */
     width: 20%;
-    
 }
 
 .row {

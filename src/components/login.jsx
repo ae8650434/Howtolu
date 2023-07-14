@@ -3,13 +3,14 @@ import styles from '../css/Login.module.css'
 import axios from 'axios';
 
 class Login extends Component {
+
   // constructor(props)：構造函數接收props作為參數，並調用super(props)，繼承父類的所有屬性和方法。
   constructor(props) {
     super(props);
     this.state = {
       passwordType: 'password',
       eyeOpacity: 1,
-      eyeSrc: './image/eye.png',
+      eyeSrc: './image/EyeSlash.png',
       user: {
         account: '',
         password: '',
@@ -68,6 +69,9 @@ class Login extends Component {
                       this.setState(newState);
                     }
                   }
+                  onBlur={
+                    this.aku
+                  }
                 />
               </div>
               <div className={styles.warningtitle}>
@@ -91,6 +95,10 @@ class Login extends Component {
                       this.setState(newState);
                     }
                   }
+
+                  onBlur={
+                    this.aku
+                  }
                 />
                 <img src={eyeSrc} style={{ opacity: eyeOpacity }} id={styles['eye']} onClick={this.eyeClick} />
               </div>
@@ -102,13 +110,17 @@ class Login extends Component {
                 )}
               </div>
               <div className={styles.remember}>
-                <input type="checkbox" id={styles['check']} checked={this.state.user.isComplete ? 0 : 1}
+                <input type="checkbox" id='check' className={styles.check}checked={this.state.user.isComplete ? 0 : 1}
                   onChange={
                     (e) => {
                       var newState = { ...this.state };
                       newState.user.isComplete = e.target.checked ? 0 : 1
                       this.setState(newState);
                     }
+                  }
+
+                  onBlur={
+                    this.aku
                   }
                 />
                 <label htmlFor="check" id={styles['la']} name='remember'>記住帳號密碼</label>
@@ -132,8 +144,13 @@ class Login extends Component {
     );
   }
 
+  
+
+
   okButtonClick = async (e) => {
     e.preventDefault(); // 阻止表單提交的默認行為
+
+    this.aku()
 
     try {
       const response = await axios.post(
@@ -179,21 +196,46 @@ class Login extends Component {
         // 请求已发出，但未收到响应
         this.setState({
           errors: {
-            account: "未收到响应", // 根据实际情况设置错误信息
-            password: "未收到响应" // 根据实际情况设置错误信息
+            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
+            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
           }
         });
       } else {
         // 其他错误
         this.setState({
           errors: {
-            account: "发生错误", // 根据实际情况设置错误信息
-            password: "发生错误" // 根据实际情况设置错误信息
+            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
+            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
           }
         });
       }
     }
   };
+
+
+  aku = () => {
+    var s = document.getElementById('account').value
+    localStorage.setItem('account',s)
+    sessionStorage.setItem('account',s)
+    var p = document.getElementById('password').value
+    localStorage.setItem('password', p)
+    sessionStorage.setItem('password', p)
+    var c = this.state.user.isComplete
+    localStorage.setItem('check', String(c))
+
+    this.componentDidMount()
+  }
+
+  componentDidMount = () => {
+    var a = localStorage.getItem('account')
+    var p = localStorage.getItem('password')
+    var c = localStorage.getItem('check')
+    var newState = {...this.state}
+    newState.user.account = a
+    newState.user.password = p
+    newState.user.isComplete = parseInt(c)
+    this.setState(newState)
+  }
 }
 
 
