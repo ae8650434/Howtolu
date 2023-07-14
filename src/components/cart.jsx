@@ -7,11 +7,8 @@ import Excel from'./excel.jsx';
 class cart extends Component {
     state = { }
 
-    styleO = {
-        color: 'orange'
-    }
     styleSize = {
-        fontSize: 32
+        fontSize: 30
     }
 
     values = {
@@ -95,15 +92,8 @@ class cart extends Component {
                  <br /><br /><br />
                 <Excel/>    
 
-            {/* 購物流程 */}
-                {/* <div id={cartstyle['process']}>
-                    <span style={this.styleO}><b><ins>1.購物車確認</ins></b></span><b>&gt;</b>
-                    <span><b><ins>2.確認訂單資訊</ins></b></span><b>&gt;</b>
-                    <span><b><ins>3.訂單完成</ins></b></span>
-                </div><br /><br /><br /><br /><br /> */}
-
             {/* 日曆 */}
-                {/* <div className="myform">
+                <div className="myform">
                 <form id="myform" method="get" action="#">
                 <div style={{ display: datepicker ? 'block' : 'none' }}>
                   <Calendar
@@ -126,13 +116,13 @@ class cart extends Component {
                 </div>
                 <div>{this.renderDates()}</div>
               </form>
-            </div><br /><br /><br /><br /><br /> */}
+            </div><br /><br /><br /><br /><br />
 
-                {/* <div id={cartstyle['shopping']}>
+                <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
-                            <img id={cartstyle["imgw"]} src="./image/camping_1.jpg" alt="" />
+                            <img id={cartstyle["imgw"]} src="./image/product_19.png" alt="" />
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b>Snow Peak 卡式瓦斯爐</b></span>
                                 <br /><br /><br /><br />
@@ -148,7 +138,7 @@ class cart extends Component {
                         </div>
 
                         <div id={cartstyle['text2']}>
-                            <img id={cartstyle["imgw"]} src="./image/food_11.png" alt="" />
+                            <img id={cartstyle["imgw"]} src="./image/food_14.png" alt="" />
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b>筊白筍</b></span>
                                 <br /><br /><br /><br />
@@ -163,49 +153,20 @@ class cart extends Component {
                             </div>
                         </div>
 
-                        <div id={cartstyle['text3']}>
-                            <img id={cartstyle["imgw"]} src="/image/Snow Peak Amenity Dome 寢室帳 L(SDE-003R)2-6人.png" alt="" />
-                            <div id={cartstyle['shopping3']}>
-                                <span style={{ fontSize: 40 }}><b>Snow Peak Amenity Dome 寢室帳 L(SDE-003R)2-6人</b></span>
-                                <br /><br /><br /><br />
-                                <span><b id={cartstyle["dateSize"]}>可租借天數:1995/10/14 - 1995/10/16 共3日</b></span>
-                                <p></p>
-                                <div id={cartstyle['disFlex']}>
-                                    <b id={cartstyle["moneySize"]}>金額:35000</b>
-                                    <input id={cartstyle["numberstyle"]} type="number" min="1" />
-                                    <button id={cartstyle["butRubbish"]}
-                                        onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
-                                </div> <br /><br />
-                            </div>
-                        </div>
-
-                        <div id={cartstyle['text4']}>
-                            <img id={cartstyle["imgw"]} src="/image/黑胡椒牛小排.png" alt="" />
-                            <div id={cartstyle['shopping3']}>
-                                <span style={{ fontSize: 40 }}><b>黑胡椒牛小排</b></span>
-                                <br /><br /><br /><br />
-                                <div>
-                                    <div id={cartstyle['disFlex']}>
-                                        <b id={cartstyle["moneySize"]}>金額:35000</b>
-                                        <input id={cartstyle["numberstyle"]} type="number" min="1" />
-                                        <button id={cartstyle["butRubbish"]}
-                                            onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
-                                    </div>
-                                </div><br /><br />
-                            </div>
-                        </div>
-
                     </div>
-                </div><br />  */}
+                </div><br /> 
             {/* 總計跟前往結帳 */}
-                {/* <div id={cartstyle['shopping2']}>
+                <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT100000</span>
                     <a href="./index.html"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div><br /><br /> */}
+                </div><br /><br />
             
             </React.Fragment>
         );       
     }
+    // componentDidCatch = async () => {
+        
+    // }
 }
 
 export default cart;

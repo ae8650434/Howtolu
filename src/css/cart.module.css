@@ -52,8 +52,8 @@
 } */
 
 #null{
-    background-color: #ffffff;
-    width: 70%;
+    background-color: #e4e4e4;
+    width: 68%;
 }
 
 #shopping{
@@ -148,7 +148,7 @@
 #butRubbish{
     flex: 1;
     border: none;
-    background-color: #ffffff;
+    background-color: #e4e4e4;
     cursor: pointer;
 }
 
