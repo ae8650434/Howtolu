@@ -1,6 +1,6 @@
 .short {
-  margin-left: 8%; 
-  margin-right: 8%;
+  margin-left: 20%; 
+  /* margin-right: 8%; */
 }
 
 .head {
@@ -162,6 +162,7 @@
   /* background-color: #ff7064; */
   margin-top: 20px;
   text-align: right;
+  margin-right: 30%;
   }
   
   .info_submit {

@@ -63,8 +63,8 @@
   width: 790px;
   display: flex;
   align-items: center;
-  margin-left: 25%;
-  margin-right: 20%;
+  margin-left: 30%;
+  /* margin-right: 20%; */
   margin-bottom: 1%;
 }
 
@@ -94,7 +94,7 @@
   border: 0;
   border-radius: 10px;
   color: #ffffff;
-  /* margin-left: 27%; */
+  margin-left: 5%;
 }
 
 #forget {
@@ -108,7 +108,7 @@
   width: 400px;
   display: flex;
   align-items: center;
-  margin-left: 29.5%;
+  margin-left: 33.5%;
 }
 
 input::-webkit-input-placeholder {

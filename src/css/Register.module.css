@@ -16,6 +16,7 @@
   width: 100%;
   /* background-color: aqua; */
   margin-bottom: 15%;
+  margin-left: 6%;
 }
 
 .register_first {
@@ -88,7 +89,7 @@ input::-webkit-input-placeholder {
 .register_from_send {
   width: 800px;
   text-align: center;
-  margin-left: 250px;
+  margin-left: 21%;
   margin-top: 20px;
 }
 
@@ -139,6 +140,7 @@ input::-webkit-input-placeholder {
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 40%;
 }
 
 .reflash_div {
