@@ -32,11 +32,11 @@ class  Navigation extends Component{
                     
                     <li className={navstyle.tili}>表單訂購
                         <ul>
-                            <a href=""><li className={navstyle.conli}>表單上傳</li></a>  
+                            <a href="/cart"><li className={navstyle.conli}>表單上傳</li></a>  
                             <li  className={navstyle.conli}>表單填寫
                                 <ul id={navstyle['a']}>
                                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBpC90D4LAPmwi5iGMOShmuA6D1Lj0IvsvNUr7HUmzzhWzrQ/viewform"><li >Google表單</li></a>  
-                                    <a href="/excel/HowTo露(表單回覆).xlsx" download><li >Excel表單下載</li></a>  
+                                    <a href="/excel/HowTo露.xlsx" download><li >Excel表單下載</li></a>  
                                     
                                 </ul>
                             </li>  
