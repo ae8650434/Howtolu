@@ -272,12 +272,14 @@ class EquipDetail extends Component {
         this.states = newStates;
         this.setState(this.states);
         // console.log("123",newState.product); 
-
+        
         // 查全部商品
         var urlAll = "http://localhost:8000/product/list";
         var resultAll = await axios.get(urlAll);
         var newStateAll = { ...this.stateAll };
+        var newstatesto={ ...this.statesAll};
         newStateAll.productList = resultAll.data;
+        newstatesto.productList=resultAll.data
         // console.log("123",newStateAll.productList);
         this.stateAll = newStateAll;
         this.setState(this.stateAll);
@@ -305,15 +307,17 @@ class EquipDetail extends Component {
             ccc = ccc
         }
         // console.log(abc);
-        this.stateAll.productList[2] = this.stateAll.productList[ccc]
-        this.stateAll.productList[1] = this.stateAll.productList[bbb]
-        this.stateAll.productList[0] = this.stateAll.productList[abc]
-        console.log(this.stateAll.productList)
+        console.log(newstatesto);
+        // console.log(this.stateAll);
+        this.stateAll.productList[2] = newstatesto.productList[ccc]
+        this.stateAll.productList[1] = newstatesto.productList[bbb]
+        this.stateAll.productList[0] = newstatesto.productList[abc]
+        // console.log(this.stateAll.productList)
         // console.log(this.stateAll.productList[1])
         // console.log(this.stateAll.productList[2])
-        console.log(abc)
-        console.log(bbb)
-        console.log(ccc)
+        // console.log(abc)
+        // console.log(bbb)
+        // console.log(ccc)
 
     }
 }
