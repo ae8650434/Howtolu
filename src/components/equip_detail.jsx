@@ -305,10 +305,15 @@ class EquipDetail extends Component {
             ccc = ccc
         }
         // console.log(abc);
-        this.stateAll.productList[0] = this.stateAll.productList[abc]
-        this.stateAll.productList[1] = this.stateAll.productList[bbb]
-        // console.log(this.stateAll.productList[1])
         this.stateAll.productList[2] = this.stateAll.productList[ccc]
+        this.stateAll.productList[1] = this.stateAll.productList[bbb]
+        this.stateAll.productList[0] = this.stateAll.productList[abc]
+        console.log(this.stateAll.productList)
+        // console.log(this.stateAll.productList[1])
+        // console.log(this.stateAll.productList[2])
+        console.log(abc)
+        console.log(bbb)
+        console.log(ccc)
 
     }
 }
