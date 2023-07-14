@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import Cart from './cart.jsx';
 import cartstyle from '../css/cart.module.css';
+import Process from './Process.jsx';
 
 function Excel() {
     const [items, setItems] = useState([]);
@@ -50,36 +50,46 @@ function Excel() {
                     onChange={(e) => {
                         const file = e.target.files[0];
                         readExcel(file);
-                    }}/>
-
-                {/* excel插入後的格式 */}
-                {items && (
-                    <table>
-                        <tbody>
-                            {items.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row['物品']}</td>
-                                    <td>{row['數量(填入數字即可)']}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}<br /><br />
-
-                {/* excel插入後nullCart消失 */}
-                {!items.length && (
-                    <div id={cartstyle["magnifier"]}>
-                        <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
-                        <a href="/product">
-                            <button id={cartstyle["nullshopping"]}>
-                                <span>前往商城逛逛</span>
-                            </button>
-                        </a>
-                    </div>
-                )}
+                    }} />
             </div>
+
+            <br /><br /><br /><br />
+            <Process />
+            <br /><br /><br /><br />
+            
+            {/* excel插入後的格式 */}
+            {items && (
+                <table>
+                    <tbody>
+                        {items.map((row, index) => (
+                            <tr key={index}>
+                                <td>{row['物品']}</td>
+                                <td>{row['數量(填入數字即可)']}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}<br /><br /><br /><br />
+
+            {/* excel插入後nullCart消失 */}
+            {/* {!items.length && (
+                <div id={cartstyle["magnifier"]}>
+                    <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
+                    <a href="/product">
+                        <button id={cartstyle["nullshopping"]}>
+                            <span>前往商城逛逛</span>
+                        </button>
+                    </a>
+                </div>
+            )} */}
         </>
     );
+
+    // componentDidCatch = async () => {
+    //     var car = await axios.get('http://localhost:8000/cart')
+    //     var abc
+    // }
+
 }
 
 export default Excel;

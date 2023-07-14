@@ -8,11 +8,11 @@ class Revise extends Component {
         this.state = {
           passwordType: 'password',
           eyeOpacity: 1,
-          eyeSrc: './image/eye.png',
+          eyeSrc: './image/EyeSlash.png',
 
           passwordType2: 'password',
           eyeOpacity2: 1,
-          eyeSrc2: './image/eye.png',
+          eyeSrc2: './image/EyeSlash.png',
         };
       }
 
@@ -30,19 +30,15 @@ class Revise extends Component {
                 ***為保護您的個人資料安全，請務必修改密碼。
               </div>
               <form action="" method="" id={styles.revise_login}>
+                <br />
                 <div className={styles.revise_first}>
-                  <label for="" className={styles.revise_from_title}>e-mail</label>
-                  <input type="email" className={styles.register_from_input} required/>
-                </div>
-                <br /><br />
-                <div className={styles.revise_first}>
-                  <label for="" className={styles.revise_from_title}>設定密碼</label>
+                  <label htmlFor="" className={styles.revise_from_title}>設定密碼</label>
                   <input type={passwordType} className={styles.register_from_input} id="password" pattern="[\da-zA-Z]{8,16}" required/>
                   <img src={eyeSrc} id="eye" style={{opacity: eyeOpacity}} className={styles.eye} onClick={this.eyeClick}/>
                 </div>
                 <br /><br />
                 <div className={styles.revise_first}>
-                  <label for="" className={styles.revise_from_title}>再次確認密碼</label>
+                  <label htmlFor="" className={styles.revise_from_title}>再次確認密碼</label>
                   <input type={passwordType2} className={styles.register_from_input} pattern="[\da-zA-Z]{8,16}" id='password2' required/>
                   <img src={eyeSrc2} id="eye1" style={{opacity: eyeOpacity2}} className={styles.eye} onClick={this.eyeClick2}/>
                 </div>

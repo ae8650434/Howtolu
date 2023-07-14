@@ -118,7 +118,7 @@ input::-webkit-input-placeholder {
 .warning_title {
   align-items: center;
   text-align: left;
-  width: 400px;
+  width: 450px;
   margin-left: 425px;
 }
 
@@ -185,9 +185,10 @@ body {
 
 #div1 {
   background: #eeeeee;
-  width: 60%;
+  width: 70%;
+  height: 80%;
   z-index: 1;
-  margin: 10% auto;
+  margin: 7% auto;
   overflow: auto;
   border-radius: 10px;
 }
@@ -198,6 +199,7 @@ body {
   margin: auto;
   height: 400px;
   padding: 0 20px;
+  text-align: left;
 }
 
 #close {
@@ -246,6 +248,11 @@ h4 {
   font-size: 30px;
 }
 
+.comtent {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* 打勾勾 */
 .h2 {
@@ -279,7 +286,7 @@ h4 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.content {
+.content2 {
   text-align: center;
   width: 100%;
   height: 100%;
