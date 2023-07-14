@@ -44,19 +44,20 @@ function generateRandomCode() {
     return code;
   }
 
-
+//SELECT * FROM member LEFT JOIN email_random ON member.mid = email_random.mid WHERE email = ?;
 
 app.get("/:mail", function (req, res) {
   var mail = req.params.mail;
   //   console.log(mail)
   var sql = "SELECT * FROM member WHERE mail = ?";
   var msql =
-    "SELECT * FROM member LEFT JOIN email_random ON member.mid = email_random.mid WHERE email = ?;";
+    "SELECT * FROM email_random where mid = ?";
   var insertmsql =
     "INSERT INTO email_random(mid, email, random) VALUES (?,?,?)";
   var updatesql = "UPDATE email_random SET random = ? WHERE email = ?";
   // console.log("我想看一下",req.params)
   DB.query(sql, [mail], function (err, data) {
+    console.log('first',data)
     if (err) {
       console.log("X");
       return res.status(400).send("信箱尚未被註冊");
@@ -70,28 +71,31 @@ app.get("/:mail", function (req, res) {
           if (err) {
             return res.status(500).send("郵件發送失敗");
           } else {
-            DB.query(msql, [mail], (err, result) => {
+            DB.query(msql, [data[0].mid], (err, result) => {
               if (err) {
                 console.log("X");
                 return res.status(402).send("查詢失敗");
               } else {
-                if (result.length > 0) {
-                  DB.query(updatesql, [random, mail], (err, data) => {
-                    if (err) {
-                      console.log("X");
-                      return res.status(401).send("更新失敗");
-                    } else {
-                      console.log("O");
-                      return res.status(200).json({random: random});
-                    }
-                  });
-                } else {
-                  DB.query(insertmsql, [data[0], mail, random], (err, data) => {
+                if (result.length == 0) {
+                  DB.query(insertmsql, [data[0], mail, random], (err, s) => {
                     if (err) {
                       console.log("X");
                       return res.status(400).send("插入失敗");
                     } else {
+                      console.log("O");
+                      req.session.reset = data[0]
+                      return res.status(200).json({random: random});
+                    }
+                  });
+                } else {
+                  DB.query(updatesql, [random, mail], (err, q) => {
+                    if (err) {
                       console.log("X");
+                      return res.status(401).send("更新失敗");
+                    } else {
+                      console.log("O"); 
+                      req.session.reset = data[0]
+                      console.log('second',req.session.reset)
                       return res.status(200).json({random: random});
                     }
                   });
@@ -102,6 +106,7 @@ app.get("/:mail", function (req, res) {
         });
       }
     }
+    
 });})
 
 

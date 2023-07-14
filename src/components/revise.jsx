@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../css/Revise.module.css'
+import axios from 'axios';
 
 class Revise extends Component {
     
@@ -99,7 +100,7 @@ class Revise extends Component {
 
         //密碼不同時阻止表單送出
 
-        handleRevise = (e) => {
+        handleRevise = async (e) => {
           const password = document.getElementById('password')
           const password2 = document.getElementById('password2')
 
@@ -107,7 +108,18 @@ class Revise extends Component {
             alert('請確認密碼是否相同')
             e.preventDefault()
           }
+
+          try {
+           var response = axios.get('http://localhost:8000/revise')
+           
+          }catch (error) {
+
+          }
+          
         }
+
+        
+        
 }
  
 export default Revise;

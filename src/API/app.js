@@ -21,7 +21,7 @@ app.use(cors());
 
 
 var session = expressSession({
-    secret: 'member',
+    secret: 'howtolumember',
     resave: true,
     saveUninitialized: true,
 

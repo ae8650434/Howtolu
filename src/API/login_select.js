@@ -39,7 +39,7 @@ app.post("/", express.urlencoded(), function(req, res) {
     if (isPasswordMatched) {
       console.log('555',remember)
       if (remember == 0) {
-        req.session.howtolu= data[0];
+        req.session.login= data[0];
         console.log('12345',req.session)
       }
       // 登录成功，返回成功响应
