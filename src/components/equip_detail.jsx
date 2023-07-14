@@ -209,7 +209,7 @@ class EquipDetail extends Component {
                     <p>經常一起租借裝備：</p>
                     <div>
                         <div className={styles.container}>
-                            <a href=""> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                            <a href={`/equip_detail/${this.stateAll.productList[0].pid}`}> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
                                 src={`/image/${this.stateAll.productList[0].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
@@ -224,7 +224,7 @@ class EquipDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container}>
-                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                            <a href={`/equip_detail/${this.stateAll.productList[1].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
                                 src={`/image/${this.stateAll.productList[1].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
@@ -239,7 +239,7 @@ class EquipDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container}>
-                            <a href=""><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                            <a href={`/equip_detail/${this.stateAll.productList[2].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
                                 src={`/image/${this.stateAll.productList[2].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
