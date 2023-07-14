@@ -283,24 +283,24 @@ class EquipDetail extends Component {
         this.setState(this.stateAll);
         // console.log(typeof this.props.match.params.pid)
         var abc = parseInt(this.props.match.params.pid);
-        abc += 5
+        abc += 4
         var bbb = abc + 1
         var ccc = abc + 2
         // console.log("555",newStateAll.productList[abc]);
-        if (abc >= 33) {
-            abc -= 33
+        if (abc >= 32) {
+            abc -= 32
         } else {
             abc = abc
         }
 
-        if (bbb >= 33) {
-            bbb -= 33
+        if (bbb >= 32) {
+            bbb -= 32
         } else {
             bbb = bbb
         }
 
-        if (ccc >= 33) {
-            ccc -= 33
+        if (ccc >= 32) {
+            ccc -= 32
         } else {
             ccc = ccc
         }
