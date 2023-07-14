@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
+import Productbarr from './productbar';
 import '../css/calendar.css';
 
 class EquipDetail extends Component {
@@ -136,21 +137,7 @@ class EquipDetail extends Component {
         return (
             <React.Fragment>
                 <div id="container">
-                    <div className={styles.categories}>
-                        <p>商品分類</p>
-                        <ul className={styles.categoriesUl}>
-                            <li><a href="">寢室帳篷</a></li>
-                            <li><a href="">客廳帳&天幕</a></li>
-                            <li><a href="">寢室用具</a></li>
-                            <li><a href="">戶外用品</a></li>
-                            <li><a href="">爐具</a></li>
-                            <li><a href="">保鮮保冷</a></li>
-                            <li><a href="">燈具</a></li>
-                            <li><a href="">影音設備</a></li>
-                            <li><a href="">保暖裝備</a></li>
-                            <li><a href="">常用配件</a></li>
-                        </ul>
-                    </div>
+                    <Productbarr/>
                 </div>
 
                 <div>

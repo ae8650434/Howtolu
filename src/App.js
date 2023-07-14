@@ -4,6 +4,7 @@ import Navigation from './components/nav';
 import Home from './components/index';
 import Error from './components/error';
 import Product from './components/product';
+import Productbar from './components/productbar';
 import Product2 from './components/product2';
 import Login from './components/login';
 import Register from './components/register';
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/product/:Classification" component={Product} exact /> 
             <Route path="/product2" component={Product2} exact /> 
             <Route path="/product3" component={ProductCopy} exact /> 
+            <Route path="/productbar" component={Productbar} exact /> 
             <Route path="/login" component={Login} exact />
             <Route path="/register" component={Register} exact />
             <Route path="/revise" component={Revise} exact />
