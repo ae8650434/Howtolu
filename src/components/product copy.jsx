@@ -21,7 +21,7 @@ class Product3 extends Component {
         <div className='row'>
           {filteredList.map((x) => (
             <div key={x.pid} className='good' id='right'>
-              <figure>
+              <figure style={{width:"450px",height:"550px"}}>
                 <img src={`/image/${x.p_img}`} alt={x.pname} />
                 <figcaption>{x.pname}</figcaption>
                 <figcaption>NT${x.price} - {x.day} 日</figcaption>
@@ -100,8 +100,8 @@ export class Product4 extends Component {
         <div className='row'>
           {filteredList.map((x) => (
             <div key={x.fid} className='good' id='right'>
-              <figure>
-                <img src={`/image/${x.f_img}`} alt={x.fname} />
+              <figure style={{width:"450px",height:"600px"}}>
+                <img src={`/image/${x.f_img}`} alt={x.fname} style={{width:"300px",height:"300px"}}/>
                 <figcaption>{x.fname}</figcaption>
                 <figcaption>NT${x.price}</figcaption>
                 <button className="btn0" onClick={this.handleAdd}>+</button>
