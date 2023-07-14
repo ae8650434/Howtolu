@@ -413,13 +413,19 @@ class Register extends Component {
 
     try {
 
-      const checkResponse = await axios.get(`http://localhost:8000/register/checkPhone/${phone}`);
+      const checkResponse = await axios.get(`http://localhost:8000/register/checkPhone/${phone}/${email}`);
 
       if (checkResponse.data.exists) {
-        errors.phone = '手機號碼已經註冊';
+        if (checkResponse.data.type === 'phone') {
+          errors.phone = '手機號碼已經註冊';
+        } else if (checkResponse.data.type === 'email') {
+          errors.email = '信箱已經註冊';
+        }
+  
         this.setState({ errors });
         return;
       }
+
 
 
 
@@ -449,7 +455,8 @@ class Register extends Component {
       if (error.response) {
         // 请求已发出，但服务器响应的状态码不在 2xx 范围内
         if (error.response.status === 400) {
-          errors.phone = '手機號碼已經註冊';
+          errors.phone = '手機號碼或信箱已經註冊';
+          errors.email = '手機號碼或信箱已經註冊'
           this.setState({ errors });
         }
         console.error(error.response.data);

@@ -126,6 +126,7 @@ class Reset extends Component {
         console.log(this.state.error);
       });
     } else {
+      sessionStorage.setItem('mail',this.state.mail)
       window.location = '/revise';
     }
   }

@@ -8,13 +8,13 @@ var bcrypt = require("bcrypt");
 // console.log(password)
 
 
-app.get('/checkPhone/:phone', (req, res) => {
+app.get('/checkPhone/:phone/:email', (req, res) => {
   const mphone = req.params.phone;
-
+  const mail = req.params.email
   // 在这里编写根据手机号检查是否已注册的逻辑
 
-  var checkUserSql = "SELECT * FROM member WHERE tel = ?";
-     DB.query(checkUserSql, [mphone], (err, rows) => {
+  var checkUserSql = "SELECT * FROM member WHERE tel = ? OR mail = ?";
+     DB.query(checkUserSql, [mphone, mail], (err, rows) => {
        if (err) {
          console.error(err);
          return res.status(500).send('Error during user check');
