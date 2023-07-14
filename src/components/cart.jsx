@@ -93,7 +93,7 @@ class cart extends Component {
                 <Excel/>    
 
             {/* 日曆 */}
-                <div className="myform">
+                {/* <div className="myform">
                 <form id="myform" method="get" action="#">
                 <div style={{ display: datepicker ? 'block' : 'none' }}>
                   <Calendar
@@ -116,9 +116,9 @@ class cart extends Component {
                 </div>
                 <div>{this.renderDates()}</div>
               </form>
-            </div><br /><br /><br /><br /><br />
+            </div><br /><br /><br /><br /><br /> */}
 
-                <div id={cartstyle['shopping']}>
+                {/* <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
@@ -154,12 +154,12 @@ class cart extends Component {
                         </div>
 
                     </div>
-                </div><br /> 
+                </div><br />  */}
             {/* 總計跟前往結帳 */}
-                <div id={cartstyle['shopping2']}>
+                {/* <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT100000</span>
                     <a href="./index.html"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div><br /><br />
+                </div><br /><br /> */}
             
             </React.Fragment>
         );       

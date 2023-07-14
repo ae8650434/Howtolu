@@ -72,7 +72,7 @@ function Excel() {
             )}<br /><br /><br /><br />
 
             {/* excel插入後nullCart消失 */}
-            {/* {!items.length && (
+            {!items.length && (
                 <div id={cartstyle["magnifier"]}>
                     <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
                     <a href="/product">
@@ -81,7 +81,7 @@ function Excel() {
                         </button>
                     </a>
                 </div>
-            )} */}
+            )}
         </>
     );
 
