@@ -6,8 +6,11 @@ const home = () => {
     return (
        <>
        <img src="/image/camping_1.jpg" alt="" />
-          <About/>
+         <About/>
           <Productlink/>
+          <Activity/>
+          <Weather/>
+          <Map/>
         </>
        
     );
