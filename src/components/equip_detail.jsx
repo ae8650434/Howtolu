@@ -6,7 +6,7 @@ import Productbarr from './productbar';
 import '../css/calendar.css';
 
 class EquipDetail extends Component {
-    state = {}
+    state = {isFlying: false}
     states = {
         product:
             [{
@@ -134,14 +134,21 @@ class EquipDetail extends Component {
         // { console.log(this.states.product[0]) }
         const productArray = this.states.product[0].description.split(";");
         const productInfArray = this.states.product[0].information.split(";");
+        const totop = () => {
+            this.setState({ isFlying: true });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        };
         return (
             <React.Fragment>
                 <div id="container">
-                    <Productbarr/>
+                    <Productbarr />
                 </div>
 
                 <div>
-                    <div className={styles.image}>
+                    <div className={`${styles.image} ${this.state.isFlying ? styles.flyAway : ""}`}>
                         <a target="_blank" href={`/image/${this.states.product[0].p_img}`}>
                             <img src={`/image/${this.states.product[0].p_img}`} /></a>
                     </div>
@@ -178,7 +185,7 @@ class EquipDetail extends Component {
                                 <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
                                 <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
                                 <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
-                                <input type='button' value='立即預約' className={styles.reserve} />
+                                <input type='button' value='立即預約' className={styles.reserve} onClick={totop}  />
                                 <p><span>庫存量:</span><span>{this.states.product[0].reserve}</span></p>
                             </form>
                         </div>
@@ -272,12 +279,12 @@ class EquipDetail extends Component {
         this.states = newStates;
         this.setState(this.states);
         // console.log("123",newState.product); 
-        
+
         // 查全部商品
         var urlAll = "http://localhost:8000/product/list";
         var resultAll = await axios.get(urlAll);
         var newStateAll = { ...this.stateAll };
-        var newstatesto={ ...this.statesAll};
+        var newstatesto = { ...this.statesAll };
         newStateAll.productList = resultAll.data;
         var newstatesto = JSON.parse(JSON.stringify(newStateAll));
         // console.log("123",newStateAll.productList);

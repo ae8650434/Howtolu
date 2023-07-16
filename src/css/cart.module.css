@@ -14,13 +14,14 @@
 }
 
 #buy {
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #5E9B44;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 35px;
-    padding: 10px;
+    font-size: 30px;
+    width: 200px;
+    height: 60px;
     cursor: pointer;
 }
 
@@ -52,7 +53,7 @@
 } */
 
 #null{
-    background-color: #e4e4e4;
+    background-color: #ffffff;
     width: 68%;
 }
 
@@ -90,13 +91,14 @@
 }
 
 #nullshopping {
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #5E9B44;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 34px;
-    padding: 10px;
+    font-size: 30px;
+    width: 220px;
+    height: 60px;
     cursor: pointer;
 }
 
@@ -148,7 +150,7 @@
 #butRubbish{
     flex: 1;
     border: none;
-    background-color: #e4e4e4;
+    background-color: #ffffff;
     cursor: pointer;
 }
 
