@@ -10,6 +10,7 @@ class weather extends Component {
         }]
     }  } 
     render() { 
+        const { records} = this.state;
         return (<div id="weath">
         <select id="selectWt" onchange="cityChange()">
         {
@@ -52,7 +53,7 @@ class weather extends Component {
     }
     componentDidMount = async () => {
         var result = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=rdec-key-123-45678-011121314');
-        var newState = { ...this.staten };
+        var newState = { ...this.state };
         newState = result.data;
         this.setState(newState);
         console.log(newState.records.locations[0].location   )

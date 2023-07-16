@@ -47,7 +47,7 @@ class  Navigation extends Component{
                     <li  className={navstyle.tili}>會員專區
                         <ul>
                             <a href="/info"><li className={navstyle.conli}>會員資料</li></a>  
-                            <a href="/order"><li className={navstyle.conli}>訂單查詢</li></a>  
+                            <a href="/order_list"><li className={navstyle.conli}>訂單查詢</li></a>  
                             
                         </ul>
                     </li>
