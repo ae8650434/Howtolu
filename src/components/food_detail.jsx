@@ -111,7 +111,7 @@ class FoodDetail extends Component {
                     <p>經常一起選購食材：</p>
                     <div>
                         <div className={styles.container_food}>
-                            <a href=""> <img src={`/image/${this.stateAll.foodList[0].f_img}`} alt="Avatar"
+                            <a href="/product2"> <img src={`/image/${this.stateAll.foodList[0].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
@@ -125,7 +125,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src={`/image/${this.stateAll.foodList[1].f_img}`} alt="Avatar"
+                            <a href="/product2"><img src={`/image/${this.stateAll.foodList[1].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
@@ -139,7 +139,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href=""><img src={`/image/${this.stateAll.foodList[2].f_img}`} alt="Avatar"
+                            <a href="/product2"><img src={`/image/${this.stateAll.foodList[2].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
@@ -186,14 +186,7 @@ class FoodDetail extends Component {
         // console.log("555",newStates.food)
         this.states = newStates;
         this.setState(this.states);
-        // console.log("123",newStates.food);
-        // var fidNum = parseInt(this.props.match.params.fid);
-        // var  div = document.querySelector('.food_information')
-        // if (fidNum>5) {
-        //     div.style.display = 'none';
-        // } else {
-        //     div.style.display = 'block';
-        // } 
+     
 
         // 查全部商品
         var urlAll = "http://localhost:8000/food/list";

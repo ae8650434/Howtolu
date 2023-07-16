@@ -8,13 +8,13 @@ var DB = require("./DB.js");
 // 設置路由
 
 app.get('/:fid', function (req, res) {
-    var sql = 'SELECT * FROM food where fid<=5';
+    var sql = 'SELECT * FROM food where fid=?';
     DB.query(
         sql, [req.params.fid], function (err, data) {
             if (err) {
                 res.send("無法查詢資料");
             } else {
-                res.send( JSON.stringify(data) );
+                res.json(data);
             }
         }
         )
