@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Revise.module.css'
 import axios from 'axios';
+import cookie from 'react-cookies';
 
 class Revise extends Component {
 
@@ -97,6 +98,7 @@ class Revise extends Component {
               />
             </div>
           </form>
+          {console.log(cookie.load('email'))}
         </div>
       </div>
     );
