@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/product.css'
 import axios from 'axios';
 import {Product4} from './product copy.jsx';
+import Productbar2 from './productbar2'
 
 
 class Product2 extends Component {
@@ -10,35 +11,13 @@ class Product2 extends Component {
         selectedFood: null,
         fcidFood:null
     }
-    handleClick = (category) => {
-        this.setState({ selectedFood: category, fcidFood: null });
-      };
-
-      foodClick = (category) => {
-          this.setState({ fcidFood: category,selectedFood:null });
-          
-        };
 
       render() {
         const { foodList, selectedFood,fcidFood } = this.state;
         return (
             <React.Fragment>
                 <div id="container">
-                    <div id="categories" className="categories">
-                        <p>商品分類</p>
-                        <ul className="categoriesUl">
-                            <li><a href="/product2">套餐</a>
-                                <ul>
-                                    <li><a href="#" onClick={() => this.handleClick(1)}>賀呷套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(2)}>滿漢全席</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(3)}>雙人套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(4)}>素食套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(5)}>快樂分享餐</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" onClick={() => this.foodClick(2)}>單點</a></li>
-                        </ul>
-                    </div>
+                <Productbar2 />
 
                 <Product4 foodList={foodList} selectedFood={selectedFood} fcidFood={fcidFood}/>
                     
@@ -110,7 +89,22 @@ class Product2 extends Component {
         var result = await axios.get('http://localhost:8000/food/list');
         var newState = { ...this.state };
         newState.foodList = result.data;
-        this.setState(newState);
+        switch (this.props.match.params.foodClass) {
+            case "combo":
+              console.log('妳好＝＝＝＝',this.state.selectedFood=1)
+              break;
+            case "SinglePoint":
+              this.state.selectedFood=2
+              break;
+           
+          
+            default:
+              break;
+          }
+          
+          this.setState(this.state);
+          console.log(newState)
+          console.log(this)      
       }
 
 }

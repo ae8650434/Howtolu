@@ -8,6 +8,7 @@ var register=require("./register_insert.js")
 var login=require("./login_select.js")
 var reset=require("./reset.js")
 var productc=require("./product_class.js")
+var foodC=require("./food_class.js")
 var cart=require("./cart.js")
 var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
@@ -40,6 +41,7 @@ app.use("/product/list",selectall);
 app.use("/cart",cart);
 app.use("/product",select);
 app.use("/productclass",productc);
+app.use("/foodclass",foodC);
 app.use("/register",register);
 app.use("/login/member",login);
 app.use("/food/list",food);
