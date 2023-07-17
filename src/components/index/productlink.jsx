@@ -8,6 +8,7 @@ class productlink extends Component {
         var productList=this.state
         return (
             <>
+            
                 <div class={plstyle.favorable}>
                     <Productlink 
                     classn={this.state.productList[0].class}
@@ -60,7 +61,7 @@ class productlink extends Component {
         }
         this.state=newState;
         this.setState(newState);
-        console.log(this.state.productList[0])
+        // console.log(this.state.productList[0])
     }
 }
 

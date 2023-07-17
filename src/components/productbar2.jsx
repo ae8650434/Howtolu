@@ -22,7 +22,7 @@ class Productbar2 extends Component {
                                         {x.class}
                                     </a>
                                 </li>
-
+                              
                             );
                         })
                     }
