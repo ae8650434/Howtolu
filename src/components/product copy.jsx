@@ -11,6 +11,7 @@ class Product3 extends Component {
     const { productList, selectedCategory } = this.props;
 
     let filteredList = productList;
+    
     if (selectedCategory) {
       filteredList = productList.filter((x) => x.pc_id === selectedCategory);
     }
@@ -46,30 +47,34 @@ export class Product4 extends Component {
   state = {
     foodList: []
   }
-  // componentDidMount = () => {
-  //   var plusButtons = document.querySelectorAll('.btn0');
-  //   var minusButtons = document.querySelectorAll('.btnq1');
-  //   plusButtons.forEach((button) => {
-  //     button.addEventListener('click', this.handleAdd);
-  //   });
-  //   minusButtons.forEach((button) => {
-  //     button.addEventListener('click', this.handledown);
-  //   })
-  // }
+  componentDidMount = () => {
+    var plusButtons = document.querySelectorAll('.btn0');
+    var minusButtons = document.querySelectorAll('.btnq1');
+  
+    minusButtons.forEach((button) => {
+      button.addEventListener('click', this.handledown);
+    })
 
-  // componentWillUnmount = () => {
-  //   var plusButtons = document.querySelectorAll('.btn0');
-  //   var minusButtons = document.querySelectorAll('.btnq1');
-  //   plusButtons.forEach((button) => {
-  //     button.removeEventListener('click', this.handleAdd);
-  //   });
-  //   minusButtons.forEach((button) => {
-  //     button.removeEventListener('click', this.handledown);
-  //   })
-  // }
+    plusButtons.forEach((button) => {
+      button.addEventListener('click', this.handleAdd);
+    });
+  }
+
+  componentWillUnmount = () => {
+    var plusButtons = document.querySelectorAll('.btn0');
+    var minusButtons = document.querySelectorAll('.btnq1');
+   
+    minusButtons.forEach((button) => {
+      button.removeEventListener('click', this.handledown);
+    })
+
+    plusButtons.forEach((button) => {
+      button.removeEventListener('click', this.handleAdd);
+    });
+  }
 
   handleAdd = (event) => {
-    var quantityLabel = event.target.nextElementSibling;
+    var quantityLabel = event.target.previousElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     quantity++;
     quantityLabel.textContent = quantity;
@@ -77,10 +82,10 @@ export class Product4 extends Component {
   }
 
   handledown = (event) => {
-    var quantityLabel = event.target.previousElementSibling;
+    var quantityLabel = event.target.nextElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     if (quantity > 0) {
-      quantity -= 1;
+      quantity --;
       quantityLabel.textContent = quantity;
     }
   }

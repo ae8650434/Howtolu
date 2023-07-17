@@ -5,8 +5,6 @@ class Productbar2 extends Component {
     state = {
         foodList: [],
         selectedFood: null,
-       
-
     }
     render() {
         return (
@@ -20,7 +18,7 @@ class Productbar2 extends Component {
 
                             return (
                                 <li>
-                                    <a href={`/product2/${x.classname}`} >
+                                    <a href={`/product2/${x.classname}`} value={x.fc_id} >
                                         {x.class}
                                     </a>
                                 </li>
