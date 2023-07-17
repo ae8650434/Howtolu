@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/product.css'
 import axios from 'axios';
 import {Product4} from './product copy.jsx';
-import Productbar2 from './productbar2'
+// import Productbar2 from './productbar2.jsx'
 
 
 class Product2 extends Component {
@@ -17,7 +17,7 @@ class Product2 extends Component {
         return (
             <React.Fragment>
                 <div id="container">
-                <Productbar2 />
+                {/* <Productbar2 /> */}
 
                 <Product4 foodList={foodList} selectedFood={selectedFood} fcidFood={fcidFood}/>
                     
@@ -89,18 +89,18 @@ class Product2 extends Component {
         var result = await axios.get('http://localhost:8000/food/list');
         var newState = { ...this.state };
         newState.foodList = result.data;
-        switch (this.props.match.params.foodClass) {
-            case "combo":
-              console.log('妳好＝＝＝＝',this.state.selectedFood=1)
-              break;
-            case "SinglePoint":
-              this.state.selectedFood=2
-              break;
+        // switch (this.props.match.params.foodClass) {
+        //     case "combo":
+        //       console.log('妳好＝＝＝＝',this.state.selectedFood=1)
+        //       break;
+        //     case "SinglePoint":
+        //       this.state.selectedFood=2
+        //       break;
            
           
-            default:
-              break;
-          }
+        //     default:
+        //       break;
+        //   }
           
           this.setState(this.state);
           console.log(newState)
