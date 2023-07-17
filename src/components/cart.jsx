@@ -118,7 +118,7 @@ class Cart extends Component {
               </form>
             </div><br /><br /><br /><br /><br /> */}
 
-                {/* <div id={cartstyle['shopping']}>
+                <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
@@ -153,13 +153,13 @@ class Cart extends Component {
                             </div>
                         </div>
                     </div>
-                </div><br />      */}
+                </div><br />     
             {/* 總計跟前往結帳 */}
-                {/* <div id={cartstyle['shopping2']}>
+                <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT400</span>
                     <button onclick={this.handleDeleteClick} id={cartstyle["buy"]}><span>一鍵刪除</span></button>
                     <a href="#"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div><br /><br /> */}
+                </div><br /><br />
             
             </React.Fragment>
         );       
