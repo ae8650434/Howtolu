@@ -118,7 +118,7 @@ class cart extends Component {
               </form>
             </div><br /><br /><br /><br /><br /> */}
 
-                {/* <div id={cartstyle['shopping']}>
+                <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
@@ -126,10 +126,10 @@ class cart extends Component {
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b>Snow Peak 卡式瓦斯爐</b></span>
                                 <br /><br /><br /><br />
-                                <span><b id={cartstyle["dateSize"]}>可租借天數:1995/10/14 - 1995/10/16 共3日</b></span>
+                                <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
                                 <p></p>
                                 <div id={cartstyle['disFlex']}>
-                                    <b id={cartstyle["moneySize"]}>金額:35000</b>
+                                    <b id={cartstyle["moneySize"]}>金額:250</b>
                                     <input id={cartstyle["numberstyle"]} type="number" min={1} />
                                     <button id={cartstyle["butRubbish"]}
                                         onclick={this.del}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
@@ -144,7 +144,7 @@ class cart extends Component {
                                 <br /><br /><br /><br />
                                 <div>
                                     <div id={cartstyle['disFlex']}>
-                                        <b id={cartstyle["moneySize"]}>金額:35000</b>
+                                        <b id={cartstyle["moneySize"]}>金額:150</b>
                                         <input id={cartstyle["numberstyle"]} type="number" min="1" />
                                         <button id={cartstyle["butRubbish"]}
                                             onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
@@ -154,12 +154,12 @@ class cart extends Component {
                         </div>
 
                     </div>
-                </div><br />  */}
+                </div><br /> 
             {/* 總計跟前往結帳 */}
-                {/* <div id={cartstyle['shopping2']}>
-                    <span style={{ fontSize: 40 }}>總計：NT100000</span>
+                <div id={cartstyle['shopping2']}>
+                    <span style={{ fontSize: 40 }}>總計：NT400</span>
                     <a href="./index.html"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div><br /><br /> */}
+                </div><br /><br />
             
             </React.Fragment>
         );       

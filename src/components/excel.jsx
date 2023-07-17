@@ -14,15 +14,10 @@ function Excel() {
             fileReader.onload = (e) => {
 
                 const bufferArray = e.target.result;
-
                 const wb = XLSX.read(bufferArray, { type: 'buffer' });
-
                 const wsname = wb.SheetNames[0];
-
                 const ws = wb.Sheets[wsname];
-
                 const data = XLSX.utils.sheet_to_json(ws);
-
                 resolve(data);
             };
 
@@ -53,9 +48,9 @@ function Excel() {
                     }} />
             </div>
 
-            <br /><br /><br /><br />
+            <br /><br /><br />
             <Process />
-            <br /><br /><br /><br />
+            <br /><br /><br />
             
             {/* excel插入後的格式 */}
             {items && (
@@ -69,19 +64,18 @@ function Excel() {
                         ))}
                     </tbody>
                 </table>
-            )}<br /><br /><br /><br />
-
+            )}
             {/* excel插入後nullCart消失 */}
-            {!items.length && (
+            {/* {!items.length && (
                 <div id={cartstyle["magnifier"]}>
                     <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
-                    <a href="/product">
+                    <a href="/product/all">
                         <button id={cartstyle["nullshopping"]}>
                             <span>前往商城逛逛</span>
                         </button>
                     </a>
                 </div>
-            )}
+            )} */}
         </>
     );
 

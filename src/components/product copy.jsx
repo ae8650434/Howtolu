@@ -103,7 +103,7 @@ export class Product4 extends Component {
               <figure style={{width:"450px",height:"600px"}}>
                 <img src={`/image/${x.f_img}`} alt={x.fname} style={{width:"300px",height:"300px"}}/>
                 <figcaption>{x.fname}</figcaption>
-                <figcaption>NT${x.price}</figcaption>
+                <figcaption>NT${x.price}</figcaption>  
                 <button className="btn0" onClick={this.handleAdd}>+</button>
                 <label className="count">0</label>
                 <button className="btnq1" onClick={this.handledown}>-</button>
