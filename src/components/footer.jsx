@@ -79,7 +79,7 @@ class footer extends Component {
         <div id={footstyle["footerdiv"]}>
         <br/><br/>
     <p>店家資訊：台中市南屯區公益路二段51號</p>
-    <p>電話：(04)2326-5860</p>
+    <p>聯絡電話：(04)2326-5860</p>
     <p>營業時間：09：00 ～ 21：00</p>
     <button onClick={this.footer}>隱私條款</button>
     <br/>

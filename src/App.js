@@ -21,7 +21,11 @@ import cookie from 'react-cookies'
 cookie.save(
     {
       path: '/',// cookie的使用路径，如果设置为“/”，则本域名下contextPath都可以访问该Cookie
+<<<<<<< HEAD
       maxAge: 10,// 从客户端收到 cookie 开始的相对过期时间
+=======
+      // maxAge: 60 * 1000,// 从客户端收到 cookie 开始的相对过期时间
+>>>>>>> refs/remotes/origin/main
       secure: true,// 如果设置true，它将只能通过 https 访问
       httpOnly: true,// 如果设置true，它将只能在服务器上访问
     }
@@ -37,7 +41,7 @@ class App extends Component {
           <Switch>
           <Route path="/" component={Home} exact />
             <Route path="/product/:Classification" component={Product} exact /> 
-            <Route path="/product2" component={Product2} exact /> 
+            <Route path="/product2/:foodClass" component={Product2} exact /> 
             <Route path="/product3" component={ProductCopy} exact /> 
             <Route path="/login" component={Login} exact />
             <Route path="/register" component={Register} exact />

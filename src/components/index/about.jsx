@@ -15,6 +15,7 @@ class about extends Component {
             <p class={aboutstyle.abouttext}> 堅持，選用頂級露營配備。用心，將露營界精品Snow Peak帶給您
                 保證，每樣商品皆為我們精心挑選，提供您最美好的露營體驗</p>
         </div>
+        
         </>
         );
     }

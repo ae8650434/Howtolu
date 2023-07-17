@@ -27,7 +27,7 @@ class Product2 extends Component {
                     <div id="categories" className="categories">
                         <p>商品分類</p>
                         <ul className="categoriesUl">
-                            <li><a href="/product2">套餐</a>
+                            <li><a href="#" onClick={() => this.foodClick(1)}>套餐</a>
                                 <ul>
                                     <li><a href="#" onClick={() => this.handleClick(1)}>賀呷套餐</a></li>
                                     <li><a href="#" onClick={() => this.handleClick(2)}>滿漢全席</a></li>
