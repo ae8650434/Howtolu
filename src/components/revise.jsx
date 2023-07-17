@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Revise.module.css'
 import axios from 'axios';
-import cookie from 'react-cookies';
+
 
 class Revise extends Component {
 
@@ -9,11 +9,11 @@ class Revise extends Component {
     super(props);
     this.state = {
       passwordType: 'password',
-      eyeOpacity: 1,
+      eyeOpacity: 0.5,
       eyeSrc: './image/EyeSlash.png',
 
       passwordType2: 'password',
-      eyeOpacity2: 1,
+      eyeOpacity2: 0.5,
       eyeSrc2: './image/EyeSlash.png',
 
       user: {
@@ -30,6 +30,7 @@ class Revise extends Component {
 
   render() {
     const { passwordType, eyeOpacity, eyeSrc, passwordType2, eyeOpacity2, eyeSrc2, password, errors } = this.state
+    var mail = sessionStorage.getItem('mail')
 
     return (
       <div className={styles.short}>
@@ -39,7 +40,7 @@ class Revise extends Component {
           <div className={styles.revise_rule}>
             ***為保護您的個人資料安全，請務必修改密碼。
           </div>
-          <form action="" method="post" id={styles.revise_login}>
+          <form action={`http://localhost:8000/revise/${mail}`} method="post" id={styles.revise_login}>
             <br />
             <div className={styles.revise_first}>
               <label htmlFor="" className={styles.revise_from_title}>設定密碼</label>
@@ -98,7 +99,6 @@ class Revise extends Component {
               />
             </div>
           </form>
-          {console.log(cookie.load('email'))}
         </div>
       </div>
     );
@@ -112,14 +112,14 @@ class Revise extends Component {
     if (passwordType === 'text') {
       this.setState({
         passwordType: 'password',
-        eyeOpacity: 1,
-        eyeSrc: './image/eye.png'
+        eyeOpacity: 0.5,
+        eyeSrc: './image/EyeSlash.png'
       })
     } else {
       this.setState({
         passwordType: 'text',
-        eyeOpacity: 0.5,
-        eyeSrc: eyeSrc === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
+        eyeOpacity: 1,
+        eyeSrc: './image/eye.png'
       })
     }
   }
@@ -130,14 +130,14 @@ class Revise extends Component {
     if (passwordType2 === 'text') {
       this.setState({
         passwordType2: 'password',
-        eyeOpacity2: 1,
-        eyeSrc2: './image/eye.png'
+        eyeOpacity2: 0.5,
+        eyeSrc2: './image/EyeSlash.png'
       })
     } else {
       this.setState({
         passwordType2: 'text',
-        eyeOpacity2: 0.5,
-        eyeSrc2: eyeSrc2 === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
+        eyeOpacity2: 1,
+        eyeSrc2: './image/eye.png'
       })
     }
   }
@@ -175,7 +175,13 @@ class Revise extends Component {
     }
 
     try {
-      var response = await axios.post('http://localhost:8000/revise')
+
+      const {password} = this.state.user.password
+      const mail = sessionStorage.getItem('mail')
+      var response = await axios.post(`http://localhost:8000/revise/${mail}`, {
+        password: password
+      })
+
 
       console.log('Response', response)
 

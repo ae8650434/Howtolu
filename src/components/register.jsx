@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect  } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styles from '../css/Register.module.css'
 import axios from 'axios';
 import Modal from 'react-modal';
@@ -13,11 +13,11 @@ class Register extends Component {
     super(props);
     this.state = {
       passwordType: 'password',
-      eyeOpacity: 1,
+      eyeOpacity: 0.5,
       eyeSrc: './image/EyeSlash.png',
 
       passwordType2: 'password',
-      eyeOpacity2: 1,
+      eyeOpacity2: 0.5,
       eyeSrc2: './image/EyeSlash.png',
 
       verification: '',
@@ -81,6 +81,12 @@ class Register extends Component {
                 }
                 required />
             </div>
+            {errors.mname && (
+              <div className={styles.warning_title}>
+                <img src="/image/warning.png" className={styles.pic} />
+                <span className={styles.warning}>{errors.mname}</span>
+              </div>
+            )}
             <div className={styles.register_first}>
               <label htmlFor="" className={styles.register_from_title}>手機號碼</label>
               <input type="text"
@@ -291,14 +297,14 @@ class Register extends Component {
     if (passwordType === 'text') {
       this.setState({
         passwordType: 'password',
-        eyeOpacity: 1,
-        eyeSrc: './image/eye.png'
+        eyeOpacity: 0.5,
+        eyeSrc: './image/EyeSlash.png'
       })
     } else {
       this.setState({
         passwordType: 'text',
-        eyeOpacity: 0.5,
-        eyeSrc: eyeSrc === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
+        eyeOpacity: 1,
+        eyeSrc:'./image/eye.png'
       })
     }
   }
@@ -309,14 +315,14 @@ class Register extends Component {
     if (passwordType2 === 'text') {
       this.setState({
         passwordType2: 'password',
-        eyeOpacity2: 1,
-        eyeSrc2: './image/eye.png'
+        eyeOpacity2: 0.5,
+        eyeSrc2: './image/EyeSlash.png'
       })
     } else {
       this.setState({
         passwordType2: 'text',
-        eyeOpacity2: 0.5,
-        eyeSrc2: eyeSrc2 === './image/eye.png' ? './image/EyeSlash.png' : './image/eye.png'
+        eyeOpacity2: 1,
+        eyeSrc2: './image/eye.png'
       })
     }
   }
@@ -359,13 +365,13 @@ class Register extends Component {
   handleRegisterClick = async (e) => {
     e.preventDefault(); // 防止表單預設提交行為
 
-    const { password, email, phone } = this.state.user;
+    const { password, email, phone, mname } = this.state.user;
     const { verification } = this.state;
     const isCheck = document.getElementById('checkbox').checked;
 
     // 進行表單驗證
     const regexPattern = {
-      phone: /^0\d{9}$/,
+      phone: /^09\d{8}$/,
       email: /^\S+@\S+\.\S+$/,
       password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
     };
@@ -373,8 +379,13 @@ class Register extends Component {
     const errors = {
       phone: '',
       email: '',
-      password: ''
+      password: '',
+      mname: ''
     };
+
+    if (!mname) {
+      errors.mname = '請輸入姓名';
+    }
 
     if (!regexPattern.phone.test(phone)) {
       errors.phone = '請輸入有效的手機號碼';
@@ -421,7 +432,7 @@ class Register extends Component {
         } else if (checkResponse.data.type === 'email') {
           errors.email = '信箱已經註冊';
         }
-  
+
         this.setState({ errors });
         return;
       }
