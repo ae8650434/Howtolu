@@ -6,6 +6,8 @@ import Process from './Process.jsx';
 function Excel() {
     const [items, setItems] = useState([]);
 
+    // const [quantity, setQuantity] = useState(1);
+
     const readExcel = (file) => {
         const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -33,6 +35,10 @@ function Excel() {
             setItems(noItems);
         });
     };
+    // const add = (event) => {
+    //     const newQuantity = parseInt(event.target.value);
+    //     setQuantity(newQuantity);
+    // } 
 
     return (
         <>
@@ -54,19 +60,30 @@ function Excel() {
             
             {/* excel插入後的格式 */}
             {items && (
-                <table>
-                    <tbody>
-                        {items.map((row, index) => (
-                            <tr key={index}>
-                                <td>{row['物品']}</td>
-                                <td>{row['數量(填入數字即可)']}</td>
-                            </tr>
+                <div id={cartstyle['shopping']}>
+                    <div id={cartstyle['null']}>
+                            {items.map((row, index) => (
+                        <div id={cartstyle['text1']}>
+                            <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
+                            <div id={cartstyle['shopping3']} key={index}>
+                                <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
+                                    <br /><br /><br /><br />
+                                <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
+                                <p></p>
+                                <div id={cartstyle['disFlex']}>
+                                    <b id={cartstyle["moneySize"]}>金額:250</b>
+                                    <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
+                                    <button id={cartstyle["butRubbish"]}
+                                        onclick='del'><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                </div> <br /><br />
+                            </div>
+                        </div>
                         ))}
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             )}
             {/* excel插入後nullCart消失 */}
-            {/* {!items.length && (
+            {!items.length && (
                 <div id={cartstyle["magnifier"]}>
                     <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
                     <a href="/product/all">
@@ -75,7 +92,7 @@ function Excel() {
                         </button>
                     </a>
                 </div>
-            )} */}
+            )}
         </>
     );
 

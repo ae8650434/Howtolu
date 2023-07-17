@@ -4,8 +4,8 @@ import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
 import Excel from'./excel.jsx';
 
-class cart extends Component {
-    state = { }
+class Cart extends Component {
+    state = { quantity: 1, }
 
     styleSize = {
         fontSize: 30
@@ -118,7 +118,7 @@ class cart extends Component {
               </form>
             </div><br /><br /><br /><br /><br /> */}
 
-                <div id={cartstyle['shopping']}>
+                {/* <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         
                         <div id={cartstyle['text1']}>
@@ -131,9 +131,9 @@ class cart extends Component {
                                 <div id={cartstyle['disFlex']}>
                                     <b id={cartstyle["moneySize"]}>金額:250</b>
                                     <input id={cartstyle["numberstyle"]} type="number" min={1} />
-                                    <button id={cartstyle["butRubbish"]}
-                                        onclick={this.del}><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
-                                </div> <br /><br />
+                                    <button id={cartstyle["butRubbish"]} onclick={'del'}>
+                                        <img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                </div><br /><br />
                             </div>
                         </div>
 
@@ -145,28 +145,25 @@ class cart extends Component {
                                 <div>
                                     <div id={cartstyle['disFlex']}>
                                         <b id={cartstyle["moneySize"]}>金額:150</b>
-                                        <input id={cartstyle["numberstyle"]} type="number" min="1" />
+                                        <input id={cartstyle["numberstyle"]} type="number" min="1" value={1} />
                                         <button id={cartstyle["butRubbish"]}
                                             onclick="del"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
                                     </div>
                                 </div><br /><br />
                             </div>
                         </div>
-
                     </div>
-                </div><br /> 
+                </div><br />      */}
             {/* 總計跟前往結帳 */}
-                <div id={cartstyle['shopping2']}>
+                {/* <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT400</span>
-                    <a href="./index.html"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
-                </div><br /><br />
+                    <button onclick={this.handleDeleteClick} id={cartstyle["buy"]}><span>一鍵刪除</span></button>
+                    <a href="#"><button onclick="processBuy()" id={cartstyle["buy"]}><span>前往結帳</span></button></a>
+                </div><br /><br /> */}
             
             </React.Fragment>
         );       
     }
-    // componentDidCatch = async () => {
-        
-    // }
 }
 
-export default cart;
+export default Cart;
