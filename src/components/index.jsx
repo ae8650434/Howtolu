@@ -4,6 +4,7 @@ import Productlink from './index/productlink.jsx'
 import Activity from './index/activity.jsx'
 import Weather from './index/weatherapi.jsx'
 import Map from './index/map.jsx'
+import cookie from 'react-cookies'
  
 const home = () => {
     return (
@@ -14,6 +15,7 @@ const home = () => {
           <Activity/>
           <Weather/>
           <Map/>
+          {console.log(cookie.load("account"))}
         </>
        
     );

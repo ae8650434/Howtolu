@@ -10,7 +10,7 @@ class weather extends Component {
         }]
     }  } 
     render() { 
-        const { records} = this.state;
+        const { records } = this.state;
         return (<div id="weath">
         <select id="selectWt" onchange="cityChange()">
         {
