@@ -46,27 +46,27 @@ export class Product4 extends Component {
   state = {
     foodList: []
   }
-  componentDidMount = () => {
-    var plusButtons = document.querySelectorAll('.btn0');
-    var minusButtons = document.querySelectorAll('.btnq1');
-    plusButtons.forEach((button) => {
-      button.addEventListener('click', this.handleAdd);
-    });
-    minusButtons.forEach((button) => {
-      button.addEventListener('click', this.handledown);
-    })
-  }
+  // componentDidMount = () => {
+  //   var plusButtons = document.querySelectorAll('.btn0');
+  //   var minusButtons = document.querySelectorAll('.btnq1');
+  //   plusButtons.forEach((button) => {
+  //     button.addEventListener('click', this.handleAdd);
+  //   });
+  //   minusButtons.forEach((button) => {
+  //     button.addEventListener('click', this.handledown);
+  //   })
+  // }
 
-  componentWillUnmount = () => {
-    var plusButtons = document.querySelectorAll('.btn0');
-    var minusButtons = document.querySelectorAll('.btnq1');
-    plusButtons.forEach((button) => {
-      button.removeEventListener('click', this.handleAdd);
-    });
-    minusButtons.forEach((button) => {
-      button.removeEventListener('click', this.handledown);
-    })
-  }
+  // componentWillUnmount = () => {
+  //   var plusButtons = document.querySelectorAll('.btn0');
+  //   var minusButtons = document.querySelectorAll('.btnq1');
+  //   plusButtons.forEach((button) => {
+  //     button.removeEventListener('click', this.handleAdd);
+  //   });
+  //   minusButtons.forEach((button) => {
+  //     button.removeEventListener('click', this.handledown);
+  //   })
+  // }
 
   handleAdd = (event) => {
     var quantityLabel = event.target.nextElementSibling;
@@ -104,9 +104,9 @@ export class Product4 extends Component {
                 <img src={`/image/${x.f_img}`} alt={x.fname} style={{width:"300px",height:"300px"}}/>
                 <figcaption>{x.fname}</figcaption>
                 <figcaption>NT${x.price}</figcaption>  
-                <button className="btn0" onClick={this.handleAdd}>+</button>
-                <label className="count">0</label>
                 <button className="btnq1" onClick={this.handledown}>-</button>
+                <label className="count">0</label>
+                <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
                 <a href={`/food_detail/${x.fid}`}><button className="btnq">選購</button></a>
               </figure>
