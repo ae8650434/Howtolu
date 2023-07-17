@@ -1,6 +1,9 @@
 import React, { Component, useState } from 'react';
 import styles from '../css/Login.module.css'
 import axios from 'axios';
+import cookie from 'react-cookies';
+
+
 
 class Login extends Component {
 
@@ -139,6 +142,7 @@ class Login extends Component {
               <br /><br /><br /><br />
             </div>
           </form>
+          {console.log(cookie.load('account'))}
         </div>
       </div>
     );
@@ -168,7 +172,7 @@ class Login extends Component {
         console.log("Account:", this.state.user.account); // 在控制台输出账号值
         console.log("Password:", this.state.user.password); // 在控制台输出密码值
         console.log(response.data); // 在控制台打印响应数据
-
+        cookie.save('account',this.state.user.account)
         // 根据业务需求进行其他操作，例如页面跳转等
         window.location = "/"; // 重定向到首页
       } else {

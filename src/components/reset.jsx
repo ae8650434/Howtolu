@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Reset.module.css'
 import axios from 'axios';
+import cookie from 'react-cookies';
 
 class Reset extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class Reset extends Component {
               <input type="button" value="確定送出" className={styles.go} onClick={this.send}/>
             </div>
           </form>
+          {console.log(cookie.load('email'))}
         </div>
       </div>
 
@@ -98,6 +100,7 @@ class Reset extends Component {
         this.setState(newState)
         console.log('3333',newState)
         console.log('成功')
+        cookie.save('email', this.state.mail)
       } else {
         // console.error(response.data);
       }
