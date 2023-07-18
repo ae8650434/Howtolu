@@ -30,28 +30,10 @@ class Product2 extends Component {
         return (
             <React.Fragment>
                 <div id="container">
-<<<<<<< HEAD
                     <Productbar2 foodFcid={fcidFood} />
 
                     <Product4 foodList={foodList} selectedFood={selectedFood} fcidFood={fcidFood} />
 
-=======
-                    <div id="categories" className="categories">
-                        <p>商品分類</p>
-                        <ul className="categoriesUl">
-                            <li><a href="#" onClick={() => this.foodClick(1)}>套餐</a>
-                                <ul>
-                                    <li><a href="http://localhost:3000/food_detail/1" >賀呷套餐</a></li>
-                                    <li><a href="http://localhost:3000/food_detail/2" >滿漢全席</a></li>
-                                    <li><a href="http://localhost:3000/food_detail/3" >雙人套餐</a></li>
-                                    <li><a href="http://localhost:3000/food_detail/4" >素食套餐</a></li>
-                                    <li><a href="http://localhost:3000/food_detail/5" >快樂分享餐</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="http://localhost:3000/product2">單點</a></li>
-                        </ul>
-                    </div>
->>>>>>> refs/remotes/origin/main
 
                 </div>
 
