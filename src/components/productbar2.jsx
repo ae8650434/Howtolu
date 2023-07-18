@@ -25,7 +25,6 @@ class Productbar2 extends Component {
                                     </a>
                                    
                                 </li>
-                              
                             );
                         
                     
