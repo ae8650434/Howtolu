@@ -54,7 +54,7 @@ class FoodDetail extends Component {
                 <div className={styles.categories_food}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_food}>
-                        <li><a href="#">套餐</a>
+                        <li><a href="http://localhost:3000/product2/combo">套餐</a>
                             <ul>
                                 <li><a href="">賀呷套餐</a></li>
                                 <li><a href="">滿漢全席</a></li>
@@ -63,7 +63,7 @@ class FoodDetail extends Component {
                                 <li><a href="">快樂分享餐</a></li>
                             </ul>
                         </li>
-                        <li><a href="">單點</a></li>
+                        <li><a href="http://localhost:3000/product2/SinglePoint">單點</a></li>
                     </ul>
                 </div>
                 <div>
@@ -157,7 +157,7 @@ class FoodDetail extends Component {
                 <div className={styles.categories_min_food}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_min_food}>
-                        <li><a href="#">套餐</a>
+                        <li><a href="http://localhost:3000/product2/combo">套餐</a>
                             <ul>
                                 <li><a href="">賀呷套餐</a></li>
                                 <li><a href="">滿漢全席</a></li>
