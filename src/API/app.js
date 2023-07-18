@@ -32,7 +32,7 @@ app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);
 app.use('/revise', revise)
-app.use('info', info)
+app.use('/info', info)
 
 app.listen(8000,function(){
     console.log('啟動')

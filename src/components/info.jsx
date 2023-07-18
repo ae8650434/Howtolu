@@ -2,23 +2,47 @@ import React, { Component } from 'react';
 import styles from '../css/Info_member.module.css'
 import axios from 'axios';
 
+
 class Info extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user: {
-                mname: '王大明',
-                account: '0923232323',
-                gender: '女性',
-                email: 'aaa@gmail.com',
-                address: '台中市大光街',
-                old_password: '33333eeeee',
-                new_password: '11111qqqqq',
-                new_password2: '11111qqqqq',
+                m_img: null,
+                name: '王大明',
+                tel: '0923232323',
+                gender: '請選擇',
+                mail: 'aaa@gmail.com',
+                address: 'aaaaaa',
+                password: '33333eeeee',
+                new_password: '',
+                new_password2: '',
             }
 
         }
     }
+
+    componentDidMount() {
+        this.loadUserData();
+    }
+
+    async loadUserData() {
+        try {
+          const account = sessionStorage.getItem('account')
+          const response = await axios.get(`http://localhost:8000/info?account=${account}`);
+          
+          const userData = response.data.userdata;
+          console.log('ccc',this.state) // 假设响应的数据是用户对象
+          
+          this.setState({ user: userData });
+        } catch (error) {
+          // 处理错误
+          if(error.response.data == 401) {
+            console.log('未登入')
+          }
+        }
+      }
+
     render() {
         return (
 
@@ -33,30 +57,78 @@ class Info extends Component {
 
                 <form action="" className={styles.form}>
                     <p className={styles.info_p_first}>我的大頭照</p>
-                    <img src="/image/Head.png" className={styles.info_pic} />
+                    <img src={`/image/${this.state.user.m_img}`} 
+                    className={styles.info_pic} 
+                    onChange={ (e) => {
+                        if(this.state.user.m_img) {
+                            this.state.user.m_img = this.state.user.m_img
+                            console.log('33')
+                          }else {
+                            this.state.user.m_img = 'Head.png'
+                            console.log('44')
+                          }
+                    }
+                    }
+                    />{console.log('aa',this.state.user.m_img)}
                     <input type="file" className={styles.info_file} />
                     <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>姓 名</label>
-                            <input type="text" className={styles.info_label} value={this.state.user.mname}/>
+                            <input type="text"
+                                className={styles.info_label}
+                                value={this.state.user.name}
+                                onChange={(e) => {
+                                    var newState = { ...this.state }
+                                    newState.user.name = e.target.value
+                                    this.setState(newState)
+                                }
+                                }
+                            />
                             <label htmlFor="" className={styles.info_label_word}>手機號碼</label>
-                            <input type="tel" className={styles.info_label} value={this.state.user.account}/>
+                            <input type="tel" className={styles.info_label} value={this.state.user.tel} style={{ backgroundColor: 'gray' }} />
                         </div>
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>性 別 </label>
-                            <select name="gender" id="" className={styles.info_select} value={this.state.user.gender}>
+                            <select name="gender" id=""
+                                className={styles.info_select}
+                                value={this.state.user.gender}
+                                onChange={(e) => {
+                                    var newState = { ...this.state }
+                                    newState.user.gender = e.target.value
+                                    this.setState(newState)
+                                }
+                                }
+                            >
                                 <option>請選擇</option>
                                 <option>男性</option>
                                 <option>女性</option>
                                 <option>其他</option>
                             </select>
                             <label htmlFor="" className={styles.info_label_word}>e-mail</label>
-                            <input type="email" className={styles.info_label} value={this.state.user.email}/>
+                            <input type="email"
+                                className={styles.info_label}
+                                value={this.state.user.mail}
+                                onChange={(e) => {
+                                    var newState = { ...this.state }
+                                    newState.user.mail = e.target.value
+                                    this.setState(newState)
+                                }
+                                }
+                            />
                         </div>
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>居住地址（選填）</label>
-                            <input type="text" className={styles.info_label_address} value={this.state.user.address}/>
+                            <input type="text"
+                                className={styles.info_label_address}
+                                value={this.state.user.address}
+                                onChange={(e) => {
+                                    var newState = { ...this.state }
+                                    newState.user.address = e.target.value
+                                    this.setState(newState)
+                                }
+                                }
+                            />
                         </div>
                         <div className={styles.info_reset_password}>
                             <div className={styles.info_password_div}>
@@ -65,15 +137,33 @@ class Info extends Component {
                             </div>
                             <div className={styles.info_password}>
                                 <label htmlFor="" className={`${styles.info_label_word} ${styles.info_password_word}`}>舊密碼</label>
-                                <input type="text" className={styles.info_label} />
+                                <input type="password" className={styles.info_label} value={this.state.user.password} style={{ backgroundColor: 'gray' }} />
                             </div>
                             <div className={styles.info_password}>
                                 <label htmlFor="" className={`${styles.info_label_word} ${styles.info_password_word}`}>設定新密碼</label>
-                                <input type="text" className={styles.info_label} />
+                                <input type="password"
+                                    className={styles.info_label}
+                                    value={this.state.user.new_password}
+                                    onChange={(e) => {
+                                        var newState = { ...this.state }
+                                        newState.user.new_password = e.target.value
+                                        this.setState(newState)
+                                    }
+                                    }
+                                />
                             </div>
                             <div className={styles.info_password}>
                                 <label htmlFor="" className={`${styles.info_label_word} ${styles.info_password_word}`}>確認新密碼</label>
-                                <input type="text" className={styles.info_label} />
+                                <input type="password"
+                                    className={styles.info_label}
+                                    value={this.state.user.new_password2}
+                                    onChange={(e) => {
+                                        var newState = { ...this.state }
+                                        newState.user.new_password2 = e.target.value
+                                        this.setState(newState)
+                                    }
+                                    }
+                                />
                             </div>
                             <br /><br />
                             <div className={styles.info_submit_div}>
@@ -83,17 +173,17 @@ class Info extends Component {
                     </div>
                 </form>
                 <br /><br /><br /><br />
-                {console.log(sessionStorage.getItem('account'))}
             </div>
         );
     }
 
-    onButtonClick = async () => {
-        var information =  await axios.get('http://localhost:8000/info', {
-            account: sessionStorage.getItem('account')
-        })
-    }
+    
+    // onButtonClick = async () => {
+    //         var information = await axios.get('http://localhost:8000/info', {
+    //             account: sessionStorage.getItem('account')
+    //         })
+    //     }
 
-}
+    }
 
 export default Info;
