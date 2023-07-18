@@ -30,12 +30,6 @@ class Product2 extends Component {
         return (
             <React.Fragment>
                 <div id="container">
-<<<<<<< HEAD
-                    <Productbar2 foodFcid={fcidFood} />
-
-                    <Product4 foodList={foodList} selectedFood={selectedFood} fcidFood={fcidFood} />
-
-=======
                     <div id="categories" className="categories">
                         <p>商品分類</p>
                         <ul className="categoriesUl">
@@ -51,7 +45,6 @@ class Product2 extends Component {
                             <li><a href="http://localhost:3000/product2">單點</a></li>
                         </ul>
                     </div>
->>>>>>> refs/remotes/origin/main
 
                 </div>
 

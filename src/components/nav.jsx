@@ -11,7 +11,6 @@ class Navigation extends Component {
 
         return (
             <div id={navstyle[this.state.id]}>
-                {console.log(window)}
                 <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
                 <div id={navstyle['selnav']} >
                     <ul id={navstyle["navul"]}>
