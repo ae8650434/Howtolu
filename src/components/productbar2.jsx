@@ -25,6 +25,10 @@ class Productbar2 extends Component {
                                     </a>
                                    
                                 </li>
+<<<<<<< HEAD
+=======
+                              
+>>>>>>> refs/remotes/origin/main
                             );
                         
                     

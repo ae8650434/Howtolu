@@ -5,7 +5,7 @@ class protlinkc extends Component {
     render() {
         return (
             <div class={plcstyle.proFlex}>
-               {console.log(this)}
+             
                 <a href={`/product/${this.props.linkn}`}  class={plcstyle.proa}>
                     <div class={plcstyle.proinbox}>
                         <img src={`/image/${this.props.image}`} alt="" class={plcstyle.proimg} />
