@@ -57,9 +57,13 @@ class  Navigation extends Component{
             <div id={navstyle['nav_icon']}>
                 <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
                 <button id={navstyle['navmembtn']} onClick={this.btnmem}></button>
-                <ul id='memul'  className={navstyle.memul}>
+                <ul id='memulin'  className={navstyle.memul}>
                     <a href="/login"><li>會員登入</li></a>
                     <a href="/register"><li>註冊會員</li></a>
+                </ul>
+                <ul id='memulout'  className={navstyle.memul}>
+                    <a href="/" onClick={this.logoutbtn}><li>會員登出</li></a>
+                    
                 </ul>
                 
             </div>
@@ -68,12 +72,27 @@ class  Navigation extends Component{
     }
     
    btnmem=()=>{
-         
-        if(document.getElementById("memul").style.display =="block"){
-            document.getElementById("memul").style.display ="none";
-        }else{
-            document.getElementById("memul").style.display ="block";
+         if(sessionStorage.getItem('account')){
+            console.log(sessionStorage.getItem('account'))
+            if(document.getElementById("memulout").style.display =="block"){
+                document.getElementById("memulout").style.display ="none";
+               }else{
+                   document.getElementById("memulout").style.display ="block";
+               }
         }
+        else{
+            
+            if(document.getElementById("memulin").style.display =="block"){
+                document.getElementById("memulin").style.display ="none";
+               }else{
+                   document.getElementById("memulin").style.display ="block";
+               }
+            }
+    }
+
+    logoutbtn=()=>{
+        sessionStorage.clear();
+
     }
     
 }
