@@ -115,7 +115,7 @@
     padding:5px 0px;
 }
 #navmembtn{
-    background-image: url("/public/image/mem.png");
+  
     padding: auto;
 }
 
@@ -142,4 +142,8 @@
 .memul{
     display: none;
         
+}
+
+.navmemimg{
+    clip-path: circle(50% at 50% 50%);
 }
