@@ -19,7 +19,7 @@ class  Navigation extends Component{
                    <li className={navstyle.tili}>所有商品
                         <ul>
                             <a href="/product/all"><li className={navstyle.conli}>裝備出租</li></a>  
-                            <a href="/product2"><li className={navstyle.conli}>食材購買</li></a>                              
+                            <a href="/product2/all"><li className={navstyle.conli}>食材購買</li></a>                              
                         </ul>
                     </li>
                    <li className={navstyle.tili}>租借內容

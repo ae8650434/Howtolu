@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import productbar from '../css/equip_detail.module.css';
 import axios from 'axios';
-class productbarr extends Component {
+class Productbar2 extends Component {
     state = {
-        productList: [],
-        selectedCategory: null,
-       
-
+        foodList: [],
+        selectedFood: null,
     }
     render() {
         return (
@@ -16,15 +14,15 @@ class productbarr extends Component {
                 <p>商品分類</p>
                 <ul className={productbar.categoriesUl}>
                     {
-                        this.state.productList.map((x) => {
+                        this.state.foodList.map((x) => {
 
                             return (
                                 <li>
-                                    <a href={`/product/${x.classname}`}  value={x.pc_id}>
+                                    <a href={`/product2/${x.classname}`} value={x.fc_id} >
                                         {x.class}
                                     </a>
                                 </li>
-
+                              
                             );
                         })
                     }
@@ -34,12 +32,12 @@ class productbarr extends Component {
     }
   
     componentDidMount = async () => {
-        var result = await axios.get('http://localhost:8000/productclass');
+        var result = await axios.get('http://localhost:8000/foodclass');
         var newState = { ...this.state };
-        newState.productList = result.data;
+        newState.foodList = result.data;
         this.setState(newState);
         // console.log(newState)
     }
 }
 
-export default productbarr;
+export default Productbar2;

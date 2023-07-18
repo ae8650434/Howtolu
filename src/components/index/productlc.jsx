@@ -5,10 +5,11 @@ class protlinkc extends Component {
     render() {
         return (
             <div class={plcstyle.proFlex}>
-                <a href="./product.html" class={plcstyle.proa}>
+             
+                <a href={`/product/${this.props.linkn}`}  class={plcstyle.proa}>
                     <div class={plcstyle.proinbox}>
-                        <img src="/image/product_1.png" alt="" class={plcstyle.proimg} />
-                        <span class={plcstyle.proSpan}>客廳帳&天幕</span>
+                        <img src={`/image/${this.props.image}`} alt="" class={plcstyle.proimg} />
+                        <span class={plcstyle.proSpan}>{this.props.classn}</span>
                     </div>
                 </a>
             </div>

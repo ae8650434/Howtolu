@@ -8,7 +8,7 @@ class Product extends Component {
   state = {
     productList: [],
     selectedCategory: null,
-    urlpath:null
+  
   };
 
   

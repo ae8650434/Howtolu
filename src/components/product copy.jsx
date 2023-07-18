@@ -11,6 +11,7 @@ class Product3 extends Component {
     const { productList, selectedCategory } = this.props;
 
     let filteredList = productList;
+    
     if (selectedCategory) {
       filteredList = productList.filter((x) => x.pc_id === selectedCategory);
     }
@@ -49,27 +50,31 @@ export class Product4 extends Component {
   componentDidMount = () => {
     var plusButtons = document.querySelectorAll('.btn0');
     var minusButtons = document.querySelectorAll('.btnq1');
-    plusButtons.forEach((button) => {
-      button.addEventListener('click', this.handleAdd);
-    });
+  
     minusButtons.forEach((button) => {
       button.addEventListener('click', this.handledown);
     })
+
+    plusButtons.forEach((button) => {
+      button.addEventListener('click', this.handleAdd);
+    });
   }
 
   componentWillUnmount = () => {
     var plusButtons = document.querySelectorAll('.btn0');
     var minusButtons = document.querySelectorAll('.btnq1');
-    plusButtons.forEach((button) => {
-      button.removeEventListener('click', this.handleAdd);
-    });
+   
     minusButtons.forEach((button) => {
       button.removeEventListener('click', this.handledown);
     })
+
+    plusButtons.forEach((button) => {
+      button.removeEventListener('click', this.handleAdd);
+    });
   }
 
   handleAdd = (event) => {
-    var quantityLabel = event.target.nextElementSibling;
+    var quantityLabel = event.target.previousElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     quantity++;
     quantityLabel.textContent = quantity;
@@ -77,10 +82,10 @@ export class Product4 extends Component {
   }
 
   handledown = (event) => {
-    var quantityLabel = event.target.previousElementSibling;
+    var quantityLabel = event.target.nextElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     if (quantity > 0) {
-      quantity -= 1;
+      quantity --;
       quantityLabel.textContent = quantity;
     }
   }
@@ -104,9 +109,9 @@ export class Product4 extends Component {
                 <img src={`/image/${x.f_img}`} alt={x.fname} style={{width:"300px",height:"300px"}}/>
                 <figcaption>{x.fname}</figcaption>
                 <figcaption>NT${x.price}</figcaption>  
-                <button className="btn0" onClick={this.handleAdd}>+</button>
-                <label className="count">0</label>
                 <button className="btnq1" onClick={this.handledown}>-</button>
+                <label className="count">0</label>
+                <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
                 <a href={`/food_detail/${x.fid}`}><button className="btnq">選購</button></a>
               </figure>
