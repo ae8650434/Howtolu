@@ -15,9 +15,8 @@ import FoodDetail from './components/food_detail';
 import Cart from './components/cart';
 import Order_list from './components/order_list';
 import Footer from './components/footer';
+import Gotop from './components/top';
 import ProductCopy from './components/product copy';
-
-
 
 
 
@@ -43,6 +42,7 @@ class App extends Component {
             <Route path="/cart" component={Cart} exact />
             <Route component={Error} />
           </Switch>
+          <Gotop />
           <Footer />
         </div>
 

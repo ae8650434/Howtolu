@@ -8,7 +8,7 @@ var DB = require("./DB.js");
 // 設置路由
 
 app.get('/', function (req, res) {
-    var sql = 'SELECT * FROM food';
+    var sql = 'SELECT * FROM food LEFT JOIN food_class ON food.fc_id = food_class.fc_id WHERE 1';
     DB.query(
         sql, function (err, data) {
             if (err) {

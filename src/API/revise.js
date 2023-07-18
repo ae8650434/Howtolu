@@ -3,11 +3,11 @@ var express = require("express");
 var app = express.Router();
 var bcrypt = require("bcrypt");
 
-app.post("/:mail", (req, res) => {
+app.post("/", (req, res) => {
   var password = req.body.password;
-  var mail = req.params.mail
-  console.log('2222',mail)
-  console.log('33333',password)
+  var mail = req.body.mail
+  // console.log('2222',mail)
+  // console.log('33333',password)
 
   var sql = "SELECT * FROM member WHERE mail = ?";
   var msql = "UPDATE member SET password = ? WHERE mid = ?";

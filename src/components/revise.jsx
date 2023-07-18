@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Revise.module.css'
 import axios from 'axios';
+import Modal from 'react-modal';
 
 
 class Revise extends Component {
@@ -15,6 +16,7 @@ class Revise extends Component {
       passwordType2: 'password',
       eyeOpacity2: 0.5,
       eyeSrc2: './image/EyeSlash.png',
+      registerSuccess: false,
 
       user: {
         password: '',
@@ -40,22 +42,22 @@ class Revise extends Component {
           <div className={styles.revise_rule}>
             ***為保護您的個人資料安全，請務必修改密碼。
           </div>
-          <form action={`http://localhost:8000/revise/${mail}`} method="post" id={styles.revise_login}>
+          <form action='http://localhost:8000/revise' method="post" id={styles.revise_login}>
             <br />
             <div className={styles.revise_first}>
               <label htmlFor="" className={styles.revise_from_title}>設定密碼</label>
-              <input type={passwordType} 
-              className={styles.register_from_input} 
-              id="password" 
-              pattern="[\da-zA-Z]{8,16}" 
-              value={this.state.user.password}
-              onChange={ (e) => {
-                var newState = {...this.state}
-                newState.user.password = e.target.value
-                this.setState(newState)
-              }
-              }
-              required />
+              <input type={passwordType}
+                className={styles.register_from_input}
+                id="password"
+                pattern="[\da-zA-Z]{8,16}"
+                value={this.state.user.password}
+                onChange={(e) => {
+                  var newState = { ...this.state }
+                  newState.user.password = e.target.value
+                  this.setState(newState)
+                }
+                }
+                required />
               <img src={eyeSrc} id="eye" style={{ opacity: eyeOpacity }} className={styles.eye} onClick={this.eyeClick} />
             </div>
             {errors.password && (
@@ -67,18 +69,18 @@ class Revise extends Component {
             <br /><br />
             <div className={styles.revise_first}>
               <label htmlFor="" className={styles.revise_from_title}>再次確認密碼</label>
-              <input type={passwordType2} 
-              className={styles.register_from_input} 
-              pattern="[\da-zA-Z]{8,16}" 
-              id='password2'
-              value={this.state.user.password2}
-              onChange={ (e) => {
-                var newState = {...this.state}
-                newState.user.password2 = e.target.value
-                this.setState(newState)
-              }
-              } 
-              required />
+              <input type={passwordType2}
+                className={styles.register_from_input}
+                pattern="[\da-zA-Z]{8,16}"
+                id='password2'
+                value={this.state.user.password2}
+                onChange={(e) => {
+                  var newState = { ...this.state }
+                  newState.user.password2 = e.target.value
+                  this.setState(newState)
+                }
+                }
+                required />
               <img src={eyeSrc2} id="eye1" style={{ opacity: eyeOpacity2 }} className={styles.eye} onClick={this.eyeClick2} />
             </div>
             {errors.password2 && (
@@ -100,6 +102,34 @@ class Revise extends Component {
             </div>
           </form>
         </div>
+
+        <Modal
+          isOpen={this.state.registerSuccess}
+          onRequestClose={this.closeSuccessModal}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+        >
+          <div className={styles.content2}>
+            <svg width="300" height="300">
+              <circle
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                cx="140" cy="140" r="120"
+                className={styles.circle}
+              />
+              <polyline
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                points="80,150 140,220 220,75"
+                className={styles.tick}
+              />
+            </svg>
+            <p className={styles.h2}>修改成功</p>
+            <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+          </div>
+        </Modal>
       </div>
     );
   }
@@ -142,14 +172,19 @@ class Revise extends Component {
     }
   }
 
-
+  // 關閉彈窗
+  closeSuccessModal = () => {
+    this.setState({ registerSuccess: false });
+    const { history } = this.props;
+    history.push('/login');
+  };
 
 
   //密碼不同時阻止表單送出
 
   handleRevise = async (e) => {
 
-    const { password} = this.state.user;
+    const { password } = this.state.user;
 
     const regexPattern = {
       password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
@@ -176,10 +211,10 @@ class Revise extends Component {
 
     try {
 
-      const {password} = this.state.user.password
       const mail = sessionStorage.getItem('mail')
-      var response = await axios.post(`http://localhost:8000/revise/${mail}`, {
-        password: password
+      var response = await axios.post('http://localhost:8000/revise', {
+        password: this.state.user.password,
+        mail: mail
       })
 
 
@@ -189,6 +224,7 @@ class Revise extends Component {
 
       if (response.status === 200) {
         console.log('密碼設定成功')
+        this.setState({ registerSuccess: true });
       }
     } catch (error) {
 

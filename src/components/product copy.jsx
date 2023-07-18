@@ -11,7 +11,7 @@ class Product3 extends Component {
     const { productList, selectedCategory } = this.props;
 
     let filteredList = productList;
-    
+
     if (selectedCategory) {
       filteredList = productList.filter((x) => x.pc_id === selectedCategory);
     }
@@ -22,7 +22,7 @@ class Product3 extends Component {
         <div className='row'>
           {filteredList.map((x) => (
             <div key={x.pid} className='good' id='right'>
-              <figure style={{width:"450px",height:"550px"}}>
+              <figure style={{ width: "450px", height: "550px" }}>
                 <img src={`/image/${x.p_img}`} alt={x.pname} />
                 <figcaption>{x.pname}</figcaption>
                 <figcaption>NT${x.price} - {x.day} 日</figcaption>
@@ -45,12 +45,13 @@ class Product3 extends Component {
 
 export class Product4 extends Component {
   state = {
-    foodList: []
+    foodList: [],
+    selectedCategory: null
   }
   componentDidMount = () => {
     var plusButtons = document.querySelectorAll('.btn0');
     var minusButtons = document.querySelectorAll('.btnq1');
-  
+
     minusButtons.forEach((button) => {
       button.addEventListener('click', this.handledown);
     })
@@ -63,7 +64,7 @@ export class Product4 extends Component {
   componentWillUnmount = () => {
     var plusButtons = document.querySelectorAll('.btn0');
     var minusButtons = document.querySelectorAll('.btnq1');
-   
+
     minusButtons.forEach((button) => {
       button.removeEventListener('click', this.handledown);
     })
@@ -85,19 +86,25 @@ export class Product4 extends Component {
     var quantityLabel = event.target.nextElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     if (quantity > 0) {
-      quantity --;
+      quantity--;
       quantityLabel.textContent = quantity;
     }
   }
 
   render() {
-    const { foodList, selectedFood, fcidFood } = this.props;
+    const { foodList, selectedFood, fcidFood, selectedCategory } = this.props;
 
     let filteredList = foodList;
-    if (selectedFood || fcidFood) {
-      filteredList = foodList.filter((x) => x.fid === selectedFood || x.fc_id === fcidFood);
-      
-    } 
+    if (selectedFood) {
+      filteredList = foodList.filter((x) => x.fc_id === 1)
+    }
+    // if (selectedFood || fcidFood) {
+    //   filteredList = foodList.filter((x) => x.fid === selectedFood || x.fc_id === fcidFood);
+
+    // } 
+    if (selectedCategory) {
+      filteredList = filteredList.filter((x) => x.fc_id === selectedCategory);
+    }
 
     return (
       <div className="product-container">
@@ -105,10 +112,10 @@ export class Product4 extends Component {
         <div className='row'>
           {filteredList.map((x) => (
             <div key={x.fid} className='good' id='right'>
-              <figure style={{width:"450px",height:"600px"}}>
-                <img src={`/image/${x.f_img}`} alt={x.fname} style={{width:"300px",height:"300px"}}/>
+              <figure style={{ width: "450px", height: "600px" }}>
+                <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
                 <figcaption>{x.fname}</figcaption>
-                <figcaption>NT${x.price}</figcaption>  
+                <figcaption>NT${x.price}</figcaption>
                 <button className="btnq1" onClick={this.handledown}>-</button>
                 <label className="count">0</label>
                 <button className="btn0" onClick={this.handleAdd}>+</button>
@@ -128,8 +135,12 @@ export class Product4 extends Component {
     var result = await axios.get('http://localhost:8000/food/list');
     var newState = { ...this.state };
     newState.foodList = result.data;
+    
+
     this.setState(newState);
+    
   }
+
 }
 
 export default Product3;
