@@ -47,6 +47,12 @@ class FoodDetail extends Component {
     // formSubmit = (e) => {
     //     e.preventDefault();
     // };
+
+    foodClick = (category) => {
+        this.setState({ fcidFood: category,selectedFood:null });
+        
+      };
+
     render() {
         const { fidNum } = this.props;
         return (
@@ -54,7 +60,7 @@ class FoodDetail extends Component {
                 <div className={styles.categories_food}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_food}>
-                        <li><a href="#">套餐</a>
+                        <li><a href="" onClick={() => this.foodClick(1)}>套餐</a>
                             <ul>
                                 <li><a href="http://localhost:3000/food_detail/1">賀呷套餐</a></li>
                                 <li><a href="http://localhost:3000/food_detail/2">滿漢全席</a></li>
@@ -157,7 +163,7 @@ class FoodDetail extends Component {
                 <div className={styles.categories_min_food}>
                     <p>商品分類</p>
                     <ul className={styles.categoriesUl_min_food}>
-                        <li><a href="#">套餐</a>
+                        <li><a href="http://localhost:3000/product2/all">套餐</a>
                             <ul>
                                 <li><a href="http://localhost:3000/food_detail/1">賀呷套餐</a></li>
                                 <li><a href="http://localhost:3000/food_detail/2">滿漢全席</a></li>

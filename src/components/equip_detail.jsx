@@ -4,7 +4,9 @@ import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
 import Productbarr from './productbar';
 import '../css/calendar.css';
-import cookie from 'react-cookies';
+// import Modal from 'react-modal';
+
+// Modal.setAppElement('#root'); // 設定應用的根元素
 
 class EquipDetail extends Component {
     // state = { isFlying: false }
@@ -106,23 +108,23 @@ class EquipDetail extends Component {
     }
     // 數量按鈕 & 上限為庫存
     handleAdd = () => {
-        if (this.state.count < this.states.product[0].reserve ) {
+        if (this.state.count < this.states.product[0].reserve) {
             this.setState(prevState => ({
-              count: prevState.count + 1
+                count: prevState.count + 1
             }));
-          }
-        };
+        }
+    };
     handleMinus = () => {
         this.setState((prevState) => ({
             count: prevState.count > 0 ? prevState.count - 1 : 0,
         }));
     };
-    
+
     // 要寫按鈕送出後 1.要回到商品頁2.進購物車資料庫
 
 
     render() {
-        const { value, maxDate, minDate } = this.state;
+        const { value, maxDate, minDate,handleOpen } = this.state;
         // { console.log(this.states.product[0]) }
         const productArray = this.states.product[0].description.split(";");
         const productInfArray = this.states.product[0].information.split(";");
@@ -177,13 +179,28 @@ class EquipDetail extends Component {
                                 <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} />
                                 <input type='button' name='quantity' value={this.state.count} className={styles.qty} />
                                 <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} />
-                                <input type='button' value='立即預約' className={styles.reserve} />
-                                {/* onClick={totop}  */}
+                                <input type='button' value='立即預約' className={styles.reserve} onClick={this.handleReserve} />
                                 <p><span>庫存量:</span><span>{this.states.product[0].reserve}</span></p>
                             </form>
                         </div>
                     </div>
                 </div>
+                {handleOpen &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseClick}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>請登入會員！</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
+            
                 <div className={styles.information}>
                     <p>商品資訊</p>
                     <ul>
@@ -256,7 +273,7 @@ class EquipDetail extends Component {
                         <li><a href="">保暖裝備</a></li>
                         <li><a href="">常用配件</a></li>
                     </ul>
-                    {console.log(cookie.load("account"))};
+
                 </div>
             </React.Fragment>
 
@@ -321,6 +338,24 @@ class EquipDetail extends Component {
         // console.log(ccc)
 
     }
+
+    // 判斷 是否有登入會員
+    handleReserve = async (e) => {
+        const mtel = sessionStorage.getItem('account')
+        if (mtel == null) {
+            this.setState({ handleOpen: true })
+        }else{
+            console.log(mtel);
+
+        }
+    }
+    // 關閉 請登入會員彈窗
+    handleCloseClick = () => {
+        this.setState({ handleOpen: false });
+        const { history } = this.props;
+        history.push('/login');
+      } 
+
 }
 
 export default EquipDetail;
