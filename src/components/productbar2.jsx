@@ -1,42 +1,51 @@
 import React, { Component } from 'react';
 import productbar from '../css/equip_detail.module.css';
 import axios from 'axios';
+
 class Productbar2 extends Component {
     state = {
         foodList: [],
         selectedFood: null,
+        fcid: null
     }
+
     render() {
+        const { foodList } = this.state;
         return (
-
-
             <div id="categories" className={productbar.categories}>
                 <p>商品分類</p>
                 <ul className={productbar.categoriesUl}>
-                    {
-                        this.state.foodList.map((x) => {
-
+                    {foodList.map((x) => {
+                        {console.log(foodList)}
                             return (
-                                <li>
-                                    <a href={`/product2/${x.classname}`} value={x.fc_id} >
+                                
+                                <li key={x.fc_id}>
+                                    <a href={`/product2/${x.classname}`} >
                                         {x.class}
                                     </a>
+                                   
                                 </li>
+<<<<<<< HEAD
+=======
                               
+>>>>>>> refs/remotes/origin/main
                             );
-                        })
-                    }
+                        
+                    
+                    })}
                 </ul>
+                
             </div>
-        )
+        );
     }
-  
+
+   
+
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/foodclass');
         var newState = { ...this.state };
         newState.foodList = result.data;
         this.setState(newState);
-        // console.log(newState)
     }
 }
 

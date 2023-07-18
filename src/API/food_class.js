@@ -15,7 +15,11 @@ app.get('/', function (req, res) {
                 res.send("無法查詢資料");
             } else {
                 res.send( JSON.stringify(data) );
+<<<<<<< HEAD
+                
+=======
               
+>>>>>>> refs/remotes/origin/main
             }
         }
         )
