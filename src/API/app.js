@@ -13,7 +13,9 @@ var cart=require("./cart.js")
 var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
 var info = require('./info.js')
+var equip_insert = require('./equip_insert.js')
 var cors = require("cors");
+
 app.use( express.static("public")  );
 app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
@@ -31,8 +33,9 @@ app.use("/login",login);
 app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);
-app.use('/revise', revise)
-app.use('info', info)
+app.use('/revise', revise);
+app.use('info', info);
+app.use('/mid',equip_insert);
 
 app.listen(8000,function(){
     console.log('啟動')

@@ -124,7 +124,7 @@ class EquipDetail extends Component {
 
 
     render() {
-        const { value, maxDate, minDate,handleOpen } = this.state;
+        const { value, maxDate, minDate, handleOpen } = this.state;
         // { console.log(this.states.product[0]) }
         const productArray = this.states.product[0].description.split(";");
         const productInfArray = this.states.product[0].information.split(";");
@@ -200,7 +200,7 @@ class EquipDetail extends Component {
                         </div>
                     </React.Fragment>
                 }
-            
+
                 <div className={styles.information}>
                     <p>商品資訊</p>
                     <ul>
@@ -280,6 +280,9 @@ class EquipDetail extends Component {
         );
     }
     componentDidMount = async () => {
+
+
+
         // 查單一商品
         var pid = this.props.match.params.pid;
         var url = `http://localhost:8000/product/${pid}`;
@@ -344,17 +347,22 @@ class EquipDetail extends Component {
         const mtel = sessionStorage.getItem('account')
         if (mtel == null) {
             this.setState({ handleOpen: true })
-        }else{
-            console.log(mtel);
+        } else {
+            // console.log(mtel);
+            var response = await axios.get('http://localhost:8000/mid', {
+                tel:  mtel
+            })
+            console.log('我我我', response.data);
 
         }
     }
-    // 關閉 請登入會員彈窗
-    handleCloseClick = () => {
-        this.setState({ handleOpen: false });
-        const { history } = this.props;
-        history.push('/login');
-      } 
+  
+// 關閉 請登入會員彈窗
+handleCloseClick = () => {
+    this.setState({ handleOpen: false });
+    const { history } = this.props;
+    history.push('/login');
+} 
 
 }
 
