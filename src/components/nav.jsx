@@ -91,10 +91,10 @@ class Navigation extends Component {
     }
 
 }
-window.onload = () => {
-    if (sessionStorage.getItem('account')) {
-        document.getElementById("navmemimg").src ='/image/food_11.png'
-    }
+// window.onload = () => {
+//     if (sessionStorage.getItem('account')) {
+//         document.getElementById("navmemimg").src ='/image/food_11.png'
+//     }
 
-}
+// }
 export default Navigation;

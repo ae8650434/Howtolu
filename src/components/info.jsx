@@ -9,7 +9,7 @@ class Info extends Component {
         this.state = {
             user: {
                 m_img: null,
-                name: '王大明',
+                name: '',
                 tel: '0923232323',
                 gender: '請選擇',
                 mail: 'aaa@gmail.com',
@@ -29,6 +29,7 @@ class Info extends Component {
           const userData = response.data.userdata;
           console.log('ccc',userData) // 假设响应的数据是用户对象
           console.log('ddd',this.state.user.m_img) // 假设响应的数据是用户对象
+        //   this.setState({ user: userData });
           if(this.state.user.m_img) {
             console.log('666',this.state.user.m_img)
           this.state.user.m_img = this.state.user.m_img
@@ -47,17 +48,17 @@ class Info extends Component {
         console.log('777',this.state )
         
     }
-    componentDidUpdate =()=>{
-        if(this.state.user.m_img) {
-            console.log('666',this.state.user.m_img)
-          this.state.user.m_img = this.state.user.m_img
-          console.log('33',this.state.user.m_img)
-        }else {
-          this.state.user.m_img = 'Head.png'
-          console.log('44',this.state.user.m_img )
-        }
-        // this.setState(this.state.user.m_img);
-    }
+    // componentDidUpdate =()=>{
+    //     if(this.state.user.m_img) {
+    //         console.log('666',this.state.user.m_img)
+    //       this.state.user.m_img = this.state.user.m_img
+    //       console.log('33',this.state.user.m_img)
+    //     }else {
+    //       this.state.user.m_img = 'Head.png'
+    //       console.log('44',this.state.user.m_img )
+    //     }
+    //     // this.setState(this.state.user.m_img);
+    // }
 
 
     render() {
@@ -188,7 +189,7 @@ class Info extends Component {
         );
     }
 
-    
+
     // onButtonClick = async () => {
     //         var information = await axios.get('http://localhost:8000/info', {
     //             account: sessionStorage.getItem('account')
