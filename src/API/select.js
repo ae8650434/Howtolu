@@ -8,6 +8,7 @@ var DB = require("./DB.js");
 // 設置路由
 app.get('/:pid', function (req, res) {
     var sql = 'SELECT * FROM product where pid=?';
+    // var rsql = 'SELECT reserve FROM product WHERE pid=?'
     // console.log("我想看一下",req.params)
     DB.query(
         sql, [req.params.pid], function (err, data) {
@@ -17,8 +18,13 @@ app.get('/:pid', function (req, res) {
                 res.json(data);
             }
         }
-        )
-        
+    );
+    // DB.query(
+    //     rsql,[req],function(err,data){
+
+    //     }
+    // )
+
 })
 
 module.exports = app;

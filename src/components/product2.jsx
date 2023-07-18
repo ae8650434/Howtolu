@@ -29,14 +29,14 @@ class Product2 extends Component {
                         <ul className="categoriesUl">
                             <li><a href="/product2">套餐</a>
                                 <ul>
-                                    <li><a href="#" onClick={() => this.handleClick(1)}>賀呷套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(2)}>滿漢全席</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(3)}>雙人套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(4)}>素食套餐</a></li>
-                                    <li><a href="#" onClick={() => this.handleClick(5)}>快樂分享餐</a></li>
+                                    <li><a href="http://localhost:3000/food_detail/1" >賀呷套餐</a></li>
+                                    <li><a href="http://localhost:3000/food_detail/2" >滿漢全席</a></li>
+                                    <li><a href="http://localhost:3000/food_detail/3" >雙人套餐</a></li>
+                                    <li><a href="http://localhost:3000/food_detail/4" >素食套餐</a></li>
+                                    <li><a href="http://localhost:3000/food_detail/5" >快樂分享餐</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" onClick={() => this.foodClick(2)}>單點</a></li>
+                            <li><a href="http://localhost:3000/product2">單點</a></li>
                         </ul>
                     </div>
 

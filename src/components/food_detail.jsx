@@ -56,11 +56,11 @@ class FoodDetail extends Component {
                     <ul className={styles.categoriesUl_food}>
                         <li><a href="#">套餐</a>
                             <ul>
-                                <li><a href="">賀呷套餐</a></li>
-                                <li><a href="">滿漢全席</a></li>
-                                <li><a href="">雙人套餐</a></li>
-                                <li><a href="">素食套餐</a></li>
-                                <li><a href="">快樂分享餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/1">賀呷套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/2">滿漢全席</a></li>
+                                <li><a href="http://localhost:3000/food_detail/3">雙人套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/4">素食套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/5">快樂分享餐</a></li>
                             </ul>
                         </li>
                         <li><a href="">單點</a></li>
@@ -159,11 +159,11 @@ class FoodDetail extends Component {
                     <ul className={styles.categoriesUl_min_food}>
                         <li><a href="#">套餐</a>
                             <ul>
-                                <li><a href="">賀呷套餐</a></li>
-                                <li><a href="">滿漢全席</a></li>
-                                <li><a href="">雙人套餐</a></li>
-                                <li><a href="">素食套餐</a></li>
-                                <li><a href="">快樂分享餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/1">賀呷套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/2">滿漢全席</a></li>
+                                <li><a href="http://localhost:3000/food_detail/3">雙人套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/4">素食套餐</a></li>
+                                <li><a href="http://localhost:3000/food_detail/5">快樂分享餐</a></li>
                             </ul>
                         </li>
                     </ul>
