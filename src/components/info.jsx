@@ -28,6 +28,7 @@ class Info extends Component {
           const response = await axios.get(`http://localhost:8000/info?account=${account}`); 
           const userData = response.data.userdata;
           console.log('ccc',userData) // 假设响应的数据是用户对象
+<<<<<<< HEAD
           console.log('ddd',this.state.user.m_img) // 假设响应的数据是用户对象
         //   this.setState({ user: userData });
           if(this.state.user.m_img) {
@@ -39,6 +40,19 @@ class Info extends Component {
           console.log('44',this.state.user.m_img )
         }
         this.setState(this.state);
+=======
+         
+          if(userData.m_img) {
+              console.log('666',userData.m_img)
+              userData.m_img = userData.m_img
+            console.log('33',this.state.user.m_img)
+          }else {
+            userData.m_img = 'Head.png'
+            console.log('44',userData.m_img )
+          }
+          console.log("fhlkdsa",this.state.user.userData)
+          this.setState({ user: userData });
+>>>>>>> refs/remotes/origin/main
         } catch (error) {
             // 处理错误
             if(error.response.data == 401) {
@@ -48,6 +62,7 @@ class Info extends Component {
         console.log('777',this.state )
         
     }
+<<<<<<< HEAD
     // componentDidUpdate =()=>{
     //     if(this.state.user.m_img) {
     //         console.log('666',this.state.user.m_img)
@@ -59,6 +74,8 @@ class Info extends Component {
     //     }
     //     // this.setState(this.state.user.m_img);
     // }
+=======
+>>>>>>> refs/remotes/origin/main
 
 
     render() {
@@ -78,8 +95,8 @@ class Info extends Component {
                     <p className={styles.info_p_first}>我的大頭照</p>
                     <img src={`/image/${this.state.user.m_img}`} 
                     className={styles.info_pic} 
-                    
-              
+                
+            
                     />
                     {console.log('aa',this.state.user.m_img)}
                     <input type="file" className={styles.info_file} />
