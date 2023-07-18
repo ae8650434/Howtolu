@@ -22,26 +22,43 @@ class Info extends Component {
         }
     }
 
-    componentDidMount() {
-        this.loadUserData();
+    componentDidMount=  async () =>{
+      try {
+          const account = sessionStorage.getItem('account')
+          const response = await axios.get(`http://localhost:8000/info?account=${account}`); 
+          const userData = response.data.userdata;
+          console.log('ccc',userData) // 假设响应的数据是用户对象
+          console.log('ddd',this.state.user.m_img) // 假设响应的数据是用户对象
+          if(this.state.user.m_img) {
+            console.log('666',this.state.user.m_img)
+          this.state.user.m_img = this.state.user.m_img
+          console.log('33',this.state.user.m_img)
+        }else {
+          this.state.user.m_img = 'Head.png'
+          console.log('44',this.state.user.m_img )
+        }
+        this.setState(this.state);
+        } catch (error) {
+            // 处理错误
+            if(error.response.data == 401) {
+                console.log('未登入')
+            }
+        }
+        console.log('777',this.state )
+        
+    }
+    componentDidUpdate =()=>{
+        if(this.state.user.m_img) {
+            console.log('666',this.state.user.m_img)
+          this.state.user.m_img = this.state.user.m_img
+          console.log('33',this.state.user.m_img)
+        }else {
+          this.state.user.m_img = 'Head.png'
+          console.log('44',this.state.user.m_img )
+        }
+        // this.setState(this.state.user.m_img);
     }
 
-    async loadUserData() {
-        try {
-          const account = sessionStorage.getItem('account')
-          const response = await axios.get(`http://localhost:8000/info?account=${account}`);
-          
-          const userData = response.data.userdata;
-          console.log('ccc',this.state) // 假设响应的数据是用户对象
-          
-          this.setState({ user: userData });
-        } catch (error) {
-          // 处理错误
-          if(error.response.data == 401) {
-            console.log('未登入')
-          }
-        }
-      }
 
     render() {
         return (
@@ -56,20 +73,14 @@ class Info extends Component {
                 </ul>
 
                 <form action="" className={styles.form}>
+                {console.log('bbbbbbb',this.state)}
                     <p className={styles.info_p_first}>我的大頭照</p>
                     <img src={`/image/${this.state.user.m_img}`} 
                     className={styles.info_pic} 
-                    onChange={ (e) => {
-                        if(this.state.user.m_img) {
-                            this.state.user.m_img = this.state.user.m_img
-                            console.log('33')
-                          }else {
-                            this.state.user.m_img = 'Head.png'
-                            console.log('44')
-                          }
-                    }
-                    }
-                    />{console.log('aa',this.state.user.m_img)}
+                    
+              
+                    />
+                    {console.log('aa',this.state.user.m_img)}
                     <input type="file" className={styles.info_file} />
                     <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
