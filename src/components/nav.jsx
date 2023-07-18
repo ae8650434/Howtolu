@@ -10,8 +10,8 @@ class Navigation extends Component {
     render() {
 
         return (
-
             <div id={navstyle[this.state.id]}>
+                {console.log(window)}
                 <a href="/"><img id={navstyle["logo"]} src="/image/logo.png" alt="" /></a>
                 <div id={navstyle['selnav']} >
                     <ul id={navstyle["navul"]}>
@@ -44,13 +44,13 @@ class Navigation extends Component {
                             </ul>
                         </li>
 
-                      
+
 
                     </ul>
                 </div>
                 <div id={navstyle['nav_icon']}>
                     <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
-                    <button id={navstyle['navmembtn']} onClick={this.btnmem}><img src={'image/mem.png'} className={navstyle.navmemimg} /></button>
+                    <button id={navstyle['navmembtn']} onClick={this.btnmem}><img id='navmemimg' src='/image/mem.png' className={navstyle.navmemimg} /></button>
                     <ul id='memulin' className={navstyle.memul}>
                         <a href="/login"><li>會員登入</li></a>
                         <a href="/register"><li>註冊會員</li></a>
@@ -69,7 +69,7 @@ class Navigation extends Component {
 
     btnmem = () => {
         if (sessionStorage.getItem('account')) {
-            console.log(sessionStorage.getItem('account'))
+       
             if (document.getElementById("memulout").style.display == "block") {
                 document.getElementById("memulout").style.display = "none";
             } else {
@@ -89,6 +89,12 @@ class Navigation extends Component {
     logoutbtn = () => {
         sessionStorage.clear();
 
+    }
+
+}
+window.onload = () => {
+    if (sessionStorage.getItem('account')) {
+        document.getElementById("navmemimg").src ='/image/food_11.png'
     }
 
 }
