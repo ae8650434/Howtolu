@@ -3,7 +3,7 @@ var express = require("express");
 var app = express.Router();
 var bcrypt = require("bcrypt");
 
-app.get()
+// app.get()
 
 
 module.exports = app;

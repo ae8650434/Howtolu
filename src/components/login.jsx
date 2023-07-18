@@ -56,7 +56,7 @@ class Login extends Component {
           <div id={styles['smalltitle']}>登入HowTo露會員</div>
           <hr />
 
-          <form action="http://localhost:8000/login/member" method="post" onSubmit={this.okButtonClick}>
+          <form action="http://localhost:8000/login" method="post" onSubmit={this.okButtonClick}>
             <div style={{ textAlign: 'center', marginTop: '30px' }}>
               <div className={styles.first}>
                 <label htmlFor="account" className={styles.loginlabel}>帳號</label>
@@ -149,7 +149,7 @@ class Login extends Component {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/login/member", // 修改为正确的后端路由
+        "http://localhost:8000/login", // 修改为正确的后端路由
         this.state.user, // 直接传递对象作为请求体数据
         {
           headers: {

@@ -27,7 +27,7 @@ app.use("/product",select);
 app.use("/productclass",productc);
 app.use("/foodclass",foodC);
 app.use("/register",register);
-app.use("/login/member",login);
+app.use("/login",login);
 app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);

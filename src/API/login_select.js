@@ -6,7 +6,7 @@ var bcrypt = require("bcrypt");
 
 
 
-app.post("/", express.urlencoded(), function(req, res) {
+app.post("/", function(req, res) {
   // 用變數抓取前端資料
   var account = req.body.account;
   var password = req.body.password;
