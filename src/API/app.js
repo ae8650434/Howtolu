@@ -12,6 +12,7 @@ var foodC=require("./food_class.js")
 var cart=require("./cart.js")
 var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
+var info = require('./info.js')
 var cors = require("cors");
 app.use( express.static("public")  );
 app.use( express.json() );
@@ -30,8 +31,8 @@ app.use("/login/member",login);
 app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);
-app.use('revise', revise)
-
+app.use('/revise', revise)
+app.use('info', info)
 
 app.listen(8000,function(){
     console.log('啟動')
