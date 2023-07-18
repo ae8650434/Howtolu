@@ -4,9 +4,10 @@ import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
 import Productbarr from './productbar';
 import '../css/calendar.css';
+import cookie from 'react-cookies';
 
 class EquipDetail extends Component {
-    state = {isFlying: false}
+    // state = { isFlying: false }
     states = {
         product:
             [{
@@ -49,8 +50,10 @@ class EquipDetail extends Component {
             maxDate: maxDate,
             minDate: minDate,
             selectedDate: null,
+            count: 0,
         };
     }
+
 
     // 星期二、五可以點選 其他禁用
     isDisabled(date) {
@@ -101,46 +104,35 @@ class EquipDetail extends Component {
         }
         return null;
     }
-    // 數量按鈕
-    qtyplusBn = (e) => {
-        e.preventDefault();
-        const fieldName = e.target.getAttribute('field');
-        const currentVal = parseInt(this[fieldName].value);
-        if (!isNaN(currentVal)) {
-            this[fieldName].value = currentVal + 1;
-        } else {
-            this[fieldName].value = 0;
-        }
+    // 數量按鈕 & 上限為庫存
+    handleAdd = () => {
+        if (this.state.count < this.states.product[0].reserve ) {
+            this.setState(prevState => ({
+              count: prevState.count + 1
+            }));
+          }
+        };
+    handleMinus = () => {
+        this.setState((prevState) => ({
+            count: prevState.count > 0 ? prevState.count - 1 : 0,
+        }));
     };
-
-    qtyminusBn = (e) => {
-        e.preventDefault();
-        const fieldName = e.target.getAttribute('field');
-        const currentVal = parseInt(this[fieldName].value);
-        if (!isNaN(currentVal) && currentVal > 0) {
-            this[fieldName].value = currentVal - 1;
-        } else {
-            this[fieldName].value = 0;
-        }
-    };
-
+    
     // 要寫按鈕送出後 1.要回到商品頁2.進購物車資料庫
-    // formSubmit = (e) => {
-    //     e.preventDefault();
-    // };
+
 
     render() {
         const { value, maxDate, minDate } = this.state;
         // { console.log(this.states.product[0]) }
         const productArray = this.states.product[0].description.split(";");
         const productInfArray = this.states.product[0].information.split(";");
-        const totop = () => {
-            this.setState({ isFlying: true });
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        };
+        // const totop = () => {
+        //     this.setState({ isFlying: true });
+        //     window.scrollTo({
+        //         top: 0,
+        //         behavior: "smooth"
+        //     });
+        // };
         return (
             <React.Fragment>
                 <div id="container">
@@ -182,10 +174,11 @@ class EquipDetail extends Component {
                                 </div>
                                 <div>{this.renderDates()}</div>
                                 <label htmlFor='quantity'>數量：</label>
-                                <input onClick={this.qtyminusBn} type='button' value='-' className={styles.qtyminus} field='quantity' />
-                                <input type='button' name='quantity' value='0' className={styles.qty} ref={(input) => (this.quantity = input)} />
-                                <input onClick={this.qtyplusBn} type='button' value='+' className={styles.qtyplus} field='quantity' />
-                                <input type='button' value='立即預約' className={styles.reserve} onClick={totop}  />
+                                <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} />
+                                <input type='button' name='quantity' value={this.state.count} className={styles.qty} />
+                                <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} />
+                                <input type='button' value='立即預約' className={styles.reserve} />
+                                {/* onClick={totop}  */}
                                 <p><span>庫存量:</span><span>{this.states.product[0].reserve}</span></p>
                             </form>
                         </div>
@@ -263,6 +256,7 @@ class EquipDetail extends Component {
                         <li><a href="">保暖裝備</a></li>
                         <li><a href="">常用配件</a></li>
                     </ul>
+                    {console.log(cookie.load("account"))};
                 </div>
             </React.Fragment>
 

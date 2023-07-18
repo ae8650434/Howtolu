@@ -45,6 +45,7 @@
     padding: 0;
     width: 200px;
     
+    
 }
 #navul ul li #a{
     list-style: none;
@@ -123,6 +124,7 @@
     padding: 0;
     margin: 3px;
     background-color:whitesmoke;
+    border: 1px solid black;
 }
 
 .memul a{
@@ -137,7 +139,7 @@
     font-size: 40px;
     width: 200px;
 }
-    .memul{
-        display: none;
+.memul{
+    display: none;
         
-    }
+}

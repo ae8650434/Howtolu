@@ -15,17 +15,9 @@ import FoodDetail from './components/food_detail';
 import Cart from './components/cart';
 import Order_list from './components/order_list';
 import Footer from './components/footer';
+import Gotop from './components/top';
 import ProductCopy from './components/product copy';
-import cookie from 'react-cookies'
 
-cookie.save(
-    {
-      path: '/',// cookie的使用路径，如果设置为“/”，则本域名下contextPath都可以访问该Cookie
-      // maxAge: 60 * 1000,// 从客户端收到 cookie 开始的相对过期时间
-      secure: true,// 如果设置true，它将只能通过 https 访问
-      httpOnly: true,// 如果设置true，它将只能在服务器上访问
-    }
-  )
 
 
 class App extends Component {
@@ -50,6 +42,7 @@ class App extends Component {
             <Route path="/cart" component={Cart} exact />
             <Route component={Error} />
           </Switch>
+          <Gotop />
           <Footer />
         </div>
 
