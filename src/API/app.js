@@ -15,12 +15,10 @@ var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
 var cors = require("cors");
-const sql = require("./DB.js");
 app.use( express.static("public")  );
 app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
 app.use(cors());
-
 
 
 app.use("/product/list",selectall);
