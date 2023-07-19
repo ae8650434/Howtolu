@@ -278,7 +278,8 @@ input.qtyminus {
     width: 400px;
     height: 200px;
     z-index: 1;
-    margin: auto;
+    /* margin-top: 100%; */
+    margin:10% auto;
     overflow: auto;
     border-radius: 10px;
 }

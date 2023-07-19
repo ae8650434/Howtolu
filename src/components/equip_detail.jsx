@@ -123,7 +123,7 @@ class EquipDetail extends Component {
         }));
     };
     render() {
-        const { value, maxDate, minDate, handleOpen ,handleOK} = this.state;
+        const { value, maxDate, minDate, handleOpen, handleOK } = this.state;
         // { console.log(this.state.product[0]) }
         const productArray = this.state.product[0].description.split(";");
         const productInfArray = this.state.product[0].information.split(";");
@@ -177,39 +177,6 @@ class EquipDetail extends Component {
                         </div>
                     </div>
                 </div>
-                {handleOpen &&
-                    <React.Fragment>
-                        <div id={styles["background"]}>
-                            <div id={styles["div1"]} className={styles.content}>
-                                <div id={styles["close"]}>
-                                    <span id={styles["close-button"]} onClick={this.handleCloseClick}>×</span>
-                                    <p>HowTo露</p>
-                                </div>
-                                <div id={styles["div2"]}>
-                                    <h1>請登入會員！</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                }
-                {handleOK &&
-                    <React.Fragment>
-                        <div id={styles["background"]}>
-                            <div id={styles["div1"]} className={styles.content}>
-                                <div id={styles["close"]}>
-                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
-                                    <p>HowTo露</p>
-                                </div>
-                                <div id={styles["div2"]}>
-                                    <h1>商品已加入購物車</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                }
-
-
-
                 <div className={styles.information}>
                     <p>商品資訊</p>
                     <ul>
@@ -284,6 +251,36 @@ class EquipDetail extends Component {
                     </ul>
 
                 </div>
+                {handleOpen &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseClick}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>請登入會員！</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
+                {handleOK &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>商品已加入購物車</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
 
             </React.Fragment>
 
@@ -399,7 +396,7 @@ class EquipDetail extends Component {
     handleCloseOK = () => {
         this.setState({ handleOK: false });
         const { historys } = this.props;
-        window.location.href='http://localhost:3000/product/all';
+        window.location.href = 'http://localhost:3000/product/all';
     }
 
 }
