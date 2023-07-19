@@ -9,8 +9,7 @@ app.get('/', function (req, res) {
 
     DB.query(
         msql, [req.query.tel], (err, data) => {
-
-            console.log("我", req.params.tel);
+            // console.log("我", req.params.tel);
             // console.log("2222",data)
             return res.status(200).json({ data: data });
         });

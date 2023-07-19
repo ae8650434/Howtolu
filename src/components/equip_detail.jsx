@@ -4,40 +4,11 @@ import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
 import Productbarr from './productbar';
 import '../css/calendar.css';
-// import Modal from 'react-modal';
+import Modal from 'react-modal';
 
 // Modal.setAppElement('#root'); // 設定應用的根元素
 
 class EquipDetail extends Component {
-    // state = { isFlying: false }
-    // state = {
-    //     product:
-    //         [{
-    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
-    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
-    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-    //         }]
-    // }
-    // state = {
-    //     productList:
-    //         [{
-    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
-    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
-    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-    //         },
-    //         {
-    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
-    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
-    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-    //         },
-    //         {
-    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
-    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
-    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-    //         }
-    //         ]
-    // }
-
     constructor(props) {
         super(props);
 
@@ -85,6 +56,7 @@ class EquipDetail extends Component {
                 return_date: '',
                 quantity: ''
             },
+
         };
     }
 
@@ -151,7 +123,7 @@ class EquipDetail extends Component {
         }));
     };
     render() {
-        const { value, maxDate, minDate, handleOpen } = this.state;
+        const { value, maxDate, minDate, handleOpen ,handleOK} = this.state;
         // { console.log(this.state.product[0]) }
         const productArray = this.state.product[0].description.split(";");
         const productInfArray = this.state.product[0].information.split(";");
@@ -220,6 +192,23 @@ class EquipDetail extends Component {
                         </div>
                     </React.Fragment>
                 }
+                {handleOK &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>商品已加入購物車</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
+
+
 
                 <div className={styles.information}>
                     <p>商品資訊</p>
@@ -295,6 +284,7 @@ class EquipDetail extends Component {
                     </ul>
 
                 </div>
+
             </React.Fragment>
 
         );
@@ -344,11 +334,11 @@ class EquipDetail extends Component {
         } else {
             ccc = ccc
         }
-   
+
         this.state.productList[2] = newstateto.productList[ccc]
         this.state.productList[1] = newstateto.productList[bbb]
         this.state.productList[0] = newstateto.productList[abc]
-   
+
 
     }
 
@@ -359,23 +349,22 @@ class EquipDetail extends Component {
             this.setState({ handleOpen: true })
         } else {
             var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
-            var newCar={...this.state.car} ;
-          
-          newCar=  {
-                mid:response.data.data[0].mid,
-                pid:this.state.product[0].pid,
-                fid:null,
-                c_day:this.state.product[0].day,
-                use_date:document.getElementById('a0').textContent,
-                return_date:document.getElementById('a2').textContent,
-                quantity:this.state.count
+            var newCar = { ...this.state.car };
+
+            newCar = {
+                mid: response.data.data[0].mid,
+                pid: this.state.product[0].pid,
+                fid: null,
+                c_day: this.state.product[0].day,
+                use_date: document.getElementById('a0').textContent,
+                return_date: document.getElementById('a2').textContent,
+                quantity: this.state.count
             }
-            this.state.car=newCar
+            this.state.car = newCar
             this.setState(newCar)
-            console.log("123",this.state.car)
+            console.log("123", this.state.car)
             // console.log(mtel);
-            // console.log('租借日',this.state.arryDate[0]);
-            // console.log('歸還日',this.state.arryDate[2]);
+            this.setState({ handleOK: true })
 
             const cars = await axios.post(
                 "http://localhost:8000/mid/tocar",
@@ -389,7 +378,7 @@ class EquipDetail extends Component {
             );
             if (cars.status === 200) {
                 // 表示成功
-                console.log("OK")
+                console.log("OK");
 
             } else {
                 console.error(cars.data);
@@ -400,11 +389,17 @@ class EquipDetail extends Component {
         }
     }
 
-    // 關閉 請登入會員彈窗
+    // 關閉 請登入會員 彈窗
     handleCloseClick = () => {
         this.setState({ handleOpen: false });
         const { history } = this.props;
         history.push('/login');
+    }
+    // 關閉 已加入購物 彈窗
+    handleCloseOK = () => {
+        this.setState({ handleOK: false });
+        const { historys } = this.props;
+        window.location.href='http://localhost:3000/product/all';
     }
 
 }
