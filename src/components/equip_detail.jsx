@@ -126,12 +126,16 @@ class EquipDetail extends Component {
             }
 
             const arryDate = dates.map((date, index) => (
+<<<<<<< HEAD
                 <span id={`a${index}`} key={index} class={date}>{date}</span>
+=======
+                <span id={`a${index}`} key={index}>{date}</span>
+>>>>>>> refs/remotes/origin/main
             ));
             return (
                 <React.Fragment>
-                    <p id='abc'>租借日：{arryDate[0]}</p>
-                    <p id='xyz'>歸還日：{arryDate[2]}</p>
+                    <p>租借日：<span id='abc'>{arryDate[0]}</span></p>
+                    <p>歸還日：<span id='xyz'>{arryDate[2]}</span></p>
                 </React.Fragment>
             );
         }
@@ -366,8 +370,13 @@ class EquipDetail extends Component {
                 pid:this.state.product[0].pid,
                 fid:null,
                 c_day:this.state.product[0].day,
+<<<<<<< HEAD
                 use_dat:document.getElementById('a0').key,
                 return_date:document.getElementById('a2').key,
+=======
+                use_date:document.getElementById('a0').textContent,
+                return_date:document.getElementById('a2').textContent,
+>>>>>>> refs/remotes/origin/main
                 quantity:this.state.count
             }
             this.state.car=newCar
