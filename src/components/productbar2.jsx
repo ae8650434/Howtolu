@@ -16,7 +16,6 @@ class Productbar2 extends Component {
                 <p>商品分類</p>
                 <ul className={productbar.categoriesUl}>
                     {foodList.map((x) => {
-                        {console.log(foodList)}
                             return (
                                 
                                 <li key={x.fc_id}>
