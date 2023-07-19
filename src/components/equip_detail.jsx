@@ -130,8 +130,8 @@ class EquipDetail extends Component {
             ));
             return (
                 <React.Fragment>
-                    <p>租借日：<span id='abc'>{arryDate[0]}</span></p>
-                    <p>歸還日：<span id='xyz'>{arryDate[2]}</span></p>
+                    <p>租借日：{arryDate[0]}</p>
+                    <p>歸還日：{arryDate[2]}</p>
                 </React.Fragment>
             );
         }
