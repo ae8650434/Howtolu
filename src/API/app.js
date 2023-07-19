@@ -34,7 +34,7 @@ app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);
 app.use('/revise', revise);
-app.use('info', info);
+app.use('/info', info);
 app.use('/mid',equip_insert);
 
 app.listen(8000,function(){
