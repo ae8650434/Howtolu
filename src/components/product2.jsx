@@ -32,7 +32,7 @@ class Product2 extends Component {
                 <div id="container">
                     <Productbar2 foodFcid={fcidFood} />
 
-                    <Product4 foodList={foodList} selectedFood={selectedFood} fcidFood={fcidFood} />
+                    <Product4 foodList={foodList} selectedFood={this.state.selectedFood} fcidFood={fcidFood} />
 
 
                 </div>
