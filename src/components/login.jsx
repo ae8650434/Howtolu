@@ -62,6 +62,7 @@ class Login extends Component {
                 <label htmlFor="account" className={styles.loginlabel}>帳號</label>
                 <input type="text" name="account"
                   id="account"
+                  placeholder="格式：0912345678"
                   className={styles.login}
                   value={this.state.user.account}
                   onChange={
