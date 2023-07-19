@@ -80,7 +80,7 @@ export class Product4 extends Component {
     var quantity = parseInt(quantityLabel.textContent);
     quantity++;
     quantityLabel.textContent = quantity;
-    console.log(quantity);
+
   }
 
   handledown = (event) => {
@@ -121,7 +121,7 @@ export class Product4 extends Component {
                 <label className="count">0</label>
                 <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
-                <a href={`/food_detail/${x.fid}`}><button className="btnq" onClick={this.okButtonClick}>選購</button></a>
+                <a href={`/food_detail/${x.fid}`}><button id={x.fid} className="btnq" onClick={this.okButtonClick}>選購</button></a>
               </figure>
             </div>
           ))}
@@ -131,27 +131,31 @@ export class Product4 extends Component {
 
 
   }
+
   okButtonClick = async () => {
+    
     const { selectedFood } = this.props;
+    
     const { item } = this.state;
-  
+
     // 将选定的商品数据添加到item对象中，这里可以根据实际情况自行设置
     item.selectedFood = selectedFood;
-  
+
     await axios.post(
       "http://localhost:8000/product2/add",
-      JSON.stringify(this.state.item),
+      this.state.item,
+
       {
         headers: {
           "Content-type": "application/json"
         }
       }
     );
-  
-    window.location = "#";
+
+    // window.location = "#";
   }
-  
-  
+
+
   componentDidMount = async () => {
     var result = await axios.get('http://localhost:8000/food/list');
     var newState = { ...this.state };

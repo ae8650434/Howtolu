@@ -15,11 +15,7 @@ var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
 var cors = require("cors");
-<<<<<<< HEAD
 const sql = require("./DB.js");
-=======
-
->>>>>>> refs/remotes/origin/main
 app.use( express.static("public")  );
 app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
@@ -42,11 +38,12 @@ app.use('/info', info);
 app.use('/mid',equip_insert);
 
 app.post("/product2/add", function (req, res) {
-    console.log(req.body)
+    
    
     sql.query("INSERT INTO car(cid, mid, pid, fid, c_day, use_date, return_date, quantity) VALUES (?,?,null,?,?,null,null,?)", 
         [req.body.cid, req.body.mid, req.body.fid, req.body.c_day, req.body.quantity],
         function (err, rows) {
+            
             res.send( JSON.stringify( req.body ));
         }
     )
