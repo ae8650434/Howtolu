@@ -126,7 +126,7 @@ class EquipDetail extends Component {
             }
 
             const arryDate = dates.map((date, index) => (
-                <span id={`a${index}`} key={index}>{date}</span>
+                <span id={`a${index}`} key={index} class={date}>{date}</span>
             ));
             return (
                 <React.Fragment>
@@ -372,8 +372,6 @@ class EquipDetail extends Component {
             }
             this.state.car=newCar
             this.setState(newCar)
-            console.log("hdsad",this)
-            console.log("123",window)
             console.log("123",this.state.car)
             // console.log(mtel);
             // console.log('租借日',this.state.arryDate[0]);
