@@ -74,7 +74,7 @@ class EquipDetail extends Component {
         });
     }
 
-    // 格式化日期 yyyy/mm/dd
+    // 格式化日期 yyyy-mm-dd
     formatDateString(date) {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -155,7 +155,7 @@ class EquipDetail extends Component {
                         </div>
 
                         <div className={styles.myform}>
-                            <form id={styles['myform']} method='get' action='#' onSubmit={this.formSubmit}>
+                            <form id={styles['myform']} method='get' action='#' >
                                 <div>
                                     <Calendar
                                         locale="en-US"
