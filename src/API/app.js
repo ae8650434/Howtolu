@@ -15,11 +15,6 @@ var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
 var cors = require("cors");
-<<<<<<< HEAD
-const sql = require("./DB.js");
-=======
-
->>>>>>> refs/remotes/origin/main
 app.use( express.static("public")  );
 app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
