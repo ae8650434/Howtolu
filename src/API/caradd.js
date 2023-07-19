@@ -8,14 +8,13 @@ var DB = require("./DB.js");
 // 設置路由
 
 app.get('/', function (req, res) {
-    var sql = 'SELECT * FROM food_class';
+    var sql = 'SELECT * FROM car';
     DB.query(
         sql, function (err, data) {
             if (err) {
                 res.send("無法查詢資料");
             } else {
                 res.send( JSON.stringify(data) );
-                
             }
         }
         )
