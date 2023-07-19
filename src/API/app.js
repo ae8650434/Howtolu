@@ -21,7 +21,6 @@ app.use( express.urlencoded( {extended: true}) );
 app.use(cors());
 
 
-
 app.use("/product/list",selectall);
 app.use("/cart",cart);
 app.use("/product",select);
