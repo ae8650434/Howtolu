@@ -8,98 +8,110 @@ class Info extends Component {
         super(props);
         this.state = {
             user: {
+                mid: '',
                 m_img: null,
                 name: '',
-                tel: '0923232323',
+                tel: '',
                 gender: '請選擇',
-                mail: 'aaa@gmail.com',
-                address: 'aaaaaa',
-                password: '33333eeeee',
+                mail: '',
+                address: '',
+                password: '',
                 new_password: '',
                 new_password2: '',
+            },
+
+            errors: {
+                password: '',
+                mail: ''
             }
 
         }
     }
 
-    componentDidMount=  async () =>{
-      try {
-          const account = sessionStorage.getItem('account')
-          const response = await axios.get(`http://localhost:8000/info?account=${account}`); 
-          const userData = response.data.userdata;
-          console.log('ccc',userData) // 假设响应的数据是用户对象
-<<<<<<< HEAD
-          console.log('ddd',this.state.user.m_img) // 假设响应的数据是用户对象
-        //   this.setState({ user: userData });
-          if(this.state.user.m_img) {
-            console.log('666',this.state.user.m_img)
-          this.state.user.m_img = this.state.user.m_img
-          console.log('33',this.state.user.m_img)
-        }else {
-          this.state.user.m_img = 'Head.png'
-          console.log('44',this.state.user.m_img )
-        }
-        this.setState(this.state);
-=======
-         
-          if(userData.m_img) {
-              console.log('666',userData.m_img)
-              userData.m_img = userData.m_img
-            console.log('33',this.state.user.m_img)
-          }else {
-            userData.m_img = 'Head.png'
-            console.log('44',userData.m_img )
-          }
-          console.log("fhlkdsa",this.state.user.userData)
-          this.setState({ user: userData });
->>>>>>> refs/remotes/origin/main
+    componentDidMount = async () => {
+        try {
+            const account = sessionStorage.getItem('account')
+            const response = await axios.get(`http://localhost:8000/info?account=${account}`);
+            const userData = response.data.userdata;
+            console.log('ccc', userData) // 假设响应的数据是用户对象
+
+            if (userData.m_img) {
+                this.setState((prevState) => ({
+                    user: {
+                        ...prevState.user,
+                        m_img: userData.m_img,
+                        mid: userData.mid,
+                        name: userData.name,
+                        tel: userData.tel,
+                        gender: userData.gender,
+                        mail: userData.mail,
+                        address: userData.address,
+                        password: userData.password,
+                    },
+                }));
+            } else {
+                this.setState((prevState) => ({
+                    user: {
+                        ...prevState.user,
+                        m_img: '/image/Head.png',
+                        mid: userData.mid,
+                        name: userData.name,
+                        tel: userData.tel,
+                        gender: userData.gender,
+                        mail: userData.mail,
+                        address: userData.address,
+                        password: userData.password,
+                    },
+                }));
+            }
         } catch (error) {
-            // 处理错误
-            if(error.response.data == 401) {
-                console.log('未登入')
+            if (error.response.status === 401) {
+                console.log('未登入');
             }
         }
-        console.log('777',this.state )
-        
     }
-<<<<<<< HEAD
-    // componentDidUpdate =()=>{
-    //     if(this.state.user.m_img) {
-    //         console.log('666',this.state.user.m_img)
-    //       this.state.user.m_img = this.state.user.m_img
-    //       console.log('33',this.state.user.m_img)
-    //     }else {
-    //       this.state.user.m_img = 'Head.png'
-    //       console.log('44',this.state.user.m_img )
-    //     }
-    //     // this.setState(this.state.user.m_img);
-    // }
-=======
->>>>>>> refs/remotes/origin/main
+
+    handleFileChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            const base64String = reader.result;
+            this.setState((prevState) => ({
+                user: {
+                    ...prevState.user,
+                    m_img: base64String,
+                },
+            }));
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
 
 
     render() {
+        const { errors } = this.state
         return (
 
             <div className={styles.short}>
                 <ul className={styles.info_ul}>
-                    <li className={styles.info_li}><a href="/info" style={{ textDecoration: "none" }}><p className={styles.info_li_first}>編輯會員資料</p></a></li>
-                    <li className={styles.info_li}><a href="/order_list" style={{ textDecoration: "none" }}><p className={styles.form}>訂單查詢</p></a></li>
+                    <li className={styles.info_li}><a href="/info" style={{ textDecoration: "none", color: 'blue' }}><p className={styles.info_li_first}>編輯會員資料</p></a></li>
+                    <li className={styles.info_li}><a href="/order_list" style={{ textDecoration: "none", color: 'blue' }}><p className={styles.form}>訂單查詢</p></a></li>
                     <li className={styles.info_li}>
-                        <a href="" style={{ textDecoration: "none" }}>登出</a>
+                        <a style={{ textDecoration: "none", color: 'blue' }} onClick={this.logoutClick}>登出</a>
                     </li>
                 </ul>
 
-                <form action="" className={styles.form}>
-                {console.log('bbbbbbb',this.state)}
+                <form action="http://localhost:8000/info/member" method='post' className={styles.form} encType="multipart/form-data">
+                    {console.log('bbbbbbb', this.state)}
                     <p className={styles.info_p_first}>我的大頭照</p>
-                    <img src={`/image/${this.state.user.m_img}`} 
-                    className={styles.info_pic} 
-                
-            
+                    <img src={this.state.user.m_img}
+                        className={styles.info_pic}
                     />
-                    {console.log('aa',this.state.user.m_img)}
-                    <input type="file" className={styles.info_file} />
+                    {console.log('aa', this.state.user.m_img)}
+                    <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} />
                     <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
                         <div className={styles.info_from_div}>
@@ -146,6 +158,12 @@ class Info extends Component {
                                 }
                             />
                         </div>
+                        {errors.mail && (
+                            <div className={styles.warning_title} style={{ paddingLeft: '270px', marginTop: '-25px', textAlign: 'right', width: '280px' }}>
+                                <img src="/image/warning.png" className={styles.pic} />
+                                <span className={styles.warning}>{errors.mail}</span>
+                            </div>
+                        )}
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>居住地址（選填）</label>
                             <input type="text"
@@ -170,7 +188,7 @@ class Info extends Component {
                             </div>
                             <div className={styles.info_password}>
                                 <label htmlFor="" className={`${styles.info_label_word} ${styles.info_password_word}`}>設定新密碼</label>
-                                <input type="password"
+                                <input type="password" id='new_password'
                                     className={styles.info_label}
                                     value={this.state.user.new_password}
                                     onChange={(e) => {
@@ -183,7 +201,7 @@ class Info extends Component {
                             </div>
                             <div className={styles.info_password}>
                                 <label htmlFor="" className={`${styles.info_label_word} ${styles.info_password_word}`}>確認新密碼</label>
-                                <input type="password"
+                                <input type="password" id='new_password2'
                                     className={styles.info_label}
                                     value={this.state.user.new_password2}
                                     onChange={(e) => {
@@ -194,9 +212,15 @@ class Info extends Component {
                                     }
                                 />
                             </div>
+                            {errors.password && (
+                                <div className={styles.warning_title}>
+                                    <img src="/image/warning.png" className={styles.pic} />
+                                    <span className={styles.warning}>{errors.password}</span>
+                                </div>
+                            )}
                             <br /><br />
                             <div className={styles.info_submit_div}>
-                                <input type="submit" value="儲存變更" className={styles.info_submit} />
+                                <input type="submit" value="儲存變更" className={styles.info_submit} onClick={this.onButtonClick} />
                             </div>
                         </div>
                     </div>
@@ -206,13 +230,74 @@ class Info extends Component {
         );
     }
 
-
-    // onButtonClick = async () => {
-    //         var information = await axios.get('http://localhost:8000/info', {
-    //             account: sessionStorage.getItem('account')
-    //         })
-    //     }
-
+    logoutClick = () => {
+        sessionStorage.clear();
+        window.location.href = '/';
     }
+
+    onButtonClick = async (e) => {
+        e.preventDefault();
+        var new_password = document.getElementById('new_password').value
+        var new_password2 = document.getElementById('new_password2').value
+        const { password, mail } = this.state.user;
+
+        const regexPattern = {
+            mail: /^\S+@\S+\.\S+$/,
+            password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
+        };
+
+        const errors = {
+            mail: '',
+            password: ''
+        };
+
+        if (!regexPattern.mail.test(mail)) {
+            errors.mail = '請輸入有效的e-mail';
+
+        }
+        if (regexPattern.password.test(password) != 0 && !regexPattern.password.test(password)) {
+            errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
+        }
+
+        if (new_password != new_password2) {
+            errors.password = '請確認密碼是否相同';
+        }
+
+        this.setState({ errors })
+
+
+
+        const { user } = this.state;
+
+        const formData = new FormData();
+        formData.append('image', user.m_img); // 将用户选择的图像文件添加到FormData对象中
+
+
+
+        var response = await axios.post('http://localhost:8000/info/member', {
+            account: sessionStorage.getItem('account'),
+            formData,
+            user: this.state.user
+        },
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+        )
+
+        if (response.status === 200) {
+            // 响应状态码为200，表示成功
+            // 在此处处理成功响应的逻辑
+            console.log('OK')
+            // alert('註冊成功')
+        } else {
+            // 其他状态码处理
+            console.error(response.data);
+            // 进行相应的错误处理逻辑
+        }
+    }
+
+}
 
 export default Info;
