@@ -1,0 +1,16 @@
+.slotdiv{
+    width: 100%;
+    height: 800px;
+    position: relative;
+    box-sizing: border-box;
+    
+}
+.slotimg{
+    object-fit:cover;
+    position: absolute;
+    box-sizing: border-box;
+    height: 800px;
+    width: 1200px;
+    left: 15%;
+   
+}

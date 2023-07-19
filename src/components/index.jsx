@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slot from './index/slot.jsx'
+import Slot from './index/slotbtn.jsx'
 import About from './index/about.jsx'
 import Productlink from './index/productlink.jsx'
 import Activity from './index/activity.jsx'
