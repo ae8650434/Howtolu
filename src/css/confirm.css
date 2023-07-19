@@ -1,0 +1,125 @@
+body {
+  background-color: #E8E8E8;
+}
+
+#confirm * {
+  box-sizing: border-box;
+}
+
+#confirm {
+  margin-top: 200px;
+  height: 500px;
+}
+#confirm .container {
+  max-width: 1200px;
+  margin: auto;
+}
+#confirm .d-flex {
+  display: flex;
+}
+#confirm .justify-content-center {
+  justify-content: center;
+}
+#confirm .justify-content-between {
+  justify-content: space-between;
+}
+#confirm .align-items-center {
+  align-items: center;
+}
+#confirm .align-items-stretch {
+  align-items: stretch;
+}
+#confirm .align-items-start {
+  align-items: start;
+}
+#confirm .d-block {
+  display: block;
+}
+#confirm .flex-grow-1 {
+  flex-grow: 1;
+}
+#confirm .flex-grow-0 {
+  flex-grow: 0;
+}
+#confirm .algin-top {
+  vertical-align: top;
+}
+#confirm .align-baseline {
+  vertical-align: baseline;
+}
+#confirm .align-bottom {
+  vertical-align: bottom;
+}
+#confirm .col-3 {
+  width: 25%;
+}
+#confirm .col-9 {
+  width: 75%;
+}
+#confirm .text-end {
+  text-align: end;
+}
+#confirm .text-start {
+  text-align: start;
+}
+#confirm .text-center {
+  text-align: center;
+}
+#confirm .ps-3 {
+  padding-left: 16px;
+}
+#confirm .mt-5 {
+  margin-top: 48px;
+}
+#confirm .mb-5 {
+  margin-bottom: 48px;
+}
+#confirm .ms-auto {
+  margin-left: auto;
+}
+#confirm p {
+  margin: 0;
+  padding: 0;
+}
+#confirm h1 {
+  font-size: 38px;
+  text-align: center;
+}
+#confirm h2 {
+  font-size: 38px;
+}
+#confirm hr {
+  height: 5px;
+  background-color: #000;
+  margin-bottom: 30px;
+}
+#confirm img {
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+#confirm .details {
+  padding: 10px 20px;
+  background-color: #fff;
+}
+#confirm .details li {
+  list-style: disc;
+}
+#confirm .details span.material-symbols-outlined {
+  font-size: 16px;
+  line-height: 1.2;
+  height: 18px;
+}
+#confirm .check {
+  background-color: #fff;
+  padding: 10px 30px;
+}
+#confirm button {
+  padding: 10px 20px;
+  border: 1px solid gray;
+  background-color: #fff;
+}
+#confirm button:hover {
+  background-color: #519b44;
+  color: white;
+}/*# sourceMappingURL=confirm.css.map */
