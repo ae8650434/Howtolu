@@ -46,7 +46,8 @@ class Product3 extends Component {
 export class Product4 extends Component {
   state = {
     foodList: [],
-    selectedCategory: null
+    selectedCategory: null,
+    item: {}
   }
   componentDidMount = () => {
     var plusButtons = document.querySelectorAll('.btn0');
@@ -92,7 +93,7 @@ export class Product4 extends Component {
   }
 
   render() {
-    const { foodList, selectedFood, fcidFood, selectedCategory } = this.props;
+    const { foodList, selectedFood, selectedCategory } = this.props;
 
     let filteredList = foodList;
     if (selectedFood) {
@@ -120,7 +121,7 @@ export class Product4 extends Component {
                 <label className="count">0</label>
                 <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
-                <a href={`/food_detail/${x.fid}`}><button className="btnq">選購</button></a>
+                <a href={`/food_detail/${x.fid}`}><button className="btnq" onClick={this.okButtonClick}>選購</button></a>
               </figure>
             </div>
           ))}
@@ -130,15 +131,35 @@ export class Product4 extends Component {
 
 
   }
-
+  okButtonClick = async () => {
+    const { selectedFood } = this.props;
+    const { item } = this.state;
+  
+    // 将选定的商品数据添加到item对象中，这里可以根据实际情况自行设置
+    item.selectedFood = selectedFood;
+  
+    await axios.post(
+      "http://localhost:8000/product2/add",
+      JSON.stringify(this.state.item),
+      {
+        headers: {
+          "Content-type": "application/json"
+        }
+      }
+    );
+  
+    window.location = "#";
+  }
+  
+  
   componentDidMount = async () => {
     var result = await axios.get('http://localhost:8000/food/list');
     var newState = { ...this.state };
     newState.foodList = result.data;
-    
+
 
     this.setState(newState);
-    
+
   }
 
 }
