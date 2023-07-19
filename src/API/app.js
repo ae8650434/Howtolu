@@ -14,6 +14,7 @@ var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
+var food_insert = require('./food_insert.js')
 var cors = require("cors");
 app.use( express.static("public")  );
 app.use( express.json() );
@@ -34,19 +35,9 @@ app.use("/reset",reset);
 app.use('/revise', revise);
 app.use('/info', info);
 app.use('/mid',equip_insert);
+app.use('/mid',food_insert);
 
-app.post("/product2/add", function (req, res) {
-    
-   
-    sql.query("INSERT INTO car(cid, mid, pid, fid, c_day, use_date, return_date, quantity) VALUES (?,?,null,?,?,null,null,?)", 
-        [req.body.cid, req.body.mid, req.body.fid, req.body.c_day, req.body.quantity],
-        function (err, rows) {
-            
-            res.send( JSON.stringify( req.body ));
-        }
-    )
 
-})
 
 app.listen(8000,function(){
     console.log('啟動')
