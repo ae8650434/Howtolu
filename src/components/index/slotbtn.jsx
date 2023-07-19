@@ -9,12 +9,12 @@ class slotbtn extends Component {
         return (
             <div className={slotstyle.slotdiv}>
                 <Slot/>
-                <button onClick={this.slot}>案</button>
+                <button onClick={this.slot}>測試的按鈕</button>
             </div>
         )
     }
     slot=()=>{
-        
+
     }
 }
  

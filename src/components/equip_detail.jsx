@@ -383,8 +383,8 @@ class EquipDetail extends Component {
             }
             this.state.car=newCar
             this.setState(newCar)
-            console.log("hdsad",response)
-            console.log("123",newCar)
+            console.log("hdsad",this)
+            console.log("123",window)
             console.log("123",this.state.car)
             // console.log(mtel);
             // console.log('租借日',this.state.arryDate[0]);
