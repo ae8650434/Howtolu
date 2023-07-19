@@ -13,8 +13,13 @@ var cart=require("./cart.js")
 var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
 var info = require('./info.js')
+var equip_insert = require('./equip_insert.js')
 var cors = require("cors");
+<<<<<<< HEAD
 const sql = require("./DB.js");
+=======
+
+>>>>>>> refs/remotes/origin/main
 app.use( express.static("public")  );
 app.use( express.json() );
 app.use( express.urlencoded( {extended: true}) );
@@ -32,8 +37,9 @@ app.use("/login",login);
 app.use("/food/list",food);
 app.use("/food",food_detail);
 app.use("/reset",reset);
-app.use('/revise', revise)
-app.use('info', info)
+app.use('/revise', revise);
+app.use('/info', info);
+app.use('/mid',equip_insert);
 
 app.post("/product2/add", function (req, res) {
     console.log(req.body)

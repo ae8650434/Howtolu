@@ -19,11 +19,6 @@ app.get('/:pid', function (req, res) {
             }
         }
     );
-    // DB.query(
-    //     rsql,[req],function(err,data){
-
-    //     }
-    // )
 
 })
 

@@ -4,20 +4,56 @@ import Calendar from 'react-calendar';
 import styles from '../css/equip_detail.module.css';
 import Productbarr from './productbar';
 import '../css/calendar.css';
-import cookie from 'react-cookies';
+// import Modal from 'react-modal';
+
+// Modal.setAppElement('#root'); // 設定應用的根元素
 
 class EquipDetail extends Component {
     // state = { isFlying: false }
-    states = {
-        product:
+    // state = {
+    //     product:
+    //         [{
+    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
+    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+    //         }]
+    // }
+    // state = {
+    //     productList:
+    //         [{
+    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+    //         },
+    //         {
+    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+    //         },
+    //         {
+    //             pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
+    //             description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
+    //             pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
+    //         }
+    //         ]
+    // }
+
+    constructor(props) {
+        super(props);
+
+        // 設定星期
+        const today = new Date();
+        const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+        const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+        this.state = {
+            product:
             [{
                 pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "product_1.png",
                 description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
                 pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
-            }]
-    }
-    stateAll = {
-        productList:
+            }],
+            productList:
             [{
                 pid: 1, pname: "鐘型帳(2-6人)", price: 1800, day: 3, reserve: 20, p_img: "produc_1.png",
                 description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
@@ -33,24 +69,22 @@ class EquipDetail extends Component {
                 description: "純棉材質具有防水、透氣及抗紫外線的功能，適用於4季各種不同的氣候下使用;建議適用人數：2人(奢華)/4人(舒適)/最多6人(睡袋);建議搭帳人數：1人以上;適用場地 : 草皮區",
                 pc_id: 1, information: "套裝內容 : 帳篷本體、本體營柱x1、A型門柱x1、本體營釘X13、側裙營樁X14、附調節片營繩 X14、本體攜行袋、營柱收納袋、營釘收納袋;隨附配件：營槌、防水地布(先鋪設再搭帳)、帳內地墊;面積：4.83坪;直徑：450cm;高度：274cm;門高：167cm;最大容量：6人;總重量: 36 kg"
             }
-            ]
-    }
-
-    constructor(props) {
-        super(props);
-
-        // 設定星期
-        const today = new Date();
-        const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
-        const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
-        this.state = {
+            ],
             value: new Date(),
             today: today,
             maxDate: maxDate,
             minDate: minDate,
             selectedDate: null,
             count: 0,
+            car: {
+                mid:'',
+                pid:'',
+                fid:'',
+                c_day:'',
+                use_dat:'',
+                return_date:'',
+                quantity:''
+            },
         };
     }
 
@@ -79,7 +113,6 @@ class EquipDetail extends Component {
     // 渲染選定日期的連續三天的日期
     renderDates() {
         const { selectedDate } = this.state;
-
         if (selectedDate) {
             const startDate = new Date(selectedDate);
             const endDate = new Date(selectedDate);
@@ -106,26 +139,26 @@ class EquipDetail extends Component {
     }
     // 數量按鈕 & 上限為庫存
     handleAdd = () => {
-        if (this.state.count < this.states.product[0].reserve ) {
+        if (this.state.count < this.state.product[0].reserve) {
             this.setState(prevState => ({
-              count: prevState.count + 1
+                count: prevState.count + 1
             }));
-          }
-        };
+        }
+    };
     handleMinus = () => {
         this.setState((prevState) => ({
             count: prevState.count > 0 ? prevState.count - 1 : 0,
         }));
     };
-    
+
     // 要寫按鈕送出後 1.要回到商品頁2.進購物車資料庫
 
 
     render() {
-        const { value, maxDate, minDate } = this.state;
-        // { console.log(this.states.product[0]) }
-        const productArray = this.states.product[0].description.split(";");
-        const productInfArray = this.states.product[0].information.split(";");
+        const { value, maxDate, minDate, handleOpen } = this.state;
+        // { console.log(this.state.product[0]) }
+        const productArray = this.state.product[0].description.split(";");
+        const productInfArray = this.state.product[0].information.split(";");
         // const totop = () => {
         //     this.setState({ isFlying: true });
         //     window.scrollTo({
@@ -141,16 +174,16 @@ class EquipDetail extends Component {
 
                 <div>
                     <div className={`${styles.image} ${this.state.isFlying ? styles.flyAway : ""}`}>
-                        <a target="_blank" href={`/image/${this.states.product[0].p_img}`}>
-                            <img src={`/image/${this.states.product[0].p_img}`} /></a>
+                        <a target="_blank" href={`/image/${this.state.product[0].p_img}`}>
+                            <img src={`/image/${this.state.product[0].p_img}`} /></a>
                     </div>
                     <div className={styles.commodityall}>
                         <div className={styles.commodity}>
-                            <p>{this.states.product[0].pname}</p>
+                            <p>{this.state.product[0].pname}</p>
                             <p>
                                 <span>NT$</span>
-                                <span>{this.states.product[0].price}</span>
-                                <span>— {this.states.product[0].day}日</span>
+                                <span>{this.state.product[0].price}</span>
+                                <span>— {this.state.product[0].day}日</span>
                             </p>
                             <ul>
                                 {productArray.map((data, index) => (
@@ -177,13 +210,28 @@ class EquipDetail extends Component {
                                 <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} />
                                 <input type='button' name='quantity' value={this.state.count} className={styles.qty} />
                                 <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} />
-                                <input type='button' value='立即預約' className={styles.reserve} />
-                                {/* onClick={totop}  */}
-                                <p><span>庫存量:</span><span>{this.states.product[0].reserve}</span></p>
+                                <input type='button' value='立即預約' className={styles.reserve} onClick={this.handleReserve} />
+                                <p><span>庫存量:</span><span>{this.state.product[0].reserve}</span></p>
                             </form>
                         </div>
                     </div>
                 </div>
+                {handleOpen &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseClick}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>請登入會員！</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
+
                 <div className={styles.information}>
                     <p>商品資訊</p>
                     <ul>
@@ -196,45 +244,45 @@ class EquipDetail extends Component {
                     <p>經常一起租借裝備：</p>
                     <div>
                         <div className={styles.container}>
-                            <a href={`/equip_detail/${this.stateAll.productList[0].pid}`}> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
-                                src={`/image/${this.stateAll.productList[0].p_img}`} alt="Avatar" />
+                            <a href={`/equip_detail/${this.state.productList[0].pid}`}> <img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.state.productList[0].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
-                                        <p>{this.stateAll.productList[0].pname}</p>
+                                        <p>{this.state.productList[0].pname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.stateAll.productList[0].price}</span>
-                                            <span>— {this.stateAll.productList[0].day}日</span>
+                                            <span>{this.state.productList[0].price}</span>
+                                            <span>— {this.state.productList[0].day}日</span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div className={styles.container}>
-                            <a href={`/equip_detail/${this.stateAll.productList[1].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
-                                src={`/image/${this.stateAll.productList[1].p_img}`} alt="Avatar" />
+                            <a href={`/equip_detail/${this.state.productList[1].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.state.productList[1].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
-                                        <p>{this.stateAll.productList[1].pname}</p>
+                                        <p>{this.state.productList[1].pname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.stateAll.productList[1].price}</span>
-                                            <span>— {this.stateAll.productList[1].day}日</span>
+                                            <span>{this.state.productList[1].price}</span>
+                                            <span>— {this.state.productList[1].day}日</span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div className={styles.container}>
-                            <a href={`/equip_detail/${this.stateAll.productList[2].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
-                                src={`/image/${this.stateAll.productList[2].p_img}`} alt="Avatar" />
+                            <a href={`/equip_detail/${this.state.productList[2].pid}`}><img className={styles.cimage} style={{ width: '350px', height: '350px' }}
+                                src={`/image/${this.state.productList[2].p_img}`} alt="Avatar" />
                                 <div className={styles.overlay}>
                                     <div className={styles.imgtext}>
-                                        <p>{this.stateAll.productList[2].pname}</p>
+                                        <p>{this.state.productList[2].pname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.stateAll.productList[2].price}</span>
-                                            <span>— {this.stateAll.productList[2].day}日</span>
+                                            <span>{this.state.productList[2].price}</span>
+                                            <span>— {this.state.productList[2].day}日</span>
                                         </p>
                                     </div>
                                 </div>
@@ -256,7 +304,7 @@ class EquipDetail extends Component {
                         <li><a href="">保暖裝備</a></li>
                         <li><a href="">常用配件</a></li>
                     </ul>
-                    {console.log(cookie.load("account"))};
+
                 </div>
             </React.Fragment>
 
@@ -267,29 +315,29 @@ class EquipDetail extends Component {
         var pid = this.props.match.params.pid;
         var url = `http://localhost:8000/product/${pid}`;
         var result = await axios.get(url);
-        var newStates = { ...this.states };
-        newStates.product = result.data;
+        var newstate = { ...this.state };
+        newstate.product = result.data;
         // console.log("555",newState.product)
-        this.states = newStates;
-        this.setState(this.states);
+        this.state = newstate;
+        this.setState(this.state);
         // console.log("123",newState.product); 
 
         // 查全部商品
         var urlAll = "http://localhost:8000/product/list";
         var resultAll = await axios.get(urlAll);
-        var newStateAll = { ...this.stateAll };
-        var newstatesto = { ...this.statesAll };
-        newStateAll.productList = resultAll.data;
-        var newstatesto = JSON.parse(JSON.stringify(newStateAll));
-        // console.log("123",newStateAll.productList);
-        this.stateAll = newStateAll;
-        this.setState(this.stateAll);
+        var newstate = { ...this.state };
+        var newstateto = { ...this.state };
+        newstate.productList = resultAll.data;
+        var newstateto = JSON.parse(JSON.stringify(newstate));
+        // console.log("123",newstate.productList);
+        this.state = newstate;
+        this.setState(this.state);
         // console.log(typeof this.props.match.params.pid)
         var abc = parseInt(this.props.match.params.pid);
         abc += 4
         var bbb = abc + 1
         var ccc = abc + 2
-        // console.log("555",newStateAll.productList[abc]);
+        // console.log("555",newstate.productList[abc]);
         if (abc >= 32) {
             abc -= 32
         } else {
@@ -307,20 +355,71 @@ class EquipDetail extends Component {
         } else {
             ccc = ccc
         }
-        // console.log(abc);
-        // console.log(newstatesto);
-        // console.log(this.stateAll);
-        this.stateAll.productList[2] = newstatesto.productList[ccc]
-        this.stateAll.productList[1] = newstatesto.productList[bbb]
-        this.stateAll.productList[0] = newstatesto.productList[abc]
-        // console.log(this.stateAll.productList)
-        // console.log(this.stateAll.productList[1])
-        // console.log(this.stateAll.productList[2])
-        // console.log(abc)
-        // console.log(bbb)
-        // console.log(ccc)
+   
+        this.state.productList[2] = newstateto.productList[ccc]
+        this.state.productList[1] = newstateto.productList[bbb]
+        this.state.productList[0] = newstateto.productList[abc]
+   
 
     }
+
+    // 判斷 是否有登入會員
+    handleReserve = async (e) => {
+        const mtel = sessionStorage.getItem('account')
+        if (mtel == null) {
+            this.setState({ handleOpen: true })
+        } else {
+            var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
+            var newCar={...this.state.car} ;
+          
+          newCar=  {
+                mid:response.data.data[0].mid,
+                pid:this.state.product[0].pid,
+                fid:null,
+                c_day:this.state.product[0].day,
+                // use_dat:this.state.arryDate[0],
+                // return_date:this.state.arryDate[2],
+                quantity:this.state.count
+            }
+            this.state.car=newCar
+            this.setState(newCar)
+            console.log("hdsad",response)
+            console.log("123",newCar)
+            console.log("123",this.state.car)
+            // console.log(mtel);
+            // console.log('租借日',this.state.arryDate[0]);
+            // console.log('歸還日',this.state.arryDate[2]);
+
+            const cars = await axios.post(
+                "http://localhost:8000/mid/tocar",
+                this.state.car, // 直接傳對象作為請求值
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+
+            );
+            if (cars.status === 200) {
+                // 表示成功
+               console.log("OK")
+             
+            } else {
+                console.error(cars.data);
+            }
+
+
+
+        }
+    }
+
+    // 關閉 請登入會員彈窗
+    handleCloseClick = () => {
+        this.setState({ handleOpen: false });
+        const { history } = this.props;
+        history.push('/login');
+    }
+
 }
 
 export default EquipDetail;

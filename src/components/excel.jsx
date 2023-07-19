@@ -62,22 +62,22 @@ function Excel() {
             {items && (
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-                            {items.map((row, index) => (
-                        <div id={cartstyle['text1']}>
-                            <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
-                            <div id={cartstyle['shopping3']} key={index}>
-                                <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
-                                    <br /><br /><br /><br />
-                                <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
-                                <p></p>
-                                <div id={cartstyle['disFlex']}>
-                                    <b id={cartstyle["moneySize"]}>金額:250</b>
-                                    <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
-                                    <button id={cartstyle["butRubbish"]}
-                                        onclick='del'><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
-                                </div> <br /><br />
+                        {items.map((row, index) => (
+                            <div id={cartstyle['text1']}>
+                                <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
+                                <div id={cartstyle['shopping3']} key={index}>
+                                    <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
+                                      <br /><br /><br /><br />
+                                    <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
+                                    <p></p>
+                                    <div id={cartstyle['disFlex']}>
+                                      <b id={cartstyle["moneySize"]}>金額:250</b>
+                                      <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
+                                      <button id={cartstyle["butRubbish"]}
+                                          onclick='del'><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                    </div> <br /><br />
+                                </div>
                             </div>
-                        </div>
                         ))}
                     </div>
                 </div>

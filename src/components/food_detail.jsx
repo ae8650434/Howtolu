@@ -47,6 +47,12 @@ class FoodDetail extends Component {
     // formSubmit = (e) => {
     //     e.preventDefault();
     // };
+
+    foodClick = (category) => {
+        this.setState({ fcidFood: category,selectedFood:null });
+        
+      };
+
     render() {
         const { fidNum } = this.props;
         return (
