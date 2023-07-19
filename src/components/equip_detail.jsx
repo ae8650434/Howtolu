@@ -130,8 +130,8 @@ class EquipDetail extends Component {
             ));
             return (
                 <React.Fragment>
-                    <p>租借日：{arryDate[0]}</p>
-                    <p >歸還日：{arryDate[2]}</p>
+                    <p id='abc'>租借日：{arryDate[0]}</p>
+                    <p id='xyz'>歸還日：{arryDate[2]}</p>
                 </React.Fragment>
             );
         }
@@ -344,18 +344,11 @@ class EquipDetail extends Component {
         } else {
             ccc = ccc
         }
-        // console.log(abc);
-        // console.log(newstateto);
-        // console.log(this.state);
+   
         this.state.productList[2] = newstateto.productList[ccc]
         this.state.productList[1] = newstateto.productList[bbb]
         this.state.productList[0] = newstateto.productList[abc]
-        // console.log(this.state.productList)
-        // console.log(this.state.productList[1])
-        // console.log(this.state.productList[2])
-        // console.log(abc)
-        // console.log(bbb)
-        // console.log(ccc)
+   
 
     }
 
@@ -365,17 +358,23 @@ class EquipDetail extends Component {
         if (mtel == null) {
             this.setState({ handleOpen: true })
         } else {
-            var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`,
-                {
-                    mid: this.mid,
-                    pid: this.state.product[0].pid,
-                    fid: null,
-                    c_day: this.state.product[0].day,
-                    // use_dat:this.state.arryDate[0],
-                    // return_date:this.state.arryDate[2],
-                    quantity: this.state.count
-                })
-            console.log('這個', this)
+            var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
+            var newCar={...this.state.car} ;
+          
+          newCar=  {
+                mid:response.data.data[0].mid,
+                pid:this.state.product[0].pid,
+                fid:null,
+                c_day:this.state.product[0].day,
+                use_dat:document.getElementById('abc').text,
+                return_date:document.getElementById('xyz').text,
+                quantity:this.state.count
+            }
+            this.state.car=newCar
+            this.setState(newCar)
+            console.log("hdsad",this)
+            console.log("123",window)
+            console.log("123",this.state.car)
             // console.log(mtel);
             // console.log('租借日',this.state.arryDate[0]);
             // console.log('歸還日',this.state.arryDate[2]);
