@@ -74,7 +74,7 @@ class Info extends Component {
     handleFileChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
-
+console.log(file )
         reader.onloadend = () => {
             const base64String = reader.result;
             this.setState((prevState) => ({

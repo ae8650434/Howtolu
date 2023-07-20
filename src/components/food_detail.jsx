@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/food_detail.module.css';
+import Productbar2 from './productbar2'
 class FoodDetail extends Component {
     constructor(props) {
         super(props);
-       this.state = {
+        this.state = {
             food:
                 [{
                     "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
@@ -51,7 +52,8 @@ class FoodDetail extends Component {
         return (
             <React.Fragment>
                 <div className={styles.categories_food}>
-                    <p>商品分類</p>
+                    <Productbar2  className={styles.categories_food}/>
+                    {/* <p>商品分類</p>
                     <ul className={styles.categoriesUl_food}>
                         <li><a href="http://localhost:3000/product2/combo">套餐</a>
                             <ul>
@@ -63,7 +65,7 @@ class FoodDetail extends Component {
                             </ul>
                         </li>
                         <li><a href="http://localhost:3000/product2/SinglePoint">單點</a></li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div>
                     <div className={styles.image_food}>

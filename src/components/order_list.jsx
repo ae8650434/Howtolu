@@ -8,53 +8,61 @@ class Order_list extends Component {
     this.state = {
       displayOrderList: false,
 
-      user: {
-        order_number: '20230802001',
-        order_date: '2023/07/24',
-        price: 3000,
-        use_date: '2023/08/02',
-        return_date: '2023/08/05',
-        os: '未歸還'
-      },
-      user2:{
-        name: '王大明',
-        tel: '0911111111',
-        ol_id: '1',
-        p_img: '/image/product_1.png',
-        pname: '韓國甲珍雙人電熱毯(不指定花色)',
-        quantity: 3,
-        price: 300
-      }
-        
-      
+      user: []
+
+
+      // user: {
+      //   order_number: '20230802001',
+      //   order_date: '2023/07/24',
+      //   price: 3000,
+      //   use_date: '2023/08/02',
+      //   return_date: '2023/08/05',
+      //   os: '未歸還',
+      //   name: '王大明',
+      //   tel: '0911111111',
+      //   ol_id: '1',
+      //   p_img: '/image/product_1.png',
+      //   pname: '韓國甲珍雙人電熱毯(不指定花色)',
+      //   quantity: 3,
+      //   price: 300
+      // }
+
+
     };
   }
 
   componentDidMount = async () => {
     try {
-        const account = sessionStorage.getItem('account')
-        const response = await axios.get(``);
-        const userData = response.data.userdata;
-        console.log('ccc', userData) // 假设响应的数据是用户对象
-
-        
+      const account = sessionStorage.getItem('account')
+      const response = await axios.get(`http://localhost:8000/order?account=${account}`)
+      if (response.status === 200) {
+        const data = response.data.data; // 從後端回傳的response中獲取data
+        const updatedUser = data.map(order => ({
+          ...order,
+          os: order.os === 4 ? '未完成' : '完成'
+        }));
+        this.setState({ user: updatedUser }); // 存儲在user狀態中
+        console.log(data); // 這將打印後端回傳的資料
+      }
     } catch (error) {
-        if (error.response.status === 401) {
-            console.log('未登入');
-        }
+      if (error.response && error.response.status === 401) {
+        console.log('沒有歷史訂單'); // This will log the message from the backend
+      } else {
+        console.log('發生錯誤：', error.message); // Other errors, if any
+      }
     }
-}
+  }
 
   render() {
-    const { displayOrderList } = this.state;
+    const { displayOrderList, user } = this.state; // 解構出user變數
 
     return (
       <div className={styles.short}>
         <ul className={styles.info_ul}>
-          <li className={styles.info_li}><a href="/info" style={{ textDecoration: "none", color: 'blue'}}><p className="form">編輯會員資料</p></a></li>
+          <li className={styles.info_li}><a href="/info" style={{ textDecoration: "none", color: 'blue' }}><p className="form">編輯會員資料</p></a></li>
           <li className={styles.info_li}><a href="/order_list" style={{ textDecoration: "none", color: 'blue' }}><p className={styles.info_li_order}>訂單查詢</p></a></li>
           <li className={styles.info_li}>
-            <a style={{color: 'blue'}}className={styles.form} onClick={this.logoutClick}>登出</a>
+            <a style={{ color: 'blue' }} className={styles.form} onClick={this.logoutClick}>登出</a>
           </li>
         </ul>
 
@@ -68,23 +76,35 @@ class Order_list extends Component {
             <th className={styles.info_th}>結案</th>
             <th className={styles.info_th}></th>
           </tr>
-          <tr>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.order_number}</td>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.order_date}</td>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.price}</td>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.use_date}</td>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.return_date}</td>
-            <td rowspan={3} className={styles.info_td}>{this.state.user.os}</td>
-            <td><input type="button" value="查看明細" className={styles.info_order_button} id="checklist" onClick={this.handleChecklistClick} /></td>
-          </tr>
-          <tr>
-            <td><input type="button" value="再次購買" className={styles.info_order_button} /></td>
-          </tr>
+          {user.map((order, index) => (
+            <tr key={order.order_number}>
+              <td className={styles.info_td}>{order.order_number}</td>
+              <td className={styles.info_td}>{order.order_date.split('T')[0]}</td>
+              <td className={styles.info_td}>{order.price}</td>
+              <td className={styles.info_td}>{order.use_date.split('T')[0]}</td>
+              <td className={styles.info_td}>{order.return_date.split('T')[0]}</td>
+              <td className={styles.info_td}>{order.os}</td>
+              <td>
+                <tr>
+                  <input
+                    type="button"
+                    value="查看明細"
+                    className={styles.info_order_button}
+                    id="checklist"
+                    onClick={this.handleChecklistClick}
+                  />
+                </tr>
+                <tr>
+                  <td><input type="button" value="再次購買" className={styles.info_order_button} /></td>
+                </tr>
 
-          <tr>
-            <td><input type="button" value="訂單下載" className={`${styles.info_order_button} ${styles.info_last_buttom}`} /></td>
-          </tr>
+                <tr>
+                  <td><input type="button" value="訂單下載" className={`${styles.info_order_button} ${styles.info_last_buttom}`} /></td>
+                </tr>
+              </td>
 
+            </tr>
+          ))}
         </table>
 
         <div style={{ display: displayOrderList ? 'table' : 'none' }}>
@@ -100,13 +120,14 @@ class Order_list extends Component {
               <td className={styles.info_order_word}>手機號碼</td>
             </tr>
             <tr>
-              <td className={styles.info_order_word}>{this.state.user.order_number}</td>
-              <td colspan={2} className={styles.info_order_word}>{this.state.user.order_date}</td>
-              <td className={styles.info_order_word}>{this.state.user2.name}</td>
-              <td className={styles.info_order_word}>{this.state.user2.tel}</td>
+
+              <td className={styles.info_order_word}>{ }</td>
+              <td colspan={2} className={styles.info_order_word}>{ }</td>
+              <td className={styles.info_order_word}>{ }</td>
+              <td className={styles.info_order_word}>{ }</td>
             </tr>
             <tr>
-              <td colspan={5} className={styles.info_order_list_title} style={{backgroundColor:"#D4C19F",color:"black"}}>訂購明細</td>
+              <td colspan={5} className={styles.info_order_list_title} style={{ backgroundColor: "#D4C19F", color: "black" }}>訂購明細</td>
             </tr>
             <tr>
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>項次</td>
@@ -116,11 +137,11 @@ class Order_list extends Component {
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>價格</td>
             </tr>
             <tr>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.user2.ol_id}</td>
-              <td className={styles.info_order_list_word} ><img src={this.state.user2.p_img} className={styles.info_p_img} /></td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{this.state.user2.pname}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.user2.quantity}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT$${this.state.user2.price}`}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{ }</td>
+              <td className={styles.info_order_list_word} ><img src='' className={styles.info_p_img} /></td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{ }</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{ }</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT$`}</td>
             </tr>
           </table>
         </div>
