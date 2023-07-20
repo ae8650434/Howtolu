@@ -18,6 +18,7 @@ import Footer from './components/footer';
 import Gotop from './components/top';
 import ProductCopy from './components/product copy';
 import Payment from './components/payment';
+import Order_empty from './components/order_empty';
 
 
 
@@ -42,6 +43,7 @@ class App extends Component {
             <Route path="/food_detail/:fid" component={FoodDetail} exact />
             <Route path="/cart" component={Cart} exact />
             <Route path="/payment" component={Payment} exact />
+            <Route path="/order_empty" component={Order_empty} exact />
           
             <Route component={Error} />
           </Switch>

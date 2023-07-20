@@ -37,7 +37,7 @@ app.use('/revise', revise);
 app.use('/info', info);
 app.use('/mid',equip_insert);
 app.use('/mid',food_insert);
-app.use('./order', order)
+app.use('/order', order)
 
 
 
