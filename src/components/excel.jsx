@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
-import Process from './Process.jsx';
 
 function Excel() {
     const [items, setItems] = useState([]);
@@ -53,11 +52,7 @@ function Excel() {
                         readExcel(file);
                     }} />
             </div>
-
-            <br /><br /><br />
-            <Process />
-            <br /><br /><br />
-            
+        
             {/* excel插入後的格式 */}
             {items && (
                 <div id={cartstyle['shopping']}>
@@ -82,8 +77,9 @@ function Excel() {
                     </div>
                 </div>
             )}
-            {/* excel插入後nullCart消失 */}
-            {/* {!items.length && (
+
+            {/* excel插入後nullCart消失 */}<br /><br /><br />
+            {!items.length && (
                 <div id={cartstyle["magnifier"]}>
                     <img style={{ width: 220 }} src="/image/magnifier.png" alt="" />
                     <a href="/product/all">
@@ -92,7 +88,7 @@ function Excel() {
                         </button>
                     </a>
                 </div>
-            )} */}
+            )}
         </>
     );
 
