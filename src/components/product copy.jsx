@@ -4,7 +4,8 @@ import axios from 'axios';
 
 class Product3 extends Component {
   state = {
-    productList: []
+    productList: [],
+    car:{}
   }
 
   render() {
@@ -111,17 +112,65 @@ export class Product4 extends Component {
       <div className="product-container">
         <div id='qqq'></div>
         <div className='row'>
-          {filteredList.map((x) => (
-            <div key={x.fid} className='good' id='right'>
+          {filteredList.map(  (x) => (
+            <div id={`foodid${x.fid}`} key={x.fid} className='good'>
               <figure style={{ width: "450px", height: "600px" }}>
                 <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
                 <figcaption>{x.fname}</figcaption>
                 <figcaption>NT${x.price}</figcaption>
                 <button className="btnq1" onClick={this.handledown}>-</button>
-                <label className="count">0</label>
+                <label id={`foodval${x.fid}`} className="count">0</label>
                 <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
-                <a href={`/food_detail/${x.fid}`}><button id={x.fid} className="btnq" onClick={this.okButtonClick}>選購</button></a>
+                <button id={x.fid} className="btnq" onClick={this.okButtonClick=async (e)=>{
+                   if(e.target.id>5){
+                    const mtel = sessionStorage.getItem('account')
+                    if (mtel == null) {
+                        this.setState({ handleOpen: true })
+                    } else {
+                        var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
+                        var newCar={...this.state.car} ;
+                      
+                      newCar=  {
+                            mid:response.data.data[0].mid,
+                            pid:null,
+                            fid:e.target.id,
+                            quantity:document.getElementById(`foodval${e.target.id}`).textContent
+                            
+                        }
+                        this.state.car=newCar
+                        this.setState(newCar)
+                        console.log("123",this.state.car)
+                        // console.log(mtel);
+                        // console.log('租借日',this.state.arryDate[0]);
+                        // console.log('歸還日',this.state.arryDate[2]);
+            
+                        const cars = await axios.post(
+                            "http://localhost:8000/mid/foodadd",
+                            this.state.car, // 直接傳對象作為請求值
+                            {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            }
+            
+                        );
+                        if (cars.status === 200) {
+                            // 表示成功
+                            console.log("OK")
+            
+                        } else {
+                            console.error(cars.data);
+                        }
+            
+            
+            
+                    }
+                     console.log( e.target)
+                   }else{
+                    window.location.replace(`/food_detail/${e.target.id}`)
+                   }
+                }}>選購</button>
               </figure>
             </div>
           ))}
@@ -132,28 +181,30 @@ export class Product4 extends Component {
 
   }
 
-  okButtonClick = async () => {
+  // okButtonClick = async () => {
+
+    // switch ()
+    // console.log(this) 
+       // const { selectedFood } = this.props;
     
-    const { selectedFood } = this.props;
-    
-    const { item } = this.state;
+    // const { item } = this.state;
 
-    // 将选定的商品数据添加到item对象中，这里可以根据实际情况自行设置
-    item.selectedFood = selectedFood;
+    // // 将选定的商品数据添加到item对象中，这里可以根据实际情况自行设置
+    // item.selectedFood = selectedFood;
 
-    await axios.post(
-      "http://localhost:8000/product2/add",
-      this.state.item,
+    // await axios.post(
+    //   "http://localhost:8000/product2/add",
+    //   this.state.item,
 
-      {
-        headers: {
-          "Content-type": "application/json"
-        }
-      }
-    );
+    //   {
+    //     headers: {
+    //       "Content-type": "application/json"
+    //     }
+    //   }
+    // );
 
     // window.location = "#";
-  }
+  // } 
 
 
   componentDidMount = async () => {
@@ -161,7 +212,7 @@ export class Product4 extends Component {
     var newState = { ...this.state };
     newState.foodList = result.data;
 
-
+    // console.log(this) 
     this.setState(newState);
 
   }
