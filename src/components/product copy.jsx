@@ -123,7 +123,9 @@ export class Product4 extends Component {
                 <button className="btn0" onClick={this.handleAdd}>+</button>
                 <br />
                 <button id={x.fid} className="btnq" onClick={this.okButtonClick=async (e)=>{
-                   if(e.target.id>5){
+                  var count = document.getElementById(`foodval${e.target.id}`).textContent
+                  console.log('11111111',count)
+                   if(e.target.id > 5 && count != 0){
                     const mtel = sessionStorage.getItem('account')
                     if (mtel == null) {
                         this.setState({ handleOpen: true })
@@ -132,14 +134,14 @@ export class Product4 extends Component {
                         var newCar={...this.state.car} ;
                       
                       newCar=  {
-                            mid:response.data.data[0].mid,
-                            pid:null,
+                            mid:response.data.data[0].mid,   
                             fid:e.target.id,
                             quantity:document.getElementById(`foodval${e.target.id}`).textContent
                             
                         }
                         this.state.car=newCar
                         this.setState(newCar)
+                        console.log('33333',e.target)
                         console.log("123",this.state.car)
                         // console.log(mtel);
                         // console.log('租借日',this.state.arryDate[0]);
@@ -167,8 +169,8 @@ export class Product4 extends Component {
             
                     }
                      console.log( e.target)
-                   }else{
-                    window.location.replace(`/food_detail/${e.target.id}`)
+                    }else if(e.target.id <= 5 ){
+                     window.location.replace(`/food_detail/${e.target.id}`)
                    }
                 }}>選購</button>
               </figure>

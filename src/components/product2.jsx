@@ -110,6 +110,7 @@ class Product2 extends Component {
                 break;
             case 'http://localhost:3000/product2/SinglePoint':
                 newState.foodList = result.data.filter(x => x.fc_id === 2);
+                
                 break;
             case 'http://localhost:3000/product2/combo':
                 newState.foodList = result.data.filter(x => x.fc_id === 1);
