@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
       const user = req.body.user;
       const first = user.m_img.split('/')[1];
       const second = first.split(';')[0]; // 副檔名
-      const newFileName = `0${user.mid}.${second}`;
+      const newFileName = `0${user.mid}.${second}`; 
       cb(null, newFileName);
     }
   });
@@ -42,7 +42,7 @@ const storage = multer.diskStorage({
   // 创建 multer 实例
   const upload = multer({ storage });
 
-app.post("/member", upload.single("image"), (req, res) => {
+app.post("/member", upload.single("m_img"), (req, res) => {
     
   const user = req.body.user;
   console.log("222", req.body);

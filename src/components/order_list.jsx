@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../css/Order_list.module.css'
+import axios from 'axios';
 
 class Order_list extends Component {
   constructor(props) {
@@ -28,6 +29,22 @@ class Order_list extends Component {
       
     };
   }
+
+  componentDidMount = async () => {
+    try {
+        const account = sessionStorage.getItem('account')
+        const response = await axios.get(``);
+        const userData = response.data.userdata;
+        console.log('ccc', userData) // 假设响应的数据是用户对象
+
+        
+    } catch (error) {
+        if (error.response.status === 401) {
+            console.log('未登入');
+        }
+    }
+}
+
   render() {
     const { displayOrderList } = this.state;
 
