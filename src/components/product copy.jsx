@@ -197,21 +197,25 @@ export class Product4 extends Component {
   }
 
   okButtonClick = async (e) => {
-    var count = document.getElementById(`foodval${e.target.id}`).textContent
-    // console.log('11111111',count)
-    if (e.target.id > 5 && count != 0) {
-      const mtel = sessionStorage.getItem('account')
-      if (mtel == null) {
-        this.setState({ handleOpen: true })
-      } else {
+    const mtel = sessionStorage.getItem('account')
+    if (mtel == null) {
+      this.setState({ handleOpen: true })
+    } else{
+
+      
+      
+      var count = document.getElementById(`foodval${e.target.id}`).textContent
+      // console.log('11111111',count)
+      if (e.target.id > 5 && count != 0) {
+        
         var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
         var newCar = { ...this.state.car };
-
+        
         newCar = {
           mid: response.data.data[0].mid,
           fid: e.target.id,
           quantity: document.getElementById(`foodval${e.target.id}`).textContent
-
+          
         }
         this.state.car = newCar
         this.setState(newCar)
@@ -220,7 +224,7 @@ export class Product4 extends Component {
         // console.log(mtel);
         // console.log('租借日',this.state.arryDate[0]);
         // console.log('歸還日',this.state.arryDate[2]);
-
+        
         const cars = await axios.post(
           "http://localhost:8000/mid/foodadd",
           this.state.car, // 直接傳對象作為請求值
@@ -229,35 +233,37 @@ export class Product4 extends Component {
               "Content-Type": "application/json"
             }
           }
-
-        );
-        if (cars.status === 200) {
-          // 表示成功
-          //alert('加入購物車')
-
+          
+          );
+          if (cars.status === 200) {
+            // 表示成功
+            //alert('加入購物車')
+            this.setState({ handleOK: true })
+            
+          } else {
+            console.error(cars.data);
+          }
+          
+          
+          
+          
+          
         } else {
-          console.error(cars.data);
+          window.location.replace(`/food_detail/${e.target.id}`)
         }
-
-
-
       }
-
-    } else if (e.target.id <= 5 && count > 0) {
-      window.location.replace(`/food_detail/${e.target.id}`)
-    }
-  }
+      }
   // 關閉 請登入會員 彈窗
   handleCloseClick = () => {
     this.setState({ handleOpen: false });
     const { history } = this.props;
-    window.l('/login');
+    window.location.replace('/login');
   }
   // 關閉 已加入購物 彈窗
   handleCloseOK = () => {
     this.setState({ handleOK: false });
     const { historys } = this.props;
-    window.location.href = 'http://localhost:3000/product/all';
+    window.location.href = '';
   }
 
 }
