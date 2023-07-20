@@ -75,8 +75,30 @@ class Cart extends Component {
         if (!cartList || cartList.length === 0){
             return <div></div>           
         }       
-        // return cartList.map((product) => ( 
-        // ));
+        return cartList.map((product) => (            
+            <div key={product.id}>  
+            {console.log(product.f_img)}        
+                <img id={cartstyle['imgw']} src={`/image/${product.f_img}` || `/image/${product.p_img}`} alt="" />
+                <div id={cartstyle['shopping3']}>
+                    <span style={{ fontSize: 40 }}><b></b></span>
+                    <br /><br /><br /><br />
+                    <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
+                    <p></p>
+                    <div id={cartstyle['disFlex']}>
+                        <b id={cartstyle['moneySize']}>金額:{product.price}</b>
+                        <input
+                            id={cartstyle['numberstyle']}
+                            type="number"
+                            min={1}
+                            value={product.quantity}
+                            onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
+                        <button id={cartstyle['butRubbish']}  >
+                            <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
+                        </button>
+                    </div><br /><br />
+                </div>
+            </div>
+        ));
     };
 
     calendar = () => {
