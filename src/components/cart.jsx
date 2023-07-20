@@ -4,6 +4,7 @@ import '../css/calendar.css';
 import Excel from './excel.jsx';
 import Process1 from './Process1.jsx';
 import CartFood from './cartfood';
+import CartProduct from './cartproduct';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
@@ -74,29 +75,8 @@ class Cart extends Component {
         if (!cartList || cartList.length === 0){
             return <div></div>           
         }       
-        return cartList.map((product) => (            
-            <div key={product.id}>          
-                <img id={cartstyle['imgw']} src="./image/product_19.png" alt="" />
-                <div id={cartstyle['shopping3']}>
-                    <span style={{ fontSize: 40 }}><b></b></span>
-                    <br /><br /><br /><br />
-                    <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
-                    <p></p>
-                    <div id={cartstyle['disFlex']}>
-                        <b id={cartstyle['moneySize']}>金額:{product.price}</b>
-                        <input
-                            id={cartstyle['numberstyle']}
-                            type="number"
-                            min={1}
-                            value={product.quantity}
-                            onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
-                        <button id={cartstyle['butRubbish']}  >
-                            <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
-                        </button>
-                    </div><br /><br />
-                </div>
-            </div>
-        ));
+        // return cartList.map((product) => ( 
+        // ));
     };
 
     calendar = () => {
@@ -185,10 +165,6 @@ class Cart extends Component {
                 <div>{this.renderDates()}</div>
               </form>
             </div><br /><br /><br /><br /><br /> */}
-
-                <div id={cartstyle['shopping']}>
-                    <div id={cartstyle['null']}>{this.renderProducts()}</div>
-                </div><br />
 
                 {/* 總計跟前往結帳 */}
                 {cartList.length > 0 ?(
