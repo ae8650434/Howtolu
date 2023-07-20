@@ -1,12 +1,12 @@
 /* categories商品分類 */
 .categories_food {
-    margin-left: 155px;
-    margin-right: 155px;
-    margin-top: 40px;
+    /* margin-left: 50px; */
+    /* margin-top: 20px; */
     position: fixed;
+    float: left;
     top: 120px;
-    width: 200px;
 }
+
 
 .categories_food>p {
     font-size: 40px;
@@ -57,7 +57,7 @@
 }
 
 /* 圖片 */
-.image_food> a img {
+.image_food>a img {
     width: 500px;
     height: 500px;
     background-color: white;
@@ -72,7 +72,7 @@
         height: 380px;
     }
 
-    .image_food> a img {
+    .image_food>a img {
         width: 380px;
         height: 380px;
         margin: 0;
@@ -122,7 +122,7 @@
     color: #3C3C3C;
     text-align: center;
     padding-left: 10px;
-    text-align:justify;
+    text-align: justify;
 }
 
 @media screen and (max-width: 768px) {
@@ -148,13 +148,14 @@
         font-size: 24px;
         padding-left: 10px;
     }
+
     .commodity_food p:nth-child(3) {
         width: 250px;
         font-size: 24px;
         padding-left: 10px;
     }
 
-    .commodity_food ul{
+    .commodity_food ul {
         padding: 0 30px 0 30px;
         text-align: justify;
         width: 300px;
@@ -169,7 +170,7 @@
         width: 300px;
         font-size: 16px;
         color: #3C3C3C;
-        margin: 0 ;
+        margin: 0;
     }
 
 }
@@ -216,7 +217,7 @@ input.qtyminus {
     margin-left: 20px;
     background-color: #5E9B44;
     border: #5E9B44;
-    color:  #FFFFFF;
+    color: #FFFFFF;
     border-radius: 10px;
     width: 200px;
     height: 60px;
@@ -230,6 +231,7 @@ input.qtyminus {
     margin-left: 75px;
     color: #FC0707;
 }
+
 #background {
     display: block;
     position: fixed;
@@ -246,7 +248,7 @@ input.qtyminus {
     height: 200px;
     z-index: 1;
     /* margin-top: 100%; */
-    margin:10% auto;
+    margin: 10% auto;
     overflow: auto;
     border-radius: 10px;
 }
@@ -254,7 +256,7 @@ input.qtyminus {
 #close {
     padding: 10px;
     background: #dbaf74 !important;
-    height:40px ;
+    height: 40px;
 }
 
 #close-button {
@@ -263,18 +265,18 @@ input.qtyminus {
     color: white;
     cursor: pointer;
     margin-right: 0px;
-   
+
     background: #dbaf74 !important;
 }
 
-#close> p{
+#close>p {
     font-size: 36px;
     color: white;
 }
 
-#div2> h1{
+#div2>h1 {
     margin-top: 10%;
-   text-align: center;
+    text-align: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -319,7 +321,7 @@ input.qtyminus {
     font-size: 36px;
 }
 
-.image_f{
+.image_f {
     width: 700px;
     height: 700px;
     margin-left: 200px;
@@ -336,10 +338,10 @@ input.qtyminus {
         line-height: 40px;
     }
 
-    .information_food>ul{
+    .information_food>ul {
         margin: 0px;
         margin-right: 10px;
-        text-align:justify;
+        text-align: justify;
     }
 
     .information_food>p {
@@ -361,14 +363,15 @@ input.qtyminus {
     margin-bottom: 150px;
 }
 
-.informationImg_food>p{
+.informationImg_food>p {
     font-size: 32px;
     margin-bottom: 50px;
 }
 
-.informationImg_food>div{
+.informationImg_food>div {
     margin-left: 100px;
 }
+
 .container_food {
     position: relative;
     float: left;
@@ -430,28 +433,34 @@ input.qtyminus {
         margin-top: 30px;
         margin-left: 0px;
     }
-    .informationImg_food>p{
+
+    .informationImg_food>p {
         font-size: 20px;
         padding-left: 10px;
         width: 250px;
     }
-    .informationImg_food>div{
+
+    .informationImg_food>div {
         margin-left: 0px;
     }
+
     .container_food {
         /* position: relative; */
-       display: block;
+        display: block;
         width: 250px;
         margin-left: 15px;
         margin-top: 10px;
     }
-    .cimage_food{
+
+    .cimage_food {
         width: 250px;
         height: 250px;
     }
+
     .imgtext_food {
         width: 250px;
     }
+
     .imgtext_food>p {
         font-size: 18px;
     }

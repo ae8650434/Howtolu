@@ -8,7 +8,7 @@ var fs = require('fs');
 
 app.get("/", (req, res) => {
   var account = req.query.account;
-  console.log(account);
+  // console.log(account);
   var sql = "SELECT * FROM member WHERE tel = ?";
   DB.query(sql, [account], (err, data) => {
     if (err) {
@@ -28,9 +28,10 @@ var insertm =
 // 定义 multer 存储配置
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '../public/image'));
+      cb(null, '../../public/image');
     },
     filename: function (req, file, cb) {
+      console.log("rejo",file)
       const user = req.body.user;
       const first = user.m_img.split('/')[1];
       const second = first.split(';')[0]; // 副檔名
@@ -40,24 +41,15 @@ const storage = multer.diskStorage({
   });
   
   // 创建 multer 实例
-  const upload = multer({ storage });
+  const upload = multer({ storage:storage  });
 
 app.post("/member", upload.single("m_img"), (req, res) => {
     
   const user = req.body.user;
-  console.log("222", req.body);
-  console.log("333", user);
-  var first = user.m_img.split("/")[1];
-  console.log("444", first);
+  var first = user.m_img.split("/")[1];;
   var second = first.split(";")[0]; // 副檔名
-  
-  console.log("555", second);
   var newFileName = `0${user.mid}.${second}`;
-  console.log('666',req.file)
-  const targetPath = path.join(__dirname, "../public/image", newFileName);
 
-  // 将文件移动到指定目录
-  fs.renameSync(req.file.path, targetPath);
 
   // 密碼加密
   const saltRounds = 10;
@@ -67,7 +59,7 @@ app.post("/member", upload.single("m_img"), (req, res) => {
       res.status(500).send("Error during password hashing");
       return;
     }
-    console.log(hash);
+    // console.log(hash);
 
     DB.query(
       insertm,
