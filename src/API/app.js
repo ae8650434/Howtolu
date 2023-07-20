@@ -10,7 +10,6 @@ var reset=require("./reset.js")
 var productc=require("./product_class.js")
 var foodC=require("./food_class.js")
 var cart=require("./cart.js")
-var excel=require("./excel.js")
 var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
 var info = require('./info.js')
@@ -26,7 +25,6 @@ app.use(cors());
 
 app.use("/product/list",selectall);
 app.use("/cart",cart);
-app.use("/excel",excel);
 app.use("/product",select);
 app.use("/productclass",productc);
 app.use("/foodclass",foodC);
