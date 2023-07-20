@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import navstyle from '../css/nav.module.css'
+import axios from 'axios';
 
 
 
 class Navigation extends Component {
     state = {
         id: "nav_bar"
+    }
+    states= {
+        
     }
     render() {
 
@@ -48,6 +52,11 @@ class Navigation extends Component {
                     </ul>
                 </div>
                 <div id={navstyle['nav_icon']}>
+
+                    <div id="navcartnum" className={navstyle.navcartnum}>
+                        <span>{this.states.length}</span>
+                        
+                    </div>
                     <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
                     <button id={navstyle['navmembtn']} onClick={this.btnmem}><img id='navmemimg' src='/image/mem.png' className={navstyle.navmemimg} /></button>
                     <ul id='memulin' className={navstyle.memul}>
@@ -89,12 +98,31 @@ class Navigation extends Component {
         sessionStorage.clear();
 
     }
+    componentDidMount=async ()=>{
+        if (sessionStorage.getItem('account')) {
+        var result=await axios.get("http://localhost:8000/cart") 
+           
+            this.states= result.data.filter((x)=>x.tel==sessionStorage.getItem('account'))
+             var  navcartnum=document.getElementById("navcartnum")
+      
+        if(this.states.length>=28){
+            navcartnum.display="inlineBlock";
+        }else{
+            navcartnum.display="none";
+        }
+            console.log(this.states.length)
+            this.setState(this.states)
+        }
+    }
 
 }
-// window.onload = () => {
-//     if (sessionStorage.getItem('account')) {
-//         document.getElementById("navmemimg").src ='/image/food_11.png'
-//     }
+window.onload = () => {
+    console.log(this)
+    if (sessionStorage.getItem('account')) {
+     
 
-// }
+//         document.getElementById("navmemimg").src ='/image/food_11.png'
+    }
+
+}
 export default Navigation;

@@ -147,3 +147,18 @@
 .navmemimg{
     clip-path: circle(50% at 50% 50%);
 }
+.navcartnum{
+    background-color: red;
+    clip-path: circle(50% at 50% 50%);
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    left: 60px;
+    
+}
+.navcartnum span{
+    vertical-align: middle;
+   
+}

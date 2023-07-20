@@ -8,7 +8,7 @@ var DB = require("./DB.js");
 // 設置路由
 
 app.get('/', function (req, res) {
-    var sql = 'SELECT * FROM (car left JOIN product ON car.pid = product.pid) LEFT JOIN member ON car.mid = member.mid where 1';
+    var sql = 'SELECT * FROM ((car left JOIN product ON car.pid = product.pid) LEFT JOIN member ON car.mid = member.mid )left JOIN food ON car.fid = food.fid';
     DB.query(
         sql, function (err, data) {
             if (err) {
