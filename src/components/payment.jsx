@@ -61,32 +61,33 @@ class Payment extends Component {
                                 </div>
                             </div>
                         </div>
-                        <p className={`${styles.text_center} ${styles.mt_5}`}>信用卡付款</p>
-                        <hr />
-                        <div className={`${styles.row} ${styles.d_flex} ${styles.justify_content_between}`}>
-                            <div className={`${styles.col_3} ${styles.text_end}`}>訂單金額</div>
-                            <div className={`${styles.col_9} ${styles.text_start} ${styles.ps_3}`}>NT$50000</div>
-                        </div>
-                        <div className={`${styles.row} ${styles.d_flex} ${styles.justify_content_between}`}>
-                            <div className={`${styles.col_3} ${styles.text_end}`}>信用卡號</div>
-                            <div className={`${styles.col_9} ${styles.text_start} ${styles.ps_3} ${styles.credit}`}>
-                                <input id={styles["input1"]} className={styles.credit_card_input} type="tel" maxlength="4" />
-                                -
-                                <input id={styles["input2"]} className={styles.credit_card_input} type="tel" maxlength="4" />
-                                -
-                                <input id={styles["input3"]} className={styles.credit_card_input} type="tel" maxlength="4" />
-                                -
-                                <input id={styles["input4"]} className={styles.credit_card_input} type="tel" maxlength="4" />
+                        <div>
+                            <p className={`${styles.text_center} ${styles.mt_5}`}>信用卡付款</p>
+                            <hr />
+                            <div className={`${styles.row} ${styles.d_flex} ${styles.justify_content_between}`}>
+                                <div className={`${styles.col_3} ${styles.text_end}`}>訂單金額</div>
+                                <div className={`${styles.col_9} ${styles.text_start} ${styles.ps_3}`}>NT$50000</div>
+                            </div>
+                            <div className={`${styles.row} ${styles.d_flex} ${styles.justify_content_between}`}>
+                                <div className={`${styles.col_3} ${styles.text_end}`}>信用卡號</div>
+                                <div className={`${styles.col_9} ${styles.text_start} ${styles.ps_3} ${styles.credit}`}>
+                                    <input id={styles["input1"]} className={styles.credit_card_input} type="tel" maxlength="4" />
+                                    -
+                                    <input id={styles["input2"]} className={styles.credit_card_input} type="tel" maxlength="4" />
+                                    -
+                                    <input id={styles["input3"]} className={styles.credit_card_input} type="tel" maxlength="4" />
+                                    -
+                                    <input id={styles["input4"]} className={styles.credit_card_input} type="tel" maxlength="4" />
+                                </div>
+                            </div>
+                            <div className={`${styles.check} ${styles.mt_5}`}>
+                                <p className={styles.text_center}>三碼檢查碼<input type="text" name="" id="" maxlength="3" />末三碼</p>
+                                <p className={styles.text_center}>信用卡到期<input type="text" name="" id="" maxlength="2" placeholder="MM" />/
+                                    <input type="text" name="" id="" maxlength="2" placeholder="DD" /></p>
+                                <button type="button" className={`${styles.d_block} ${styles.ms_auto}`}>確認</button>
                             </div>
                         </div>
-                        <div className={`${styles.check} ${styles.mt_5}`}>
-                            <p className={styles.text_center}>三碼檢查碼<input type="text" name="" id="" maxlength="3" />末三碼</p>
-                            <p className={styles.text_center}>信用卡到期<input type="text" name="" id="" maxlength="2" placeholder="MM" />/
-                                <input type="text" name="" id="" maxlength="2" placeholder="DD" /></p>
-                            <button type="button" className={`${styles.d_block} ${styles.ms_auto}`}>確認</button>
-                        </div>
                     </div>
-
 
                 </div>
             </React.Fragment >
