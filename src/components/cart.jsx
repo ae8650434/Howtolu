@@ -3,6 +3,7 @@ import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
 import Excel from './excel.jsx';
 import Process1 from './Process1.jsx';
+import CartFood from './cartfood';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
@@ -68,15 +69,13 @@ class Cart extends Component {
             console.error(err);
         });
     };
-    
     renderProducts = () => {
         const {cartList} = this.state
         if (!cartList || cartList.length === 0){
             return <div></div>           
         }       
         return cartList.map((product) => (            
-            <div key={product.id}>
-                <Process1 /> <br /><br /><br /><br /><br />
+            <div key={product.id}>          
                 <img id={cartstyle['imgw']} src="./image/product_19.png" alt="" />
                 <div id={cartstyle['shopping3']}>
                     <span style={{ fontSize: 40 }}><b></b></span>
@@ -154,13 +153,13 @@ class Cart extends Component {
         const total = this.calculateTotal();
         const { value, maxDate, minDate, datepicker, cartList  } = this.state;
         return (
-            <React.Fragment>
+            <React.Fragment>    
                 <br /><br /><br /><br />
                 <Excel />
+                {cartList.length > 0 ?( <Process1 /> ):null}    
                 <br /><br /><br /><br />
-                {cartList.length === 0 ?(
-                <Nullcart/>
-                ):null}
+                {cartList.length === 0 ?( <Nullcart/> ):null}
+                
                 {/* 日曆 */}
                 {/* <div className="myform">
                 <form id="myform" method="get" action="#">
