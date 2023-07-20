@@ -15,6 +15,7 @@ var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
 var food_insert = require('./food_insert.js')
+var order = require('./order.js')
 var cors = require("cors");
 app.use( express.static("public")  );
 app.use( express.json() );
@@ -36,6 +37,7 @@ app.use('/revise', revise);
 app.use('/info', info);
 app.use('/mid',equip_insert);
 app.use('/mid',food_insert);
+app.use('./order', order)
 
 
 

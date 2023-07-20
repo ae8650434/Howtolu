@@ -1,0 +1,153 @@
+ #confirm .container {
+     max-width: 1200px;
+     margin: auto;
+ }
+
+ #confirm .d_flex {
+     display: flex;
+ }
+
+ #confirm .justify_content_center {
+     justify-content: center;
+ }
+
+ #confirm .justify_content_between {
+     justify-content: space-between;
+ }
+
+ #confirm .align_items_center {
+     align-items: center;
+ }
+
+ #confirm .align_items_stretch {
+     align-items: stretch;
+ }
+
+ #confirm .align_items_start {
+     align-items: start;
+ }
+
+ #confirm .d_block {
+     display: block;
+ }
+
+ #confirm .flex_grow_1 {
+     flex-grow: 1;
+ }
+
+ #confirm .flex_grow_0 {
+     flex-grow: 0;
+ }
+
+ #confirm .algin_top {
+     vertical-align: top;
+ }
+
+ #confirm .align_baseline {
+     vertical-align: baseline;
+ }
+
+ #confirm .align_bottom {
+     vertical-align: bottom;
+ }
+
+ #confirm .col_3 {
+     width: 25%;
+ }
+
+ #confirm .col_9 {
+     width: 75%;
+ }
+
+ #confirm .text_end {
+     text-align: end;
+ }
+
+ #confirm .text_start {
+     text-align: start;
+ }
+
+ #confirm .text_center {
+     text-align: center;
+ }
+
+ #confirm .ps_3 {
+     padding-left: 16px;
+ }
+
+ #confirm .mt_5 {
+     margin-top: 48px;
+ }
+
+ #confirm .mb_5 {
+     margin-bottom: 48px;
+ }
+
+ #confirm .ms_auto {
+     margin-left: auto;
+ }
+
+ #confirm p {
+     margin: 0;
+     padding: 0;
+ }
+
+ #confirm h1 {
+     font-size: 38px;
+     text-align: center;
+ }
+
+ #confirm h2 {
+     font-size: 38px;
+ }
+
+ #confirm hr {
+     height: 5px;
+     background-color: #000;
+     margin-bottom: 30px;
+ }
+
+ #confirm img {
+     vertical-align: top;
+     max-width: 100%;
+     height: auto;
+ }
+
+ #confirm .details {
+     padding: 10px 20px;
+     background-color: #FFFFFF;
+ }
+
+ #confirm .details li {
+     list-style: none;
+ }
+
+ #confirm .details span.material_symbols_outlined {
+     font-size: 16px;
+     line-height: 1.2;
+     height: 18px;
+ }
+
+ #confirm .check {
+     background-color: #FFFFFF;
+     padding: 10px 30px;
+ }
+
+ #confirm button {
+     padding: 10px 20px;
+     border: 1px solid #5E9B44;
+     background-color: #5E9B44;
+     color: #FFFFFF;
+     width: 200px;
+     height: 60px;
+     font-size: 30px;
+     border-radius: 10px;
+
+ }
+
+ #confirm button:hover {
+     background-color: #519b44;
+     color: white;
+ }
+
+ /*# sourceMappingURL=confirm.css.map */

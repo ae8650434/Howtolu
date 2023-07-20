@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material design icon cdn -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="./public/css/nav.css">
+    <link rel="stylesheet" href="./src/css/confirm.css">
+    <title>結帳頁面</title>
+</head>
+
+<body>
+    <div id="nav_bar">
+        <a href="/index.html"> <img id="logo" src="./public/image/logo-removebg-preview.png" alt=""></a>
+        <div id="selnav" >
+                <ul id="navul">
+                    <a href="/index.html"><li class="tili">首頁</li></a>
+                    <a class="nava" href=""><li class="tili">所有商品
+                        <ul>
+                            <a href="/index.html"><li class="conli">設備出租</li></a>  
+                            <a href=""><li class="conli">食材購買</li></a>                              
+                        </ul>
+                    </li></a>
+                    <a class="nava" href="" ><li class="tili">租借內容
+                        <ul>
+                            <a href=""><li class="conli">租借流程</li></a>  
+                            <a href="" ><li class="conli">租借規範</li></a>  
+                            
+                        </ul>
+                    </li></a>
+                    
+                    <a href=""><li class="tili">表單訂購
+                        <ul>
+                            <a href=""><li class="conli">表單上傳</li></a>  
+                            <li  class="conli">表單填寫
+                                <ul id="a">
+                                    <a href=""><li >Google表單</li></a>  
+                                    <a href="./public/image/logo-removebg-preview.png" download><li >Excel表單下載</li></a>  
+                                    
+                                </ul>
+                            </li>  
+                            
+                        </ul>
+                    </li></a>
+                    
+                    <li  class="tili"><a href="">會員專區
+                        <ul>
+                            <a href=""><li class="conli">會員資料</li></a>  
+                            <a href=""><li class="conli">訂單查詢</li></a>  
+                            
+                        </ul>
+                    </li></a>
+                    
+                </ul>
+            </div>
+            <div id="nav_icon">
+                <a href="/index.html"> <button id="navcarbtn"></button></a>
+                <button id="navmembtn"></button>
+                <ul id="memul" class="memul">
+                    <a href=""><li>會員登入</li></a>
+                    <a href=""><li>註冊會員</li></a>
+                </ul>
+                
+            </div>
+        </div>
+        
+        <script src="/public/js/nav.js"></script>
+    
+    <div id="confirm">
+        <div class="container">
+            <h2>訂購資訊</h2>
+            <div class="details">
+                <ul>
+                    <li><span>商品名稱:鐘型帳(2~6人)</span><span class="material-symbols-outlined align-bottom">
+                            arrow_drop_down
+                        </span>
+                        <ul>
+                            <li>數量:2</li>
+                            <li>租借日:2023/12/29</li>
+                            <li>歸還日:2023/12/31</li>
+                            <li>金額:500</li>
+                        </ul>
+                    </li>
+                    <li>商品名稱:皎白筍<span class="material-symbols-outlined align-bottom">
+                            arrow_drop_down
+                        </span>
+                        <ul>
+                            <li>數量:2</li>
+                            <li>金額:500</li>
+                        </ul>
+                    </li>
+                    <li>商品名稱:鐘型帳(2~6人)</li>
+                </ul>
+            </div>
+            <div class="personinformation mt-5">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 text-end">訂購人</div>
+                    <div class="col-9 text-start ps-3">王大明</div>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 text-end">手機號碼</div>
+                    <div class="col-9 text-start ps-3">0912345678</div>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 text-end">電子信箱</div>
+                    <div class="col-9 text-start ps-3">1234@gmail.com</div>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 text-end">取貨日期</div>
+                    <div class="col-9 text-start ps-3">2023/12/31</div>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 text-end">付款方式</div>
+                    <div class="col-9 text-start">
+                        <div class="ps-3"><input type="radio" name="" id="">金融卡/信用卡</div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-5">信用卡付款</p>
+            <hr>
+            <div class="row d-flex justify-content-between">
+                <div class="col-3 text-end">訂單金額</div>
+                <div class="col-9 text-start ps-3">NT$50000</div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col-3 text-end">信用卡號</div>
+                <div class="col-9 text-start ps-3 credit">
+                    <input id="input1" class="credit-card-input" type="tel" maxlength="4" />
+                    - 
+                    <input id="input2" class="credit-card-input" type="tel" maxlength="4" />
+                    - 
+                    <input id="input3" class="credit-card-input" type="tel" maxlength="4" />
+                    - 
+                    <input id="input4" class="credit-card-input" type="tel" maxlength="4" />
+                </div>
+            </div>
+            <div class="check mt-5 ">
+                <p class="text-center">三碼檢查碼<input type="text" name="" id="" maxlength="3">末三碼</p>
+                <p class="text-center">信用卡到期<input type="text" name="" id=""maxlength="2" placeholder="MM">/ <input type="text" name="" id=""maxlength="2" placeholder="DD"></p>
+                <button type="button" class="d-block ms-auto">確認</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="/public/js/nav.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        let lis=document.querySelectorAll('#confirm .details> ul > li');
+        lis.forEach((item,index)=>{
+            item.addEventListener('click',(e)=>{
+            })
+        })
+    </script> -->
+    <script src="./src/js/confirm.js"></script>
+</body>
+
+</html>
