@@ -74,8 +74,9 @@ class Cart extends Component {
             return <div></div>           
         }       
         return cartList.map((product) => (            
-            <div key={product.id}>          
-                <img id={cartstyle['imgw']} src="./image/product_19.png" alt="" />
+            <div key={product.id}>  
+            {console.log(product.f_img)}        
+                <img id={cartstyle['imgw']} src={`/image/${product.f_img}` || `/image/${product.p_img}`} alt="" />
                 <div id={cartstyle['shopping3']}>
                     <span style={{ fontSize: 40 }}><b></b></span>
                     <br /><br /><br /><br />
