@@ -96,7 +96,7 @@ export class Product4 extends Component {
 
   render() {
     const { foodList, selectedFood, selectedCategory, } = this.props;
-    const { handleOpen, handleOK } = this.state;
+    const { handleOpen, handleOK,handleZero } = this.state;
     let filteredList = foodList;
     if (selectedFood) {
       filteredList = foodList.filter((x) => x.fc_id === 1)
@@ -160,6 +160,21 @@ export class Product4 extends Component {
             </div>
           </React.Fragment>
         }
+        {handleZero &&
+          <React.Fragment>
+            <div id="background">
+              <div id="div1" className={123}>
+                <div id="close">
+                  <span id="close-button" onClick={this.handleCloseOK}>×</span>
+                  <p>HowTo露</p>
+                </div>
+                <div id="div2">
+                  <h1>請選擇數量</h1>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        }
       </React.Fragment>
 
 
@@ -169,21 +184,7 @@ export class Product4 extends Component {
 
   }
 
-  showCustomAlert = () => {
-    // 創建一個自定義的彈出框元素
-    const alertContainer = document.createElement('div');
-    alertContainer.className = 'custom-alert';
-    alertContainer.innerHTML = `
-      <div class="custom-alert-content">
-        <h2>商品數量為 0</h2>
-        <p>請選擇至少一個商品數量。</p>
-        <button onclick="closeCustomAlert()">關閉</button>
-      </div>
-    `;
-
-    // 將彈出框元素添加到頁面中
-    document.body.appendChild(alertContainer);
-  };
+ 
 
 
   componentDidMount = async () => {
@@ -248,21 +249,27 @@ export class Product4 extends Component {
           
           
           
-        } else {
+        } else if(e.target.id > 5 && count == 0) {
+          this.setState({ handleZero: true })
+        }else if(e.target.id < 5){
           window.location.replace(`/food_detail/${e.target.id}`)
+
         }
       }
       }
   // 關閉 請登入會員 彈窗
   handleCloseClick = () => {
     this.setState({ handleOpen: false });
-    const { history } = this.props;
     window.location.replace('/login');
+  }
+  //
+  handleZero = () => {
+    this.setState({ handleZero: false });
+   
   }
   // 關閉 已加入購物 彈窗
   handleCloseOK = () => {
     this.setState({ handleOK: false });
-    const { historys } = this.props;
     window.location.href = '';
   }
 
