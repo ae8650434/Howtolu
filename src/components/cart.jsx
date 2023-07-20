@@ -3,6 +3,7 @@ import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
 import Excel from './excel.jsx';
 import Process1 from './Process1.jsx';
+import CartFood from './cartfood';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
@@ -156,7 +157,7 @@ class Cart extends Component {
             <React.Fragment>    
                 <br /><br /><br /><br />
                 <Excel />
-                 <Process1 />      
+                {cartList.length > 0 ?( <Process1 /> ):null}    
                 <br /><br /><br /><br />
                 {cartList.length === 0 ?( <Nullcart/> ):null}
                 
