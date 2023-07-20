@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
 import Excel from './excel.jsx';
-import Process from './Process.jsx';
+import Process1 from './Process1.jsx';
+import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
 
@@ -23,20 +24,7 @@ class Cart extends Component {
         const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         this.state = {
             cartList: [],
-            // products: [
-            //     {
-            //         id: 1,
-            //         name: 'Snow Peak 卡式瓦斯爐',
-            //         price: 250,
-            //         quantity: 1
-            //     },
-            //     {
-            //         id: 2,
-            //         name: '筊白筍',
-            //         price: 150,
-            //         quantity: 1
-            //     }
-            // ],   
+
             value: new Date(),
             today: today,
             maxDate: maxDate,
@@ -46,6 +34,7 @@ class Cart extends Component {
         };
     }
 
+    // 數量增減
     updateQuantity = (productId, newQuantity) => {
         this.setState((prevState) => ({
             products: prevState.cartList.map((product) =>
@@ -53,7 +42,8 @@ class Cart extends Component {
             ),
         }));
     };
-
+    
+    // 計算總計
     calculateTotal = () => {
         const { cartList } = this.state;
         let total = 0;
@@ -79,20 +69,19 @@ class Cart extends Component {
         });
     };
     
-
     renderProducts = () => {
         const {cartList} = this.state
         if (!cartList || cartList.length === 0){
-            return <div></div>
-        }
-        return cartList.map((product) => (
-
+            return <div></div>           
+        }       
+        return cartList.map((product) => (            
             <div key={product.id}>
+                <Process1 /> <br /><br /><br /><br /><br />
                 <img id={cartstyle['imgw']} src="./image/product_19.png" alt="" />
                 <div id={cartstyle['shopping3']}>
                     <span style={{ fontSize: 40 }}><b></b></span>
                     <br /><br /><br /><br />
-                    <span><b id={cartstyle['dateSize']}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
+                    <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
                     <p></p>
                     <div id={cartstyle['disFlex']}>
                         <b id={cartstyle['moneySize']}>金額:{product.price}</b>
@@ -163,13 +152,15 @@ class Cart extends Component {
 
     render() {
         const total = this.calculateTotal();
-        const { value, maxDate, minDate, datepicker  } = this.state;
+        const { value, maxDate, minDate, datepicker, cartList  } = this.state;
         return (
             <React.Fragment>
-                <br /><br /><br />
-                {/* <Process /> */}
-                <br /><br /><br />
+                <br /><br /><br /><br />
                 <Excel />
+                <br /><br /><br /><br />
+                {cartList.length === 0 ?(
+                <Nullcart/>
+                ):null}
                 {/* 日曆 */}
                 {/* <div className="myform">
                 <form id="myform" method="get" action="#">
@@ -201,13 +192,15 @@ class Cart extends Component {
                 </div><br />
 
                 {/* 總計跟前往結帳 */}
+                {cartList.length > 0 ?(
                 <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT{total}</span>
-                    <button onClick={this.delAll} id={cartstyle['buy']}><span>一鍵刪除</span></button>                    
-                    <a href="#">
+                    <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{color: 'white'}}>一鍵刪除</span></a></button>                    
+                    <a href="/payment">
                         <button onclick="processBuy()" id={cartstyle['buy']}><span>前往結帳</span></button>                      
                     </a>
                 </div>
+                ):null}
                 <br /><br />
             </React.Fragment>
         );

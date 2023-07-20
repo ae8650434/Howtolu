@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Process2 from './Process2.jsx';
 // import axios from 'axios';
 import styles from '../css/payment.module.css';
 class Payment extends Component {
@@ -6,6 +7,7 @@ class Payment extends Component {
     render() {
         return (
             <React.Fragment>
+                <br /><Process2 /><br />               
                 <div id={styles["confirm"]}>
                     <div className={styles.container}>
                         <h2>訂購資訊</h2>
