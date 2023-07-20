@@ -5,7 +5,7 @@ import axios from 'axios';
 class Product3 extends Component {
   state = {
     productList: [],
-    car:{}
+    car: {}
   }
 
   render() {
@@ -18,6 +18,7 @@ class Product3 extends Component {
     }
 
     return (
+
       <div className="product-container">
         <div id='qqq'></div>
         <div className='row'>
@@ -94,8 +95,8 @@ export class Product4 extends Component {
   }
 
   render() {
-    const { foodList, selectedFood, selectedCategory } = this.props;
-
+    const { foodList, selectedFood, selectedCategory, } = this.props;
+    
     let filteredList = foodList;
     if (selectedFood) {
       filteredList = foodList.filter((x) => x.fc_id === 1)
@@ -109,105 +110,100 @@ export class Product4 extends Component {
     }
 
     return (
-      <div className="product-container">
-        <div id='qqq'></div>
-        <div className='row'>
-          {filteredList.map(  (x) => (
-            <div id={`foodid${x.fid}`} key={x.fid} className='good'>
-              <figure style={{ width: "450px", height: "600px" }}>
-                <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
-                <figcaption>{x.fname}</figcaption>
-                <figcaption>NT${x.price}</figcaption>
-                <button className="btnq1" onClick={this.handledown}>-</button>
-                <label id={`foodval${x.fid}`} className="count">0</label>
-                <button className="btn0" onClick={this.handleAdd}>+</button>
-                <br />
-                <button id={x.fid} className="btnq" onClick={this.okButtonClick=async (e)=>{
-                  var count = document.getElementById(`foodval${e.target.id}`).textContent
-                  console.log('11111111',count)
-                   if(e.target.id > 5 && count != 0){
-                    const mtel = sessionStorage.getItem('account')
-                    if (mtel == null) {
+
+      
+        <div className="product-container">
+          <div id='qqq'></div>
+          <div className='row'>
+            {filteredList.map((x) => (
+              <div id={`foodid${x.fid}`} key={x.fid} className='good'>
+                <figure style={{ width: "450px", height: "600px" }}>
+                  <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
+                  <figcaption>{x.fname}</figcaption>
+                  <figcaption>NT${x.price}</figcaption>
+                  <button className="btnq1" onClick={this.handledown}>-</button>
+                  <label id={`foodval${x.fid}`} className="count">0</label>
+                  <button className="btn0" onClick={this.handleAdd}>+</button>
+                  <br />
+                  <button id={x.fid} className="btnq" onClick={this.okButtonClick = async (e) => {
+                    var count = document.getElementById(`foodval${e.target.id}`).textContent
+                    // console.log('11111111',count)
+                    if (e.target.id > 5 && count != 0) {
+                      const mtel = sessionStorage.getItem('account')
+                      if (mtel == null) {
                         this.setState({ handleOpen: true })
-                    } else {
+                      } else {
                         var response = await axios.get(`http://localhost:8000/mid?tel=${mtel}`);
-                        var newCar={...this.state.car} ;
-                      
-                      newCar=  {
-                            mid:response.data.data[0].mid,   
-                            fid:e.target.id,
-                            quantity:document.getElementById(`foodval${e.target.id}`).textContent
-                            
+                        var newCar = { ...this.state.car };
+
+                        newCar = {
+                          mid: response.data.data[0].mid,
+                          fid: e.target.id,
+                          quantity: document.getElementById(`foodval${e.target.id}`).textContent
+
                         }
-                        this.state.car=newCar
+                        this.state.car = newCar
                         this.setState(newCar)
-                        console.log('33333',e.target)
-                        console.log("123",this.state.car)
+                        console.log('33333', e.target)
+                        console.log("123", this.state.car)
                         // console.log(mtel);
                         // console.log('租借日',this.state.arryDate[0]);
                         // console.log('歸還日',this.state.arryDate[2]);
-            
+
                         const cars = await axios.post(
-                            "http://localhost:8000/mid/foodadd",
-                            this.state.car, // 直接傳對象作為請求值
-                            {
-                                headers: {
-                                    "Content-Type": "application/json"
-                                }
+                          "http://localhost:8000/mid/foodadd",
+                          this.state.car, // 直接傳對象作為請求值
+                          {
+                            headers: {
+                              "Content-Type": "application/json"
                             }
-            
+                          }
+
                         );
                         if (cars.status === 200) {
-                            // 表示成功
-                            console.log("OK")
-            
+                          // 表示成功
+                          //alert('加入購物車')
+
                         } else {
-                            console.error(cars.data);
+                          console.error(cars.data);
                         }
-            
-            
-            
+
+
+
+                      }
+                      
+                    } else if (e.target.id <= 5 && count > 0) {
+                      window.location.replace(`/food_detail/${e.target.id}`)
                     }
-                     console.log( e.target)
-                    }else if(e.target.id <= 5 ){
-                     window.location.replace(`/food_detail/${e.target.id}`)
-                   }
-                }}>選購</button>
-              </figure>
-            </div>
-          ))}
+                  }}>選購</button>
+                </figure>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      
+      
     );
 
 
   }
 
-  // okButtonClick = async () => {
+  showCustomAlert = () => {
+    // 創建一個自定義的彈出框元素
+    const alertContainer = document.createElement('div');
+    alertContainer.className = 'custom-alert';
+    alertContainer.innerHTML = `
+      <div class="custom-alert-content">
+        <h2>商品數量為 0</h2>
+        <p>請選擇至少一個商品數量。</p>
+        <button onclick="closeCustomAlert()">關閉</button>
+      </div>
+    `;
 
-    // switch ()
-    // console.log(this) 
-       // const { selectedFood } = this.props;
-    
-    // const { item } = this.state;
-
-    // // 将选定的商品数据添加到item对象中，这里可以根据实际情况自行设置
-    // item.selectedFood = selectedFood;
-
-    // await axios.post(
-    //   "http://localhost:8000/product2/add",
-    //   this.state.item,
-
-    //   {
-    //     headers: {
-    //       "Content-type": "application/json"
-    //     }
-    //   }
-    // );
-
-    // window.location = "#";
-  // } 
-
+    // 將彈出框元素添加到頁面中
+    document.body.appendChild(alertContainer);
+  };
+  
 
   componentDidMount = async () => {
     var result = await axios.get('http://localhost:8000/food/list');
