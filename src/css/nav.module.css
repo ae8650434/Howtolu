@@ -156,7 +156,8 @@
     justify-content: center;
     position: absolute;
     left: 60px;
-    
+  
+    visibility:hidden;
 }
 .navcartnum span{
     vertical-align: middle;

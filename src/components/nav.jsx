@@ -54,7 +54,7 @@ class Navigation extends Component {
                 <div id={navstyle['nav_icon']}>
 
                     <div id="navcartnum" className={navstyle.navcartnum}>
-                        <span>{this.states.length}</span>
+                        <span >{this.states.length}</span>
                         
                     </div>
                     <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
@@ -104,25 +104,26 @@ class Navigation extends Component {
            
             this.states= result.data.filter((x)=>x.tel==sessionStorage.getItem('account'))
              var  navcartnum=document.getElementById("navcartnum")
-      
-        if(this.states.length>=28){
-            navcartnum.display="inlineBlock";
-        }else{
-            navcartnum.display="none";
-        }
-            console.log(this.states.length)
-            this.setState(this.states)
-        }
+             console.log(this.states.length)
+             console.log(this.states.length)
+             this.setState(this.states)
+             if(this.states.length>=1){
+                navcartnum.style.visibility="visible";
+            }else{    
+                navcartnum.style.visibility="hidden";
+             }
+            }
     }
+    
 
 }
-window.onload = () => {
-    console.log(this)
-    if (sessionStorage.getItem('account')) {
+// window.onload = () => {
+//     console.log(this)
+//     if (sessionStorage.getItem('account')) {
      
 
 //         document.getElementById("navmemimg").src ='/image/food_11.png'
-    }
+//     }
 
-}
+// }
 export default Navigation;
