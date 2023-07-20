@@ -14,11 +14,24 @@ app.get('/', function (req, res) {
             if (err) {
                 res.send("無法查詢資料");
             } else {
-                res.send( JSON.stringify(data) );
+                res.send(JSON.stringify(data));
             }
         }
-        )
-        
+    )
 })
+
+app.delete('/', function (req, res) {
+    var sql = 'DELETE FROM car';
+    DB.query(sql, function (err) {
+        if (err) {
+            res.status(500).send("刪除失敗");
+        } else {
+            res.send("成功刪除");
+        }
+    });
+});
+
+module.exports = app;
+
 
 module.exports = app;

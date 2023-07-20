@@ -64,10 +64,21 @@ class Cart extends Component {
         return total;
       };
 
+    del = () => {
+        
+    }
+
     // 一鍵刪除
-    removeFromCart = () => {     
-    this.setState({ cartList: [] });
-     };      
+    delAll = () => {
+        axios.delete('http://localhost:8000/cart')
+        .then(() => { 
+            this.setState({ cartList: [] });
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    };
+    
 
     renderProducts = () => {
         const {cartList} = this.state
@@ -91,7 +102,7 @@ class Cart extends Component {
                             min={1}
                             value={product.quantity}
                             onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
-                        <button id={cartstyle['butRubbish']} >
+                        <button id={cartstyle['butRubbish']}  >
                             <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
                         </button>
                     </div><br /><br />
@@ -192,7 +203,7 @@ class Cart extends Component {
                 {/* 總計跟前往結帳 */}
                 <div id={cartstyle['shopping2']}>
                     <span style={{ fontSize: 40 }}>總計：NT{total}</span>
-                    <button onClick={this.removeFromCart} id={cartstyle['buy']}><span>一鍵刪除</span></button>                    
+                    <button onClick={this.delAll} id={cartstyle['buy']}><span>一鍵刪除</span></button>                    
                     <a href="#">
                         <button onclick="processBuy()" id={cartstyle['buy']}><span>前往結帳</span></button>                      
                     </a>
