@@ -14,11 +14,8 @@ var food_detail=require("./food_detail.js")
 var revise = require('./revise.js')
 var info = require('./info.js')
 var equip_insert = require('./equip_insert.js')
-<<<<<<< HEAD
-var order = require('./order.js')
-=======
 var food_insert = require('./food_insert.js')
->>>>>>> refs/remotes/origin/main
+var order = require('./order.js')
 var cors = require("cors");
 app.use( express.static("public")  );
 app.use( express.json() );
@@ -39,11 +36,8 @@ app.use("/reset",reset);
 app.use('/revise', revise);
 app.use('/info', info);
 app.use('/mid',equip_insert);
-<<<<<<< HEAD
-app.use('/order', order)
-=======
 app.use('/mid',food_insert);
->>>>>>> refs/remotes/origin/main
+app.use('./order', order)
 
 
 
