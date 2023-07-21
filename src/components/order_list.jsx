@@ -61,6 +61,7 @@ class Order_list extends Component {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log('沒有歷史訂單');
+        window.location.href='/order_empty'
       } else {
         console.log('發生錯誤：', error.message);
       }
