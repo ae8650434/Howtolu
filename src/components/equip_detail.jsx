@@ -293,10 +293,9 @@ class EquipDetail extends Component {
         var result = await axios.get(url);
         var newstate = { ...this.state };
         newstate.product = result.data;
-        // console.log("555",newState.product)
+        // console.log("我想看一下",newState.product)
         this.state = newstate;
         this.setState(this.state);
-        // console.log("123",newState.product); 
 
         // 查全部商品
         var urlAll = "http://localhost:8000/product/list";

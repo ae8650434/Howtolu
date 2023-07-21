@@ -25,7 +25,7 @@ class Payment extends Component {
                     <div className={styles.ordertitle}>
                         <p>訂購資訊</p>
                     </div>
-                    <dir className={styles.orderdivA}>
+                    <div className={styles.orderdivA}>
                         <table className={styles.detailsTable}>
                             <tr >
                                 <td className={styles.info_td}>商品名稱：</td>
@@ -106,7 +106,7 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{console.log("888",cartMid[0])}</p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid[0]?.name}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
@@ -192,7 +192,7 @@ class Payment extends Component {
                             <label for=""></label>
                             <input className={styles.order_bnB} type="button" value="結帳" />
                         </div>
-                    </dir>
+                    </div>
                 </div>
             </React.Fragment >
         );
@@ -203,7 +203,7 @@ class Payment extends Component {
             var result = await axios.get("http://localhost:8000/cart")
             var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
             this.setState({cartMid})
-            console.log("我看",cartMid[0]);
+            // console.log("我看",cartMid[0]);
           
         }
     }
