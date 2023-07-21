@@ -8,26 +8,17 @@ class Order_list extends Component {
     this.state = {
       displayOrderList: false,
 
-      user: []
-
-
-      // user: {
-      //   order_number: '20230802001',
-      //   order_date: '2023/07/24',
-      //   price: 3000,
-      //   use_date: '2023/08/02',
-      //   return_date: '2023/08/05',
-      //   os: '未歸還',
-      //   name: '王大明',
-      //   tel: '0911111111',
-      //   ol_id: '1',
-      //   p_img: '/image/product_1.png',
-      //   pname: '韓國甲珍雙人電熱毯(不指定花色)',
-      //   quantity: 3,
-      //   price: 300
-      // }
-
-
+      user: [],
+      list:[],
+      selectedOrderNumber: '',
+      statusMap: {
+        0: '租借中',
+        1: '完成',
+        2: '取消',
+        3: '未歸還',
+        4: '未完成',
+      },
+      
     };
   }
 
@@ -36,25 +27,60 @@ class Order_list extends Component {
       const account = sessionStorage.getItem('account')
       const response = await axios.get(`http://localhost:8000/order?account=${account}`)
       if (response.status === 200) {
-        const data = response.data.data; // 從後端回傳的response中獲取data
-        const updatedUser = data.map(order => ({
-          ...order,
-          os: order.os === 4 ? '未完成' : '完成'
-        }));
+        const data = response.data.data;
+        const updatedUser = data.map(order => {
+          let osText = '';
+          switch (order.os) {
+            case 0:
+              osText = '租借中';
+              break;
+            case 1:
+              osText = '完成';
+              break;
+            case 2:
+              osText = '取消';
+              break;
+            case 3:
+              osText = '未歸還';
+              break;
+            case 4:
+              osText = '未完成';
+              break;
+            default:
+              osText = '未知狀態';
+          }
+          return {
+            ...order,
+            os: osText
+          };
+        });
         this.setState({ user: updatedUser }); // 存儲在user狀態中
         console.log(data); // 這將打印後端回傳的資料
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        console.log('沒有歷史訂單'); // This will log the message from the backend
+        console.log('沒有歷史訂單');
       } else {
-        console.log('發生錯誤：', error.message); // Other errors, if any
+        console.log('發生錯誤：', error.message);
       }
-    }
+    }  
   }
 
   render() {
-    const { displayOrderList, user } = this.state; // 解構出user變數
+    const { displayOrderList, user, selectedOrderNumber, list } = this.state; // 解構出user變數
+
+    let orderDate = '';
+    let customerName = '';
+    let phoneNumber = '';
+
+  if (list.length > 0) {
+    orderDate = list[0].order_date.split('T')[0];
+  }
+
+  if(user.length > 0) {
+    customerName = user[0].name;
+    phoneNumber = user[0].tel;
+  }
 
     return (
       <div className={styles.short}>
@@ -76,7 +102,9 @@ class Order_list extends Component {
             <th className={styles.info_th}>結案</th>
             <th className={styles.info_th}></th>
           </tr>
-          {user.map((order, index) => (
+          
+          
+            {user.map((order, index) => (
             <tr key={order.order_number}>
               <td className={styles.info_td}>{order.order_number}</td>
               <td className={styles.info_td}>{order.order_date.split('T')[0]}</td>
@@ -90,44 +118,41 @@ class Order_list extends Component {
                     type="button"
                     value="查看明細"
                     className={styles.info_order_button}
-                    id="checklist"
-                    onClick={this.handleChecklistClick}
+                    id={index}
+                    onClick={() => this.handleChecklistClick(order.order_number)}
                   />
                 </tr>
                 <tr>
-                  <td><input type="button" value="再次購買" className={styles.info_order_button} /></td>
+                  <td><input type="button" value="再次購買" className={styles.info_order_button}  onClick={this.addToCart}/></td>
                 </tr>
 
                 <tr>
                   <td><input type="button" value="訂單下載" className={`${styles.info_order_button} ${styles.info_last_buttom}`} /></td>
                 </tr>
               </td>
-
             </tr>
-          ))}
+            ))}
         </table>
-
         <div style={{ display: displayOrderList ? 'table' : 'none' }}>
-          <p className={styles.info_order_name}>王小明 訂單明細</p>
+          <p className={styles.info_order_name}>訂單明細</p>
           <table className={styles.order_list_table}>
             <tr>
-              <td colspan={5} className={styles.info_order_list_title}>訂購者資料</td>
+              <td colspan={6} className={styles.info_order_list_title}>訂購者資料</td>
             </tr>
             <tr>
               <td className={styles.info_order_word}>訂單編號</td>
               <td colspan={2} className={styles.info_order_word}>訂單日期</td>
-              <td className={styles.info_order_word}>訂購者姓名</td>
+              <td colspan={2} className={styles.info_order_word}>訂購者姓名</td>
               <td className={styles.info_order_word}>手機號碼</td>
             </tr>
-            <tr>
-
-              <td className={styles.info_order_word}>{ }</td>
-              <td colspan={2} className={styles.info_order_word}>{ }</td>
-              <td className={styles.info_order_word}>{ }</td>
-              <td className={styles.info_order_word}>{ }</td>
+            <tr >
+              <td className={styles.info_order_word}>{this.state.selectedOrderNumber}</td>
+              <td colspan={2} className={styles.info_order_word}>{orderDate}</td>
+              <td colspan={2} className={styles.info_order_word}>{customerName}</td>
+              <td className={styles.info_order_word}>{phoneNumber}</td>
             </tr>
             <tr>
-              <td colspan={5} className={styles.info_order_list_title} style={{ backgroundColor: "#D4C19F", color: "black" }}>訂購明細</td>
+              <td colspan={6} className={styles.info_order_list_title} style={{ backgroundColor: "#D4C19F", color: "black" }}>訂購明細</td>
             </tr>
             <tr>
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>項次</td>
@@ -135,26 +160,100 @@ class Order_list extends Component {
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>商品名稱</td>
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>數量</td>
               <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>價格</td>
+              <td className={`${styles.info_order_word} ${styles.info_order_word_bg}`}>狀態</td>
             </tr>
-            <tr>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{ }</td>
-              <td className={styles.info_order_list_word} ><img src='' className={styles.info_p_img} /></td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{ }</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{ }</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT$`}</td>
+            {list.map((orderDetial, index) => (
+            <tr key={index}>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{index + 1}</td>
+              <td className={styles.info_order_list_word} ><img src={orderDetial.p_img ? `/image/${orderDetial.p_img}`: `/image/${orderDetial.f_img}`} className={styles.info_p_img} /></td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{orderDetial.pname !== null ? orderDetial.pname : orderDetial.fname}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.quantity}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.price}`}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.os]}</td>
             </tr>
+            ))}
           </table>
         </div>
+        
         <br /><br /><br /><br />
       </div>
     );
   }
 
-  handleChecklistClick = () => {
-    this.setState(prevState => ({
-      displayOrderList: !prevState.displayOrderList
-    }));
-  }
+
+  handleChecklistClick = async (orderNumber) => {
+    this.setState(
+      (prevState) => ({
+        displayOrderList: !prevState.displayOrderList,
+        selectedOrderNumber: orderNumber, // 立即更新 selectedOrderNumber
+      }),
+      async () => {
+        try {
+          const order_number = this.state.selectedOrderNumber;
+          console.log('訂單編號：', order_number);
+          const response2 = await axios.get(
+            `http://localhost:8000/order/order_list?order_number=${order_number}`
+          );
+          if (response2.status === 200) {
+            const list = response2.data;
+            console.log('訂單明細：', list);
+            // 將取得的資料更新到 list 狀態中
+            this.setState({ list });
+            console.log('訂單明細：', this.state.list);
+            this.setState((prevState) => ({
+              user: prevState.user.map((order) =>
+                order.order_number === orderNumber ? { ...order, list } : order
+              )}
+            ));
+          }
+          console.log('訂單明細：', this.state.list);
+        } catch (error) {
+          // ... 處理 GET 請求錯誤 ...
+        }
+      }
+    );
+  };
+
+   // 加入購物車的函式
+   addToCart = async () => {
+    try {
+      
+      const { selectedOrderNumber, list } = this.state;
+      console.log('再次購買 - 訂單編號：', selectedOrderNumber);
+      console.log('333',list)
+      // 檢查是否有選取訂單
+      if (!selectedOrderNumber) {
+        console.log('找不到選取的訂單');
+        return;
+      }
+  
+      // 檢查是否有訂單明細資料
+      if (!list || list.length === 0) {
+        console.log('找不到訂單明細資料');
+        return;
+      }
+  
+      // 在這裡使用訂單明細資料 list 執行後續的購物車處理，例如加入購物車的 API 請求
+      // 您可以直接使用 list 資料，例如：
+      const orderDetail = list[0];
+      const { p_id, f_id, pname, fname, quantity, price, mid } = orderDetail;
+      console.log('訂單明細資料：', orderDetail);
+  
+      // 接下來，您可以執行購物車處理，例如呼叫 API 將該筆訂單的明細資料加入購物車
+  
+      // 以下是一個範例，將資料組成要傳送給後端的物件，然後呼叫加入購物車的 API
+      const item = { p_id, f_id, pname, fname, quantity, price, mid };
+      const response = await axios.post('http://localhost:8000/add_to_cart', item);
+  
+      if (response.status === 200) {
+        console.log('商品已加入購物車');
+        // 在此處執行購物車更新的動作，例如重新拉取購物車資料
+        // updateCart();
+      }
+    } catch (error) {
+      console.log('加入購物車失敗:', error.message);
+    }
+  };
 
   logoutClick = () => {
     sessionStorage.clear();
