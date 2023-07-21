@@ -3,7 +3,7 @@ import cartstyle from '../css/cart.module.css';
 
 class CartFood extends Component {
     state = { 
-        styles: displayflex
+        
      } 
     render() { 
         return (
