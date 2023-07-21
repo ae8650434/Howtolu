@@ -6,7 +6,10 @@ class weather extends Component {
         records: {
             locations: [{
                 location: [{
-                    locationName: null
+                    locationName: null,
+                    weatherElement:[{
+                        time:[null]
+                    }]
                 }]
             }]
         }
@@ -30,7 +33,7 @@ class weather extends Component {
                     </tr>
                     <tr id="tmort" className={weastyle.trwea}>
                         <td rowspan="2">早上</td>
-{/* {this.state.records.locations[0].location[1].weatherElement[0].time[0]} */}
+
                     </tr>
                     <tr id="tmorr">
 
