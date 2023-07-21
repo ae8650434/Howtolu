@@ -98,9 +98,22 @@
 }
 
 .order_bnA {
-    width: 200px;
-    height: 50px;
+    width: 150px;
+    height: 40px;
     align-items: center;
+    background-color: #5E9B44;
+    font-size: 28px;
+    border-radius: 10px;
+    border: #5E9B44 1px;
+    color:  #FFFFFF;
+
+}
+.order_bnC {
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     background-color: #5E9B44;
     font-size: 28px;
     border-radius: 10px;
@@ -119,17 +132,7 @@
     color:  #FFFFFF;
 }
 
-.order_bnB {
-    width: 200px;
-    height: 60px;
-    align-items: center;
-    background-color: #5E9B44;
-    font-size: 30px;
-    border-radius: 10px;
-    border: #5E9B44 1px;
-    color:  #FFFFFF;
-    /* margin-bottom: 10px; */
-}
+
 
 
 .detailsTableB{

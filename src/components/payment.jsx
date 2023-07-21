@@ -119,7 +119,7 @@ class Payment extends Component {
                                 <td className={styles.info_tdA}>
                                     <input
                                         type="radio"
-                                        className={styles.order_bnA}
+                                        className={styles.order_bnC}
                                         id="checklist"
                                         onClick={this.ChecklistCard}
                                     />
