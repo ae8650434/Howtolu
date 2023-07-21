@@ -3,11 +3,12 @@ import cartstyle from '../css/cart.module.css';
 import '../css/calendar.css';
 import Excel from './excel.jsx';
 import Process1 from './Process1.jsx';
-import CartFood from './cartfood';
-import CartProduct from './cartproduct';
+import CartFood from './cartfood.jsx';
+import CartProduct from './cartproduct.jsx';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
+import Cartproduct from './cartproduct';
 
 class Cart extends Component {
     state = { 
@@ -70,36 +71,36 @@ class Cart extends Component {
             console.error(err);
         });
     };
-    renderProducts = () => {
-        const {cartList} = this.state
-        if (!cartList || cartList.length === 0){
-            return <div></div>           
-        }       
-        return cartList.map((product) => (            
-            <div key={product.id}>  
-            {console.log(product.f_img)}        
-                <img id={cartstyle['imgw']} src={`/image/${product.f_img}` || `/image/${product.p_img}`} alt="" />
-                <div id={cartstyle['shopping3']}>
-                    <span style={{ fontSize: 40 }}><b></b></span>
-                    <br /><br /><br /><br />
-                    <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
-                    <p></p>
-                    <div id={cartstyle['disFlex']}>
-                        <b id={cartstyle['moneySize']}>金額:{product.price}</b>
-                        <input
-                            id={cartstyle['numberstyle']}
-                            type="number"
-                            min={1}
-                            value={product.quantity}
-                            onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
-                        <button id={cartstyle['butRubbish']}  >
-                            <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
-                        </button>
-                    </div><br /><br />
-                </div>
-            </div>
-        ));
-    };
+    // renderProducts = () => {
+    //     const {cartList} = this.state
+    //     if (!cartList || cartList.length === 0){
+    //         return <div></div>           
+    //     }       
+    //     return cartList.map((product) => (            
+    //         <div key={product.id}>  
+    //         {console.log(product.f_img)}        
+    //             <img id={cartstyle['imgw']} src={`/image/${product.f_img}` || `/image/${product.p_img}`} alt="" />
+    //             <div id={cartstyle['shopping3']}>
+    //                 <span style={{ fontSize: 40 }}><b></b></span>
+    //                 <br /><br /><br /><br />
+    //                 <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
+    //                 <p></p>
+    //                 <div id={cartstyle['disFlex']}>
+    //                     <b id={cartstyle['moneySize']}>金額:{product.price}</b>
+    //                     <input
+    //                         id={cartstyle['numberstyle']}
+    //                         type="number"
+    //                         min={1}
+    //                         value={product.quantity}
+    //                         onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
+    //                     <button id={cartstyle['butRubbish']}  >
+    //                         <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
+    //                     </button>
+    //                 </div><br /><br />
+    //             </div>
+    //         </div>
+    //     ));
+    // };
 
     calendar = () => {
         this.setState(prevState => ({
@@ -161,6 +162,7 @@ class Cart extends Component {
                 {cartList.length > 0 ?( <Process1 /> ):null}    
                 <br /><br /><br /><br />
                 {cartList.length === 0 ?( <Nullcart/> ):null}
+                <CartFood />
                 
                 {/* 日曆 */}
                 {/* <div className="myform">
