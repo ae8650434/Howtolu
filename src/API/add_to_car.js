@@ -33,7 +33,6 @@ function insertDataToDB(data) {
     return_date.setMonth(month)
     return_date.setDate(day)
     console.log('332', return_date)
-    console.log('999',req.body)
 
     var sql = 'INSERT INTO `car`(`mid`, `pid`, `fid`, `c_day`, `use_date`, `return_date`, `quantity`) VALUES (?,?,?,?,?,?,?)';
     DB.query(sql, [data.mid, data.pid, data.fid, 3, use_date, return_date, data.quantity], (err, result) => {
@@ -46,17 +45,14 @@ function insertDataToDB(data) {
 }
 
 app.post('/', (req, res) => {
+    console.log('999', req.body);
+    req.body.forEach((data) => {
+        insertDataToDB(data);
+    });
 
+    return res.status(200).send('success add to cart');
+});
 
-    // var sql = 'INSERT INTO `car`(`mid`, `pid`, `fid`, `c_day`, `use_date`, `return_date`, `quantity`) VALUES (?,?,?,?,?,?,?)'
-    // DB.query(sql, [req.body.mid, req.body.pid, req.body.fid, 3, use_date, return_date, req.body.quantity], (err, data) => {
-    //     if(err) {
-    //         return res.status(500).send('error')
-    //     }else {
-    //         return res.status(200).send('success add to cart')
-    //     }
-    // })
-})
 
 
 module.exports = app;

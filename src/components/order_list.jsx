@@ -219,6 +219,7 @@ class Order_list extends Component {
         displayOrderList: !prevState.displayOrderList,
         selectedOrderNumber: orderNumber, // 立即更新 selectedOrderNumber
       }),
+      
       async () => {
         try {
           const order_number = this.state.selectedOrderNumber;
