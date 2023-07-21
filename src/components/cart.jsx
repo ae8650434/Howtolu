@@ -4,6 +4,7 @@ import '../css/calendar.css';
 import Excel from './excel.jsx';
 import Process1 from './Process1.jsx';
 import CartFood from './cartfood';
+import CartProduct from './cartproduct';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
@@ -186,10 +187,6 @@ class Cart extends Component {
                 <div>{this.renderDates()}</div>
               </form>
             </div><br /><br /><br /><br /><br /> */}
-
-                <div id={cartstyle['shopping']}>
-                    <div id={cartstyle['null']}>{this.renderProducts()}</div>
-                </div><br />
 
                 {/* 總計跟前往結帳 */}
                 {cartList.length > 0 ?(
