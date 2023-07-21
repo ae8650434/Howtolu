@@ -11,7 +11,10 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
-            cartMid: {},
+            cartMid:[
+                {name:null
+                
+                }],
         }
     }
     render() {
@@ -106,7 +109,7 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{ }</p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid.name }</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
@@ -203,9 +206,11 @@ class Payment extends Component {
             var result = await axios.get("http://localhost:8000/cart")
             var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
             var newcartMid = { ...this.state };
+            newcartMid.cartMid = cartMid;
             this.state = newcartMid;
             this.setState(this.state);
-            console.log("我看", this.state.cartMid[0]);
+            console.log("我看1", this.state.cartMid);
+            console.log("我看2",cartMid);
 
         }
     }
