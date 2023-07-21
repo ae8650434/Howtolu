@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styles from '../css/Order_list.module.css'
 import axios from 'axios';
 import Modal from 'react-modal';
+import XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 class Order_list extends Component {
   constructor(props) {
@@ -124,13 +127,11 @@ class Order_list extends Component {
                     onClick={() => this.handleChecklistClick(order.order_number)}
                   />
                 </tr>
-                <tr>
-                  <td><input type="button" value="訂單下載" className={`${styles.info_order_button} ${styles.info_last_buttom}`} /></td>
-                </tr>
               </td>
             </tr>
             ))}
         </table>
+        <br /><br /><br /><br /><br />
         <div style={{ display: displayOrderList ? 'table' : 'none' }}>
           <p className={styles.info_order_name}>訂單明細</p>
           <table className={styles.order_list_table}>
@@ -171,7 +172,11 @@ class Order_list extends Component {
             </tr>
             ))} 
             </table>
-              <input type="button" value="再次購買" style={{marginTop:'30px',marginLeft: '1440px'}} className={styles.info_order_button}  onClick={this.addToCart}/>
+            <div style={{display:'inline-block'}}>
+              <input type="button" value="再次購買" style={{marginTop:'30px',marginLeft: '1140px', marginRight: '30px', fontSize:'30px', width:'200px', height:'60px'}} className={styles.info_order_button}  onClick={this.addToCart}/>
+              
+              <input type="button" value="訂單下載" style={{fontSize:'30px', width:'200px', height:'60px'}} className={`${styles.info_order_button} ${styles.info_last_buttom}`} onClick={this.downloadClick}/>
+            </div>   
         </div>
         <br /><br /><br /><br />
 
@@ -212,14 +217,14 @@ class Order_list extends Component {
     const { history } = this.props;
   };
 
-
+  //  查看明細
   handleChecklistClick = async (orderNumber) => {
     this.setState(
       (prevState) => ({
         displayOrderList: !prevState.displayOrderList,
         selectedOrderNumber: orderNumber, // 立即更新 selectedOrderNumber
       }),
-      
+
       async () => {
         try {
           const order_number = this.state.selectedOrderNumber;
@@ -247,7 +252,7 @@ class Order_list extends Component {
     );
   };
 
-   // 加入購物車的函式
+   // 再買一次
    addToCart = async () => {
     try {
       
@@ -283,6 +288,41 @@ class Order_list extends Component {
     }
   };
 
+  // 歷史訂單下載
+  downloadClick = async () => {
+  
+  console.log('32323',this.state.list)
+
+  const targetData = []; // 初始化為空陣列
+
+  this.state.list.forEach(item => {
+    const { pname, quantity, fname, fname_quantity } = item;
+    
+    if (pname !== null) {
+      targetData.push({ key: 'pname', value: pname });
+      targetData.push({ key: 'quantity', value: quantity });
+    }
+  
+    if (fname !== null) {
+      targetData.push({ key: 'fname', value: fname });
+      targetData.push({ key: 'fname_quantity', value: quantity });
+    }
+  });
+
+
+  console.log('eree', targetData);
+
+  try {
+    var downloadexcel = await axios.post('http://localhost:8000/download_excel',targetData)
+
+  }catch {
+
+  }
+  
+
+  }
+
+  // 登出
   logoutClick = () => {
     sessionStorage.clear();
     window.location.href = '/';
