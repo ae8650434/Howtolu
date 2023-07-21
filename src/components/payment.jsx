@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import styles from '../css/payment.module.css';
 
 class Payment extends Component {
@@ -11,10 +11,12 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
+            cartMid: [],
+            cartList: [],
         }
     }
     render() {
-        const { displayOrderList, paym, inputValues, month, year } = this.state; // 解構出user變數
+        const { displayOrderList, paym, inputValues, month, year } = this.state;
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
@@ -193,16 +195,30 @@ class Payment extends Component {
             </React.Fragment >
         );
     }
+    componentDidMount = async () => {
+        // 篩選 當前mid的訂單
+        if (sessionStorage.getItem('account')) {
+            var result = await axios.get("http://localhost:8000/cart")
+            this.states = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
+            this.setState(this.states)
+            console.log("我看",this.states);
+          
+        }
+    }
+
+    // 查看明細 展開
     handleChecklistClick = () => {
         this.setState(prevState => ({
             displayOrderList: !prevState.displayOrderList
         }));
     }
+    // 刷卡 展開
     ChecklistCard = () => {
         this.setState(prevState => ({
             paym: !prevState.paym
         }));
     }
+    // 輸入卡號 自動下一格
     handleInputChange = (event, index) => {
         const { value } = event.target;
         const nextIndex = index + 1;
@@ -217,6 +233,7 @@ class Payment extends Component {
             return { inputValues: updatedValues };
         });
     };
+    // 信用卡-月 自動下一格
     handleMonthChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {
@@ -227,7 +244,7 @@ class Payment extends Component {
             this.setState({ month: value });
         }
     };
-
+    // 信用卡-年 自動下一格
     handleYearChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {

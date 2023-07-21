@@ -6,21 +6,21 @@ import Activity from './index/activity.jsx'
 import Weather from './index/weatherapi.jsx'
 import Map from './index/map.jsx'
 
- 
+
 const home = () => {
-    return (
-       <>
-       
-         <Slot/>
-         <About/>
-          <Productlink/>
-          <Activity/>
-          <Weather/>
-          <Map/>
-        
-        </>
-       
-    );
+  return (
+    <>
+
+      <Slot />
+      <About />
+      <Productlink />
+      <Activity />
+      <Weather />
+      <Map />
+
+    </>
+
+  );
 }
- 
+
 export default home;
