@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Order_list.module.css'
 import axios from 'axios';
+import Modal from 'react-modal';
 
 class Order_list extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Order_list extends Component {
         3: '未歸還',
         4: '未完成',
       },
-      
+      addtocartSuccess: false,
     };
   }
 
@@ -67,7 +68,7 @@ class Order_list extends Component {
   }
 
   render() {
-    const { displayOrderList, user, selectedOrderNumber, list } = this.state; // 解構出user變數
+    const { displayOrderList, user, selectedOrderNumber, list, addtocartSuccess } = this.state; // 解構出user變數
 
     let orderDate = '';
     let customerName = '';
@@ -123,10 +124,6 @@ class Order_list extends Component {
                   />
                 </tr>
                 <tr>
-                  <td><input type="button" value="再次購買" className={styles.info_order_button}  onClick={this.addToCart}/></td>
-                </tr>
-
-                <tr>
                   <td><input type="button" value="訂單下載" className={`${styles.info_order_button} ${styles.info_last_buttom}`} /></td>
                 </tr>
               </td>
@@ -171,14 +168,48 @@ class Order_list extends Component {
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.price}`}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.os]}</td>
             </tr>
-            ))}
-          </table>
+            ))} 
+            </table>
+              <input type="button" value="再次購買" style={{marginTop:'30px',marginLeft: '1440px'}} className={styles.info_order_button}  onClick={this.addToCart}/>
         </div>
-        
         <br /><br /><br /><br />
+
+        <Modal
+          isOpen={addtocartSuccess}
+          onRequestClose={this.closeSuccessModal}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+        >
+          <div className={styles.content2}>
+            <svg width="300" height="300">
+              <circle
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                cx="140" cy="140" r="120"
+                className={styles.circle}
+              />
+              <polyline
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                points="80,150 140,220 220,75"
+                className={styles.tick}
+              />
+            </svg>
+            <p className={styles.h2}>歷史訂單已加入購物車</p>
+            <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+          </div>
+        </Modal>
       </div>
     );
   }
+
+  // 關閉彈窗
+  closeSuccessModal = () => {
+    this.setState({ addtocartSuccess: false });
+    const { history } = this.props;
+  };
 
 
   handleChecklistClick = async (orderNumber) => {
@@ -233,20 +264,15 @@ class Order_list extends Component {
         return;
       }
   
-      // 在這裡使用訂單明細資料 list 執行後續的購物車處理，例如加入購物車的 API 請求
-      // 您可以直接使用 list 資料，例如：
-      const orderDetail = list[0];
-      const { p_id, f_id, pname, fname, quantity, price, mid } = orderDetail;
-      console.log('訂單明細資料：', orderDetail);
   
       // 接下來，您可以執行購物車處理，例如呼叫 API 將該筆訂單的明細資料加入購物車
   
       // 以下是一個範例，將資料組成要傳送給後端的物件，然後呼叫加入購物車的 API
-      const item = { p_id, f_id, pname, fname, quantity, price, mid };
-      const response = await axios.post('http://localhost:8000/add_to_cart', item);
+      const response = await axios.post('http://localhost:8000/add_to_cart', list);
   
       if (response.status === 200) {
         console.log('商品已加入購物車');
+        this.setState({ addtocartSuccess: true })
         // 在此處執行購物車更新的動作，例如重新拉取購物車資料
         // updateCart();
       }
