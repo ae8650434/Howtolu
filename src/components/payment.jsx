@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import styles from '../css/payment.module.css';
 
 class Payment extends Component {
@@ -11,10 +11,14 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
+            cartMid: [],
         }
     }
     render() {
-        const { displayOrderList, paym, inputValues, month, year } = this.state; // 解構出user變數
+        const { displayOrderList, paym, inputValues, month, year,cartMid,} = this.state;
+        // const name = cartMid[0].name;
+        // console.log("666",cartMid[0])
+        
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
@@ -102,22 +106,22 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>王大明</p></td>
+                                <td className={styles.info_tdA}><p>{console.log("888",cartMid[0])}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
-                                <td className={styles.info_tdA}><p>0911111111</p></td>
+                                <td className={styles.info_tdA}><p></p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>電子信箱：</td>
-                                <td className={styles.info_tdA}><p>a1@gmail.com</p></td>
+                                <td className={styles.info_tdA}><p></p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>付款方式：</td>
                                 <td className={styles.info_tdA}>
                                     <input
                                         type="radio"
-                                        className={styles.order_bnA}
+                                        className={styles.order_bnC}
                                         id="checklist"
                                         onClick={this.ChecklistCard}
                                     />
@@ -193,16 +197,30 @@ class Payment extends Component {
             </React.Fragment >
         );
     }
+    componentDidMount = async () => {
+        // 篩選 當前mid的訂單
+        if (sessionStorage.getItem('account')) {
+            var result = await axios.get("http://localhost:8000/cart")
+            var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
+            this.setState({cartMid})
+            console.log("我看",cartMid[0]);
+          
+        }
+    }
+
+    // 查看明細 展開
     handleChecklistClick = () => {
         this.setState(prevState => ({
             displayOrderList: !prevState.displayOrderList
         }));
     }
+    // 刷卡 展開
     ChecklistCard = () => {
         this.setState(prevState => ({
             paym: !prevState.paym
         }));
     }
+    // 輸入卡號 自動下一格
     handleInputChange = (event, index) => {
         const { value } = event.target;
         const nextIndex = index + 1;
@@ -217,6 +235,7 @@ class Payment extends Component {
             return { inputValues: updatedValues };
         });
     };
+    // 信用卡-月 自動下一格
     handleMonthChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {
@@ -227,7 +246,7 @@ class Payment extends Component {
             this.setState({ month: value });
         }
     };
-
+    // 信用卡-年 自動下一格
     handleYearChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {

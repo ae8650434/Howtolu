@@ -1,3 +1,9 @@
+body{
+    background: rgb(216,218,125);
+    background: linear-gradient(313deg, rgba(216,218,125,0.9023984593837535) 0%, rgba(251,251,242,1) 50%, rgba(255,255,255,1) 100%);
+
+}
+
 #about{
     text-align: center;
 }
@@ -108,6 +114,9 @@
     padding: 20px;
     font-size: 40px;
 }
-
-
- 
+.weasel{
+    width: 200px;
+    height: 60px;
+    font-size: 50px;
+    margin:100px 20px 20px 50px;
+}

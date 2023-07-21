@@ -14,7 +14,7 @@ class slotbtn extends Component {
         )
     }
     slot=()=>{
-
+        
     }
 }
  

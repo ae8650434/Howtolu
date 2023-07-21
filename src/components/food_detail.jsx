@@ -103,7 +103,10 @@ class FoodDetail extends Component {
                             <form id={styles['myform_food']} method='get' action='#'>
                                 <label htmlFor='quantity'>數量：</label>
                                 <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} field='quantity' />
-                                <input type='button' name='quantity' value={this.state.quantity} className={styles.qty} ref={(input) => (this.quantity = input)} />
+                                <input type='button' name='quantity' value={this.state.quantity} className={styles.qty} ref={(input) =>
+                                 (this.quantity = input)
+                            
+                                } />
                                 <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} field='quantity' />
                                 <input type='button' value='選購' className={styles.reserve} onClick={this.handleReserve} />
 
@@ -216,9 +219,9 @@ class FoodDetail extends Component {
         );
     }
     componentDidMount = async () => {
-        var foodId = null;
-        const quantity = sessionStorage.getItem(`foodval${foodId}`);
-        this.setState({ quantity: parseInt(quantity) || 0 });
+        // var foodId = null;
+        // const quantity = sessionStorage.getItem(`foodval${foodId}`);
+        // this.setState({ quantity: parseInt(quantity) || 0 });
         // 查單一商品
         var fid = this.props.match.params.fid;
         if (fid > 5) {
@@ -283,9 +286,11 @@ class FoodDetail extends Component {
             newCar = {
                 mid: response.data.data[0].mid,
                 fid: this.state.food[0].fid,
-                quantity: this.state.count
+                quantity: this.state.quantity
             }
+           
             this.state.car = newCar
+            
             this.setState(newCar)
             console.log("123", this.state.car)
             // console.log(mtel);

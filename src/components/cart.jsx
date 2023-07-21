@@ -8,12 +8,11 @@ import CartProduct from './cartproduct.jsx';
 import Nullcart from './nullcart.jsx';
 import Calendar from 'react-calendar';
 import axios from 'axios';
-import Cartproduct from './cartproduct';
 
 class Cart extends Component {
-    state = { 
-        cartList: []
-     };
+    state = {
+
+    };
 
     styleSize = {
         fontSize: 30
@@ -45,62 +44,28 @@ class Cart extends Component {
             ),
         }));
     };
-    
+
     // 計算總計
     calculateTotal = () => {
         const { cartList } = this.state;
         let total = 0;
-      
+
         cartList.forEach((product) => {
-          total += product.price * product.quantity;
+            total += product.price * product.quantity;
         });
         return total;
-      };
-
-    del = () => {
-        
-    }
+    };
 
     // 一鍵刪除
     delAll = () => {
         axios.delete('http://localhost:8000/cart')
-        .then(() => { 
-            this.setState({ cartList: [] });
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .then(() => {
+                this.setState({ cartList: [] });
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     };
-    // renderProducts = () => {
-    //     const {cartList} = this.state
-    //     if (!cartList || cartList.length === 0){
-    //         return <div></div>           
-    //     }       
-    //     return cartList.map((product) => (            
-    //         <div key={product.id}>  
-    //         {console.log(product.f_img)}        
-    //             <img id={cartstyle['imgw']} src={`/image/${product.f_img}` || `/image/${product.p_img}`} alt="" />
-    //             <div id={cartstyle['shopping3']}>
-    //                 <span style={{ fontSize: 40 }}><b></b></span>
-    //                 <br /><br /><br /><br />
-    //                 <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
-    //                 <p></p>
-    //                 <div id={cartstyle['disFlex']}>
-    //                     <b id={cartstyle['moneySize']}>金額:{product.price}</b>
-    //                     <input
-    //                         id={cartstyle['numberstyle']}
-    //                         type="number"
-    //                         min={1}
-    //                         value={product.quantity}
-    //                         onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
-    //                     <button id={cartstyle['butRubbish']}  >
-    //                         <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
-    //                     </button>
-    //                 </div><br /><br />
-    //             </div>
-    //         </div>
-    //     ));
-    // };
 
     calendar = () => {
         this.setState(prevState => ({
@@ -154,16 +119,22 @@ class Cart extends Component {
 
     render() {
         const total = this.calculateTotal();
-        const { value, maxDate, minDate, datepicker, cartList  } = this.state;
+        const { value, maxDate, minDate, datepicker, cartList } = this.state;
         return (
-            <React.Fragment>    
+            <React.Fragment>
                 <br /><br /><br /><br />
                 <Excel />
-                {cartList.length > 0 ?( <Process1 /> ):null}    
+                {cartList.length > 0 ? (<Process1 />) : null}
                 <br /><br /><br /><br />
-                {cartList.length === 0 ?( <Nullcart/> ):null}
-                <CartFood />
-                
+                {cartList.length === 0 ? (<Nullcart />) : null}
+
+                <div id={cartstyle['shopping']}>
+                    <div id={cartstyle['null']}>
+                        <CartProduct />
+                        <CartFood />
+                    </div>
+                </div><br />
+
                 {/* 日曆 */}
                 {/* <div className="myform">
                 <form id="myform" method="get" action="#">
@@ -191,25 +162,27 @@ class Cart extends Component {
             </div><br /><br /><br /><br /><br /> */}
 
                 {/* 總計跟前往結帳 */}
-                {cartList.length > 0 ?(
-                <div id={cartstyle['shopping2']}>
-                    <span style={{ fontSize: 40 }}>總計：NT{total}</span>
-                    <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{color: 'white'}}>一鍵刪除</span></a></button>                    
-                    <a href="/payment">
-                        <button onclick="processBuy()" id={cartstyle['buy']}><span>前往結帳</span></button>                      
-                    </a>
-                </div>
-                ):null}
+                {
+                    cartList.length > 0 ? (
+                        <div id={cartstyle['shopping2']}>
+                            <span style={{ fontSize: 40 }}>總計：NT{total}</span>
+                            <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
+                            <a href="/payment">
+                                <button onclick="processBuy()" id={cartstyle['buy']}><span>前往結帳</span></button>
+                            </a>
+                        </div>
+                    ) : null
+                }
                 <br /><br />
-            </React.Fragment>
+            </React.Fragment >
         );
     }
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
-        var newState = {...this.state};
+        var newState = { ...this.state };
         newState.cartList = result.data;
         this.setState(newState);
-    }      
+    }
 }
 
 export default Cart;
