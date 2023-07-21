@@ -1,3 +1,9 @@
+body{
+    background: rgb(216,218,125);
+    background: linear-gradient(313deg, rgba(216,218,125,0.9023984593837535) 0%, rgba(251,251,242,1) 50%, rgba(255,255,255,1) 100%);
+
+}
+
 #about{
     text-align: center;
 }
