@@ -11,14 +11,14 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
-            cartMid: [],
+            cartMid: {},
         }
     }
     render() {
-        const { displayOrderList, paym, inputValues, month, year,cartMid,} = this.state;
+        const { displayOrderList, paym, inputValues, month, year, cartMid, } = this.state;
         // const name = cartMid[0].name;
         // console.log("666",cartMid[0])
-        
+
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
@@ -106,7 +106,7 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{this.state.cartMid[0]?.name}</p></td>
+                                <td className={styles.info_tdA}><p>{ }</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
@@ -202,9 +202,11 @@ class Payment extends Component {
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")
             var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
-            this.setState({cartMid})
-            // console.log("我看",cartMid[0]);
-          
+            var newcartMid = { ...this.state };
+            this.state = newcartMid;
+            this.setState(this.state);
+            console.log("我看", this.state.cartMid[0]);
+
         }
     }
 
