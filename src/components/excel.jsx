@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
+import Nullcart from './nullcart.jsx';
 
 class Excel extends Component {
     state = {
@@ -36,7 +37,7 @@ class Excel extends Component {
     };
 
     render() {
-        const { items } = this.state;
+        const { items, fileUploaded } = this.state;
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -54,36 +55,38 @@ class Excel extends Component {
 
                 {/* excel插入後的格式 */}
                 <br /><br /><br /><br /><br />
-                <div id={cartstyle['shopping']}>
-                    <div id={cartstyle['null']}>
-                        {items.map((row, index) => (
-                            <div id={cartstyle['text1']} key={index}>
-                                <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
-                                <div id={cartstyle['shopping3']}>
-                                    <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
-                                    <br /><br /><br /><br />
-                                    <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
-                                    <p></p>
-                                    <div id={cartstyle['disFlex']}>
-                                        <b id={cartstyle["moneySize"]}>金額:{row['金額']}</b>
-                                        <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
-                                        <button id={cartstyle["butRubbish"]} onClick='del'>
-                                            <img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" />
-                                        </button>
-                                    </div> <br /><br />
+                
+                    <div id={cartstyle['shopping']}>
+                        <div id={cartstyle['null']}>
+                            {items.map((row, index) => (
+                                <div id={cartstyle['text1']} key={index}>
+                                    <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
+                                    <div id={cartstyle['shopping3']}>
+                                        <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
+                                        <br /><br /><br /><br />
+                                        <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
+                                        <p></p>
+                                        <div id={cartstyle['disFlex']}>
+                                            <b id={cartstyle["moneySize"]}>金額:{row['金額']}</b>
+                                            <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
+                                            <button id={cartstyle["butRubbish"]} onClick='del'>
+                                                <img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" />
+                                            </button>
+                                        </div> <br /><br />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
             </React.Fragment>
         );
     }
+
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/product/list');
-        var newState = {...this.state};
+        var newState = { ...this.state };
         newState.cartList = result.data;
         this.setState(newState);
-    }  
+    }
 }
 export default Excel;

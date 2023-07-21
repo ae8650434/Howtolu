@@ -39,7 +39,7 @@ class Info extends Component {
                 this.setState((prevState) => ({
                     user: {
                         ...prevState.user,
-                        m_img: userData.m_img,
+                        m_img:`image/${userData.m_img}`,
                         mid: userData.mid,
                         name: userData.name,
                         tel: userData.tel,
@@ -71,10 +71,10 @@ class Info extends Component {
         }
     }
 
-    handleFileChange = (event) => {
+    handleFileChange = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
-console.log(file )
+        console.log(file )
         reader.onloadend = () => {
             const base64String = reader.result;
             this.setState((prevState) => ({
@@ -84,7 +84,7 @@ console.log(file )
                 },
             }));
         };
-
+        console.log('3333',this.state)
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -111,6 +111,7 @@ console.log(file )
                         className={styles.info_pic}
                     />
                     {console.log('aa', this.state.user.m_img)}
+                    {/* {console.log('rr', this.state.user.m_img.substring(0,10))} */}
                     <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} />
                     <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
@@ -284,6 +285,7 @@ console.log(file )
                     "Content-Type": "multipart/form-data"
                 }
             }
+
         )
 
         if (response.status === 200) {

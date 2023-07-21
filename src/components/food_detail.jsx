@@ -5,6 +5,7 @@ import Productbar2 from './productbar2'
 class FoodDetail extends Component {
     constructor(props) {
         super(props);
+        var foodId = null;
         this.state = {
             food:
                 [{
@@ -27,19 +28,25 @@ class FoodDetail extends Component {
                 fid: '',
                 quantity: ''
             },
+            quantity: sessionStorage.getItem(`foodval${foodId}`)
         }
     }
-    // 數量按鈕 
     handleAdd = () => {
-        this.setState(prevState => ({
-            count: prevState.count + 1
-        }));
-
+        this.setState((prevState) => ({
+            quantity: prevState.quantity + 1
+        }), () => {
+            const foodId = null;
+            sessionStorage.setItem(`foodval${foodId}`, this.state.quantity.toString());
+        });
     };
+    
     handleMinus = () => {
         this.setState((prevState) => ({
-            count: prevState.count > 0 ? prevState.count - 1 : 0,
-        }));
+            quantity: prevState.quantity > 0 ? prevState.quantity - 1 : 0
+        }), () => {
+            const foodId = null;
+            sessionStorage.setItem(`foodval${foodId}`, this.state.quantity.toString());
+        });
     };
 
     foodClick = (category) => {
@@ -49,10 +56,13 @@ class FoodDetail extends Component {
 
     render() {
         const { handleOpen, handleOK } = this.state;
+        const foodId = null; // 
+        const quantity = sessionStorage.getItem(`foodval${foodId}`);
+
         return (
             <React.Fragment>
                 <div className={styles.categories_food}>
-                    <Productbar2  className={styles.categories_food}/>
+                    <Productbar2 className={styles.categories_food} />
                     {/* <p>商品分類</p>
                     <ul className={styles.categoriesUl_food}>
                         <li><a href="http://localhost:3000/product2/combo">套餐</a>
@@ -93,9 +103,10 @@ class FoodDetail extends Component {
                             <form id={styles['myform_food']} method='get' action='#'>
                                 <label htmlFor='quantity'>數量：</label>
                                 <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} field='quantity' />
-                                <input type='button' name='quantity' value={this.state.count} className={styles.qty} ref={(input) => (this.quantity = input)} />
+                                <input type='button' name='quantity' value={this.state.quantity} className={styles.qty} ref={(input) => (this.quantity = input)} />
                                 <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} field='quantity' />
                                 <input type='button' value='選購' className={styles.reserve} onClick={this.handleReserve} />
+
                             </form>
                         </div>
                     </div>
@@ -205,6 +216,9 @@ class FoodDetail extends Component {
         );
     }
     componentDidMount = async () => {
+        var foodId = null;
+        const quantity = sessionStorage.getItem(`foodval${foodId}`);
+        this.setState({ quantity: parseInt(quantity) || 0 });
         // 查單一商品
         var fid = this.props.match.params.fid;
         if (fid > 5) {

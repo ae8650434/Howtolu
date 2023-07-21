@@ -78,19 +78,23 @@ export class Product4 extends Component {
   }
 
   handleAdd = (event) => {
+    const foodId = event.target.getAttribute('data-foodid');
     var quantityLabel = event.target.previousElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     quantity++;
     quantityLabel.textContent = quantity;
-
+    sessionStorage.setItem(`foodval${foodId}`, quantity);
+    console.log(foodId)
   }
 
   handledown = (event) => {
+    const foodId = event.target.getAttribute('data-foodid');
     var quantityLabel = event.target.nextElementSibling;
     var quantity = parseInt(quantityLabel.textContent);
     if (quantity > 0) {
       quantity--;
       quantityLabel.textContent = quantity;
+      sessionStorage.setItem(`foodval${foodId}`, quantity);
     }
   }
 
@@ -121,7 +125,7 @@ export class Product4 extends Component {
                   <figcaption>{x.fname}</figcaption>
                   <figcaption>NT${x.price}</figcaption>
                   <button className="btnq1" onClick={this.handledown}>-</button>
-                  <label id={`foodval${x.fid}`} className="count">0</label>
+                  <label id={`foodval${x.fid}`} data-foodid={x.fid} className="count">0</label>
                   <button className="btn0" onClick={this.handleAdd}>+</button>
                   <br />
                   <button id={x.fid} className="btnq" onClick={this.okButtonClick}>選購</button>

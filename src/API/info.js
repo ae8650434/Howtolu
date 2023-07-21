@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 var insertm =
-  "UPDATE member SET password = ? , mail = ?, name = ?, gender = ?, address = ?, m_img = ?, WHERE mid = ?";
+  "UPDATE member SET password = ? , mail = ?, name = ?, gender = ?, address = ?, m_img = ? WHERE mid = ?";
 // 定义 multer 存储配置
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -50,6 +50,13 @@ app.post("/member", upload.single("m_img"), (req, res) => {
   var second = first.split(";")[0]; // 副檔名
   var newFileName = `0${user.mid}.${second}`;
 
+   // 解析 Base64 碼成圖片
+   const base64Data = user.m_img.replace(/^data:image\/\w+;base64,/, '');
+   const imageBuffer = Buffer.from(base64Data, 'base64');
+ 
+   // 儲存圖片到 VS Code
+   const imagePath = path.join(__dirname, `../../public/image/${newFileName}`); // 假設儲存為 jpg 格式
+   fs.writeFileSync(imagePath, imageBuffer);
 
   // 密碼加密
   const saltRounds = 10;
