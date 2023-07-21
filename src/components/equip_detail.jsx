@@ -171,7 +171,7 @@ class EquipDetail extends Component {
                                 <input onClick={this.handleMinus} type='button' value='-' className={styles.qtyminus} />
                                 <input type='button' name='quantity' value={this.state.count} className={styles.qty} />
                                 <input onClick={this.handleAdd} type='button' value='+' className={styles.qtyplus} />
-                                <input type='button' value='立即預約' className={styles.reserve} onClick={this.handleReserve} />
+                                <input type='button' value='立即預約' className={styles.reserve} onClick={this.handleReserve}  disabled={this.state.count === 0}/>
                                 <p><span>庫存量:</span><span>{this.state.product[0].reserve}</span></p>
                             </form>
                         </div>
