@@ -8,7 +8,7 @@ class Cartproduct extends Component {
             <React.Fragment>
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>{this.renderProducts()}
-                        <div key={product.id}>
+                        <div >
                             <img id={cartstyle['imgw']} src="./image/product_19.png" alt="" />
                             <div id={cartstyle['shopping3']}>
                                 <span style={{ fontSize: 40 }}><b></b></span>
@@ -16,13 +16,14 @@ class Cartproduct extends Component {
                                 <span><b id={cartstyle['dateSize']}>可租借天數: 共日</b></span>
                                 <p></p>
                                 <div id={cartstyle['disFlex']}>
-                                    <b id={cartstyle['moneySize']}>金額:{product.price}</b>
+                                    <b id={cartstyle['moneySize']}>金額:100</b>
                                     <input
                                         id={cartstyle['numberstyle']}
                                         type="number"
                                         min={1}
-                                        value={product.quantity}
-                                        onChange={(e) => this.updateQuantity(product.id, e.target.value)} />
+                                        value="10"
+                                        // onChange={(e) => this.updateQuantity(product.id, e.target.value)}
+                                         />
                                     <button id={cartstyle['butRubbish']}  >
                                         <img id={cartstyle['imgRubbish']} src="/image/Rubbish.png" alt="" />
                                     </button>
