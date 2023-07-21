@@ -12,11 +12,13 @@ class Payment extends Component {
             month: '',
             year: '',
             cartMid: [],
-            cartList: [],
         }
     }
     render() {
-        const { displayOrderList, paym, inputValues, month, year } = this.state;
+        const { displayOrderList, paym, inputValues, month, year,cartMid,} = this.state;
+        // const name = cartMid[0].name;
+        // console.log("666",cartMid[0])
+        
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
@@ -104,15 +106,15 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>王大明</p></td>
+                                <td className={styles.info_tdA}><p>{console.log("888",cartMid[0])}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
-                                <td className={styles.info_tdA}><p>0911111111</p></td>
+                                <td className={styles.info_tdA}><p></p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>電子信箱：</td>
-                                <td className={styles.info_tdA}><p>a1@gmail.com</p></td>
+                                <td className={styles.info_tdA}><p></p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>付款方式：</td>
@@ -199,9 +201,9 @@ class Payment extends Component {
         // 篩選 當前mid的訂單
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")
-            this.states = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
-            this.setState(this.states)
-            console.log("我看",this.states);
+            var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
+            this.setState({cartMid})
+            console.log("我看",cartMid[0]);
           
         }
     }
