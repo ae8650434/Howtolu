@@ -11,10 +11,14 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
+<<<<<<< HEAD
             cartMid:[
                 {name:null
                 
                 }],
+=======
+            cartMid: [{name:null}],
+>>>>>>> 8dd1b51be5cb1a84569c25508fc89ce1de8f29b6
         }
     }
     render() {
@@ -109,7 +113,11 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
+<<<<<<< HEAD
                                 <td className={styles.info_tdA}><p>{this.state.cartMid.name }</p></td>
+=======
+                                <td className={styles.info_tdA}><p>{this.state.cartMid.name}</p></td>
+>>>>>>> 8dd1b51be5cb1a84569c25508fc89ce1de8f29b6
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
@@ -206,11 +214,19 @@ class Payment extends Component {
             var result = await axios.get("http://localhost:8000/cart")
             var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
             var newcartMid = { ...this.state };
+<<<<<<< HEAD
             newcartMid.cartMid = cartMid;
             this.state = newcartMid;
             this.setState(this.state);
             console.log("我看1", this.state.cartMid);
             console.log("我看2",cartMid);
+=======
+            newcartMid.cartMid=cartMid
+            this.state = newcartMid;
+            this.setState(this.state);
+            // console.log("我看", this.state.cartMid);
+            // console.log("我看", cartMid);
+>>>>>>> 8dd1b51be5cb1a84569c25508fc89ce1de8f29b6
 
         }
     }
