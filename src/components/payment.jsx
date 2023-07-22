@@ -7,118 +7,94 @@ class Payment extends Component {
         super(props);
         this.state = {
             displayOrderList: false,
+            dataIndex: false,
             paym: false,
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
-            cartMid:[
-                {name:null
-                
-                }],
+            cartMid: [{ name: null, use_date: null, return_date: null }],
+
         }
     }
     render() {
-        const { displayOrderList, paym, inputValues, month, year, cartMid, } = this.state;
+        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
+        // const useDate = cartMid.use_date;
+        // const returnDate = cartMid.return_date
+        // if (useDate && returnDate ===null) {
+        //     useDate="",
+        //     returnDate=""
+        // }else{
+        //     useDate.slice(0,10),
+        //     returnDate.slice(0,10)
+        // }
+
         // const name = cartMid[0].name;
         // console.log("666",cartMid[0])
-
+        // let cartMids = cartMid;
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
+
                     <div className={styles.ordertitle}>
                         <p>訂購資訊</p>
                     </div>
                     <div className={styles.orderdivA}>
-                        <table className={styles.detailsTable}>
-                            <tr >
-                                <td className={styles.info_td}>商品名稱：</td>
-                                <td className={styles.info_td}>帳篷1111</td>
-                                <td>
-                                    <tr>
-                                        <input
-                                            type="button"
-                                            value="查看明細"
-                                            className={styles.order_bnA}
-                                            id="checklist"
-                                            onClick={this.handleChecklistClick}
-                                        />
+                        {cartMid.map((data, index) => (
+                            <div key={index}>
+                                <table className={styles.detailsTable}>
+                                    <tr >
+                                        <td className={styles.info_td}>商品名稱：</td>
+                                        <td className={styles.info_td}>{data.fname}{data.pname}</td>
+                                        <td>
+                                            <tr>
+                                                <input
+                                                    type="button"
+                                                    value="查看明細"
+                                                    className={styles.order_bnA}
+                                                    id="checklist"
+                                                    onClick={() => this.handleChecklistClick(index)}
+                                                />
+                                            </tr>
+                                        </td>
+
                                     </tr>
-                                </td>
-
-                            </tr>
-                        </table>
-                        <div style={{ display: displayOrderList ? 'table' : 'none' }}>
-                            <table className={styles.order_table}>
-                                <tr>
-                                    <td className={styles.order_word}>數量：</td>
-                                    <td colspan={2} className={styles.order_word}>2</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>租借日：</td>
-                                    <td colspan={2} className={styles.order_word}>2023-07-20</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>歸還日：</td>
-                                    <td colspan={2} className={styles.order_word}>2023-07-22</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>金額：</td>
-                                    <td colspan={2} className={styles.order_word}>3000</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <table className={styles.detailsTable}>
-                            <tr >
-                                <td className={styles.info_td}>商品名稱：</td>
-                                <td className={styles.info_td}>帳篷2222</td>
-                                <td>
-                                    <tr>
-                                        <input
-                                            type="button"
-                                            value="查看明細"
-                                            className={styles.order_bnA}
-                                            id="checklist"
-                                            onClick={this.handleChecklistClick}
-                                        />
-                                    </tr>
-                                </td>
-
-                            </tr>
-                        </table>
-                        <div style={{ display: displayOrderList ? 'table' : 'none' }}>
-                            <table className={styles.order_table}>
-                                <tr>
-                                    <td className={styles.order_word}>數量：</td>
-                                    <td colspan={2} className={styles.order_word}>2</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>租借日：</td>
-                                    <td colspan={2} className={styles.order_word}>2023-07-20</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>歸還日：</td>
-                                    <td colspan={2} className={styles.order_word}>2023-07-22</td>
-                                </tr>
-                                <tr>
-                                    <td className={styles.order_word}>金額：</td>
-                                    <td colspan={2} className={styles.order_word}>3000</td>
-                                </tr>
-                            </table>
-                        </div>
-
+                                </table>
+                                {displayOrderList && dataIndex === index && (
+                                    <div style={{ display: 'table' }}>
+                                        <table className={styles.order_table}>
+                                            <tr>
+                                                <td className={styles.order_word}>數量：</td>
+                                                <td colspan={2} className={styles.order_word}>{data.quantity}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={styles.order_word}>租借日：</td>
+                                                <td colspan={2} className={styles.order_word}>{data.use_date}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={styles.order_word}>歸還日：</td>
+                                                <td colspan={2} className={styles.order_word}>{data.return_date}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={styles.order_word}>金額：</td>
+                                                <td colspan={2} className={styles.order_word}>{data.price}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].name }</p></td>
-                                {console.log(this.state.cartMid[0].name )}
+                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].name}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
-                                <td className={styles.info_tdA}><p></p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].tel}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>電子信箱：</td>
-                                <td className={styles.info_tdA}><p></p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].mail}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>付款方式：</td>
@@ -211,15 +187,17 @@ class Payment extends Component {
             this.state = newcartMid;
             this.setState(this.state);
             console.log("我看1", this.state.cartMid);
-            console.log("我看2",cartMid);
+            console.log("我看2", cartMid);
 
         }
+
     }
 
     // 查看明細 展開
-    handleChecklistClick = () => {
+    handleChecklistClick = (index) => {
         this.setState(prevState => ({
-            displayOrderList: !prevState.displayOrderList
+            displayOrderList: !prevState.displayOrderList,
+            dataIndex: index
         }));
     }
     // 刷卡 展開
