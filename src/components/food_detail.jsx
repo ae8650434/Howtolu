@@ -26,8 +26,9 @@ class FoodDetail extends Component {
             car: {
                 mid: '',
                 fid: '',
-                quantity: ''
-            },
+                quantity: '',
+                price:''     
+                  },
             quantity: sessionStorage.getItem(`foodval${foodId}`)
         }
     }
@@ -286,7 +287,8 @@ class FoodDetail extends Component {
             newCar = {
                 mid: response.data.data[0].mid,
                 fid: this.state.food[0].fid,
-                quantity: this.state.quantity
+                quantity: this.state.quantity,
+                price:this.state.food[0].price,
             }
            
             this.state.car = newCar
