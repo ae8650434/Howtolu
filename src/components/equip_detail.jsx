@@ -54,7 +54,8 @@ class EquipDetail extends Component {
                 c_day: '',
                 use_dat: '',
                 return_date: '',
-                quantity: ''
+                quantity: '',
+                price:''
             },
 
         };
@@ -354,7 +355,9 @@ class EquipDetail extends Component {
                 c_day: this.state.product[0].day,
                 use_date: document.getElementById('a0').textContent,
                 return_date: document.getElementById('a2').textContent,
-                quantity: this.state.count
+                quantity: this.state.count,
+                price:this.state.product[0].price
+
             }
             this.state.car = newCar
             this.setState(newCar)
