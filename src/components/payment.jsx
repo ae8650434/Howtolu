@@ -12,25 +12,29 @@ class Payment extends Component {
             inputValues: ['', '', '', ''],
             month: '',
             year: '',
-            cartMid: [{ name: null, use_date: null, return_date: null }],
+            cartMid: [{ name: null }],
+            // cartMid: [{ name: null, use_date: null, return_date: null }],
 
         }
     }
+
+    // // 計算總計
+    // tableTotal=()=>{
+    //     const{cartMid}=
+    // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-        // const useDate = cartMid.use_date;
-        // const returnDate = cartMid.return_date
-        // if (useDate && returnDate ===null) {
-        //     useDate="",
-        //     returnDate=""
-        // }else{
-        //     useDate.slice(0,10),
-        //     returnDate.slice(0,10)
-        // }
+        let abc = cartMid.use_date;
+        let returnDate = cartMid.return_date;
+        console.log("皮卡",this)
+        if (abc && returnDate) {
+            abc = abc.split("T");
+            returnDate = returnDate.split("T")
+        } else {
+            abc = null;
+            returnDate = null
+        }
 
-        // const name = cartMid[0].name;
-        // console.log("666",cartMid[0])
-        // let cartMids = cartMid;
         return (
             <React.Fragment>
                 <div className={styles.orderdiv}>
@@ -68,15 +72,15 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.use_date}</td>
+                                                <td colspan={2} className={styles.order_word}>{data.use_date }</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
                                                 <td colspan={2} className={styles.order_word}>{data.return_date}</td>
                                             </tr>
                                             <tr>
-                                                <td className={styles.order_word}>金額：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.p_price}{data.f_price}</td>
+                                                <td className={styles.order_word}>小計：</td>
+                                                <td colspan={2} className={styles.order_word}>{data.p_price * data.quantity}{data.f_price * data.quantity}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -190,6 +194,8 @@ class Payment extends Component {
             console.log("我看2", cartMid);
 
         }
+
+
 
     }
 
