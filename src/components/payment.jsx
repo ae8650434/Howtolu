@@ -76,7 +76,7 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>金額：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.price}</td>
+                                                <td colspan={2} className={styles.order_word}>{data.p_price}{data.f_price}</td>
                                             </tr>
                                         </table>
                                     </div>
