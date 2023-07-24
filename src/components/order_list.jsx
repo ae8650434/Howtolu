@@ -166,9 +166,9 @@ class Order_list extends Component {
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{index + 1}</td>
               <td className={styles.info_order_list_word} ><img src={orderDetial.p_img ? `/image/${orderDetial.p_img}`: `/image/${orderDetial.f_img}`} className={styles.info_p_img} /></td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{orderDetial.pname !== null ? orderDetial.pname : orderDetial.fname}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.quantity}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.p_quantity ? orderDetial.p_quantity : orderDetial.f_quantity}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.price}`}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.os]}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.p_os ? orderDetial.p_os : orderDetial.f_os]}</td>
             </tr>
             ))} 
             </table>
