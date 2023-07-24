@@ -112,8 +112,7 @@ class Info extends Component {
                     />
                     {console.log('aa', this.state.user.m_img)}
                     {/* {console.log('rr', this.state.user.m_img.substring(0,10))} */}
-                    <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} />
-                    <p className={styles.info_file_limit}>*請傳.jpg檔</p>
+                    <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} style={{marginBottom:'50px'}}/>
                     <div style={{ textAlign: "center" }} className={styles.form}>
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>姓 名</label>

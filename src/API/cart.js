@@ -31,7 +31,31 @@ app.delete('/', function (req, res) {
     });
 });
 
-module.exports = app;
+//單一刪除裝備(含MySQL)
+app.delete('/:ProductId', function (req, res) {
+    var ProductId = req.params.ProductId;
+    var sql = 'DELETE FROM car WHERE pid = ?';
+    DB.query(sql, [ProductId], function (err, result) {
+        if (err) {
+            res.status(500).send("刪除失敗");
+        } else {
+            res.send("成功刪除");           
+        }
+    });
+});
+
+//單一刪除食材(含MySQL)
+app.delete('/:foodId', function (req, res) {
+    var foodId = req.params.foodId;
+    var sql = 'DELETE FROM car WHERE fid = ?';
+    DB.query(sql, [foodId], function (err, result) {
+        if (err) {
+            res.status(500).send("刪除失敗");
+        } else {
+            res.send("成功刪除");           
+        }
+    });
+});
 
 
 module.exports = app;

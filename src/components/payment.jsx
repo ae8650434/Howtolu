@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/payment.module.css';
 
+
 class Payment extends Component {
     constructor(props) {
         super(props);
@@ -24,16 +25,7 @@ class Payment extends Component {
     // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-        let abc = cartMid.use_date;
-        let returnDate = cartMid.return_date;
-        console.log("皮卡",this)
-        if (abc && returnDate) {
-            abc = abc.split("T");
-            returnDate = returnDate.split("T")
-        } else {
-            abc = null;
-            returnDate = null
-        }
+
 
         return (
             <React.Fragment>
@@ -43,8 +35,17 @@ class Payment extends Component {
                         <p>訂購資訊</p>
                     </div>
                     <div className={styles.orderdivA}>
-                        {cartMid.map((data, index) => (
-                            <div key={index}>
+                        {cartMid.map((data, index) => {
+                            let useDate = data.use_date;
+                            let returnDate = data.return_date;
+                            console.log("皮卡", useDate)
+                            if (useDate && returnDate) {
+                                useDate = useDate.slice(0,10);
+                                returnDate = returnDate.slice(0,10)
+                                console.log("123456", useDate)
+                            }
+
+                            return (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
                                         <td className={styles.info_td}>商品名稱：</td>
@@ -72,11 +73,11 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.use_date }</td>
+                                                <td colspan={2} className={styles.order_word}>{useDate}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.return_date}</td>
+                                                <td colspan={2} className={styles.order_word}>{returnDate}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>小計：</td>
@@ -86,7 +87,9 @@ class Payment extends Component {
                                     </div>
                                 )}
                             </div>
-                        ))}
+                            )
+                          }
+                        )}
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
@@ -182,6 +185,7 @@ class Payment extends Component {
         );
     }
     componentDidMount = async () => {
+
         // 篩選 當前mid的訂單
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")

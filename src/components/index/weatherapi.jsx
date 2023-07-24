@@ -1,63 +1,62 @@
-import React, { Component } from 'react';
+import React, { Component,useState, useEffect } from 'react';
 import axios from 'axios';
 import weastyle from '../../css/about.module.css'
-class weather extends Component {
-    state = {
-        records: {
-            locations: [{
-                location: [{
-                    locationName: null,
-                    weatherElement:[{
-                        time:[null]
-                    }]
-                }]
-            }]
-        }
-    }
-    render() {
-        const { records } = this.state;
-        return (<div id="weath">
-            <select id="selectWt" className={weastyle.weasel} onchange="cityChange()">
-                {
-                    this.state.records.locations[0].location.map((x) => {
-
-                        return <option>{x.locationName}</option>
-                    })
-                }  </select>
-
-            <div>
-                <table id={weastyle["weatb"]}>
-                    <tr id={weastyle["thd"]}>
-                        <th></th>
-
-                    </tr>
-                    <tr id="tmort" className={weastyle.trwea}>
-                        <td rowspan="2">早上</td>
-
-                    </tr>
-                    <tr id="tmorr">
 
 
-                    </tr>
-                    <tr id="taft">
-                        <td rowspan="2">下午</td>
+function Weather() {
+   
+    const [posts, setPosts] = React.useState([]);
+  
 
-                    </tr>
-                    <tr id="tafr">
+  
+    React.useEffect(() => {
+        fetch('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=rdec-key-123-45678-011121314')
+           .then((response) => response.json())
+           .then((data) => {
+              console.log("這是",data.records.locations[0].location);
+             
+              
+              setPosts(data);
+              console.log("這是",posts);
+              
+           })
+           .catch((err) => {
+              console.log(err.message);
+           });
+     }, []);
+    //}, [count])
+
+    return (<div id="weath">
+    <select id="selectWt" className={weastyle.weasel} onchange="cityChange()">
+        
+        
+          </select>
+
+    <div>
+        <table id={weastyle["weatb"]}>
+            <tr id={weastyle["thd"]}>
+                <th></th>
+
+            </tr>
+            <tr id="tmort" className={weastyle.trwea}>
+                <td rowspan="2">早上</td>
+
+            </tr>
+            <tr id="tmorr">
 
 
-                    </tr>
-                </table>
-            </div>
-        </div>);
-    }
-    componentDidMount = async () => {
-        var result = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=rdec-key-123-45678-011121314');
-        var newState = { ...this.state };
-        newState = result.data;
-        this.setState(newState);
-        console.log(newState.records.locations[0].location)
-    }
-}
+            </tr>
+            <tr id="taft">
+                <td rowspan="2">下午</td>
 
-export default weather;
+            </tr>
+            <tr id="tafr">
+
+
+            </tr>
+        </table>
+    </div>
+</div>);
+  }
+
+export default Weather;
