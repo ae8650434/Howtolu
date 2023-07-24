@@ -134,13 +134,8 @@ class Cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-                        {cartList.map(() => {
-                            if ( <CartProduct cartList={cartList} />) {
-                                
-                            }
-                               
-                        })}
-                        <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} />
+                        <CartProduct cartList={cartList} />
+                        {/* <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} /> */}
                     </div>
                 </div>
 

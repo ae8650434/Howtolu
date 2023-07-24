@@ -19,7 +19,7 @@ class CartFood extends Component {
                             <br /><br /><br /><br /><br />
                             <div>
                                 <div style={{ display: 'Flex' }}>
-                                    <b id={cartstyle["moneySize"]}>金額:{food.price}</b>
+                                    <b id={cartstyle["moneySize"]}>金額:{food.f_price}</b>
                                     <input
                                         id={cartstyle["numberstyle"]}
                                         type="number"
@@ -52,11 +52,10 @@ class CartFood extends Component {
         });
     };
 
-    // 刪除單一商品
+    // 刪除單一food
     del = async (index) => {
         const { cartFoodList } = this.state;
-        const foodToDelete = cartFoodList[index];
-    
+        const foodToDelete = cartFoodList[index];   
         try {
             await axios.delete(`http://localhost:8000/cart/${foodToDelete.fid}`);
             const updatedFoodList = cartFoodList.filter((_, i) => i !== index);
@@ -65,13 +64,6 @@ class CartFood extends Component {
             console.error("Failed to delete product:", error);
         }
     };
-
-    // del = (index) => {
-    //     const { cartFoodList } = this.state;
-    //     const updatedProductList = [...cartFoodList];
-    //     updatedProductList.splice(index, 1);
-    //     this.setState({ cartFoodList: updatedProductList });
-    // };
 
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
