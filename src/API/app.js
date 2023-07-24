@@ -17,6 +17,7 @@ var equip_insert = require('./equip_insert.js')
 var food_insert = require('./food_insert.js')
 var order = require('./order.js')
 var add_to_cart = require('./add_to_car.js')
+var download_history_order = require ('./download_history_order.js')
 var cors = require("cors");
 app.use( express.static("public")  );
 app.use( express.json() );
@@ -40,6 +41,7 @@ app.use('/mid',equip_insert);
 app.use('/mid',food_insert);
 app.use('/order', order)
 app.use('/add_to_cart', add_to_cart)
+app.use('/download_excel', download_history_order)
 
 
 
