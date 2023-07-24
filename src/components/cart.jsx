@@ -134,8 +134,9 @@ class Cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
+                        {console.log("saS",this)}
                         <CartProduct cartList={cartList} />
-                        {/* <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} /> */}
+                        <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} />
                     </div>
                 </div>
 
