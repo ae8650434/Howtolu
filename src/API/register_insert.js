@@ -44,10 +44,10 @@ app.post("/", (req, res) => {
       res.status(500).send("Error during password hashing");
       return;
     }
-    
+    console.log('pass',hash)
      // 先查詢資料庫是否已存在相同手機號碼的用戶
 
-
+    
     var sql =
       "INSERT INTO member(name, tel, password, mail, register_time) VALUES (?,?,?,?,?)";
     DB.query(sql, [mname, phone, hash, email, date], (err, data) => {
