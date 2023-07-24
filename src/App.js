@@ -19,6 +19,7 @@ import Gotop from './components/top';
 import ProductCopy from './components/product copy';
 import Payment from './components/payment';
 import Order_empty from './components/order_empty';
+import goog from './components/google'
 
 
 
@@ -44,7 +45,7 @@ class App extends Component {
             <Route path="/cart" component={Cart} exact />
             <Route path="/payment" component={Payment} exact />
             <Route path="/order_empty" component={Order_empty} exact />
-          
+            <Route path="/goog" component={goog} exact />
             <Route component={Error} />
           </Switch>
           <Gotop />

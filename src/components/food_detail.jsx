@@ -220,9 +220,9 @@ class FoodDetail extends Component {
         );
     }
     componentDidMount = async () => {
-        // var foodId = null;
-        // const quantity = sessionStorage.getItem(`foodval${foodId}`);
-        // this.setState({ quantity: parseInt(quantity) || 0 });
+        var foodId = null;
+        const quantity = sessionStorage.getItem(`foodval${foodId}`);
+        this.setState({ quantity: parseInt(quantity) || 0 });
         // 查單一商品
         var fid = this.props.match.params.fid;
         if (fid > 5) {

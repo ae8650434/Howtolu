@@ -38,6 +38,7 @@ class Cart extends Component {
     // 計算總計
     calculateTotal = () => {
         const { cartList } = this.state;
+        console.log(this.state)
         let total = 0;
 
         cartList.forEach((product) => {
@@ -134,16 +135,12 @@ class Cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-                        {cartList.map(() => {
-                            if ( <CartProduct cartList={cartList} />) {
-                                
-                            }
-                               
-                        })}
-                        <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} />
+                        
+                        <CartProduct  />
+                        <CartFood  updateProductQuantity={this.updateProductQuantity} />
                     </div>
                 </div>
-
+   
                 <br />
 
                 {/* 日曆 */}

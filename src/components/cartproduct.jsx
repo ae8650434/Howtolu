@@ -28,7 +28,7 @@ class CartProduct extends Component {
                                 {product.c_day}日</b></span>
                             <p></p>
                             <div id={cartstyle['disFlex']}>
-                                <b id={cartstyle['moneySize']}>金額:{product.price}</b>
+                                <b id={cartstyle['moneySize']}>金額:{product.p_price}</b>
                                 <input
                                     id={cartstyle['numberstyle']}
                                     type="number"
@@ -57,19 +57,35 @@ class CartProduct extends Component {
         this.setState({ cartProductList: updatedProductList });
     };
 
-    // 刪除單一商品
-    del = (index) => {
+    // 刪除單一product
+    del = async (index) => {
         const { cartProductList } = this.state;
-        const updatedProductList = [...cartProductList];
-        updatedProductList.splice(index, 1); 
-        this.setState({ cartProductList: updatedProductList });
+        const ProductToDelete = cartProductList[index];   
+        try {
+            await axios.delete(`http://localhost:8000/cart/${ProductToDelete.pid}`);
+            const updatedProductList = cartProductList.filter((_, i) => i !== index);
+            this.setState({ cartProductList: updatedProductList });
+        } catch (error) {
+            console.error("Failed to delete product:", error);
+        }
     };
+
+    // del = (index) => {
+    //     const { cartProductList } = this.state;
+    //     const updatedProductList = [...cartProductList];
+    //     updatedProductList.splice(index, 1); 
+    //     this.setState({ cartProductList: updatedProductList });
+    // };
     
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartProductList = result.data;
-        this.setState(newState);
+        var filteredList =newState.cartProductList.filter((x) => x.fid ==null)
+    
+        this.state.cartProductList=filteredList
+        this.setState(this.state);
+      
     }
 }
 export default CartProduct;

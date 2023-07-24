@@ -11,15 +11,20 @@ class CartFood extends Component {
         const { cartFoodList } = this.state;
         return (
             <React.Fragment>
-                {cartFoodList.map((food, index) => (
+              
+              
+                {
+                cartFoodList.map((food, index) => (
+                    
                     <div key={food.cid}>
+                    
                         <img id={cartstyle["imgw"]} src={`/image/${food.f_img}`} alt="" />
                         <div id={cartstyle["shopping3"]}>
                             <span style={{ fontSize: 40 }}><b>{food.fname}</b></span>
                             <br /><br /><br /><br /><br />
                             <div>
                                 <div style={{ display: 'Flex' }}>
-                                    <b id={cartstyle["moneySize"]}>金額:{food.price}</b>
+                                    <b id={cartstyle["moneySize"]}>金額:{food.f_price}</b>
                                     <input
                                         id={cartstyle["numberstyle"]}
                                         type="number"
@@ -52,11 +57,10 @@ class CartFood extends Component {
         });
     };
 
-    // 刪除單一商品
+    // 刪除單一food
     del = async (index) => {
         const { cartFoodList } = this.state;
-        const foodToDelete = cartFoodList[index];
-    
+        const foodToDelete = cartFoodList[index];   
         try {
             await axios.delete(`http://localhost:8000/cart/${foodToDelete.fid}`);
             const updatedFoodList = cartFoodList.filter((_, i) => i !== index);
@@ -66,18 +70,14 @@ class CartFood extends Component {
         }
     };
 
-    // del = (index) => {
-    //     const { cartFoodList } = this.state;
-    //     const updatedProductList = [...cartFoodList];
-    //     updatedProductList.splice(index, 1);
-    //     this.setState({ cartFoodList: updatedProductList });
-    // };
-
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartFoodList = result.data;
-        this.setState(newState);
+        var filteredList =newState.cartFoodList.filter((x) => x.pid ==null)
+    
+        this.state.cartFoodList=filteredList
+        this.setState(this.state);
     }
 }
 
