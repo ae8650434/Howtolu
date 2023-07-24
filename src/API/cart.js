@@ -31,7 +31,17 @@ app.delete('/', function (req, res) {
     });
 });
 
-module.exports = app;
+app.delete('/:foodId', function (req, res) {
+    var foodId = req.params.foodId;
+    var sql = 'DELETE FROM car WHERE fid = ?';
+    DB.query(sql, [foodId], function (err, result) {
+        if (err) {
+            res.status(500).send("刪除失敗");
+        } else {
+            res.send("成功刪除");           
+        }
+    });
+});
 
 
 module.exports = app;
