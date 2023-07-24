@@ -106,7 +106,7 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{console.log("888",cartMid[0])}</p></td>
+                                <td className={styles.info_tdA}><p>{}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
@@ -193,19 +193,25 @@ class Payment extends Component {
                             <input className={styles.order_bnB} type="button" value="結帳" />
                         </div>
                     </dir>
+                    {console.log('7879', this.state.cartMid[0])}
                 </div>
             </React.Fragment >
         );
     }
     componentDidMount = async () => {
+
         // 篩選 當前mid的訂單
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")
             var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
-            this.setState({cartMid})
-            console.log("我看",cartMid[0]);
-          
+            var newState = {...this.state}
+            newState.cartMid = cartMid
+            this.setState(newState) 
         }
+        
+        console.log("我看",this.state.cartMid[0]);  
+        
+         
     }
 
     // 查看明細 展開
