@@ -24,16 +24,7 @@ class Payment extends Component {
     // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-        let abc = cartMid.use_date;
-        let returnDate = cartMid.return_date;
-        console.log("皮卡",this)
-        if (abc && returnDate) {
-            abc = abc.split("T");
-            returnDate = returnDate.split("T")
-        } else {
-            abc = null;
-            returnDate = null
-        }
+
 
         return (
             <React.Fragment>
@@ -43,8 +34,17 @@ class Payment extends Component {
                         <p>訂購資訊</p>
                     </div>
                     <div className={styles.orderdivA}>
-                        {cartMid.map((data, index) => (
-                            <div key={index}>
+                        {cartMid.map((data, index) => {
+                            let abc = data.use_date;
+                            let returnDate = data.return_date;
+                            console.log("皮卡", abc)
+                            if (abc && returnDate) {
+                                abc = abc.split("T");
+                                returnDate = returnDate.split("T")
+                                console.log("123456", abc)
+                            }
+
+                            (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
                                         <td className={styles.info_td}>商品名稱：</td>
@@ -72,7 +72,7 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.use_date }</td>
+                                                <td colspan={2} className={styles.order_word}>{data.use_date}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
@@ -86,7 +86,9 @@ class Payment extends Component {
                                     </div>
                                 )}
                             </div>
-                        ))}
+                            )
+                        }
+                        )}
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
