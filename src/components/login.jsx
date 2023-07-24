@@ -170,39 +170,22 @@ class Login extends Component {
         // 其他状态码处理
         console.error(response.data);
         // 进行相应的错误处理逻辑
-        this.setState({
-          errors: {
-            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
-            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
-          }
-        });
       }
     } catch (error) {
       // 处理错误响应
       if (error.response) {
-        // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-        this.setState({
-          errors: {
-            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
-            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
-          }
-        });
+        if(error.response.status === 401){
+          var newState = {...this.state}
+          newState.errors.account = "帳號或密碼錯誤"
+          newState.errors.password = "帳號或密碼錯誤"
+          this.setState(newState)
+        }
       } else if (error.request) {
-        // 请求已发出，但未收到响应
-        this.setState({
-          errors: {
-            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
-            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
-          }
-        });
+        console.error("No Response");
+        
       } else {
         // 其他错误
-        this.setState({
-          errors: {
-            account: "帳號或密碼錯誤", // 根据实际情况设置错误信息
-            password: "帳號或密碼錯誤" // 根据实际情况设置错误信息
-          }
-        });
+        console.error(error);
       }
     }
   };
