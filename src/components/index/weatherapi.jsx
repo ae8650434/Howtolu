@@ -6,14 +6,14 @@ import weastyle from '../../css/about.module.css'
 function Weather() {
    
     const [posts, setPosts] = React.useState([]);
-    //const [count2, setCount2] = React.useState(0);
+  
 
   
     React.useEffect(() => {
         fetch('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=rdec-key-123-45678-011121314')
            .then((response) => response.json())
            .then((data) => {
-              console.log("這是",data);
+              console.log("這是",data.records.locations[0].location);
              
               
               setPosts(data);
@@ -28,7 +28,8 @@ function Weather() {
 
     return (<div id="weath">
     <select id="selectWt" className={weastyle.weasel} onchange="cityChange()">
-       
+        
+        
           </select>
 
     <div>

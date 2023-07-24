@@ -64,7 +64,6 @@ class Payment extends Component {
 
                                     </tr>
                                 </table>
-
                                 {displayOrderList && dataIndex === index && (
                                     <div style={{ display: 'table' }}>
                                         <table className={styles.order_table}>
@@ -89,7 +88,7 @@ class Payment extends Component {
                                 )}
                             </div>
                             )
-                        }
+                          }
                         )}
                         <table className={styles.detailsTableA}>
                             <tr >
