@@ -78,7 +78,10 @@ class Navigation extends Component {
     }
 
     btnmem = () => {
-        if (sessionStorage.getItem('account')) {
+       
+
+       
+        if ( sessionStorage.getItem('account') && sessionStorage.getItem('account')==this.states.mem.data.userdata.tel) {
        
             if (document.getElementById("memulout").style.display == "block") {
                 document.getElementById("memulout").style.display = "none";
@@ -93,7 +96,7 @@ class Navigation extends Component {
             } else {
                 document.getElementById("memulin").style.display = "block";
             }
-        }
+        } 
     }
 
     logoutbtn = () => {
@@ -107,10 +110,11 @@ class Navigation extends Component {
             var newStates={...this.states}
             newStates.mem=response;
             var a=( newStates.mem.data.userdata.m_img )? newStates.mem.data.userdata.m_img :"mem.png"
+            this.states.mem.data.userdata= newStates.mem.data.userdata
             this.states.mem.data.userdata.m_img=a
-            console.log( a )
-
+            
             this.setState(newStates.mem)
+            console.log(this.states.mem.data.userdata)
         }
 
 
