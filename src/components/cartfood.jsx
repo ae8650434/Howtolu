@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
+import { valid } from 'semver';
 
 class CartFood extends Component {
     state = {
@@ -10,7 +11,7 @@ class CartFood extends Component {
         const { cartFoodList } = this.state;
         return (
             <React.Fragment>
-                {cartFoodList.map((food) => (
+                {cartFoodList.map((food, index) => (
                     <div key={food.cid}>
                         <img id={cartstyle["imgw"]} src={`/image/${food.f_img}`} alt="" />
                         <div id={cartstyle["shopping3"]}>
@@ -19,14 +20,19 @@ class CartFood extends Component {
                             <div>
                                 <div style={{ display: 'Flex' }}>
                                     <b id={cartstyle["moneySize"]}>金額:{food.price}</b>
-                                    <input id={cartstyle["numberstyle"]}
+                                    <input
+                                        id={cartstyle["numberstyle"]}
                                         type="number"
+                                        min={1}
                                         value={food.quantity}
-                                        min="1"
-                                        onChange={(e) => { }} />
-
-                                    <button id={cartstyle["butRubbish"]}
-                                        onclick="del(2)"><img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" /></button>
+                                        onChange={(event) => {
+                                            const value = parseInt(event.target.value);
+                                            this.quantity(index, value)
+                                        }}
+                                    />
+                                    <button id={cartstyle["butRubbish"]}>
+                                        <img onClick={() => this.del(index)} id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" />
+                                    </button>
                                 </div>
                             </div><br /><br />
                         </div>
@@ -35,6 +41,38 @@ class CartFood extends Component {
             </React.Fragment>
         )
     }
+
+    // 數量增減
+    quantity = (index, newQuantity) => {
+        const { cartFoodList } = this.state;
+        const updatedFoodList = [...cartFoodList];
+        updatedFoodList[index].quantity = newQuantity;
+        this.setState({ cartFoodList: updatedFoodList }, () => {
+            this.props.updateProductQuantity(index, newQuantity)
+        });
+    };
+
+    // 刪除單一商品
+    del = async (index) => {
+        const { cartFoodList } = this.state;
+        const foodToDelete = cartFoodList[index];
+    
+        try {
+            await axios.delete(`http://localhost:8000/cart/${foodToDelete.fid}`);
+            const updatedFoodList = cartFoodList.filter((_, i) => i !== index);
+            this.setState({ cartFoodList: updatedFoodList });
+        } catch (error) {
+            console.error("Failed to delete product:", error);
+        }
+    };
+
+    // del = (index) => {
+    //     const { cartFoodList } = this.state;
+    //     const updatedProductList = [...cartFoodList];
+    //     updatedProductList.splice(index, 1);
+    //     this.setState({ cartFoodList: updatedProductList });
+    // };
+
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };

@@ -167,7 +167,7 @@ class Order_list extends Component {
               <td className={styles.info_order_list_word} ><img src={orderDetial.p_img ? `/image/${orderDetial.p_img}`: `/image/${orderDetial.f_img}`} className={styles.info_p_img} /></td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{orderDetial.pname !== null ? orderDetial.pname : orderDetial.fname}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.p_quantity ? orderDetial.p_quantity : orderDetial.f_quantity}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.price}`}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.p_price ? orderDetial.p_price : orderDetial.f_price}`}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.p_os ? orderDetial.p_os : orderDetial.f_os]}</td>
             </tr>
             ))} 
@@ -296,16 +296,14 @@ class Order_list extends Component {
   const targetData = []; // 初始化為空陣列
 
   this.state.list.forEach(item => {
-    const { pname, quantity, fname, fname_quantity } = item;
+    const { pname, p_quantity, fname, f_quantity } = item;
     
     if (pname !== null) {
-      targetData.push({ key: 'pname', value: pname });
-      targetData.push({ key: 'quantity', value: quantity });
+      targetData.push({ key: 'pname', value: pname , quantity: p_quantity});
     }
   
     if (fname !== null) {
-      targetData.push({ key: 'fname', value: fname });
-      targetData.push({ key: 'fname_quantity', value: quantity });
+      targetData.push({ key: 'fname', value: fname, quantity: f_quantity});
     }
   });
 
@@ -313,10 +311,16 @@ class Order_list extends Component {
   console.log('eree', targetData);
 
   try {
-    var downloadexcel = await axios.post('http://localhost:8000/download_excel',targetData)
+    var response = await axios.post('http://localhost:8000/download_excel',targetData, {
+      responseType: 'blob', // 設定回應的資料型態為 'blob' 以接收二進位資料
+    })
 
-  }catch {
+    // 使用 file-saver 將收到的檔案 blob 存為 Excel 檔案
+    const fileBlob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(fileBlob, 'howtolu.xlsx');
 
+  }catch(error) {
+    console.log('下載失敗：', error.message);
   }
   
 
