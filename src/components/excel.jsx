@@ -2,7 +2,6 @@ import React, { useState, Component } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
-import Nullcart from './nullcart.jsx';
 
 class Excel extends Component {
     state = {
@@ -37,7 +36,7 @@ class Excel extends Component {
     };
 
     render() {
-        const { items, fileUploaded } = this.state;
+        const { items } = this.state;
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -54,17 +53,17 @@ class Excel extends Component {
                 </div>
 
                 {/* excel插入後的格式 */}
-                <br /><br /><br /><br /><br />
-                
+                <br /><br /><br /><br /><br />            
                     <div id={cartstyle['shopping']}>
                         <div id={cartstyle['null']}>
+                            
                             {items.map((row, index) => (
                                 <div id={cartstyle['text1']} key={index}>
                                     <img id={cartstyle["imgw"]} src="./image/product_13.png" alt="" />
                                     <div id={cartstyle['shopping3']}>
                                         <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
                                         <br /><br /><br /><br />
-                                        <span><b id={cartstyle["dateSize"]}>可租借天數:2023/08/08 - 2023/08/10 共3日</b></span>
+                                        <span><b id={cartstyle["dateSize"]}>可租借天數: ～  共日</b></span>
                                         <p></p>
                                         <div id={cartstyle['disFlex']}>
                                             <b id={cartstyle["moneySize"]}>金額:{row['金額']}</b>
@@ -76,6 +75,7 @@ class Excel extends Component {
                                     </div>
                                 </div>
                             ))}
+
                         </div>
                     </div>
             </React.Fragment>
@@ -85,7 +85,7 @@ class Excel extends Component {
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/product/list');
         var newState = { ...this.state };
-        newState.cartList = result.data;
+        newState.excelList = result.data;
         this.setState(newState);
     }
 }
