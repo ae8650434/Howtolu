@@ -186,6 +186,7 @@ class Payment extends Component {
         );
     }
     componentDidMount = async () => {
+
         // 篩選 當前mid的訂單
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")
