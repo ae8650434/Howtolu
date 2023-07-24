@@ -299,13 +299,11 @@ class Order_list extends Component {
     const { pname, p_quantity, fname, f_quantity } = item;
     
     if (pname !== null) {
-      targetData.push({ key: 'pname', value: pname });
-      targetData.push({ key: 'p_quantity', value: p_quantity });
+      targetData.push({ key: 'pname', value: pname , quantity: p_quantity});
     }
   
     if (fname !== null) {
-      targetData.push({ key: 'fname', value: fname });
-      targetData.push({ key: 'f_quantity', value: f_quantity });
+      targetData.push({ key: 'fname', value: fname, quantity: f_quantity});
     }
   });
 
@@ -313,10 +311,16 @@ class Order_list extends Component {
   console.log('eree', targetData);
 
   try {
-    var downloadexcel = await axios.post('http://localhost:8000/download_excel',targetData)
+    var response = await axios.post('http://localhost:8000/download_excel',targetData, {
+      responseType: 'blob', // 設定回應的資料型態為 'blob' 以接收二進位資料
+    })
 
-  }catch {
+    // 使用 file-saver 將收到的檔案 blob 存為 Excel 檔案
+    const fileBlob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(fileBlob, 'howtolu.xlsx');
 
+  }catch(error) {
+    console.log('下載失敗：', error.message);
   }
   
 
