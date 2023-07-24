@@ -139,7 +139,7 @@ class Cart extends Component {
                         <CartFood cartList={cartList} updateProductQuantity={this.updateProductQuantity} />
                     </div>
                 </div>
-
+     {console.log("dsada")}
                 <br />
 
                 {/* 日曆 */}
