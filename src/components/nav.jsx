@@ -130,13 +130,5 @@ class Navigation extends Component {
     
 
 }
-// window.onload = () => {
-//     console.log(this)
-//     if (sessionStorage.getItem('account')) {
-     
 
-//         document.getElementById("navmemimg").src ='/image/food_11.png'
-//     }
-
-// }
 export default Navigation;

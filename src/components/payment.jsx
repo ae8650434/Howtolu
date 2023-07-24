@@ -25,7 +25,7 @@ class Payment extends Component {
     // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-     
+
 
         return (
             <React.Fragment>
@@ -35,7 +35,16 @@ class Payment extends Component {
                         <p>訂購資訊</p>
                     </div>
                     <div className={styles.orderdivA}>
-                        {cartMid.map((data, index) => (
+                        {cartMid.map((data, index) => {
+                            let abc = data.use_date;
+                            let returnDate = data.return_date;
+                            console.log("皮卡", abc)
+                            if (abc && returnDate) {
+                                abc = abc.split("T");
+                                returnDate = returnDate.split("T")
+                                console.log("123456", abc)
+                            }
+
                             <div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
@@ -64,7 +73,7 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.use_date }</td>
+                                                <td colspan={2} className={styles.order_word}>{data.use_date}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
@@ -77,8 +86,9 @@ class Payment extends Component {
                                         </table>
                                     </div>
                                 )}
+
                             </div>
-                        ))}
+                        })}
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
