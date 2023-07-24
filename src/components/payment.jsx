@@ -40,55 +40,57 @@ class Payment extends Component {
                             let returnDate = data.return_date;
                             console.log("皮卡", abc)
                             if (abc && returnDate) {
-                                abc = abc.split("T");
-                                returnDate = returnDate.split("T")
+                                abc = abc[0].split("T");
+                                returnDate = returnDate[0].split("T")
                                 console.log("123456", abc)
                             }
+                            return (
+                                <div key={index}>
+                                    <table className={styles.detailsTable}>
+                                        <tr >
+                                            <td className={styles.info_td}>商品名稱：</td>
+                                            <td className={styles.info_td}>{data.fname}{data.pname}</td>
+                                            <td>
+                                                <tr>
+                                                    <input
+                                                        type="button"
+                                                        value="查看明細"
+                                                        className={styles.order_bnA}
+                                                        id="checklist"
+                                                        onClick={() => this.handleChecklistClick(index)}
+                                                    />
+                                                </tr>
+                                            </td>
 
-                            <div key={index}>
-                                <table className={styles.detailsTable}>
-                                    <tr >
-                                        <td className={styles.info_td}>商品名稱：</td>
-                                        <td className={styles.info_td}>{data.fname}{data.pname}</td>
-                                        <td>
-                                            <tr>
-                                                <input
-                                                    type="button"
-                                                    value="查看明細"
-                                                    className={styles.order_bnA}
-                                                    id="checklist"
-                                                    onClick={() => this.handleChecklistClick(index)}
-                                                />
-                                            </tr>
-                                        </td>
+                                        </tr>
+                                    </table>
+                                    {displayOrderList && dataIndex === index && (
+                                        <div style={{ display: 'table' }}>
+                                            <table className={styles.order_table}>
+                                                <tr>
+                                                    <td className={styles.order_word}>數量：</td>
+                                                    <td colspan={2} className={styles.order_word}>{data.quantity}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={styles.order_word}>租借日：</td>
+                                                    <td colspan={2} className={styles.order_word}>{abc}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={styles.order_word}>歸還日：</td>
+                                                    <td colspan={2} className={styles.order_word}>{returnDate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className={styles.order_word}>小計：</td>
+                                                    <td colspan={2} className={styles.order_word}>{data.p_price * data.quantity}{data.f_price * data.quantity}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    )}
 
-                                    </tr>
-                                </table>
-                                {displayOrderList && dataIndex === index && (
-                                    <div style={{ display: 'table' }}>
-                                        <table className={styles.order_table}>
-                                            <tr>
-                                                <td className={styles.order_word}>數量：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.quantity}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.use_date}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className={styles.order_word}>歸還日：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.return_date}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className={styles.order_word}>小計：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.p_price * data.quantity}{data.f_price * data.quantity}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                )}
-
-                            </div>
+                                </div>
+                            )
                         })}
+
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
