@@ -9,7 +9,8 @@ class Navigation extends Component {
         id: "nav_bar"
     }
     states= {
-        
+        mem:{data:{userdata:{m_img:"mem.png"}}},
+        car:[]
     }
     render() {
 
@@ -54,11 +55,12 @@ class Navigation extends Component {
                 <div id={navstyle['nav_icon']}>
 
                     <div id="navcartnum" className={navstyle.navcartnum}>
-                        <span >{this.states.length}</span>
+                        <span >{this.states.car.length}</span>
+                  
                         
                     </div>
                     <a href="/cart"> <button id={navstyle['navcarbtn']}></button></a>
-                    <button id={navstyle['navmembtn']} onClick={this.btnmem}><img id='navmemimg' src='/image/mem.png' className={navstyle.navmemimg} /></button>
+                    <button id={navstyle['navmembtn']} onClick={this.btnmem}><img id='navmemimg' src={`/image/${this.states.mem.data.userdata.m_img }`} className={navstyle.navmemimg} /></button>
                     <ul id='memulin' className={navstyle.memul}>
                         <a href="/login"><li>會員登入</li></a>
                         <a href="/register"><li>註冊會員</li></a>
@@ -100,14 +102,25 @@ class Navigation extends Component {
     }
     componentDidMount=async ()=>{
         if (sessionStorage.getItem('account')) {
-        var result=await axios.get("http://localhost:8000/cart") 
-           
-            this.states= result.data.filter((x)=>x.tel==sessionStorage.getItem('account'))
+            const account = sessionStorage.getItem('account')
+            const response = await axios.get(`http://localhost:8000/info?account=${account}`);
+            var newStates={...this.states}
+            newStates.mem=response;
+            var a=( newStates.mem.data.userdata.m_img )? newStates.mem.data.userdata.m_img :"mem.png"
+            this.states.mem.data.userdata.m_img=a
+            console.log( a )
+
+            this.setState(newStates.mem)
+        }
+
+
+        if (sessionStorage.getItem('account')) {
+        var result=await axios.get("http://localhost:8000/cart")      
+            this.states.car= result.data.filter((x)=>x.tel==sessionStorage.getItem('account'))
              var  navcartnum=document.getElementById("navcartnum")
-             console.log(this.states.length)
-             console.log(this.states.length)
-             this.setState(this.states)
-             if(this.states.length>=1){
+            //  console.log(this.states.car.length)
+             this.setState(this.states.car)
+             if(this.states.car.length>=1){
                 navcartnum.style.visibility="visible";
             }else{    
                 navcartnum.style.visibility="hidden";

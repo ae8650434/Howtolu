@@ -9,25 +9,26 @@ class FoodDetail extends Component {
         this.state = {
             food:
                 [{
-                    "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
+                    "fid": 1, "fname": "賀呷套餐", "f_price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
                 }],
             foodList:
                 [{
-                    "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
+                    "fid": 1, "fname": "賀呷套餐", "f_price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
                 },
                 {
-                    "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
+                    "fid": 1, "fname": "賀呷套餐", "f_price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png"
                 },
                 {
-                    "fid": 1, "fname": "賀呷套餐", "price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
+                    "fid": 1, "fname": "賀呷套餐", "f_price": 2500, "f_img": "food_1.png", "fc_id": 1, "fdetails_image": "fdetails_1.png", "fdetails_text": "套餐明細"
                 }
                 ],
             count: 0,
             car: {
                 mid: '',
                 fid: '',
-                quantity: ''
-            },
+                quantity: '',
+                f_price:''     
+                  },
             quantity: sessionStorage.getItem(`foodval${foodId}`)
         }
     }
@@ -87,7 +88,7 @@ class FoodDetail extends Component {
                             <p>{this.state.food[0].fname}</p>
                             <p>
                                 <span>NT$</span>
-                                <span>{this.state.food[0].price}</span>
+                                <span>{this.state.food[0].f_price}</span>
                                 <span> — 1份</span>
                             </p>
                             <p>注意事項</p>
@@ -133,7 +134,7 @@ class FoodDetail extends Component {
                                         <p>{this.state.foodList[0].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.state.foodList[0].price}</span>
+                                            <span>{this.state.foodList[0].f_price}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -147,7 +148,7 @@ class FoodDetail extends Component {
                                         <p>{this.state.foodList[1].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.state.foodList[1].price}</span>
+                                            <span>{this.state.foodList[1].f_price}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -161,7 +162,7 @@ class FoodDetail extends Component {
                                         <p>{this.state.foodList[2].fname}</p>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{this.state.foodList[2].price}</span>
+                                            <span>{this.state.foodList[2].f_price}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -286,7 +287,8 @@ class FoodDetail extends Component {
             newCar = {
                 mid: response.data.data[0].mid,
                 fid: this.state.food[0].fid,
-                quantity: this.state.quantity
+                quantity: this.state.quantity,
+                f_price:this.state.food[0].f_price,
             }
            
             this.state.car = newCar
