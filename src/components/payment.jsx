@@ -34,7 +34,7 @@ class Payment extends Component {
                         <p>訂購資訊</p>
                     </div>
                     <div className={styles.orderdivA}>
-                        {cartMid.map((data, index) => {
+                        {  cartMid.map((data, index) => {
                             let abc = data.use_date;
                             let returnDate = data.return_date;
                             console.log("皮卡", abc)
@@ -44,7 +44,7 @@ class Payment extends Component {
                                 console.log("123456", abc)
                             }
 
-                            (<div key={index}>
+                         return   (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
                                         <td className={styles.info_td}>商品名稱：</td>
@@ -63,6 +63,7 @@ class Payment extends Component {
 
                                     </tr>
                                 </table>
+                                
                                 {displayOrderList && dataIndex === index && (
                                     <div style={{ display: 'table' }}>
                                         <table className={styles.order_table}>
@@ -73,6 +74,7 @@ class Payment extends Component {
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
                                                 <td colspan={2} className={styles.order_word}>{data.use_date}</td>
+                                                {console.log("dasd  ",data)}
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
@@ -87,7 +89,7 @@ class Payment extends Component {
                                 )}
                             </div>
                             )
-                        }
+                          }
                         )}
                         <table className={styles.detailsTableA}>
                             <tr >
