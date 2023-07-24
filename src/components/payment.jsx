@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/payment.module.css';
 
+
 class Payment extends Component {
     constructor(props) {
         super(props);
@@ -24,16 +25,7 @@ class Payment extends Component {
     // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-        let abc = cartMid.use_date;
-        let returnDate = cartMid.return_date;
-        console.log("皮卡",this)
-        if (abc && returnDate) {
-            abc = abc.split("T");
-            returnDate = returnDate.split("T")
-        } else {
-            abc = null;
-            returnDate = null
-        }
+     
 
         return (
             <React.Fragment>
