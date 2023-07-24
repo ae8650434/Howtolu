@@ -37,16 +37,11 @@ app.post("/", function(req, res) {
     var hashedPassword = data[0].password;
     var isPasswordMatched = bcrypt.compareSync(password, hashedPassword);
     if (isPasswordMatched) {
-      // console.log('555',remember)
-      // if (remember == 0) {
-      //   req.session.login = data[0];
-      //   console.log('12345',req.sessionID)
-      // }
       // 登录成功，返回成功响应
-      return res.status(200).json({ message: "Login successful" });
+      return res.status(200).send('success');
     } else {
       // 密码不正确的情况
-      return res.status(401).json({ error: "Invalid Password" });
+      return res.status(401).send('帳號或密碼錯誤');
     }
   });
 });
