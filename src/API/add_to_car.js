@@ -34,8 +34,8 @@ function insertDataToDB(data) {
     return_date.setDate(day)
     console.log('332', return_date)
 
-    var sql = 'INSERT INTO `car`(`mid`, `pid`, pname, `fid`, fname, `c_day`, `use_date`, `return_date`, `quantity`, p_price, f_price) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-    DB.query(sql, [data.mid, data.pid, data.pname,data.fid, data.fname, 3, use_date, return_date, data.p_price + data.f_price, data.p_price, data.f_price], (err, result) => {
+    var sql = 'INSERT INTO `car`(`mid`, `pid`, `fid`, `c_day`, `use_date`, `return_date`, `quantity`) VALUES (?,?,?,?,?,?,?)';
+    DB.query(sql, [data.mid, data.pid, data.fid, 3, use_date, return_date, data.p_price + data.f_price], (err, result) => {
         if (err) {
             console.error('Error inserting data to database:', err);
         } else {
