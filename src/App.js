@@ -19,7 +19,7 @@ import Gotop from './components/top';
 import ProductCopy from './components/product copy';
 import Payment from './components/payment';
 import Order_empty from './components/order_empty';
-import goog from './components/google'
+import goog from './gooex'
 
 
 
