@@ -135,12 +135,12 @@ class Cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-                        
-                        <CartProduct  />
-                        <CartFood  updateProductQuantity={this.updateProductQuantity} />
+
+                        <CartProduct />
+                        <CartFood updateProductQuantity={this.updateProductQuantity} />
                     </div>
                 </div>
-   
+
                 <br />
 
                 {/* 日曆 */}
@@ -180,31 +180,9 @@ class Cart extends Component {
                     </div>
                 ) : null}
                 <br /><br />
-
-                {/* {handleOpen &&
-                    <React.Fragment>
-                        <div id="background">
-                            <div id="div1" className={123}>
-                                <div id="close">
-                                    <span id="close-button" onClick={this.handleCloseClick}>×</span>
-                                    <p>HowTo露</p>
-                                </div>
-                                <div id="div2">
-                                    <h1>請登入會員！</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                } */}
             </React.Fragment >
         );
     }
-
-
-    // handleCloseClick = () => {
-    //     this.setState({ handleOpen: false });
-    //     window.location.replace('/login');
-    //   }
 
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
@@ -215,8 +193,9 @@ class Cart extends Component {
 }
 
 // window.onload = () => {
-//     if (sessionStorage.getItem('account')) {
-//         window.location.replace('/login')
+//     if (!sessionStorage.getItem('account')) {
+//         window.location.href = '/login';
 //     }
 // }
+
 export default Cart;

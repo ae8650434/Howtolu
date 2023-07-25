@@ -27,7 +27,7 @@ class Product3 extends Component {
               <figure style={{ width: "450px", height: "550px" }}>
                 <img src={`/image/${x.p_img}`} alt={x.pname} />
                 <figcaption>{x.pname}</figcaption>
-                <figcaption>NT${x.f_price} - {x.day} 日</figcaption>
+                <figcaption>NT${x.p_price} - {x.day} 日</figcaption>
                 <a href={`/equip_detail/${x.pid}`}><button className="btnq">立即預約</button></a>
               </figure>
             </div>

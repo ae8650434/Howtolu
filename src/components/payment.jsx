@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/payment.module.css';
+import Process from './Process2.jsx';
+
+
 
 
 class Payment extends Component {
@@ -25,10 +28,13 @@ class Payment extends Component {
     // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
-
+        // 保存小計的總和
+        let totalSum = 0;
 
         return (
             <React.Fragment>
+                <br /><br /><br /><br /><br />
+                <Process></Process>
                 <div className={styles.orderdiv}>
 
                     <div className={styles.ordertitle}>
@@ -38,18 +44,23 @@ class Payment extends Component {
                         {cartMid.map((data, index) => {
                             let useDate = data.use_date;
                             let returnDate = data.return_date;
+
                             console.log("皮卡", useDate)
                             if (useDate && returnDate) {
-                                useDate = useDate.slice(0,10);
-                                returnDate = returnDate.slice(0,10)
+                                useDate = useDate.slice(0, 10);
+                                returnDate = returnDate.slice(0, 10)
                                 console.log("123456", useDate)
-                            }
+                            };
+                            // 將小計加到總計中
+                            const subTotal = (data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity);
+                            totalSum += subTotal;
+
 
                             return (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
                                         <td className={styles.info_td}>商品名稱：</td>
-                                        <td className={styles.info_td}>{data.fname}{data.pname}</td>
+                                        <td className={styles.info_td}>{data.fname ? data.fname : data.pname}</td>
                                         <td>
                                             <tr>
                                                 <input
@@ -81,14 +92,21 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>小計：</td>
-                                                <td colspan={2} className={styles.order_word}>{data.p_price * data.quantity}{data.f_price * data.quantity}</td>
+                                                <td colspan={2} className={styles.order_word}>
+                                                    <p>
+                                                        <span>NT$</span>
+                                                        <span>{(data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity)}</span>
+                                                    </p>
+                                                </td>
+                                                {/* <td>{console.log("小白", data)}</td> */}
                                             </tr>
                                         </table>
                                     </div>
-                                )}
+                                )
+                                }
                             </div>
                             )
-                          }
+                        }
                         )}
                         <table className={styles.detailsTableA}>
                             <tr >
@@ -128,7 +146,7 @@ class Payment extends Component {
                                     <td colspan={2} className={styles.order_wordA}>
                                         <p>
                                             <span>NT$</span>
-                                            <span>4000</span>
+                                            <span>{totalSum}</span>
                                         </p>
                                     </td>
                                 </tr>
