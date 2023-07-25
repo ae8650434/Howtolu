@@ -8,9 +8,22 @@ class CartProduct extends Component {
     };
 
     // 日期尾巴去除
-    formDate = (dateString) => {
-        return dateString ? dateString.split('T')[0] : '';
+    formDate = (dateStr, addDay = 0) => {
+        if (!dateStr) return '';
+    
+        const date = new Date(dateStr);
+    
+        date.setDate(date.getDate() + addDay);
+    
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+    
+        const formDate = `${year}-${month}-${day}`;
+    
+        return formDate;
     };
+    
 
     render() {
         const { cartProductList } = this.state;
@@ -20,15 +33,15 @@ class CartProduct extends Component {
                     <div key={product.cid}>
                         <img id={cartstyle['imgw']} src={`/image/${product.p_img}`} alt="" />
                         <div id={cartstyle['shopping3']}>
-                            <span style={{ fontSize: 40 }}><b>{product.pname}</b></span>
+                            <span style={{ fontSize: 40 }}>{product.pname}</span>
                             <br /><br /><br /><br />
-                            <span><b id={cartstyle['dateSize']}>
+                            <span><p id={cartstyle['dateSize']}>
                                 可租借天數:{this.formDate(product.use_date)}～
                                 {this.formDate(product.return_date)} 共
-                                {product.c_day}日</b></span>
+                                {product.c_day}日</p></span>
                             <p></p>
                             <div id={cartstyle['disFlex']}>
-                                <b id={cartstyle['moneySize']}>金額:{product.p_price}</b>
+                                <p id={cartstyle['moneySize']}>金額:{product.p_price}</p>
                                 <input
                                     id={cartstyle['numberstyle']}
                                     type="number"

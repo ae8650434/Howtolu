@@ -73,7 +73,6 @@ class Navigation extends Component {
                     </ul>
 
                 </div>
-                {console.log('nav')}
             </div>
         );
     }

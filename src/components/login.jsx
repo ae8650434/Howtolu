@@ -136,7 +136,6 @@ class Login extends Component {
             </div>
           </form>
         </div>
-        {console.log('777')}
       </div>
     );
   }
