@@ -27,7 +27,7 @@ class Product3 extends Component {
               <figure style={{ width: "450px", height: "550px" }}>
                 <img src={`/image/${x.p_img}`} alt={x.pname} />
                 <figcaption>{x.pname}</figcaption>
-                <figcaption>NT${x.price} - {x.day} 日</figcaption>
+                <figcaption>NT${x.f_price} - {x.day} 日</figcaption>
                 <a href={`/equip_detail/${x.pid}`}><button className="btnq">立即預約</button></a>
               </figure>
             </div>
@@ -123,7 +123,7 @@ export class Product4 extends Component {
                 <figure style={{ width: "450px", height: "600px" }}>
                   <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
                   <figcaption>{x.fname}</figcaption>
-                  <figcaption>NT${x.price}</figcaption>
+                  <figcaption>NT${x.f_price}</figcaption>
                   <button className="btnq1" onClick={this.handledown}>-</button>
                   <label id={`foodval${x.fid}`} data-foodid={x.fid} className="count">0</label>
                   <button className="btn0" onClick={this.handleAdd}>+</button>

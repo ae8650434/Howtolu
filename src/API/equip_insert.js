@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 // 
 app.post('/tocar', function (req, res) {
     var insql =
-        "INSERT INTO car(mid,pid, c_day, use_date, return_date, quantity,p_price) VALUES (?,?,?,?,?,?,?)"
+        "INSERT INTO car(mid,pid, c_day, use_date, return_date, quantity) VALUES (?,?,?,?,?,?)"
     DB.query(
         insql, [req.body.mid,
         req.body.pid,
@@ -26,7 +26,7 @@ app.post('/tocar', function (req, res) {
         req.body.use_date,
         req.body.return_date,
         req.body.quantity,
-        req.body.p_price,
+    
     ], (err, data) => {
         console.log("你好",req.body.mid)
         // console.log("我", req.params.tel);

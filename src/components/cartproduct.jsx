@@ -81,7 +81,11 @@ class CartProduct extends Component {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartProductList = result.data;
-        this.setState(newState);
+        var filteredList =newState.cartProductList.filter((x) => x.fid ==null)
+    
+        this.state.cartProductList=filteredList
+        this.setState(this.state);
+      
     }
 }
 export default CartProduct;

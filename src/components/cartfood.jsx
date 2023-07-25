@@ -11,8 +11,13 @@ class CartFood extends Component {
         const { cartFoodList } = this.state;
         return (
             <React.Fragment>
-                {cartFoodList.map((food, index) => (
+              
+              
+                {
+                cartFoodList.map((food, index) => (
+                    
                     <div key={food.cid}>
+                    
                         <img id={cartstyle["imgw"]} src={`/image/${food.f_img}`} alt="" />
                         <div id={cartstyle["shopping3"]}>
                             <span style={{ fontSize: 40 }}><b>{food.fname}</b></span>
@@ -69,7 +74,10 @@ class CartFood extends Component {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartFoodList = result.data;
-        this.setState(newState);
+        var filteredList =newState.cartFoodList.filter((x) => x.pid ==null)
+    
+        this.state.cartFoodList=filteredList
+        this.setState(this.state);
     }
 }
 

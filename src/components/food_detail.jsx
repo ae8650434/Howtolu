@@ -27,7 +27,7 @@ class FoodDetail extends Component {
                 mid: '',
                 fid: '',
                 quantity: '',
-                f_price:''     
+                    
                   },
             quantity: sessionStorage.getItem(`foodval${foodId}`)
         }
@@ -220,9 +220,9 @@ class FoodDetail extends Component {
         );
     }
     componentDidMount = async () => {
-        // var foodId = null;
-        // const quantity = sessionStorage.getItem(`foodval${foodId}`);
-        // this.setState({ quantity: parseInt(quantity) || 0 });
+        var foodId = null;
+        const quantity = sessionStorage.getItem(`foodval${foodId}`);
+        this.setState({ quantity: parseInt(quantity) || 0 });
         // 查單一商品
         var fid = this.props.match.params.fid;
         if (fid > 5) {
@@ -288,7 +288,7 @@ class FoodDetail extends Component {
                 mid: response.data.data[0].mid,
                 fid: this.state.food[0].fid,
                 quantity: this.state.quantity,
-                f_price:this.state.food[0].f_price,
+              
             }
            
             this.state.car = newCar
