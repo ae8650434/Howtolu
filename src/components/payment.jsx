@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/payment.module.css';
+import Process from './Process2.jsx';
+
+
 
 
 class Payment extends Component {
@@ -30,6 +33,8 @@ class Payment extends Component {
 
         return (
             <React.Fragment>
+                <br /><br /><br /><br /><br />
+                <Process></Process>
                 <div className={styles.orderdiv}>
 
                     <div className={styles.ordertitle}>
@@ -48,7 +53,7 @@ class Payment extends Component {
                             };
                             // 將小計加到總計中
                             const subTotal = (data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity);
-                            totalSum += subTotal; 
+                            totalSum += subTotal;
 
 
                             return (<div key={index}>
@@ -88,12 +93,17 @@ class Payment extends Component {
                                             <tr>
                                                 <td className={styles.order_word}>小計：</td>
                                                 <td colspan={2} className={styles.order_word}>
-                                                    {(data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity)}</td>
-                                                <td>{console.log("小白", data)}</td>
+                                                    <p>
+                                                        <span>NT$</span>
+                                                        <span>{(data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity)}</span>
+                                                    </p>
+                                                </td>
+                                                {/* <td>{console.log("小白", data)}</td> */}
                                             </tr>
                                         </table>
                                     </div>
-                                )}
+                                )
+                                }
                             </div>
                             )
                         }
