@@ -20,6 +20,7 @@ class Info extends Component {
                 new_password2: '',
             },
 
+
             errors: {
                 password: '',
                 mail: ''
@@ -71,24 +72,8 @@ class Info extends Component {
         }
     }
 
-    handleFileChange = async (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        console.log(file )
-        reader.onloadend = () => {
-            const base64String = reader.result;
-            this.setState((prevState) => ({
-                user: {
-                    ...prevState.user,
-                    m_img: base64String,
-                },
-            }));
-        };
-        console.log('3333',this.state)
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    };
+
+    
 
 
     render() {
@@ -113,6 +98,7 @@ class Info extends Component {
                     {console.log('aa', this.state.user.m_img)}
                     {/* {console.log('rr', this.state.user.m_img.substring(0,10))} */}
                     <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} style={{marginBottom:'50px'}}/>
+                    <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
                         <div className={styles.info_from_div}>
                             <label htmlFor="" className={styles.info_label_word}>姓 名</label>
@@ -235,6 +221,28 @@ class Info extends Component {
         window.location.href = '/';
     }
 
+    handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        console.log('988',file )
+        reader.onloadend = () => {
+            // const base64String = reader.result;
+            const base64String = reader.result.split(',')[1]; // 只取得 base64 部分;
+            const extension = file.name.split('.').pop().toLowerCase(); // 從檔名中獲取副檔名
+            this.setState((prevState) => ({
+                user: {
+                    ...prevState.user,
+                    m_img: `data:image/${extension};base64,${base64String}`,
+                },
+            }));
+        };
+        console.log('3333',this.state)
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+
     onButtonClick = async (e) => {
         e.preventDefault();
         var new_password = document.getElementById('new_password').value
@@ -259,7 +267,7 @@ class Info extends Component {
             errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
         }
 
-        if (new_password != new_password2) {
+        if (new_password !== '' && new_password != new_password2) {
             errors.password = '請確認密碼是否相同';
         }
 
@@ -272,8 +280,10 @@ class Info extends Component {
         const formData = new FormData();
         formData.append('image', user.m_img); // 将用户选择的图像文件添加到FormData对象中
 
+        
+        try {
 
-
+        
         var response = await axios.post('http://localhost:8000/info/member', {
             account: sessionStorage.getItem('account'),
             formData,
@@ -294,11 +304,15 @@ class Info extends Component {
             // alert('註冊成功')
         } else {
             // 其他状态码处理
-            console.error(response.data);
-            // 进行相应的错误处理逻辑
+              console.error(response.data);  
+        }}catch(error) {
+            if (error.response && error.response.status === 400) {
+                alert('只允許上傳 JPG 格式的圖片');
+              } else {
+                console.error(error);
+              }
         }
     }
-
 }
 
 export default Info;

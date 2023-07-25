@@ -354,11 +354,6 @@ class Register extends Component {
     history.push('/login');
   };
 
-  // abc = () => {
-  //   this.setState({ registerSuccess: true });
-  // }
-
-
 
   //密碼不同時阻止表單送出
 

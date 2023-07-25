@@ -163,7 +163,9 @@ class Login extends Component {
         // 响应状态码为200，表示成功
         console.log("Account:", this.state.user.account); // 在控制台输出账号值
         console.log("Password:", this.state.user.password); // 在控制台输出密码值
-        console.log(response.data); // 在控制台打印响应数据
+        console.log(response.data);
+        var s = document.getElementById('account').value // 在控制台打印响应数据
+        sessionStorage.setItem('account',s)
         // 根据业务需求进行其他操作，例如页面跳转等
         window.location = "/"; // 重定向到首页
       } else {
@@ -194,10 +196,8 @@ class Login extends Component {
   aku = () => {
     var s = document.getElementById('account').value
     localStorage.setItem('account',s)
-    sessionStorage.setItem('account',s)
     var p = document.getElementById('password').value
     localStorage.setItem('password', p)
-    sessionStorage.setItem('password', p)
     var c = this.state.user.isComplete
     localStorage.setItem('check', String(c))
 

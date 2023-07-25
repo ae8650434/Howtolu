@@ -14,25 +14,42 @@ app.post("/", (req, res) => {
   const workbook = XLSX.readFile(initialExcelFilePath);
   const worksheet = workbook.Sheets[workbook.SheetNames[0]];
 
+  
+
   // 使用 XLSX.utils.sheet_to_json 函數來獲取 Excel 表格的 JSON 物件表示
-  const excelData = XLSX.utils.sheet_to_json(worksheet);
+  const excelData = XLSX.utils.sheet_to_json(worksheet, { header: 'A' });
+  console.log('excel', excelData)
+
 
   // 處理從前端接收的資料，並更新 Excel 檔案
   frontsenddata.forEach((item) => {
     const { value, quantity } = item;
-
-    // 尋找與 value 相對應的商品名稱在 Excel 表格中的索引
-    const itemIndex = excelData.findIndex((row) => row.物品 === value);
-    console.log('999',itemIndex)
-
-    if (itemIndex !== -1) {
-      // 更新該商品對應的數量欄位
-      const quantityCellAddress = XLSX.utils.encode_cell({ r: itemIndex, c: 1 });
-      worksheet[quantityCellAddress] = { t: "n", v: quantity };
-    } else {
-      console.log("找不到相對應的商品名稱:", value);
-    }
-  });
+  
+     // 尋找與 value 相對應的商品名稱在 Excel 表格中的索引，從第二行開始（排除表頭）
+     let rowIndex = 1;
+     for (const row of excelData) {
+       rowIndex++;
+       console.log('row', rowIndex)
+       if (row['A'] === value) {
+         // 更新該商品對應的數量欄位
+         const quantityCellAddress = `B${rowIndex-1}`;
+         const cCellAddress = `C${rowIndex-1}`;
+ 
+         // 如果該欄位沒有值，則不覆寫
+         if (!excelData[quantityCellAddress]) {
+          excelData[quantityCellAddress] = { t: "n", v: quantity };
+         }
+        //  if (!excelData[cCellAddress]) {
+        //   excelData[cCellAddress] = { t: "n", v: 1 };
+        //  }
+ 
+         console.log('quantityb', quantityCellAddress);
+         console.log('quantityc', cCellAddress);
+ 
+         break; // 找到對應商品後立即跳出迴圈
+       }
+     }
+   })
 
   // 將更新後的工作簿儲存為新的 Excel 檔案
   const updatedExcelFilePath = path.resolve(__dirname, "../../public/excel/HowTo露.xlsx");

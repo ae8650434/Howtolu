@@ -10,7 +10,7 @@ app.post("/", function(req, res) {
   // 用變數抓取前端資料
   var account = req.body.account;
   var password = req.body.password;
-  var remember = req.body.isComplete;
+
 
   // 在这里执行其他操作，例如查询数据库、验证账号密码等
 
@@ -31,16 +31,20 @@ app.post("/", function(req, res) {
       console.log('用戶不存在')
       console.log(account)
       console.log(password)
-      return res.status(404).json({ error: "User Not Found" });
+      return res.status(404).send("User Not Found");
     }
-  
+    console.log('444',password)
+    console.log('888',account)
     var hashedPassword = data[0].password;
+    console.log('555',hashedPassword)
     var isPasswordMatched = bcrypt.compareSync(password, hashedPassword);
     if (isPasswordMatched) {
       // 登录成功，返回成功响应
+      console.log('222')
       return res.status(200).send('success');
     } else {
       // 密码不正确的情况
+      console.log('333',isPasswordMatched)
       return res.status(401).send('帳號或密碼錯誤');
     }
   });
