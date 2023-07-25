@@ -299,11 +299,11 @@ class Order_list extends Component {
     const { pname, p_quantity, fname, f_quantity } = item;
     
     if (pname !== null) {
-      targetData.push({ key: 'pname', value: pname , quantity: p_quantity});
+      targetData.push({value: pname , quantity: p_quantity});
     }
   
     if (fname !== null) {
-      targetData.push({ key: 'fname', value: fname, quantity: f_quantity});
+      targetData.push({ value: fname, quantity: f_quantity});
     }
   });
 
@@ -317,8 +317,8 @@ class Order_list extends Component {
     console.log('eree', targetData);
     // 使用 file-saver 將收到的檔案 blob 存為 Excel 檔案
     const fileBlob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(fileBlob, 'howtolu.xlsx');
-
+    saveAs(fileBlob, 'How To 露.xlsx');
+    console.log('回應：', response);
   }catch(error) {
     console.log('下載失敗：', error.message);
   }
