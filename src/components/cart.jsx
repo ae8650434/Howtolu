@@ -124,19 +124,24 @@ class Cart extends Component {
     render() {
         const total = this.calculateTotal();
         const { value, maxDate, minDate, datepicker, cartList, handleOpen } = this.state;
+        const CartItems = cartList.length > 0; 
         return (
             <React.Fragment>
 
                 <br /><br /><br /><br />
                 <Excel />
-                {cartList.length > 0 ? (<Process1 />) : null}
+                {CartItems && <Process1 /> }
                 <br /><br /><br /><br />
-                {cartList.length === 0 ? (<Nullcart />) : null}
+                {!CartItems && <Nullcart />}
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
+<<<<<<< HEAD
+                        <CartProduct />
+=======
                         
                         <CartProduct  />
+>>>>>>> 9cd036319dc8ba37615b8549c74de4fe7e4147fc
                         <CartFood  updateProductQuantity={this.updateProductQuantity} />
                     </div>
                 </div>
@@ -170,7 +175,7 @@ class Cart extends Component {
             </div><br /><br /><br /><br /><br /> */}
 
                 {/* 總計跟前往結帳 */}
-                {cartList.length > 0 ? (
+                {CartItems && (
                     <div id={cartstyle['shopping2']}>
                         <span style={{ fontSize: 40 }}>總計：NT{total}</span>
                         <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
@@ -178,7 +183,7 @@ class Cart extends Component {
                             <button id={cartstyle['buy']}><span>前往結帳</span></button>
                         </a>
                     </div>
-                ) : null}
+                )}
                 <br /><br />
 
                 {/* {handleOpen &&
