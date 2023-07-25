@@ -18,6 +18,7 @@ class Payment extends Component {
             year: '',
             cartMid: [{ name: null }],
             // cartMid: [{ name: null, use_date: null, return_date: null }],
+           
 
         }
     }
@@ -98,7 +99,7 @@ class Payment extends Component {
                                                         <span>{(data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity)}</span>
                                                     </p>
                                                 </td>
-                                                {/* <td>{console.log("小白", data)}</td> */}
+                                                <td>{console.log("小白", data)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -195,7 +196,8 @@ class Payment extends Component {
                         </div>
                         <div className={styles.orderdivB}>
                             <label for=""></label>
-                            <input className={styles.order_bnB} type="button" value="結帳" />
+                            <input className={styles.order_bnB} type="button" value="結帳"
+                            onClick={this.handleReserve} />
                         </div>
                     </div>
                 </div>
@@ -269,6 +271,12 @@ class Payment extends Component {
             this.setState({ year: value });
         }
     };
+    // 結帳
+    handleReserve = async (e) => {
+        
+    console.log("666",this.state.cartMid);
+
+    }
 }
 
 export default Payment;
