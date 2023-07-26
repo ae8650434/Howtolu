@@ -138,6 +138,15 @@ class Payment extends Component {
                                     />
                                     <span>金融卡/信用卡</span>
                                 </td>
+                                <td className={styles.info_tdA}>
+                                    <input
+                                        type="radio"
+                                        className={styles.order_bnC}
+                                        // id="checklist"
+                                        // onClick={this.ChecklistCard}
+                                    />
+                                    <span>現金支付</span>
+                                </td>
 
                             </tr>
                         </table>
