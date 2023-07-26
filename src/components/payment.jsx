@@ -18,6 +18,7 @@ class Payment extends Component {
             year: '',
             cartMid: [{ name: null }],
             // cartMid: [{ name: null, use_date: null, return_date: null }],
+            // totalSum: '',
 
         }
     }
@@ -27,7 +28,7 @@ class Payment extends Component {
     //     const{cartMid}=
     // }
     render() {
-        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid } = this.state;
+        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid, } = this.state;
         // 保存小計的總和
         let totalSum = 0;
 
@@ -45,22 +46,27 @@ class Payment extends Component {
                             let useDate = data.use_date;
                             let returnDate = data.return_date;
 
-                            console.log("皮卡", useDate)
+                            // console.log("皮卡", useDate)
                             if (useDate && returnDate) {
                                 useDate = useDate.slice(0, 10);
                                 returnDate = returnDate.slice(0, 10)
-                                console.log("123456", useDate)
+                                // console.log("123456", useDate)
                             };
                             // 將小計加到總計中
                             const subTotal = (data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity);
                             totalSum += subTotal;
+                            // var total = totalSum + subTotal;
+                            // var newSate = { ...this.state };
+                            // newSate.totalSum = total
+                            // this.setState(newSate);
+                            // console.log(total)
 
 
                             return (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
                                         <td className={styles.info_td}>商品名稱：</td>
-                                        <td className={styles.info_td}>{data.fname ? data.fname : data.pname}</td>
+                                        <td className={styles.info_td}>{data.pname ? data.pname : data.fname}</td>
                                         <td>
                                             <tr>
                                                 <input
@@ -98,7 +104,7 @@ class Payment extends Component {
                                                         <span>{(data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity)}</span>
                                                     </p>
                                                 </td>
-                                                {/* <td>{console.log("小白", data)}</td> */}
+                                                <td>{console.log("小白", data)}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -146,7 +152,7 @@ class Payment extends Component {
                                     <td colspan={2} className={styles.order_wordA}>
                                         <p>
                                             <span>NT$</span>
-                                            <span>{totalSum}</span>
+                                            <span id='total'>{totalSum}</span>
                                         </p>
                                     </td>
                                 </tr>
@@ -195,7 +201,8 @@ class Payment extends Component {
                         </div>
                         <div className={styles.orderdivB}>
                             <label for=""></label>
-                            <input className={styles.order_bnB} type="button" value="結帳" />
+                            <input className={styles.order_bnB} type="button" value="結帳"
+                                onClick={this.handleReserve} />
                         </div>
                     </div>
                 </div>
@@ -269,6 +276,45 @@ class Payment extends Component {
             this.setState({ year: value });
         }
     };
+    // 結帳
+    handleReserve = async (e) => {
+        var bee = this.state.cartMid.filter((x) => x.fid === null)
+        var today = new Date();
+        var year = today.getFullYear()
+        var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
+        var day = ((today.getDate())).toString().padStart(2, '0');
+        // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
+        console.log("bee", typeof mids);
+        var todayMid = `${year}` + month + day 
+        console.log("日期", month);
+        var neworder = {
+            mid: this.state.cartMid[0].mid,
+            order_number: todayMid,
+            use_date: bee[0].use_date.slice(0, 10),
+            return_date: bee[0].return_date.slice(0, 10),
+            price: document.getElementById('total').textContent,
+
+        }
+        console.log("8888", this.state.cartMid)
+        console.log("666", neworder.mid);
+        const orders = await axios.post(
+            "http://localhost:8000/toorder", neworder,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            },
+
+        );
+        if (orders.status === 200) {
+            // 表示成功
+            console.log("OK", neworder.mid);
+
+        } else {
+            console.log(orders.data);
+        }
+        // console.log("總計", this.state.totalSum)
+    }
 }
 
 export default Payment;

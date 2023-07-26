@@ -40,7 +40,7 @@ class Info extends Component {
                 this.setState((prevState) => ({
                     user: {
                         ...prevState.user,
-                        m_img:`image/${userData.m_img}`,
+                        m_img: `image/${userData.m_img}`,
                         mid: userData.mid,
                         name: userData.name,
                         tel: userData.tel,
@@ -73,7 +73,7 @@ class Info extends Component {
     }
 
 
-    
+
 
 
     render() {
@@ -97,7 +97,7 @@ class Info extends Component {
                     />
                     {console.log('aa', this.state.user.m_img)}
                     {/* {console.log('rr', this.state.user.m_img.substring(0,10))} */}
-                    <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} style={{marginBottom:'50px'}}/>
+                    <input type="file" className={styles.info_file} accept='/image/jpg' onChange={this.handleFileChange} style={{ marginBottom: '50px' }} />
                     <p className={styles.info_file_limit}>*請傳.jpg檔</p>
                     <div style={{ textAlign: "center" }} className={styles.form}>
                         <div className={styles.info_from_div}>
@@ -224,7 +224,7 @@ class Info extends Component {
     handleFileChange = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
-        console.log('988',file )
+        console.log('988', file)
         reader.onloadend = () => {
             // const base64String = reader.result;
             const base64String = reader.result.split(',')[1]; // 只取得 base64 部分;
@@ -236,7 +236,7 @@ class Info extends Component {
                 },
             }));
         };
-        console.log('3333',this.state)
+        console.log('3333', this.state)
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -245,72 +245,77 @@ class Info extends Component {
 
     onButtonClick = async (e) => {
         e.preventDefault();
-        var new_password = document.getElementById('new_password').value
-        var new_password2 = document.getElementById('new_password2').value
-        const { password, mail } = this.state.user;
+        const { password, mail, new_password, new_password2 } = this.state.user;
 
-        const regexPattern = {
-            mail: /^\S+@\S+\.\S+$/,
-            password: /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,16}$/
-        };
+    const regexPattern = {
+        mail: /^\S+@\S+\.\S+$/,
+        password: /^(?=.*[A-Za-z])(?=.*\d).{8,16}$/
+    };
 
-        const errors = {
-            mail: '',
-            password: ''
-        };
+    const errors = {
+        mail: '',
+        password: ''
+    };
 
-        if (!regexPattern.mail.test(mail)) {
-            errors.mail = '請輸入有效的e-mail';
+    if (!regexPattern.mail.test(mail)) {
+        errors.mail = '請輸入有效的e-mail';
+    }
 
-        }
-        if (regexPattern.password.test(password) != 0 && !regexPattern.password.test(password)) {
-            errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
-        }
-
-        if (new_password !== '' && new_password != new_password2) {
-            errors.password = '請確認密碼是否相同';
-        }
-
-        this.setState({ errors })
+    // 如果用户输入了新密码，再进行密码格式检查
+    if (new_password !== '' && !regexPattern.password.test(new_password)) {
+        errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
+    }
 
 
+    if (new_password !== '' && new_password !== new_password2) {
+        errors.password = '請確認新密碼是否相同';
+    }
+
+    this.setState({ errors });
+
+    // 檢查是否有密碼錯誤
+    if (errors.password || errors.mail) {
+        // 如果有密碼錯誤，直接退出函數，不發送數據到後端
+        return;
+    }
 
         const { user } = this.state;
 
         const formData = new FormData();
         formData.append('image', user.m_img); // 将用户选择的图像文件添加到FormData对象中
 
-        
+
         try {
 
-        
-        var response = await axios.post('http://localhost:8000/info/member', {
-            account: sessionStorage.getItem('account'),
-            formData,
-            user: this.state.user
-        },
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data"
+
+            var response = await axios.post('http://localhost:8000/info/member', {
+                account: sessionStorage.getItem('account'),
+                formData,
+                user: this.state.user
+            },
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
                 }
+
+            )
+
+            if (response.status === 200) {
+                // 响应状态码为200，表示成功
+                // 在此处处理成功响应的逻辑
+                console.log('OK')
+                // alert('註冊成功')
+            } else {
+                // 其他状态码处理
+                console.error(response.data);
             }
-
-        )
-
-        if (response.status === 200) {
-            // 响应状态码为200，表示成功
-            // 在此处处理成功响应的逻辑
-            console.log('OK')
-            // alert('註冊成功')
-        } else {
-            // 其他状态码处理
-              console.error(response.data);  
-        }}catch(error) {
+        } catch (error) {
             if (error.response && error.response.status === 400) {
                 alert('只允許上傳 JPG 格式的圖片');
-              } else {
+            } else {
                 console.error(error);
-              }
+            }
         }
     }
 }

@@ -14,7 +14,13 @@ class slotbtn extends Component {
         )
     }
     slot=()=>{
-        
+        if (document.getElementById(`result`)) {
+            document.getElementById(`result`).classList.add('isplay');
+            document.getElementById(`result`).style.transform = 'none';
+            const num = Math.floor(Math.random() * 10);
+            document.getElementById(`result`).classList.remove('isplay');
+            document.getElementById(`result`).style.transform = `translateY(${-num * 10}%)`;
+          }
     }
 }
  

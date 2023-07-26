@@ -9,9 +9,9 @@ class slot extends Component {
          return  ( this.state.slotimg.map((x)=>{ 
                 return (
                     <>   
-                    <img src={`/image/${x}`} alt=""  className={slotstyle.slotimg}/> 
-                    <img src={`/image/${x}`} alt=""  className={slotstyle.slotimg}/> 
-                    <img src={`/image/${x}`} alt=""  className={slotstyle.slotimg}/> 
+                    <img id="result" src={`/image/${x}`} alt=""  className={`${slotstyle.slotimg} ${slotstyle.slotimg1}`}/> 
+                    <img src={`/image/${x}`} alt=""  className={`${slotstyle.slotimg} ${slotstyle.slotimg2}`}/> 
+                    <img src={`/image/${x}`} alt=""  className={`${slotstyle.slotimg} ${slotstyle.slotimg3}`}/> 
                     </>
                     );      
                 }))

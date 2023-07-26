@@ -6,6 +6,7 @@ body{
 
 #about{
     text-align: center;
+    margin: 150px 20px;
 }
 .abouttext{
     font-size: 40px;
@@ -98,7 +99,9 @@ body{
  }
 
  #weatb{
-    width: 100%;   
+    width: 100%;  
+    border-collapse: collapse;
+    margin-top: 50px; 
     
  }
  #thd{
@@ -113,10 +116,15 @@ body{
     margin: 10px;
     padding: 20px;
     font-size: 40px;
+    border: 2px solid black;
 }
 .weasel{
     width: 200px;
     height: 60px;
     font-size: 50px;
     margin:100px 20px 20px 50px;
+}
+#weath{
+    width: 90%;
+    margin:20px  auto    200px auto;
 }

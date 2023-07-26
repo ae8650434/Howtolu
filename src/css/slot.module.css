@@ -11,6 +11,29 @@
     box-sizing: border-box;
     height: 800px;
     width: 1200px;
-    left: 15%;
+    left: 300px;
+    overflow:hidden;
+    
    
 }
+.slotimg1{
+    clip: rect(0, 400px, 800px, 0px);
+}
+
+.slotimg2{
+    clip: rect(0, 800px, 800px, 400px);
+}
+.slotimg3{
+    clip: rect(0, 1200px, 800px, 800px);
+}
+
+
+.isplay {
+    animation: resultPlay 1s infinite linear;
+  }
+
+  @keyframes resultPlay {
+    100% {
+      transform: translateY(-90%)
+    }
+  }

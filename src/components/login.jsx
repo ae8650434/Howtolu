@@ -136,7 +136,6 @@ class Login extends Component {
             </div>
           </form>
         </div>
-        {console.log('777')}
       </div>
     );
   }
@@ -146,7 +145,7 @@ class Login extends Component {
 
   okButtonClick = async (e) => {
     e.preventDefault(); // 阻止表單提交的默認行為
-
+    console.log('www')
     this.aku()
 
     try {
