@@ -188,17 +188,19 @@ class Cart extends Component {
     }
 
     componentDidMount = async () => {
-        var result = await axios.get('http://localhost:8000/cart');
-        var newState = { ...this.state };
-        newState.cartList = result.data;
-        this.setState(newState);
+        const account = sessionStorage.getItem('account');
+        if (!account) {
+            window.location.href = '/login';
+        } else {
+            try {
+                const result = await axios.get('http://localhost:8000/cart');
+                const newState = { ...this.state };
+                newState.cartList = result.data;
+                this.setState(newState);
+            } catch (error) {
+                console.error('有錯誤嗎:', error);
+            }
+        }
     }
 }
-
-// window.onload = () => {
-//     if (!sessionStorage.getItem('account')) {
-//         window.location.href = '/login';
-//     }
-// }
-
 export default Cart;
