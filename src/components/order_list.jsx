@@ -168,7 +168,7 @@ class Order_list extends Component {
               <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{orderDetial.pname !== null ? orderDetial.pname : orderDetial.fname}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.p_quantity ? orderDetial.p_quantity : orderDetial.f_quantity}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.p_price ? orderDetial.p_price : orderDetial.f_price}`}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.p_os ? orderDetial.p_os : orderDetial.f_os]}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.pname !== null ? '租借中' : '完成'}</td>
             </tr>
             ))} 
             </table>
