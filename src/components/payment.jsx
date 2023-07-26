@@ -142,8 +142,8 @@ class Payment extends Component {
                                     <input
                                         type="radio"
                                         className={styles.order_bnC}
-                                        // id="checklist"
-                                        // onClick={this.ChecklistCard}
+                                    // id="checklist"
+                                    // onClick={this.ChecklistCard}
                                     />
                                     <span>現金支付</span>
                                 </td>
@@ -304,7 +304,7 @@ class Payment extends Component {
             price: document.getElementById('total').textContent,
 
         }
-        console.log("556666",neworder)
+        console.log("556666", neworder)
         const newoederListArray = [];
         // console.log("8888", this.state.cartMid)
         // console.log("666", neworder.mid);
@@ -321,8 +321,8 @@ class Payment extends Component {
                     fid: data.fid,
                     fname: data.fname,
                     f_img: data.f_img,
-                    p_quantity: (pid === null) ? data.quantity : null,
-                    f_quantity: (fid === null) ? data.quantity : null,
+                    p_quantity: (pid === null) ? null : data.quantity,
+                    f_quantity: (fid === null) ? null : data.quantity,
                     p_os: (pid === null) ? null : 0,
                     f_os: (fid === null) ? null : 1,
                     p_price: data.p_price,
@@ -331,7 +331,7 @@ class Payment extends Component {
                 };
                 newoederListArray.push(newoederList);
             }))
-            console.log("8888888888",newoederListArray)
+        console.log("8888888888", newoederListArray)
 
         try {
             const orders = await axios.post(
@@ -350,7 +350,7 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
-                window.location.href="/";
+                window.location.href = "/";
 
             } else {
                 console.log(orders.data);
