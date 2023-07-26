@@ -64,7 +64,7 @@ app.post('/', function (req, res) {
                 } else {
                     console.log("data[0].oid", data[0].oid)
                     for (let i = 0; i < req.body.newoederList.length; i++) {
-
+                        console.log("跑幾次", i);
 
 
                         DB.query(
@@ -90,6 +90,9 @@ app.post('/', function (req, res) {
                                 } else {
                                     console.log("order & list 成功")
                                     return res.status(200).send("新增成功")
+                                    // DB.query( ,[],()=>{
+
+                                    // })
                                 }
 
                             })
