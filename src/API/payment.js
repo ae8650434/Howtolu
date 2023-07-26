@@ -103,48 +103,4 @@ app.post('/', function (req, res) {
     // console.log("看一下js", req.body)
 })
 
-// app.post('/list', function (req, res) {
-//     var olinsql =
-//         "INSERT INTO `order_list`(oid,pid,pname,p_img,fid,fname,f_img,p_quantity,f_quantity,p_os,f_os,p_price,f_price)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-//     var olsesql =
-//         "SELECT oid FROM `order` WHERE order_number=?";
-
-//     //  把結帳完成的資料 新增至資料庫order_list裡
-//     DB.query(
-//         olsesql,
-//         [
-//             data[0].oid
-//         ],
-//         (err, data) => {
-//             if (err) {
-//                 console.log("看一下err", err)
-//             } else
-//                 // console.log("order_list新增成功");
-//                 DB.query(
-//                     olinsql,
-//                     [req.body.oid,
-//                     req.body.pid,
-//                     req.body.pname,
-//                     req.body.p_img,
-//                     req.body.fid,
-//                     req.body.fname,
-//                     req.body.f_img,
-//                     req.body.p_quantity,
-//                     req.body.f_quantity,
-//                     req.body.p_os,
-//                     req.body.f_os,
-//                     req.body.p_price,
-//                     req.body.f_price
-//                     ],
-
-//                     (err, data) => {
-//                         console.log("看一下錯誤", data)
-//                     })
-
-
-
-//         })
-// }
-// )
-
 module.exports = app;
