@@ -20,11 +20,11 @@ class CartFood extends Component {
                     
                         <img id={cartstyle["imgw"]} src={`/image/${food.f_img}`} alt="" />
                         <div id={cartstyle["shopping3"]}>
-                            <span style={{ fontSize: 40 }}><b>{food.fname}</b></span>
+                            <span style={{ fontSize: 40 }}>{food.fname}</span>
                             <br /><br /><br /><br /><br />
                             <div>
                                 <div style={{ display: 'Flex' }}>
-                                    <b id={cartstyle["moneySize"]}>金額:{food.f_price}</b>
+                                    <p id={cartstyle["moneySize"]}>金額:{food.f_price}</p>
                                     <input
                                         id={cartstyle["numberstyle"]}
                                         type="number"

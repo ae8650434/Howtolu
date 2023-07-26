@@ -124,23 +124,28 @@ class Cart extends Component {
     render() {
         const total = this.calculateTotal();
         const { value, maxDate, minDate, datepicker, cartList, handleOpen } = this.state;
-        const CartItems = cartList.length > 0; 
         return (
             <React.Fragment>
 
                 <br /><br /><br /><br />
                 <Excel />
-                {CartItems && <Process1 /> }
+                {cartList.length > 0 ? (<Process1 />) : null}
                 <br /><br /><br /><br />
-                {!CartItems && <Nullcart />}
+                {cartList.length === 0 ? (<Nullcart />) : null}
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
+<<<<<<< HEAD
                         <CartProduct />
                         <CartFood  updateProductQuantity={this.updateProductQuantity} />
+=======
+
+                        <CartProduct />
+                        <CartFood updateProductQuantity={this.updateProductQuantity} />
+>>>>>>> c1f77892b74b4df5c26e77cae4eb41229f7f2894
                     </div>
                 </div>
-   
+
                 <br />
 
                 {/* 日曆 */}
@@ -170,7 +175,7 @@ class Cart extends Component {
             </div><br /><br /><br /><br /><br /> */}
 
                 {/* 總計跟前往結帳 */}
-                {CartItems && (
+                {cartList.length > 0 ? (
                     <div id={cartstyle['shopping2']}>
                         <span style={{ fontSize: 40 }}>總計：NT{total}</span>
                         <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
@@ -178,33 +183,11 @@ class Cart extends Component {
                             <button id={cartstyle['buy']}><span>前往結帳</span></button>
                         </a>
                     </div>
-                )}
+                ) : null}
                 <br /><br />
-
-                {/* {handleOpen &&
-                    <React.Fragment>
-                        <div id="background">
-                            <div id="div1" className={123}>
-                                <div id="close">
-                                    <span id="close-button" onClick={this.handleCloseClick}>×</span>
-                                    <p>HowTo露</p>
-                                </div>
-                                <div id="div2">
-                                    <h1>請登入會員！</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                } */}
             </React.Fragment >
         );
     }
-
-
-    // handleCloseClick = () => {
-    //     this.setState({ handleOpen: false });
-    //     window.location.replace('/login');
-    //   }
 
     componentDidMount = async () => {
         var result = await axios.get('http://localhost:8000/cart');
@@ -215,8 +198,9 @@ class Cart extends Component {
 }
 
 // window.onload = () => {
-//     if (sessionStorage.getItem('account')) {
-//         window.location.replace('/login')
+//     if (!sessionStorage.getItem('account')) {
+//         window.location.href = '/login';
 //     }
 // }
+
 export default Cart;
