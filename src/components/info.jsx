@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../css/Info_member.module.css'
 import axios from 'axios';
+import Modal from 'react-modal';
 
 
 class Info extends Component {
@@ -19,7 +20,7 @@ class Info extends Component {
                 new_password: '',
                 new_password2: '',
             },
-
+            registerSuccess: false,
 
             errors: {
                 password: '',
@@ -77,7 +78,7 @@ class Info extends Component {
 
 
     render() {
-        const { errors } = this.state
+        const { errors, registerSuccess } = this.state
         return (
 
             <div className={styles.short}>
@@ -212,6 +213,33 @@ class Info extends Component {
                     </div>
                 </form>
                 <br /><br /><br /><br />
+                <Modal
+          isOpen={registerSuccess}
+          onRequestClose={this.closeSuccessModal}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+        >
+          <div className={styles.content2}>
+            <svg width="300" height="300">
+              <circle
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                cx="140" cy="140" r="120"
+                className={styles.circle}
+              />
+              <polyline
+                fill="none"
+                stroke="#68E534"
+                strokeWidth="8"
+                points="80,150 140,220 220,75"
+                className={styles.tick}
+              />
+            </svg>
+            <p className={styles.h2}>修改成功</p>
+            <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+          </div>
+        </Modal>
             </div>
         );
     }
@@ -220,6 +248,11 @@ class Info extends Component {
         sessionStorage.clear();
         window.location.href = '/';
     }
+
+    // 關閉彈窗
+  closeSuccessModal = () => {
+    this.setState({ registerSuccess: false });
+  };
 
     handleFileChange = async (event) => {
         const file = event.target.files[0];
@@ -304,6 +337,7 @@ class Info extends Component {
             if (response.status === 200) {
                 // 响应状态码为200，表示成功
                 // 在此处处理成功响应的逻辑
+                this.setState({ registerSuccess: true }); // 设置注册成功状态为 true
                 console.log('OK')
                 // alert('註冊成功')
             } else {

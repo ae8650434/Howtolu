@@ -2,7 +2,6 @@ import React, { useState, Component } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
-import { exitCode } from 'process';
 
 class Excel extends Component {
     state = {
@@ -62,14 +61,15 @@ class Excel extends Component {
 
                         {items.map((row, index) => (
                             <div key={index}>
-                                <img id={cartstyle["imgw"]} src={`/images/food_1.png`} alt="" />
+                                <img id={cartstyle["imgw"]} src={`/image/${row['圖片']}`} alt="" />
+                               { console.log(`/image${row['圖片']}`)}
                                 <div id={cartstyle['shopping3']}>
-                                    <span style={{ fontSize: 40 }}><b>{row['物品']}</b></span>
+                                    <span style={{ fontSize: 40 }}>{row['物品']}</span>
                                     <br /><br /><br /><br />
-                                    <span><b id={cartstyle["dateSize"]}>可租借天數:   共3日</b></span>
+                                    <span><p id={cartstyle["dateSize"]}>可租借天數:   共3日</p></span>
                                     <p></p>
                                     <div id={cartstyle['disFlex']}>
-                                        <b id={cartstyle["moneySize"]}>金額:{row['金額']}</b>
+                                        <p id={cartstyle["moneySize"]}>金額:{row['金額']}</p>
                                         <input id={cartstyle["numberstyle"]} type="number" min={1} value={row['數量(填入數字即可)']} />
                                         <button id={cartstyle["butRubbish"]} onClick='del'>
                                             <img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" />
