@@ -308,13 +308,13 @@ class Order_list extends Component {
   });
 
 
-  
+  console.log('eree', targetData);
 
   try {
     var response = await axios.post('http://localhost:8000/download_excel',targetData, {
       responseType: 'blob', // 設定回應的資料型態為 'blob' 以接收二進位資料
     })
-    console.log('eree', targetData);
+    
     // 使用 file-saver 將收到的檔案 blob 存為 Excel 檔案
     const fileBlob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     saveAs(fileBlob, 'How To 露.xlsx');

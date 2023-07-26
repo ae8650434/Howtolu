@@ -24,7 +24,7 @@ app.post("/", (req, res) => {
   // 處理從前端接收的資料，並更新 Excel 檔案
   frontsenddata.forEach((item) => {
     const { value, quantity } = item;
-    console.log("item", item.quantity);
+    console.log("item", item);
 
     // 尋找與 value 相對應的商品名稱在 Excel 表格中的索引，從第二行開始（排除表頭）
     let rowIndex = 1;
