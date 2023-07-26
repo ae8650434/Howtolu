@@ -350,6 +350,15 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
+
+                axios.delete('http://localhost:8000/cart')
+                .then(() => {
+                    this.setState({ cartList: [] });
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+
                 window.location.href = "/";
 
             } else {
