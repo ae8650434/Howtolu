@@ -11,7 +11,7 @@ import axios from 'axios';
 
 class Cart extends Component {
     state = {
-        cartList: [],
+        cartList: []
     };
 
     styleSize = {
@@ -35,16 +35,23 @@ class Cart extends Component {
         };
     }
 
-    // 計算總計
-    calculateTotal = () => {
-        const { cartList } = this.state;
-        console.log(this.state)
-        let total = 0;
+    //總價
+    totalMoney = () => {
+        const { cartList } = this.state
+        let total = 0
 
-        cartList.forEach((product) => {
-            total += product.price * product.quantity;
-        });
-        return total;
+        cartList.forEach(item => {
+            if (item.p_price) {
+                total += item.p_price * item.quantity;
+            } else if (item.f_price) {
+                total += item.f_price * item.quantity;
+            }
+        })
+        return total
+    }
+
+    updateCart = (updatedProductList) => {
+        this.setState({ cartList: updatedProductList });
     };
 
     // 一鍵刪除
@@ -56,14 +63,6 @@ class Cart extends Component {
             .catch((err) => {
                 console.error(err);
             });
-    };
-
-    // 數量增減 總金額自動計算
-    updateProductQuantity = (index, newQuantity) => {
-        const { cartList } = this.state;
-        const updatedCartList = [...cartList];
-        updatedCartList[index].quantity = newQuantity;
-        this.setState({ cartList: updatedCartList });
     };
 
     // 日曆
@@ -122,11 +121,10 @@ class Cart extends Component {
     };
 
     render() {
-        const total = this.calculateTotal();
         const { value, maxDate, minDate, datepicker, cartList, handleOpen } = this.state;
+        const totalPrice = this.totalMoney()
         return (
             <React.Fragment>
-
                 <br /><br /><br /><br />
                 <Excel />
                 {cartList.length > 0 ? (<Process1 />) : null}
@@ -135,13 +133,18 @@ class Cart extends Component {
 
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-
-                        <CartProduct />
-                        <CartFood updateProductQuantity={this.updateProductQuantity} />
+                        <CartProduct
+                        cartProductList={cartList.filter(item => item.pid == null)}
+                        updateQuantity={this.updateQuantity}
+                        updateCart={this.updateCart}
+                        />                        
+                        <CartFood
+                        cartFoodList={cartList.filter(item => item.fid == null)}
+                        updateQuantity={this.updateQuantity}
+                        updateCart={this.updateCart}
+                        />                     
                     </div>
-                </div>
-
-                <br />
+                </div> <br />
 
                 {/* 日曆 */}
                 {/* <div className="myform">
@@ -172,7 +175,7 @@ class Cart extends Component {
                 {/* 總計跟前往結帳 */}
                 {cartList.length > 0 ? (
                     <div id={cartstyle['shopping2']}>
-                        <span style={{ fontSize: 40 }}>總計：NT{total}</span>
+                        <span style={{ fontSize: 40 }}>總計：NT{totalPrice} </span>
                         <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
                         <a href="/payment">
                             <button id={cartstyle['buy']}><span>前往結帳</span></button>
