@@ -127,7 +127,7 @@ class FoodDetail extends Component {
                     <p>經常一起選購食材：</p>
                     <div>
                         <div className={styles.container_food}>
-                            <a href="/product2"> <img src={`/image/${this.state.foodList[0].f_img}`} alt="Avatar"
+                            <a href="http://localhost:3000/product2/all"> <img src={`/image/${this.state.foodList[0].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
@@ -141,7 +141,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href="/product2"><img src={`/image/${this.state.foodList[1].f_img}`} alt="Avatar"
+                            <a href="http://localhost:3000/product2/all"><img src={`/image/${this.state.foodList[1].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
@@ -155,7 +155,7 @@ class FoodDetail extends Component {
                             </a>
                         </div>
                         <div className={styles.container_food}>
-                            <a href="/product2"><img src={`/image/${this.state.foodList[2].f_img}`} alt="Avatar"
+                            <a href="http://localhost:3000/product2/all"><img src={`/image/${this.state.foodList[2].f_img}`} alt="Avatar"
                                 style={{ width: '350px', height: '350px' }} className={styles.cimage_food} />
                                 <div className={styles.overlay_food}>
                                     <div className={styles.imgtext_food}>
