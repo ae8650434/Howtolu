@@ -194,7 +194,6 @@ class Cart extends Component {
         } else {
             try {
                 const result = await axios.get('http://localhost:8000/cart');
-                       
                 const newState = { ...this.state };
                 newState.cartList = result.data;
                 this.setState(newState);
