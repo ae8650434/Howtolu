@@ -350,6 +350,7 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
+                window.location.href="/";
 
             } else {
                 console.log(orders.data);
