@@ -138,6 +138,15 @@ class Payment extends Component {
                                     />
                                     <span>金融卡/信用卡</span>
                                 </td>
+                                <td className={styles.info_tdA}>
+                                    <input
+                                        type="radio"
+                                        className={styles.order_bnC}
+                                        // id="checklist"
+                                        // onClick={this.ChecklistCard}
+                                    />
+                                    <span>現金支付</span>
+                                </td>
 
                             </tr>
                         </table>
@@ -341,6 +350,7 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
+                window.location.href="/";
 
             } else {
                 console.log(orders.data);
