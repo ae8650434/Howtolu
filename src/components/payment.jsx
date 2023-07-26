@@ -138,6 +138,15 @@ class Payment extends Component {
                                     />
                                     <span>金融卡/信用卡</span>
                                 </td>
+                                <td className={styles.info_tdA}>
+                                    <input
+                                        type="radio"
+                                        className={styles.order_bnC}
+                                    // id="checklist"
+                                    // onClick={this.ChecklistCard}
+                                    />
+                                    <span>現金支付</span>
+                                </td>
 
                             </tr>
                         </table>
@@ -284,9 +293,9 @@ class Payment extends Component {
         var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
         var day = ((today.getDate())).toString().padStart(2, '0');
         // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
-        console.log("bee", typeof mids);
-        var todayMid = `${year}` + month + day 
-        console.log("日期", month);
+        // console.log("bee", typeof mids);
+        var todayMid = `${year}` + month + day
+        // console.log("日期", month);
         var neworder = {
             mid: this.state.cartMid[0].mid,
             order_number: todayMid,
@@ -295,26 +304,115 @@ class Payment extends Component {
             price: document.getElementById('total').textContent,
 
         }
-        console.log("8888", this.state.cartMid)
-        console.log("666", neworder.mid);
-        const orders = await axios.post(
-            "http://localhost:8000/toorder", neworder,
-            {
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            },
+        console.log("556666", neworder)
+        const newoederListArray = [];
+        // console.log("8888", this.state.cartMid)
+        // console.log("666", neworder.mid);
+        await Promise.all(
+            this.state.cartMid.map(async (data, index) => {
+                var pid = data.pid;
+                var fid = data.fid;
 
-        );
-        if (orders.status === 200) {
-            // 表示成功
-            console.log("OK", neworder.mid);
+                const newoederList = {
+                    oid: '',
+                    pid: data.pid,
+                    pname: data.pname,
+                    p_img: data.p_img,
+                    fid: data.fid,
+                    fname: data.fname,
+                    f_img: data.f_img,
+                    p_quantity: (pid === null) ? null : data.quantity,
+                    f_quantity: (fid === null) ? null : data.quantity,
+                    p_os: (pid === null) ? null : 0,
+                    f_os: (fid === null) ? null : 1,
+                    p_price: data.p_price,
+                    f_price: data.f_price
 
-        } else {
-            console.log(orders.data);
+                };
+                newoederListArray.push(newoederList);
+            }))
+        console.log("8888888888", newoederListArray)
+
+        try {
+            const orders = await axios.post(
+                "http://localhost:8000/toorder",
+                {
+                    neworder: neworder,
+                    newoederList: newoederListArray
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                },
+
+            );
+            if (orders.status === 200) {
+                // 表示成功
+                console.log("新增order成功:mid", neworder.mid);
+                window.location.href = "/";
+
+            } else {
+                console.log(orders.data);
+            };
+            // console.log("總計", this.state.totalSum)
+        } catch {
+
         }
-        // console.log("總計", this.state.totalSum)
-    }
+
+        // 新增至order_list資料庫
+        // try catch 處理錯誤
+        //     try {
+        //         // 確保所有API調用都完成，在下一步
+        //         await Promise.all(
+        //             this.state.cartMid.map(async (data, index) => {
+        //                 var pid = data.pid;
+        //                 var fid = data.fid;
+
+        //                 const newoederList = {
+        //                     oid:'',
+        //                     pid: data.pid,
+        //                     pname: data.pname,
+        //                     p_img: data.p_img,
+        //                     fid: data.fid,
+        //                     fname: data.fname,
+        //                     f_img: data.f_img,
+        //                     p_quantity: (pid === null) ? data.quantity : null,
+        //                     f_quantity: (fid === null) ? data.quantity : null,
+        //                     p_os: 0,
+        //                     f_os: 1,
+        //                     p_price: data.p_price,
+        //                     f_price: data.f_price
+
+        //                 };
+        //                 // console.log("我想看一下cartMid.map",data.quantity);
+
+
+        //                 const orderLists = await axios.post(
+        //                     "http://localhost:8000/toorder/list", newoederList,
+        //                     {
+        //                         headers: {
+        //                             "Content-Type": "application/json"
+        //                         }
+        //                     },
+
+        //                 );
+
+        //                 if (orderLists.status === 200) {
+        //                     // 表示成功
+        //                     console.log("成功新增到order_list資料庫");
+
+        //                 } else {
+        //                     console.log(orderLists.data);
+        //                 }
+        //             })
+        //         )
+
+        //     } catch (error) {
+        //         console.error("Err:", error);
+        //     }
+    };
 }
 
 export default Payment;
+

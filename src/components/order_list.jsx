@@ -168,7 +168,7 @@ class Order_list extends Component {
               <td className={`${styles.info_order_list_word} ${styles.info_order_pname}`}>{orderDetial.pname !== null ? orderDetial.pname : orderDetial.fname}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.p_quantity ? orderDetial.p_quantity : orderDetial.f_quantity}</td>
               <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{`NT${orderDetial.p_price ? orderDetial.p_price : orderDetial.f_price}`}</td>
-              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{this.state.statusMap[orderDetial.p_os ? orderDetial.p_os : orderDetial.f_os]}</td>
+              <td className={`${styles.info_order_list_word} ${styles.info_order_num}`}>{orderDetial.pname !== null ? '租借中' : '完成'}</td>
             </tr>
             ))} 
             </table>
@@ -308,13 +308,13 @@ class Order_list extends Component {
   });
 
 
-  
+  console.log('eree', targetData);
 
   try {
     var response = await axios.post('http://localhost:8000/download_excel',targetData, {
       responseType: 'blob', // 設定回應的資料型態為 'blob' 以接收二進位資料
     })
-    console.log('eree', targetData);
+    
     // 使用 file-saver 將收到的檔案 blob 存為 Excel 檔案
     const fileBlob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     saveAs(fileBlob, 'How To 露.xlsx');
