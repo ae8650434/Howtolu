@@ -140,15 +140,6 @@ class Payment extends Component {
                                     />
                                     <span>金融卡/信用卡</span>
                                 </td>
-                                <td className={styles.info_tdA}>
-                                    <input
-                                        type="radio"
-                                        className={styles.order_bnC}
-                                    // id="checklist"
-                                    // onClick={this.ChecklistCard}
-                                    />
-                                    <span>現金支付</span>
-                                </td>
 
                             </tr>
                         </table>
@@ -253,7 +244,7 @@ class Payment extends Component {
         // 篩選 當前mid的訂單
         if (sessionStorage.getItem('account')) {
             var result = await axios.get("http://localhost:8000/cart")
-            var cartMid = result.data.filter((x) => x.tel == sessionStorage.getItem('account'))
+            var cartMid = result.data.filter((x) => x.tel === sessionStorage.getItem('account'))
             var newcartMid = { ...this.state };
             newcartMid.cartMid = cartMid;
             this.state = newcartMid;
@@ -367,7 +358,7 @@ class Payment extends Component {
                 };
                 newoederListArray.push(newoederList);
             }))
-        console.log("8888888888", newoederListArray)
+        console.log("看一下newoederListArray", newoederListArray)
 
         // 新增至order_list資料庫
         try {
@@ -387,17 +378,17 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
-                this.setState({ registerSuccess: true }); // 设置注册成功状态为 true
+                this.setState({ registerSuccess: true }); 
 
-                axios.delete('http://localhost:8000/cart')
-                .then(() => {
-                    this.setState({ cartList: [] });
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
+                // 清除購物車內商品
+                // axios.delete('http://localhost:8000/cart')
+                //     .then(() => {
+                //         this.setState({ cartList: [] });
+                //     })
+                //     .catch((err) => {
+                //         console.error(err);
+                //     });
 
-                // window.location.href = "/";
 
             } else {
                 console.log(orders.data);
@@ -408,6 +399,8 @@ class Payment extends Component {
         }
 
     };
+
+  
 }
 
 export default Payment;
