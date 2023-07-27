@@ -101,13 +101,18 @@ app.post('/', async function (req, res) {
                     DB.query(delsql,
                         [req.body.neworder.mid],
                         (err, data) => {
-                            console.log("刪除失敗：", err);
+                            if (err) {
+                                console.log("刪除失敗：", err);
+                            } else {
+                                console.log("刪除成功")
+                                return res.status(200).send("刪除成功");
+                            }
+
                         })
                 }
             })
 
 
-        return res.status(200).send("刪除成功");
     } catch (err) {
         console.log("錯誤：", err);
         return res.status(500).send("新增失敗");
