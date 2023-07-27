@@ -38,7 +38,7 @@ class Excel extends Component {
 
     render() {
         const { items, excelList } = this.state;
-        console.log('我要看:', excelList)
+        // console.log('我要看:', excelList)
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
