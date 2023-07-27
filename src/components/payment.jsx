@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styles from '../css/payment.module.css';
 import Process from './Process2.jsx';
+import Modal from 'react-modal';
 
 
 
@@ -17,6 +18,7 @@ class Payment extends Component {
             month: '',
             year: '',
             cartMid: [{ name: null }],
+            registerSuccess: false,
             // cartMid: [{ name: null, use_date: null, return_date: null }],
             // totalSum: '',
 
@@ -28,7 +30,7 @@ class Payment extends Component {
     //     const{cartMid}=
     // }
     render() {
-        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid, } = this.state;
+        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid, registerSuccess} = this.state;
         // 保存小計的總和
         let totalSum = 0;
 
@@ -117,15 +119,15 @@ class Payment extends Component {
                         <table className={styles.detailsTableA}>
                             <tr >
                                 <td className={styles.info_td}><p>訂購人：</p></td>
-                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].name}</p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid.length > 0 ? this.state.cartMid[0].name : ''}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>手機號碼：</td>
-                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].tel}</p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid.length > 0 ? this.state.cartMid[0].tel : ''}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>電子信箱：</td>
-                                <td className={styles.info_tdA}><p>{this.state.cartMid[0].mail}</p></td>
+                                <td className={styles.info_tdA}><p>{this.state.cartMid.length > 0 ? this.state.cartMid[0].mail : ''}</p></td>
                             </tr>
                             <tr >
                                 <td className={styles.info_td}>付款方式：</td>
@@ -173,7 +175,6 @@ class Payment extends Component {
                                             <React.Fragment key={index}>
                                                 <input
                                                     type="tel"
-                                                    name=""
                                                     id=""
                                                     maxLength="4"
                                                     value={value}
@@ -189,11 +190,11 @@ class Payment extends Component {
                                     <td className={styles.order_word}>有效期限：</td>
                                     <td colspan={2} className={styles.order_wordA}>
                                         <label htmlFor=""></label>
-                                        <input type="tel" name="" id="" placeholder="MM" maxLength="2"
+                                        <input type="tel" id="" placeholder="MM" maxLength="2"
                                             value={month}
                                             onChange={this.handleMonthChange}
                                             ref={(input) => (this.monthInputRef = input)} />/
-                                        <input type="tel" name="" id="" placeholder="YY" maxLength="2"
+                                        <input type="tel" id="" placeholder="YY" maxLength="2"
                                             value={year}
                                             onChange={this.handleYearChange}
                                             ref={(input) => (this.yearInputRef = input)} />
@@ -203,7 +204,7 @@ class Payment extends Component {
                                     <td className={styles.order_word}>末3碼：</td>
                                     <td colspan={2} className={styles.order_wordA}>
                                         <label htmlFor=""></label>
-                                        <input type="tel" name="" id="" placeholder="末3碼" maxlength="3" />
+                                        <input type="tel" id="" placeholder="末3碼" maxlength="3" />
                                     </td>
                                 </tr>
                             </table>
@@ -215,9 +216,38 @@ class Payment extends Component {
                         </div>
                     </div>
                 </div>
+                <Modal
+                    isOpen={registerSuccess}
+                    onRequestClose={this.closeSuccessModal}
+                    className={styles.modal}
+                    overlayClassName={styles.overlay}
+                >
+                    <div className={styles.content2}>
+                        <svg width="300" height="300">
+                            <circle
+                                fill="none"
+                                stroke="#68E534"
+                                strokeWidth="8"
+                                cx="140" cy="140" r="120"
+                                className={styles.circle}
+                            />
+                            <polyline
+                                fill="none"
+                                stroke="#68E534"
+                                strokeWidth="8"
+                                points="80,150 140,220 220,75"
+                                className={styles.tick}
+                            />
+                        </svg>
+                        <p className={styles.h2}>訂單完成</p>
+                        <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+                    </div>
+                </Modal>
             </React.Fragment >
         );
     }
+
+
     componentDidMount = async () => {
 
         // 篩選 當前mid的訂單
@@ -236,6 +266,12 @@ class Payment extends Component {
 
 
     }
+
+      // 關閉彈窗
+  closeSuccessModal = () => {
+    this.setState({ registerSuccess: false });
+    window.location.href = '/'
+  };
 
     // 查看明細 展開
     handleChecklistClick = (index) => {
@@ -351,6 +387,7 @@ class Payment extends Component {
             if (orders.status === 200) {
                 // 表示成功
                 console.log("新增order成功:mid", neworder.mid);
+                this.setState({ registerSuccess: true }); // 设置注册成功状态为 true
 
                 axios.delete('http://localhost:8000/cart')
                 .then(() => {
@@ -360,7 +397,7 @@ class Payment extends Component {
                     console.error(err);
                 });
 
-                window.location.href = "/";
+                // window.location.href = "/";
 
             } else {
                 console.log(orders.data);
