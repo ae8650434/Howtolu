@@ -21,6 +21,7 @@ class Info extends Component {
                 new_password2: '',
             },
             registerSuccess: false,
+            opacity: 0.6,
 
             errors: {
                 password: '',
@@ -78,7 +79,9 @@ class Info extends Component {
 
 
     render() {
-        const { errors, registerSuccess } = this.state
+        const { errors, registerSuccess, opacity } = this.state
+
+
         return (
 
             <div className={styles.short}>
@@ -108,6 +111,7 @@ class Info extends Component {
                                 value={this.state.user.name}
                                 onChange={(e) => {
                                     var newState = { ...this.state }
+                                    newState.opacity = 1
                                     newState.user.name = e.target.value
                                     this.setState(newState)
                                 }
@@ -123,6 +127,7 @@ class Info extends Component {
                                 value={this.state.user.gender}
                                 onChange={(e) => {
                                     var newState = { ...this.state }
+                                    newState.opacity = 1
                                     newState.user.gender = e.target.value
                                     this.setState(newState)
                                 }
@@ -139,6 +144,7 @@ class Info extends Component {
                                 value={this.state.user.mail}
                                 onChange={(e) => {
                                     var newState = { ...this.state }
+                                    newState.opacity = 1
                                     newState.user.mail = e.target.value
                                     this.setState(newState)
                                 }
@@ -158,6 +164,7 @@ class Info extends Component {
                                 value={this.state.user.address}
                                 onChange={(e) => {
                                     var newState = { ...this.state }
+                                    newState.opacity = 1
                                     newState.user.address = e.target.value
                                     this.setState(newState)
                                 }
@@ -180,6 +187,7 @@ class Info extends Component {
                                     value={this.state.user.new_password}
                                     onChange={(e) => {
                                         var newState = { ...this.state }
+                                        newState.opacity = 1
                                         newState.user.new_password = e.target.value
                                         this.setState(newState)
                                     }
@@ -193,6 +201,7 @@ class Info extends Component {
                                     value={this.state.user.new_password2}
                                     onChange={(e) => {
                                         var newState = { ...this.state }
+                                        newState.opacity = 1
                                         newState.user.new_password2 = e.target.value
                                         this.setState(newState)
                                     }
@@ -207,39 +216,44 @@ class Info extends Component {
                             )}
                             <br /><br />
                             <div className={styles.info_submit_div}>
-                                <input type="submit" value="儲存變更" className={styles.info_submit} onClick={this.onButtonClick} />
+                                <input type="submit"
+                                    value="儲存變更"
+                                    className={styles.info_submit}
+                                    onClick={this.onButtonClick}
+                                    style={{ opacity: opacity }} // 使用 opacity 屬性設置按鈕的不透明度
+                                />
                             </div>
                         </div>
                     </div>
                 </form>
                 <br /><br /><br /><br />
                 <Modal
-          isOpen={registerSuccess}
-          onRequestClose={this.closeSuccessModal}
-          className={styles.modal}
-          overlayClassName={styles.overlay}
-        >
-          <div className={styles.content2}>
-            <svg width="300" height="300">
-              <circle
-                fill="none"
-                stroke="#68E534"
-                strokeWidth="8"
-                cx="140" cy="140" r="120"
-                className={styles.circle}
-              />
-              <polyline
-                fill="none"
-                stroke="#68E534"
-                strokeWidth="8"
-                points="80,150 140,220 220,75"
-                className={styles.tick}
-              />
-            </svg>
-            <p className={styles.h2}>修改成功</p>
-            <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
-          </div>
-        </Modal>
+                    isOpen={registerSuccess}
+                    onRequestClose={this.closeSuccessModal}
+                    className={styles.modal}
+                    overlayClassName={styles.overlay}
+                >
+                    <div className={styles.content2}>
+                        <svg width="300" height="300">
+                            <circle
+                                fill="none"
+                                stroke="#68E534"
+                                strokeWidth="8"
+                                cx="140" cy="140" r="120"
+                                className={styles.circle}
+                            />
+                            <polyline
+                                fill="none"
+                                stroke="#68E534"
+                                strokeWidth="8"
+                                points="80,150 140,220 220,75"
+                                className={styles.tick}
+                            />
+                        </svg>
+                        <p className={styles.h2}>修改成功</p>
+                        <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
+                    </div>
+                </Modal>
             </div>
         );
     }
@@ -250,9 +264,9 @@ class Info extends Component {
     }
 
     // 關閉彈窗
-  closeSuccessModal = () => {
-    this.setState({ registerSuccess: false });
-  };
+    closeSuccessModal = () => {
+        this.setState({ registerSuccess: false });
+    };
 
     handleFileChange = async (event) => {
         const file = event.target.files[0];
@@ -278,39 +292,43 @@ class Info extends Component {
 
     onButtonClick = async (e) => {
         e.preventDefault();
+        const {opacity} = this.state
         const { password, mail, new_password, new_password2 } = this.state.user;
+        console.log("Current opacity:", this.state.opacity);
+        const regexPattern = {
+            mail: /^\S+@\S+\.\S+$/,
+            password: /^(?=.*[A-Za-z])(?=.*\d).{8,16}$/
+        };
 
-    const regexPattern = {
-        mail: /^\S+@\S+\.\S+$/,
-        password: /^(?=.*[A-Za-z])(?=.*\d).{8,16}$/
-    };
+        const errors = {
+            mail: '',
+            password: ''
+        };
 
-    const errors = {
-        mail: '',
-        password: ''
-    };
+        if (!regexPattern.mail.test(mail)) {
+            errors.mail = '請輸入有效的e-mail';
+        }
 
-    if (!regexPattern.mail.test(mail)) {
-        errors.mail = '請輸入有效的e-mail';
-    }
-
-    // 如果用户输入了新密码，再进行密码格式检查
-    if (new_password !== '' && !regexPattern.password.test(new_password)) {
-        errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
-    }
+        // 如果用户输入了新密码，再进行密码格式检查
+        if (new_password !== '' && !regexPattern.password.test(new_password)) {
+            errors.password = '密碼長度需8-16字元，含一個英文字母與數字';
+        }
 
 
-    if (new_password !== '' && new_password !== new_password2) {
-        errors.password = '請確認新密碼是否相同';
-    }
+        if (new_password !== '' && new_password !== new_password2) {
+            errors.password = '請確認新密碼是否相同';
+        }
 
-    this.setState({ errors });
 
-    // 檢查是否有密碼錯誤
-    if (errors.password || errors.mail) {
-        // 如果有密碼錯誤，直接退出函數，不發送數據到後端
-        return;
-    }
+
+        // 檢查是否有密碼錯誤
+        if (errors.password || errors.mail || opacity === 0.6) {
+            // 如果有密碼錯誤，直接退出函數，不發送數據到後端
+            console.log('沒改')
+            return;
+        }
+
+        this.setState({ errors });
 
         const { user } = this.state;
 
