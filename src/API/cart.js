@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 //一鍵刪除
 app.delete('/', function (req, res) {
-    var sql = 'DELETE FROM car ';
+    var sql = 'DELETE FROM car';
     DB.query(sql, function (err) {
         if (err) {
             res.status(500).json("刪除失敗");
