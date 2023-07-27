@@ -56,7 +56,8 @@ class Cart extends Component {
 
     // 一鍵刪除
     delAll = () => {
-        axios.delete('http://localhost:8000/cart')
+        const account = sessionStorage.getItem('account');
+        axios.delete(`http://localhost:8000/cart?account=${account}`)
             .then(() => {
                 this.setState({ cartList: [] });
             })

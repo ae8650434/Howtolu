@@ -85,7 +85,8 @@ class CartProduct extends Component {
         const { cartProductList } = this.state;
         const ProductToDelete = cartProductList[index];
         try {
-            await axios.delete(`http://localhost:8000/cart/pid/${ProductToDelete.pid}`);
+            const account = sessionStorage.getItem('account');
+            await axios.delete(`http://localhost:8000/cart/pid/${ProductToDelete.pid}/${account}`);
             const updatedProductList = cartProductList.filter((_, i) => i !== index);
             this.setState({ cartProductList: updatedProductList });
         } catch (error) {

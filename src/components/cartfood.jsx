@@ -64,7 +64,8 @@ class CartFood extends Component {
         const { cartFoodList } = this.state;
         const foodToDelete = cartFoodList[index];
         try {
-            await axios.delete(`http://localhost:8000/cart/fid/${foodToDelete.fid}`);
+            const account = sessionStorage.getItem('account');
+            await axios.delete(`http://localhost:8000/cart/fid/${foodToDelete.fid}/${account}`);
             const updatedFoodList = cartFoodList.filter((_, i) => i !== index);
             this.setState({ cartFoodList: updatedFoodList });
         } catch (error) {
