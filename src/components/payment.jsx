@@ -15,12 +15,13 @@ class Payment extends Component {
             dataIndex: false,
             paym: false,
             inputValues: ['', '', '', ''],
-            month: '',
-            year: '',
+            months: '',
+            years: '',
             cartMid: [{ name: null }],
             registerSuccess: false,
             // cartMid: [{ name: null, use_date: null, return_date: null }],
-            // totalSum: '',
+            // totalSum: ''
+            cvv: '',
 
         }
     }
@@ -30,7 +31,8 @@ class Payment extends Component {
     //     const{cartMid}=
     // }
     render() {
-        const { displayOrderList, dataIndex, paym, inputValues, month, year, cartMid, registerSuccess} = this.state;
+        const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
+            cartMid, registerSuccess } = this.state;
         // 保存小計的總和
         let totalSum = 0;
 
@@ -71,6 +73,7 @@ class Payment extends Component {
                                         <td className={styles.info_td}>{data.pname ? data.pname : data.fname}</td>
                                         <td>
                                             <tr>
+                                                <label htmlFor=""></label>
                                                 <input
                                                     type="button"
                                                     value="查看明細"
@@ -132,6 +135,7 @@ class Payment extends Component {
                             <tr >
                                 <td className={styles.info_td}>付款方式：</td>
                                 <td className={styles.info_tdA}>
+                                    <label htmlFor=""></label>
                                     <input
                                         type="radio"
                                         className={styles.order_bnC}
@@ -164,12 +168,16 @@ class Payment extends Component {
                                         <label htmlFor=""></label>
                                         {inputValues.map((value, index) => (
                                             <React.Fragment key={index}>
+                                                {console.log("看一下input", value)}
+                                                <label htmlFor=""></label>
                                                 <input
                                                     type="tel"
                                                     id=""
                                                     maxLength="4"
                                                     value={value}
-                                                    onChange={(event) => this.handleInputChange(event, index)}
+                                                    onChange={(event) => {
+                                                        this.handleInputChange(event, index);
+                                                    }}
                                                     ref={(input) => (this[`input${index}`] = input)}
                                                 />
                                                 {index < 3 && '-'}
@@ -182,11 +190,11 @@ class Payment extends Component {
                                     <td colspan={2} className={styles.order_wordA}>
                                         <label htmlFor=""></label>
                                         <input type="tel" id="" placeholder="MM" maxLength="2"
-                                            value={month}
+                                            value={months}
                                             onChange={this.handleMonthChange}
                                             ref={(input) => (this.monthInputRef = input)} />/
                                         <input type="tel" id="" placeholder="YY" maxLength="2"
-                                            value={year}
+                                            value={years}
                                             onChange={this.handleYearChange}
                                             ref={(input) => (this.yearInputRef = input)} />
                                     </td>
@@ -195,15 +203,20 @@ class Payment extends Component {
                                     <td className={styles.order_word}>末3碼：</td>
                                     <td colspan={2} className={styles.order_wordA}>
                                         <label htmlFor=""></label>
-                                        <input type="tel" id="" placeholder="末3碼" maxlength="3" />
+                                        <input type="tel" id="" placeholder="末3碼" maxlength="3"
+                                        value={cvv}
+                                        onChange={this.handleCvvChange}
+                                        />
                                     </td>
                                 </tr>
                             </table>
                         </div>
                         <div className={styles.orderdivB}>
                             <label for=""></label>
-                            <input className={styles.order_bnB} type="button" value="結帳"
-                                onClick={this.handleReserve} />
+                            <input className={styles.order_bnB}
+                                type="submit" value="結帳"
+                                onClick={this.handleReserve}
+                            />
                         </div>
                     </div>
                 </div>
@@ -234,6 +247,21 @@ class Payment extends Component {
                         <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
                     </div>
                 </Modal>
+                {/* {handleOK &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>請輸入正確信用卡資訊！</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                } */}
             </React.Fragment >
         );
     }
@@ -258,11 +286,11 @@ class Payment extends Component {
 
     }
 
-      // 關閉彈窗
-  closeSuccessModal = () => {
-    this.setState({ registerSuccess: false });
-    window.location.href = '/'
-  };
+    // 關閉彈窗
+    closeSuccessModal = () => {
+        this.setState({ registerSuccess: false });
+        window.location.href = '/'
+    };
 
     // 查看明細 展開
     handleChecklistClick = (index) => {
@@ -296,111 +324,124 @@ class Payment extends Component {
     handleMonthChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {
-            this.setState({ month: value }, () => {
+            this.setState({ months: value }, () => {
                 this.yearInputRef.focus();
             });
         } else {
-            this.setState({ month: value });
+            this.setState({ months: value });
         }
     };
     // 信用卡-年 自動下一格
     handleYearChange = (event) => {
         const { value } = event.target;
         if (value.length === 2) {
-            this.setState({ year: value });
+            this.setState({ years: value });
         } else {
-            this.setState({ year: value });
+            this.setState({ years: value });
         }
     };
+    // 信用卡-年 自動下一格w
+    handleCvvChange = (event) => {
+        const { value } = event.target;
+        if (value.length === 3) {
+            this.setState({cvv: value });
+        } else {
+            this.setState({ cvv: value });
+        }
+    };
+
     // 結帳
     handleReserve = async (e) => {
-        var bee = this.state.cartMid.filter((x) => x.fid === null)
-        var today = new Date();
-        var year = today.getFullYear()
-        var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
-        var day = ((today.getDate())).toString().padStart(2, '0');
-        // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
-        // console.log("bee", typeof mids);
-        var todayMid = `${year}` + month + day
-        // console.log("日期", month);
-        var neworder = {
-            mid: this.state.cartMid[0].mid,
-            order_number: todayMid,
-            use_date: bee[0].use_date.slice(0, 10),
-            return_date: bee[0].return_date.slice(0, 10),
-            price: document.getElementById('total').textContent,
+        e.preventDefault();
 
-        }
-        console.log("556666", neworder)
-        const newoederListArray = [];
-        // console.log("8888", this.state.cartMid)
-        // console.log("666", neworder.mid);
-        await Promise.all(
-            this.state.cartMid.map(async (data, index) => {
-                var pid = data.pid;
-                var fid = data.fid;
+        // 判斷如果信用卡資訊輸入不完整 不能送出
+        // console.log("9999999", this.state.cvv)
+        if (this.state.inputValues[0] &&
+            this.state.inputValues[1] &&
+            this.state.inputValues[2] &&
+            this.state.inputValues[3] &&
+            this.state.years && 
+            this.state.months && 
+            this.state.cvv
+        ) {
+            var bee = this.state.cartMid.filter((x) => x.fid === null)
+            var today = new Date();
+            var year = today.getFullYear()
+            var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
+            var day = ((today.getDate())).toString().padStart(2, '0');
+            // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
+            // console.log("bee", typeof mids);
+            var todayMid = `${year}` + month + day
+            // console.log("日期", month);
+            var neworder = {
+                mid: this.state.cartMid[0].mid,
+                order_number: todayMid,
+                use_date: bee[0].use_date.slice(0, 10),
+                return_date: bee[0].return_date.slice(0, 10),
+                price: document.getElementById('total').textContent,
 
-                const newoederList = {
-                    oid: '',
-                    pid: data.pid,
-                    pname: data.pname,
-                    p_img: data.p_img,
-                    fid: data.fid,
-                    fname: data.fname,
-                    f_img: data.f_img,
-                    p_quantity: (pid === null) ? null : data.quantity,
-                    f_quantity: (fid === null) ? null : data.quantity,
-                    p_os: (pid === null) ? null : 0,
-                    f_os: (fid === null) ? null : 1,
-                    p_price: data.p_price,
-                    f_price: data.f_price
+            }
+            console.log("556666", neworder)
+            const newoederListArray = [];
+            // console.log("8888", this.state.cartMid)
+            // console.log("666", neworder.mid);
+            await Promise.all(
+                this.state.cartMid.map(async (data, index) => {
+                    var pid = data.pid;
+                    var fid = data.fid;
 
+                    const newoederList = {
+                        oid: '',
+                        pid: data.pid,
+                        pname: data.pname,
+                        p_img: data.p_img,
+                        fid: data.fid,
+                        fname: data.fname,
+                        f_img: data.f_img,
+                        p_quantity: (pid === null) ? null : data.quantity,
+                        f_quantity: (fid === null) ? null : data.quantity,
+                        p_os: (pid === null) ? null : 0,
+                        f_os: (fid === null) ? null : 1,
+                        p_price: data.p_price,
+                        f_price: data.f_price
+
+                    };
+                    newoederListArray.push(newoederList);
+                }))
+            console.log("看一下newoederListArray", newoederListArray)
+
+            // 新增至order_list資料庫
+            try {
+                const orders = await axios.post(
+                    "http://localhost:8000/toorder",
+                    {
+                        neworder: neworder,
+                        newoederList: newoederListArray
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    },
+
+                );
+                if (orders.status === 200) {
+                    // 表示成功
+                    console.log("新增order成功:mid", neworder.mid);
+                    this.setState({ registerSuccess: true });
+
+                } else {
+                    console.log(orders.data);
                 };
-                newoederListArray.push(newoederList);
-            }))
-        console.log("看一下newoederListArray", newoederListArray)
+                // console.log("總計", this.state.totalSum)
+            } catch {
 
-        // 新增至order_list資料庫
-        try {
-            const orders = await axios.post(
-                "http://localhost:8000/toorder",
-                {
-                    neworder: neworder,
-                    newoederList: newoederListArray
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                },
-
-            );
-            if (orders.status === 200) {
-                // 表示成功
-                console.log("新增order成功:mid", neworder.mid);
-                this.setState({ registerSuccess: true }); 
-
-                // 清除購物車內商品
-                // axios.delete('http://localhost:8000/cart')
-                //     .then(() => {
-                //         this.setState({ cartList: [] });
-                //     })
-                //     .catch((err) => {
-                //         console.error(err);
-                //     });
-
-
-            } else {
-                console.log(orders.data);
-            };
-            // console.log("總計", this.state.totalSum)
-        } catch {
+            }
 
         }
-
     };
 
-  
+
 }
 
 export default Payment;
