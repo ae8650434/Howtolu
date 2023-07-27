@@ -76,7 +76,7 @@ class CartFood extends Component {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartFoodList = result.data;
-        var filteredList = newState.cartFoodList.filter((x) => x.pid == null)
+        var filteredList = newState.cartFoodList.filter((x) => x.pid == null && x.tel === sessionStorage.getItem('account'))
 
         this.state.cartFoodList = filteredList
         this.setState(this.state);

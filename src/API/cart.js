@@ -7,17 +7,20 @@ var DB = require("./DB.js");
 
 // 設置路由
 app.get('/', function (req, res) {
+    // var account = req.query.account
     var sql = 'SELECT * FROM ((car left JOIN product ON car.pid = product.pid) LEFT JOIN member ON car.mid = member.mid )left JOIN food ON car.fid = food.fid';
-    DB.query(
-        sql, function (err, data) {
-            if (err) {
-                res.send("無法查詢資料");
-            } else {
-                res.send(JSON.stringify(data));
-            }
-        }
-    )
-})
+    
+            DB.query(
+                sql,function (err, data) {
+                    if (err) {
+                        res.send("無法查詢資料");
+                    } else {
+                        res.send(JSON.stringify(data));
+                    }
+                }
+            )
+    })
+    
 
 //一鍵刪除
 app.delete('/', function (req, res) {

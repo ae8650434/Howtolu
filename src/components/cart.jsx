@@ -195,7 +195,7 @@ class Cart extends Component {
             try {
                 const result = await axios.get('http://localhost:8000/cart');
                 const newState = { ...this.state };
-                newState.cartList = result.data;
+                newState.cartList = result.data.filter((x)=>x.tel==sessionStorage.getItem('account'));
                 this.setState(newState);
             } catch (error) {
                 console.error('有錯誤嗎:', error);

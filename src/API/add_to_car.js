@@ -1,3 +1,4 @@
+const { isLabelWithInternallyDisabledControl } = require("@testing-library/user-event/dist/utils");
 var DB = require("../API/DB");
 var express = require("express");
 var app = express.Router();
@@ -33,9 +34,18 @@ function insertDataToDB(data) {
     return_date.setMonth(month)
     return_date.setDate(day)
     console.log('332', return_date)
+    
 
     var sql = 'INSERT INTO `car`(`mid`, `pid`, `fid`, `c_day`, `use_date`, `return_date`, `quantity`) VALUES (?,?,?,?,?,?,?)';
-    DB.query(sql, [data.mid, data.pid, data.fid, 3, use_date, return_date, data.p_price + data.f_price], (err, result) => {
+    // 判斷是哪種產品，選擇對應的 quantity
+    if (data.p_quantity !== null) {
+        quantity = data.p_quantity;
+    } else if (data.f_quantity !== null) {
+        quantity = data.f_quantity;
+    }
+    
+    console.log('quantity', quantity)
+    DB.query(sql, [data.mid, data.pid, data.fid, 3, use_date, return_date, quantity], (err, result) => {
         if (err) {
             console.error('Error inserting data to database:', err);
         } else {
