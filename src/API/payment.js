@@ -17,11 +17,16 @@ app.post('/', async function (req, res) {
     var olinsql =
         "INSERT INTO `order_list`(oid,pid,pname,p_img,fid,fname,f_img,p_quantity,f_quantity,p_os,f_os,p_price,f_price)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+    var midsql =
+        "SELECT * FROM car WHERE mid=?";
+    var delsql =
+        "DELETE FROM car WHERE mid=?;"
     // 判斷租借日不等於今天，訂單狀態為 4未完成
     if (req.body.neworder.use_date != today) {
         req.body.neworder.os = 4
     }
-    // 把結帳完成的資料 新增至資料庫order裡
+    // 非同步處理  把結帳完成的資料 新增至資料庫order裡
+    // resolve 查詢結果返回, reject 處理錯誤
     try {
         const insertOrderResult = await new Promise((resolve, reject) => {
             DB.query(
@@ -85,8 +90,24 @@ app.post('/', async function (req, res) {
             });
         }
 
+        // 清除該mid購物車商品
+        DB.query(midsql,
+            [req.body.neworder.mid],
+            (err, data) => {
+                // console.log("刪除的mid:",req.body.neworder.mid);
+                if (err) {
+                    console.log("錯誤：", err);
+                } else {
+                    DB.query(delsql,
+                        [req.body.neworder.mid],
+                        (err, data) => {
+                            console.log("刪除失敗：", err);
+                        })
+                }
+            })
 
-        return res.status(200).send("新增成功");
+
+        return res.status(200).send("刪除成功");
     } catch (err) {
         console.log("錯誤：", err);
         return res.status(500).send("新增失敗");
