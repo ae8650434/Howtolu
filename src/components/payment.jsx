@@ -381,7 +381,7 @@ class Payment extends Component {
                 price: document.getElementById('total').textContent,
 
             }
-            console.log("556666", neworder)
+            console.log("查看新的order", neworder)
             const newoederListArray = [];
             // console.log("8888", this.state.cartMid)
             // console.log("666", neworder.mid);
