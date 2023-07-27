@@ -215,6 +215,7 @@ class Payment extends Component {
                         </div>
                     </div>
                 </div>
+              
             </React.Fragment >
         );
     }
@@ -353,12 +354,12 @@ class Payment extends Component {
                 console.log("新增order成功:mid", neworder.mid);
 
                 axios.delete('http://localhost:8000/cart')
-                .then(() => {
-                    this.setState({ cartList: [] });
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
+                    .then(() => {
+                        this.setState({ cartList: [] });
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                    });
 
                 window.location.href = "/";
 
@@ -371,6 +372,8 @@ class Payment extends Component {
         }
 
     };
+
+  
 }
 
 export default Payment;
