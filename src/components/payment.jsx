@@ -333,6 +333,7 @@ class Payment extends Component {
             }))
         console.log("8888888888", newoederListArray)
 
+        // 新增至order_list資料庫
         try {
             const orders = await axios.post(
                 "http://localhost:8000/toorder",
@@ -369,57 +370,6 @@ class Payment extends Component {
 
         }
 
-        // 新增至order_list資料庫
-        // try catch 處理錯誤
-        //     try {
-        //         // 確保所有API調用都完成，在下一步
-        //         await Promise.all(
-        //             this.state.cartMid.map(async (data, index) => {
-        //                 var pid = data.pid;
-        //                 var fid = data.fid;
-
-        //                 const newoederList = {
-        //                     oid:'',
-        //                     pid: data.pid,
-        //                     pname: data.pname,
-        //                     p_img: data.p_img,
-        //                     fid: data.fid,
-        //                     fname: data.fname,
-        //                     f_img: data.f_img,
-        //                     p_quantity: (pid === null) ? data.quantity : null,
-        //                     f_quantity: (fid === null) ? data.quantity : null,
-        //                     p_os: 0,
-        //                     f_os: 1,
-        //                     p_price: data.p_price,
-        //                     f_price: data.f_price
-
-        //                 };
-        //                 // console.log("我想看一下cartMid.map",data.quantity);
-
-
-        //                 const orderLists = await axios.post(
-        //                     "http://localhost:8000/toorder/list", newoederList,
-        //                     {
-        //                         headers: {
-        //                             "Content-Type": "application/json"
-        //                         }
-        //                     },
-
-        //                 );
-
-        //                 if (orderLists.status === 200) {
-        //                     // 表示成功
-        //                     console.log("成功新增到order_list資料庫");
-
-        //                 } else {
-        //                     console.log(orderLists.data);
-        //                 }
-        //             })
-        //         )
-
-        //     } catch (error) {
-        //         console.error("Err:", error);
-        //     }
     };
 }
 

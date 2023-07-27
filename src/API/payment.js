@@ -42,7 +42,7 @@ app.post('/', async function (req, res) {
             );
         });
 
-        // 步驟2：使用新格式更新order_number
+        // 更新order_number
         const orderId = insertOrderResult.insertId;
         const newOrderNumber = req.body.neworder.order_number + orderId.toString().padStart(3, '0');
 
@@ -57,7 +57,7 @@ app.post('/', async function (req, res) {
             );
         });
 
-        // 步驟3：插入訂單清單項目
+        // order_list項目
         for (let i = 0; i < req.body.newoederList.length; i++) {
             await new Promise((resolve, reject) => {
                 DB.query(
@@ -85,7 +85,7 @@ app.post('/', async function (req, res) {
             });
         }
 
-        // 所有查詢都順利完成
+
         return res.status(200).send("新增成功");
     } catch (err) {
         console.log("錯誤：", err);
@@ -93,7 +93,7 @@ app.post('/', async function (req, res) {
     }
 });
 
-    // console.log("看一下js", req.body)
+// console.log("看一下js", req.body)
 
 
 module.exports = app;
