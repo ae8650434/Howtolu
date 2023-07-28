@@ -4,7 +4,7 @@
 }
 .slotdiv{
     width: 400px;
-    height: 800px;
+    height: 600px;
     position: relative;
     box-sizing: border-box;
    
@@ -17,22 +17,22 @@
     object-fit:cover;
     position: absolute;
     box-sizing: border-box;
-    height: 800px;
+    height: 600px;
     width: 1200px;
     left: 300px;
     overflow:hidden;
 }
 .slotimg1{
-    clip: rect(0, 400px, 800px, 0px);
+    clip: rect(0, 400px, 600px, 0px);
   
 }
 
 .slotimg2{
-    clip: rect(0, 800px, 800px, 400px);
+    clip: rect(0, 800px, 600px, 400px);
 
 }
 .slotimg3{
-    clip: rect(0, 1200px, 800px, 800px);
+    clip: rect(0, 1200px, 600px, 800px);
    
 }
 
@@ -40,31 +40,31 @@
     top:0px
 }
 .slotimgpos1{
-    top:-800px
+    top:-600px
 }
 .slotimgpos2{
-    top:-1600px
+    top:-1200px
 }
 .slotimgpos3{
-    top:-2400px
+    top:-1800px
 }
 .slotimgpos4{
-    top:-3200px
+    top:-2400px
 }
 .slotimgpos5{
-    top:-4000px
+    top:-3000px
 }
 .slotimgpos6{
-    top:-4800px
+    top:-3600px
 }
 .slotimgpos7{
-    top:-5600px
+    top:-4200px
 }
 .slotimgpos8{
-    top:-6400px
+    top:-4800px
 }
 .slotimgpos9{
-    top:-7200px
+    top:-5400px
 }
 
 .isplay0 {

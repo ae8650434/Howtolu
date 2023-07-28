@@ -69,6 +69,9 @@ class slotbtn extends Component {
 
         )
          num++
+         if(num==3){
+            num=0
+         }
          newState.i=num;
          this.state=newState
          this.setState(this.state)
