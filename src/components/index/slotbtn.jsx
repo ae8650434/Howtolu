@@ -4,16 +4,23 @@ import Slot from "./slot.jsx"
 
 class slotbtn extends Component {
     state = {
-     
+     i:0,
+     cnt:1
     }
     render() {
         return (
             <>
             <div className='slotoutdiv' >
-                <div id='result' className="slotdiv">
-                        <Slot className='slotimg1' />                
-                        <Slot className='slotimg2' />                    
-                        <Slot className='slotimg3' />        
+                <div id='result0' className="slotdiv">
+                        <Slot className='slotimg1' /> 
+                          
+                <div id='result1' className="slotdiv">             
+                        <Slot className='slotimg2' /> 
+                     
+                     <div id='result2' className="slotdiv">                       
+                        <Slot className='slotimg3' />    
+                        </div> 
+                           </div>   
                 </div>
                 </div>
                 <button onClick={this.slot}>測試用按鈕</button>
@@ -22,19 +29,39 @@ class slotbtn extends Component {
         )
     }
     slot = () => {
-        if (document.getElementById(`result`)) {
-            document.getElementById(`result`).classList.add('isplay');
-            document.getElementById(`result`).style.transform = 'none';
-            console.log(document.getElementById(`result`))
+        if (document.getElementById(`result0`)) {
+            document.getElementById(`result0`).classList.add('isplay0');
+            document.getElementById(`result0`).style.transform = 'none';
+
+            }
+        if (document.getElementById(`result1`)) {
+            document.getElementById(`result1`).classList.add('isplay1');
+            document.getElementById(`result1`).style.transform = 'none';
+            }
+        if (document.getElementById(`result2`)) {
+            document.getElementById(`result2`).classList.add('isplay2');
+            document.getElementById(`result2`).style.transform = 'none';
+          
 
         }
     }
     slots = () => {
-        if (document.getElementById(`result`)) {
-            const num = Math.floor(Math.random() * 10);
-            document.getElementById(`result`).classList.remove('isplay');
-            document.getElementById(`result`).style.transform = `translateY(${ 100}%)`;
-        }
+       
+
+           if (document.getElementById(`result0`)) {
+               document.getElementById(`result0`).classList.remove('isplay0');
+               document.getElementById(`result0`).style.transform = `translateY(${0*100}%)`;
+            }
+            if (document.getElementById(`result1`)) {  
+                document.getElementById(`result1`).classList.remove('isplay1');
+                document.getElementById(`result1`).style.transform = `translateY(${0}%)`;
+            }
+            if (document.getElementById(`result2`)) {
+                document.getElementById(`result2`).classList.remove('isplay2');
+                document.getElementById(`result2`).style.transform = `translateY(${0}%)`;
+            }
+        
+
     }
 }
 

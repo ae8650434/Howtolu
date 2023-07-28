@@ -12,9 +12,6 @@
 }
 
 
-.slotindiv{
-    position: absolute;
-}
 
 .slotimg{
     object-fit:cover;
@@ -48,22 +45,53 @@
 .slotimgpos2{
     top:-1600px
 }
+.slotimgpos3{
+    top:-2400px
+}
+.slotimgpos4{
+    top:-3200px
+}
+.slotimgpos5{
+    top:-4000px
+}
+.slotimgpos6{
+    top:-4800px
+}
+.slotimgpos7{
+    top:-5600px
+}
+.slotimgpos8{
+    top:-6400px
+}
+.slotimgpos9{
+    top:-7200px
+}
 
-.isplay {
-    animation: resultPlay 0.5s infinite linear;
+.isplay0 {
+    animation: resultPlay0 1s  linear;
   }
-.isplay {
-    animation: resultPlay 0.5s infinite linear;
+.isplay1 {
+    animation: resultPlay1 2s  linear;
   }
-.isplay {
-    animation: resultPlay 0.5s infinite linear;
+.isplay2 {
+    animation: resultPlay2 3s  linear;
   }
 
 
 
-  @keyframes resultPlay {
+  
+  @keyframes resultPlay0 {
     100% {
-      transform: translateY(250%)
+      transform: translateY(300%)
     }
   }
- 
+  @keyframes resultPlay1 {
+    100% {
+      transform: translateY(300%)
+    }
+  }
+  @keyframes resultPlay2 {
+    100% {
+      transform: translateY(300%)
+    }
+  }
