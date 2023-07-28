@@ -42,6 +42,12 @@ class CalendarExcel extends Component {
             selectedDate: date,
             datepicker: false,
         });
+        const startDate = new Date(date);
+        const endDate = new Date(date);
+        endDate.setDate(endDate.getDate() + 2);
+        const excelStartDate = this.formatDateString(startDate);
+        const excelEndDate = this.formatDateString(endDate);
+        this.props.onSelectDateRange(excelStartDate, excelEndDate);
     };
 
     formatDateString = date => {

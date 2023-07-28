@@ -7,7 +7,9 @@ import CalendarExcel from './CalendarExcel.jsx';
 class Excel extends Component {
     state = {
         items: [],
-        excelList: []
+        excelList: [],
+        rentalStartDate: null,
+        rentalEndDate: null
     }
 
     readExcel = (file) => {
@@ -35,9 +37,15 @@ class Excel extends Component {
         });
     };
 
+    excelDate = (startDate, endDate) => {
+        this.setState({
+            rentStartDate: startDate,
+            rentEndDate: endDate,
+        });
+    }
+
     render() {
-        const { items, excelList } = this.state;
-        // console.log('我要看:', excelList)
+        const { items, excelList, rentStartDate, rentEndDate } = this.state;
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -52,8 +60,8 @@ class Excel extends Component {
                         }}
                     />
                 </div><br /><br /><br />
-                {items.length > 0 ? <CalendarExcel /> : null}
-                       
+                {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} /> : null}
+
                 {/* excel插入後的格式 */}
                 <br /><br /><br /><br /><br />
                 <div id={cartstyle['shopping']}>
@@ -61,11 +69,15 @@ class Excel extends Component {
                         {items.map((row, index) => (
                             <div key={index}>
                                 <img id={cartstyle["imgw"]} src={`/image/${row['圖片']}`} alt="" />
-                               { console.log(`/image${row['圖片']}`)}
+                                {console.log(`/image${row['圖片']}`)}
                                 <div id={cartstyle['shopping3']}>
                                     <span style={{ fontSize: 40 }}>{row['物品']}</span>
                                     <br /><br /><br /><br />
-                                    <span><p id={cartstyle["dateSize"]}>可租借天數:   共3日</p></span>
+                                    {rentStartDate && rentEndDate &&(
+                                        <div>
+                                            <span><p id={cartstyle["dateSize"]}>可租借天數:{rentStartDate} ～ {rentEndDate} 共3日</p></span>
+                                        </div>
+                                    )}
                                     <p></p>
                                     <div id={cartstyle['disFlex']}>
                                         <p id={cartstyle["moneySize"]}>金額:{row['金額']}</p>
