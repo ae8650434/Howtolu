@@ -4,8 +4,7 @@ import Slot from "./slot.jsx"
 
 class slotbtn extends Component {
     state = {
-     i:0,
-     cnt:1
+     i:0
     }
     render() {
         return (
@@ -44,13 +43,17 @@ class slotbtn extends Component {
           
 
         }
-    }
-    slots = () => {
+        console.log(this.state.i)
+        var newState={...this.state}
+        var num=newState.i
+        
+
+        setTimeout(function(){
        
 
            if (document.getElementById(`result0`)) {
                document.getElementById(`result0`).classList.remove('isplay0');
-               document.getElementById(`result0`).style.transform = `translateY(${0*100}%)`;
+               document.getElementById(`result0`).style.transform = `translateY(${num*100}%)`;
             }
             if (document.getElementById(`result1`)) {  
                 document.getElementById(`result1`).classList.remove('isplay1');
@@ -62,7 +65,15 @@ class slotbtn extends Component {
             }
         
 
+    } ,4100
+
+        )
+         num++
+         newState.i=num;
+         this.state=newState
+         this.setState(this.state)
     }
+   
 }
 
 export default slotbtn;

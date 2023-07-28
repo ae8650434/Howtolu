@@ -68,30 +68,21 @@
 }
 
 .isplay0 {
-    animation: resultPlay0 1s  linear;
+    animation: resultPlay 1s  linear;
   }
 .isplay1 {
-    animation: resultPlay1 2s  linear;
+    animation: resultPlay 2s  linear;
   }
 .isplay2 {
-    animation: resultPlay2 3s  linear;
+    animation: resultPlay 4s  linear;
   }
 
 
 
   
-  @keyframes resultPlay0 {
+  @keyframes resultPlay {
     100% {
       transform: translateY(300%)
     }
   }
-  @keyframes resultPlay1 {
-    100% {
-      transform: translateY(300%)
-    }
-  }
-  @keyframes resultPlay2 {
-    100% {
-      transform: translateY(300%)
-    }
-  }
+ 
