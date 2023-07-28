@@ -28,8 +28,8 @@ class Navigation extends Component {
                         </li>
                         <li className={navstyle.tili}>租借內容
                             <ul>
-                                <a href="../process.html"><li className={navstyle.conli}>租借流程</li></a>
-                                <a href="" ><li className={navstyle.conli}>租借規範</li></a>
+                                <a href="/rules"><li className={navstyle.conli}>租借流程</li></a>
+                                <a href="/process" ><li className={navstyle.conli}>租借規範</li></a>
 
                             </ul>
                         </li>

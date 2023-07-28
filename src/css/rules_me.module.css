@@ -1,0 +1,35 @@
+.all {
+    text-align: center;
+}
+
+.title {
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.second_all {
+    width: 1200px;
+    height: auto;
+    text-align: center;
+    margin-left: 300px;
+}
+
+.inside_title {
+    font-size: 32px;
+    padding-top: 10px;
+    height: 60px;
+    background-color: #5E9B44;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.inside_word {
+    font-size: 30px;
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 30px;
+    line-height: 60px;
+    border-left: 1px solid #5E9B44;
+    border-right: 1px solid #5E9B44;
+    border-bottom: 1px solid #5E9B44;
+    border-radius: 0 0 10px 10px;
+}
