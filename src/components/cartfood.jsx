@@ -6,12 +6,13 @@ import { valid } from 'semver';
 class CartFood extends Component {
     state = {
         cartFoodList: [],
+        cartFoodLists: []
     }
     render() {
         const { cartFoodList } = this.state;
         return (
             <React.Fragment>
-                {cartFoodList.map((food, index) => (
+                {cartFoodList.filter((x) => x.pid == null ).map((food, index) => (
                     <div key={food.cid}>
                         <img id={cartstyle["imgw"]} src={`/image/${food.f_img}`} alt="" />
                         <div id={cartstyle["shopping3"]}>
@@ -43,17 +44,18 @@ class CartFood extends Component {
 
     // 數量增減
     F_quantity = async (index, newQuantity) => {
-        const { cartFoodList } = this.state;
-        const updatedFoodList = [...cartFoodList];
-        updatedFoodList[index].quantity = newQuantity;
-        this.setState({ cartFoodList: updatedFoodList });
+        const { cartFoodLists } = this.state;
+        const updatedFoodLists = [...cartFoodLists];
+        updatedFoodLists[index].quantity = newQuantity;
+        this.setState({ cartFoodLists: updatedFoodLists });
     
-        const foodToUpdate = updatedFoodList[index];
+        const foodToUpdate = updatedFoodLists[index];
         try {
             await axios.put(`http://localhost:8000/cart/fid/${foodToUpdate.fid}`, {
                 quantity: newQuantity
             });
-            this.props.updateCart(updatedFoodList);
+            console.log('33',foodToUpdate.fid)
+            this.props.updateCart(this.state.cartFoodList);
         } catch (error) {
             console.error(error);
         }
@@ -64,7 +66,8 @@ class CartFood extends Component {
         const { cartFoodList } = this.state;
         const foodToDelete = cartFoodList[index];
         try {
-            await axios.delete(`http://localhost:8000/cart/fid/${foodToDelete.fid}`);
+            const account = sessionStorage.getItem('account');
+            await axios.delete(`http://localhost:8000/cart/fid/${foodToDelete.fid}/${account}`);
             const updatedFoodList = cartFoodList.filter((_, i) => i !== index);
             this.setState({ cartFoodList: updatedFoodList });
         } catch (error) {
@@ -76,9 +79,11 @@ class CartFood extends Component {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartFoodList = result.data;
-        var filteredList = newState.cartFoodList.filter((x) => x.pid == null)
+        var filteredList = newState.cartFoodList.filter((x) => x.tel === sessionStorage.getItem('account'))
+        var filteredLists = newState.cartFoodList.filter((x) => x.pid == null && x.tel === sessionStorage.getItem('account'))
 
         this.state.cartFoodList = filteredList
+        this.state.cartFoodLists = filteredLists
         this.setState(this.state);
     }
 }

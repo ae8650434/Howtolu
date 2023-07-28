@@ -120,6 +120,7 @@ export class Product4 extends Component {
           <div className='row'>
             {filteredList.map((x) => (
               <div id={`foodid${x.fid}`} key={x.fid} className='good'>
+                {console.log('x',x)}
                 <figure style={{ width: "450px", height: "600px" }}>
                   <img src={`/image/${x.f_img}`} alt={x.fname} style={{ width: "300px", height: "300px" }} />
                   <figcaption>{x.fname}</figcaption>
@@ -255,7 +256,7 @@ export class Product4 extends Component {
           
         } else if(e.target.id > 5 && count == 0) {
           this.setState({ handleZero: true })
-        }else if(e.target.id < 5){
+        }else if(e.target.id <= 5){
           window.location.replace(`/food_detail/${e.target.id}`)
 
         }

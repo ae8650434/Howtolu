@@ -11,7 +11,7 @@ import axios from 'axios';
 
 class Cart extends Component {
     state = {
-        cartList: []
+        cartList: [],
     };
 
     styleSize = {
@@ -39,14 +39,17 @@ class Cart extends Component {
     totalMoney = () => {
         const { cartList } = this.state
         let total = 0
-
+        // console.log('prop',this.props)
+// console.log('cartList',cartList)
         cartList.forEach(item => {
+            // console.log('item', item)
             if (item.p_price) {
                 total += item.p_price * item.quantity;
             } else if (item.f_price) {
                 total += item.f_price * item.quantity;
             }
         })
+        console.log('total', total)
         return total
     }
 
@@ -56,7 +59,8 @@ class Cart extends Component {
 
     // 一鍵刪除
     delAll = () => {
-        axios.delete('http://localhost:8000/cart')
+        const account = sessionStorage.getItem('account');
+        axios.delete(`http://localhost:8000/cart?account=${account}`)
             .then(() => {
                 this.setState({ cartList: [] });
             })
@@ -121,7 +125,7 @@ class Cart extends Component {
     };
 
     render() {
-        const { value, maxDate, minDate, datepicker, cartList, handleOpen } = this.state;
+        const { value, maxDate, minDate, datepicker, cartList, handleOpen} = this.state;
         const totalPrice = this.totalMoney()
         return (
             <React.Fragment>
@@ -145,6 +149,7 @@ class Cart extends Component {
                         />                     
                     </div>
                 </div> <br />
+
 
                 {/* 日曆 */}
                 {/* <div className="myform">
@@ -195,8 +200,9 @@ class Cart extends Component {
             try {
                 const result = await axios.get('http://localhost:8000/cart');
                 const newState = { ...this.state };
-                newState.cartList = result.data;
+                newState.cartList = result.data.filter((x)=>x.tel==sessionStorage.getItem('account'));
                 this.setState(newState);
+                // console.log(newState, new Date ())
             } catch (error) {
                 console.error('有錯誤嗎:', error);
             }

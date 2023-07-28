@@ -214,7 +214,7 @@ class Order_list extends Component {
   // 關閉彈窗
   closeSuccessModal = () => {
     this.setState({ addtocartSuccess: false });
-    const { history } = this.props;
+    window.location.href = 'http://localhost:3000/cart'
   };
 
   //  查看明細

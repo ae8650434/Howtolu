@@ -5,6 +5,7 @@ import axios from 'axios';
 class CartProduct extends Component {
     state = {
         cartProductList: [],
+        cartProductLists: []
     };
 
     // 日期尾巴去除
@@ -26,9 +27,10 @@ class CartProduct extends Component {
 
     render() {
         const { cartProductList } = this.state;
+        console.log('1',cartProductList )
         return (
             <React.Fragment>
-                {cartProductList.map((product, index) => (
+                {cartProductList.filter((x)=>x.fid == null).map((product, index) => (
                     <div key={product.cid}>
                         <img id={cartstyle['imgw']} src={`/image/${product.p_img}`} alt="" />
                         <div id={cartstyle['shopping3']}>
@@ -63,17 +65,18 @@ class CartProduct extends Component {
 
     // input數量增減
     P_quantity = async (index, newQuantity) => {
-        const { cartProductList } = this.state;
-        const updatedProductList = [...cartProductList];
-        updatedProductList[index].quantity = newQuantity;
-        this.setState({ cartProductList: updatedProductList });
+        const { cartProductLists } = this.state;
+        const updatedProductLists = [...cartProductLists];
+        updatedProductLists[index].quantity = newQuantity;
+        this.setState({ cartProductLists: updatedProductLists });
 
-        const productToUpdate = updatedProductList[index];
+        const productToUpdate = updatedProductLists[index];
         try {
             await axios.put(`http://localhost:8000/cart/pid/${productToUpdate.pid}`, {
                 quantity: newQuantity
             });
-            this.props.updateCart(updatedProductList);
+            this.props.updateCart(this.state.cartProductList);
+            console.log('2',this.state)
         } catch (error) {
             console.error(error);
         }
@@ -85,7 +88,8 @@ class CartProduct extends Component {
         const { cartProductList } = this.state;
         const ProductToDelete = cartProductList[index];
         try {
-            await axios.delete(`http://localhost:8000/cart/pid/${ProductToDelete.pid}`);
+            const account = sessionStorage.getItem('account');
+            await axios.delete(`http://localhost:8000/cart/pid/${ProductToDelete.pid}/${account}`);
             const updatedProductList = cartProductList.filter((_, i) => i !== index);
             this.setState({ cartProductList: updatedProductList });
         } catch (error) {
@@ -97,10 +101,13 @@ class CartProduct extends Component {
         var result = await axios.get('http://localhost:8000/cart');
         var newState = { ...this.state };
         newState.cartProductList = result.data;
-        var filteredList = newState.cartProductList.filter((x) => x.fid == null)
+        var filteredList = newState.cartProductList.filter((x) =>  x.tel === sessionStorage.getItem('account'))
+        var filteredLists = newState.cartProductList.filter((x) => x.fid == null && x.tel === sessionStorage.getItem('account'))
 
         this.state.cartProductList = filteredList
+        this.state.cartProductLists = filteredLists
         this.setState(this.state);
+        console.log('6',this)
 
     }
 };

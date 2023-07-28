@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
     )
 })
 
-app.post('/tocar', function (req, res) {
+app.post('/', function (req, res) {
     var insql =
         "INSERT INTO car(mid,pid, c_day, use_date, return_date, quantity) VALUES (?,?,?,?,?,?)"
     DB.query(

@@ -17,22 +17,40 @@ app.get('/', function (req, res) {
 
 // 
 app.post('/tocar', function (req, res) {
+    var scsql = 'SELECT * FROM car WHERE mid = ? && pid = ? && use_date = ? && return_date = ?'
     var insql =
         "INSERT INTO car(mid,pid, c_day, use_date, return_date, quantity) VALUES (?,?,?,?,?,?)"
-    DB.query(
-        insql, [req.body.mid,
-        req.body.pid,
-        req.body.c_day,
-        req.body.use_date,
-        req.body.return_date,
-        req.body.quantity,
+    var updatesql = 'UPDATE car SET quantity = ? WHERE mid = ? && pid = ? && use_date = ? && return_date = ?'
+    DB.query(scsql, [req.body.mid,req.body.pid,req.body.use_date,req.body.return_date], (err, result) => {
+        if(err){
+            console.log(err)
+        }else if (result.length == 0){
+            DB.query(
+                insql, [req.body.mid,
+                req.body.pid,
+                req.body.c_day,
+                req.body.use_date,
+                req.body.return_date,
+                req.body.quantity,
+            
+            ], (err, data) => {
+                if(err){
+                    console.log(err)
+                }else {
+                    return res.status(200).json({ data: data });
+                }
+            }
+            )
+        }else {
+            DB.query(updatesql, [(result[0].quantity + parseFloat(req.body.quantity)),req.body.mid,req.body.pid,req.body.use_date,req.body.return_date], (err, results) => {
+                if(err){
+                    console.log(err)
+                }else {
+                    return res.status(200).json({ data: results });
+                }
+            })
+        } 
+    })
     
-    ], (err, data) => {
-        console.log("你好",req.body.mid)
-        // console.log("我", req.params.tel);
-        // console.log("2222",data)
-        return res.status(200).json({ data: data });
-    }
-    )
 })
 module.exports = app;

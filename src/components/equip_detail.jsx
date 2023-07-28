@@ -237,22 +237,6 @@ class EquipDetail extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={styles.categories_min}>
-                    <p>商品分類</p>
-                    <ul className={styles.categoriesUl_min}>
-                        <li><a href="">寢室帳篷</a></li>
-                        <li><a href="">客廳帳&天幕</a></li>
-                        <li><a href="">寢室用具</a></li>
-                        <li><a href="">戶外用品</a></li>
-                        <li><a href="">爐具</a></li>
-                        <li><a href="">保鮮保冷</a></li>
-                        <li><a href="">燈具</a></li>
-                        <li><a href="">影音設備</a></li>
-                        <li><a href="">保暖裝備</a></li>
-                        <li><a href="">常用配件</a></li>
-                    </ul>
-
-                </div>
                 {handleOpen &&
                     <React.Fragment>
                         <div id={styles["background"]}>

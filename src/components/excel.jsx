@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
+import CalendarExcel from './CalendarExcel.jsx';
 
 class Excel extends Component {
     state = {
@@ -30,15 +31,13 @@ class Excel extends Component {
 
         promise.then((d) => {
             const noItems1 = d.filter((row) => row['數量(填入數字即可)'] !== undefined);
-            // const noItems2 = d.filter((row) => row['金額'] !== undefined);
             this.setState({ items: noItems1 });
-            // this.setState({ items: noItems2 });
         });
     };
 
     render() {
         const { items, excelList } = this.state;
-        console.log('我要看:', excelList)
+        // console.log('我要看:', excelList)
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -52,13 +51,13 @@ class Excel extends Component {
                             this.readExcel(file);
                         }}
                     />
-                </div>
-
+                </div><br /><br /><br />
+                {items.length > 0 ? <CalendarExcel /> : null}
+                       
                 {/* excel插入後的格式 */}
                 <br /><br /><br /><br /><br />
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-
                         {items.map((row, index) => (
                             <div key={index}>
                                 <img id={cartstyle["imgw"]} src={`/image/${row['圖片']}`} alt="" />
@@ -78,7 +77,6 @@ class Excel extends Component {
                                 </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </React.Fragment>
