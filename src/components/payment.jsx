@@ -27,16 +27,32 @@ class Payment extends Component {
     // 日期尾數去除
     formDate = (dateStr, addDay = 0) => {
         if (!dateStr) return '';
+      
         const date = new Date(dateStr);
         date.setDate(date.getDate() + addDay);
-
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate() + 1).padStart(2, '0');
-        const formDate = `${year}-${month}-${day}`;
-
+      
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate()+1;
+    
+        if (day > 31) {
+          month += Math.floor(day / 31);
+          day = day % 31;
+        }
+      
+       
+        if (month > 12) {
+          year += Math.floor(month / 12);
+          month = month % 12;
+        }
+      
+        const formattedMonth = String(month).padStart(2, '0');
+        const formattedDay = String(day).padStart(2, '0');
+      
+        const formDate = `${year}-${formattedMonth}-${formattedDay}`;
         return formDate;
-    };
+      };
+      
 
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
@@ -216,7 +232,7 @@ class Payment extends Component {
                         <div className={styles.orderdivB}>
                             <label for=""></label>
                             <input className={styles.order_bnB}
-                                type="submit" value="結帳"
+                                type="button" value="結帳"
                                 onClick={this.handleReserve}
                             />
                         </div>
@@ -272,7 +288,7 @@ class Payment extends Component {
 
     // 關閉彈窗
     closeSuccessModal = () => {
-        this.setState({ registerSuccess: false });
+        this.setState({ registerSuccess: false});
         window.location.href = '/'
     };
 
@@ -412,7 +428,7 @@ class Payment extends Component {
                 if (orders.status === 200) {
                     // 表示成功
                     console.log("新增order成功:mid", neworder.mid);
-                    // this.setState({ registerSuccess: true });
+                    this.setState({ registerSuccess: true });
 
                     // 更新庫存數量
                     const updates = await axios.put(
