@@ -24,7 +24,24 @@ class Payment extends Component {
         }
     }
 
+    // 日期尾巴去除
+    formDate = (dateStr, addDay = 0) => {
+        if (!dateStr) return '';
+        const date = new Date(dateStr);
+        date.setDate(date.getDate() + addDay);
 
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate() + 1).padStart(2, '0');
+        const formDate = `${year}-${month}-${day}`;
+
+        return formDate;
+    };
+
+    // // 計算總計
+    // tableTotal=()=>{
+    //     const{cartMid}=
+    // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
             cartMid, registerSuccess } = this.state;
@@ -90,11 +107,11 @@ class Payment extends Component {
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>租借日：</td>
-                                                <td colspan={2} className={styles.order_word}>{useDate}</td>
+                                                <td colspan={2} className={styles.order_word}>{this.formDate(useDate)}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>歸還日：</td>
-                                                <td colspan={2} className={styles.order_word}>{returnDate}</td>
+                                                <td colspan={2} className={styles.order_word}>{this.formDate(returnDate)}</td>
                                             </tr>
                                             <tr>
                                                 <td className={styles.order_word}>小計：</td>
