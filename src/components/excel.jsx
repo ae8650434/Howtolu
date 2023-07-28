@@ -2,11 +2,14 @@ import React, { useState, Component } from 'react';
 import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
+import CalendarExcel from './CalendarExcel.jsx';
 
 class Excel extends Component {
     state = {
         items: [],
-        excelList: []
+        excelList: [],
+        rentalStartDate: null,
+        rentalEndDate: null
     }
 
     readExcel = (file) => {
@@ -30,15 +33,19 @@ class Excel extends Component {
 
         promise.then((d) => {
             const noItems1 = d.filter((row) => row['數量(填入數字即可)'] !== undefined);
-            // const noItems2 = d.filter((row) => row['金額'] !== undefined);
             this.setState({ items: noItems1 });
-            // this.setState({ items: noItems2 });
         });
     };
 
+    excelDate = (startDate, endDate) => {
+        this.setState({
+            rentStartDate: startDate,
+            rentEndDate: endDate,
+        });
+    }
+
     render() {
-        const { items, excelList } = this.state;
-        // console.log('我要看:', excelList)
+        const { items, excelList, rentStartDate, rentEndDate } = this.state;
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -52,21 +59,25 @@ class Excel extends Component {
                             this.readExcel(file);
                         }}
                     />
-                </div>
+                </div><br /><br /><br />
+                {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} /> : null}
 
                 {/* excel插入後的格式 */}
                 <br /><br /><br /><br /><br />
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-
                         {items.map((row, index) => (
                             <div key={index}>
                                 <img id={cartstyle["imgw"]} src={`/image/${row['圖片']}`} alt="" />
-                               { console.log(`/image${row['圖片']}`)}
+                                {console.log(`/image${row['圖片']}`)}
                                 <div id={cartstyle['shopping3']}>
                                     <span style={{ fontSize: 40 }}>{row['物品']}</span>
                                     <br /><br /><br /><br />
-                                    <span><p id={cartstyle["dateSize"]}>可租借天數:   共3日</p></span>
+                                    {rentStartDate && rentEndDate &&(
+                                        <div>
+                                            <span><p id={cartstyle["dateSize"]}>可租借天數:{rentStartDate} ～ {rentEndDate} 共3日</p></span>
+                                        </div>
+                                    )}
                                     <p></p>
                                     <div id={cartstyle['disFlex']}>
                                         <p id={cartstyle["moneySize"]}>金額:{row['金額']}</p>
@@ -78,7 +89,6 @@ class Excel extends Component {
                                 </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </React.Fragment>
