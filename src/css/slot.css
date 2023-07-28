@@ -1,10 +1,21 @@
+.slotoutdiv{
+     overflow:hidden;
+  
+}
 .slotdiv{
-    width: 100%;
+    width: 400px;
     height: 800px;
     position: relative;
     box-sizing: border-box;
+   
     
 }
+
+
+.slotindiv{
+    position: absolute;
+}
+
 .slotimg{
     object-fit:cover;
     position: absolute;
@@ -13,28 +24,46 @@
     width: 1200px;
     left: 300px;
     overflow:hidden;
-    
-   
 }
 .slotimg1{
     clip: rect(0, 400px, 800px, 0px);
-    
+  
 }
 
 .slotimg2{
     clip: rect(0, 800px, 800px, 400px);
+
 }
 .slotimg3{
     clip: rect(0, 1200px, 800px, 800px);
+   
 }
 
+.slotimgpos0{
+    top:0px
+}
+.slotimgpos1{
+    top:-800px
+}
+.slotimgpos2{
+    top:-1600px
+}
 
 .isplay {
-    animation: resultPlay 1s infinite linear;
+    animation: resultPlay 0.5s infinite linear;
   }
+.isplay {
+    animation: resultPlay 0.5s infinite linear;
+  }
+.isplay {
+    animation: resultPlay 0.5s infinite linear;
+  }
+
+
 
   @keyframes resultPlay {
     100% {
-      transform: translateY(-90%)
+      transform: translateY(250%)
     }
   }
+ 
