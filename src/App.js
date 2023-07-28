@@ -20,6 +20,8 @@ import ProductCopy from './components/product copy';
 import Payment from './components/payment';
 import Order_empty from './components/order_empty';
 import goog from './gooex'
+import Rules from './components/rules_me';
+import Process from './components/process_me';
 
 
 
@@ -46,6 +48,8 @@ class App extends Component {
             <Route path="/payment" component={Payment} exact />
             <Route path="/order_empty" component={Order_empty} exact />
             <Route path="/goog" component={goog} exact />
+            <Route path="/rules" component={Rules} exact />
+            <Route path="/process" component={Process} exact />
             <Route component={Error} />
           </Switch>
           <Gotop />
