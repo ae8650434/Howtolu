@@ -24,7 +24,7 @@ class Payment extends Component {
         }
     }
 
-    // 日期尾巴去除
+    // 日期尾數去除
     formDate = (dateStr, addDay = 0) => {
         if (!dateStr) return '';
         const date = new Date(dateStr);
@@ -38,10 +38,6 @@ class Payment extends Component {
         return formDate;
     };
 
-    // // 計算總計
-    // tableTotal=()=>{
-    //     const{cartMid}=
-    // }
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
             cartMid, registerSuccess } = this.state;
@@ -71,13 +67,7 @@ class Payment extends Component {
                             // 將小計加到總計中
                             const subTotal = (data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity);
                             totalSum += subTotal;
-                            // var total = totalSum + subTotal;
-                            // var newSate = { ...this.state };
-                            // newSate.totalSum = total
-                            // this.setState(newSate);
-                            // console.log(total)
-
-
+            
                             return (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
@@ -278,15 +268,12 @@ class Payment extends Component {
             console.log("我看2", cartMid);
 
         }
-
-
-
     }
 
     // 關閉彈窗
     closeSuccessModal = () => {
         this.setState({ registerSuccess: false });
-        // window.location.href = '/'
+        window.location.href = '/'
     };
 
     // 查看明細 展開
@@ -427,12 +414,9 @@ class Payment extends Component {
                     console.log("新增order成功:mid", neworder.mid);
                     // this.setState({ registerSuccess: true });
 
-                    // var newcartMid = { ...this.state };
-                    // newcartMid.cartMid = cartMid;
-                    // this.setState(newcartMid);
-
-                    const updates = await axios.post(
-                       "http://localhost:8000/cart",
+                    // 更新庫存數量
+                    const updates = await axios.put(
+                       "http://localhost:8000/payment_update",
                        
                         {
                             cartMid: this.state.cartMid,
@@ -453,7 +437,6 @@ class Payment extends Component {
                 } else {
                     console.log(orders.data);
                 };
-                // console.log("總計", this.state.totalSum)
             } catch (err) {
                 console.error("Error:", err);
 
