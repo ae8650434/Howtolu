@@ -19,17 +19,12 @@ class Payment extends Component {
             years: '',
             cartMid: [{ name: null }],
             registerSuccess: false,
-            // cartMid: [{ name: null, use_date: null, return_date: null }],
-            // totalSum: ''
             cvv: '',
 
         }
     }
 
-    // // 計算總計
-    // tableTotal=()=>{
-    //     const{cartMid}=
-    // }
+
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
             cartMid, registerSuccess } = this.state;
@@ -168,7 +163,7 @@ class Payment extends Component {
                                         <label htmlFor=""></label>
                                         {inputValues.map((value, index) => (
                                             <React.Fragment key={index}>
-                                                {console.log("看一下input", value)}
+                                                {/* {console.log("看一下input", value)} */}
                                                 <label htmlFor=""></label>
                                                 <input
                                                     type="tel"
@@ -204,8 +199,8 @@ class Payment extends Component {
                                     <td colspan={2} className={styles.order_wordA}>
                                         <label htmlFor=""></label>
                                         <input type="tel" id="" placeholder="末3碼" maxlength="3"
-                                        value={cvv}
-                                        onChange={this.handleCvvChange}
+                                            value={cvv}
+                                            onChange={this.handleCvvChange}
                                         />
                                     </td>
                                 </tr>
@@ -247,21 +242,6 @@ class Payment extends Component {
                         <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
                     </div>
                 </Modal>
-                {/* {handleOK &&
-                    <React.Fragment>
-                        <div id={styles["background"]}>
-                            <div id={styles["div1"]} className={styles.content}>
-                                <div id={styles["close"]}>
-                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
-                                    <p>HowTo露</p>
-                                </div>
-                                <div id={styles["div2"]}>
-                                    <h1>請輸入正確信用卡資訊！</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                } */}
             </React.Fragment >
         );
     }
@@ -289,7 +269,7 @@ class Payment extends Component {
     // 關閉彈窗
     closeSuccessModal = () => {
         this.setState({ registerSuccess: false });
-        window.location.href = '/'
+        // window.location.href = '/'
     };
 
     // 查看明細 展開
@@ -344,7 +324,7 @@ class Payment extends Component {
     handleCvvChange = (event) => {
         const { value } = event.target;
         if (value.length === 3) {
-            this.setState({cvv: value });
+            this.setState({ cvv: value });
         } else {
             this.setState({ cvv: value });
         }
@@ -360,8 +340,8 @@ class Payment extends Component {
             this.state.inputValues[1] &&
             this.state.inputValues[2] &&
             this.state.inputValues[3] &&
-            this.state.years && 
-            this.state.months && 
+            this.state.years &&
+            this.state.months &&
             this.state.cvv
         ) {
             var bee = this.state.cartMid.filter((x) => x.fid === null)
@@ -428,13 +408,37 @@ class Payment extends Component {
                 if (orders.status === 200) {
                     // 表示成功
                     console.log("新增order成功:mid", neworder.mid);
-                    this.setState({ registerSuccess: true });
+                    // this.setState({ registerSuccess: true });
+
+                    // var newcartMid = { ...this.state };
+                    // newcartMid.cartMid = cartMid;
+                    // this.setState(newcartMid);
+
+                    const updates = await axios.post(
+                       "http://localhost:8000/cart",
+                       
+                        {
+                            cartMid: this.state.cartMid,
+                           
+                        },
+                        {
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        },
+
+                    );
+                    if (updates.status === 200) {
+                        // 表示成功
+                        console.log("更新庫存成功")
+                    }
 
                 } else {
                     console.log(orders.data);
                 };
                 // console.log("總計", this.state.totalSum)
-            } catch {
+            } catch (err) {
+                console.error("Error:", err);
 
             }
 
