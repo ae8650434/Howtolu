@@ -54,7 +54,7 @@ app.post('/', async function (req, res) {
         const newOrderNumber = req.body.neworder.order_number + orderId.toString().padStart(3, '0');
 
         await new Promise((resolve, reject) => {
-            console.log("7788",req.params)
+            console.log("我想看",req.params)
             DB.query(
                 upsql,
                 [newOrderNumber, orderId],

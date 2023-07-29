@@ -44,11 +44,34 @@ class Excel extends Component {
         });
     }
 
+    totalMoney = () => {
+        const { items } = this.state
+        let total = 0
+        // console.log('prop',this.props)
+        // console.log('cartList',cartList)
+        items.forEach(item => {
+            // console.log('item', item)
+            if (item.p_price) {
+                total += item.p_price * item.quantity;
+            } else if (item.f_price) {
+                total += item.f_price * item.quantity;
+            }
+        })
+        console.log('total', total)
+        return total
+    }
+
+    updateCart = (updatedProductList) => {
+        this.setState({ cartList: updatedProductList });
+    };
+
     render() {
         const { items, excelList, rentStartDate, rentEndDate } = this.state;
+        const totalPrice = this.totalMoney()
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
+                {console.log("看",this.state)}
                 <div style={{ fontSize: 40 }}>
                     上傳檔案(excel)：
                     <input
@@ -73,7 +96,7 @@ class Excel extends Component {
                                 <div id={cartstyle['shopping3']}>
                                     <span style={{ fontSize: 40 }}>{row['物品']}</span>
                                     <br /><br /><br /><br />
-                                    {rentStartDate && rentEndDate &&(
+                                    {rentStartDate && rentEndDate && (
                                         <div>
                                             <span><p id={cartstyle["dateSize"]}>可租借天數:{rentStartDate} ～ {rentEndDate} 共3日</p></span>
                                         </div>
@@ -90,7 +113,16 @@ class Excel extends Component {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div><br />
+                {items.length > 0 ? (
+                    <div id={cartstyle['shopping2']}>
+                        <span style={{ fontSize: 40 }}>總計：NT{totalPrice}</span>
+                        <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
+                        <a href="/payment">
+                            <button id={cartstyle['buy']}><span>前往結帳</span></button>
+                        </a>
+                    </div>
+                ) : null}
             </React.Fragment>
         );
     }

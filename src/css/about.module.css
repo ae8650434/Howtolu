@@ -1,54 +1,65 @@
-body{
-    background: rgb(216,218,125);
-    background: linear-gradient(313deg, rgba(216,218,125,0.9023984593837535) 0%, rgba(251,251,242,1) 50%, rgba(255,255,255,1) 100%);
+body {
+    background: rgb(216, 218, 125);
+    background: linear-gradient(313deg, rgba(216, 218, 125, 0.9023984593837535) 0%, rgba(251, 251, 242, 1) 50%, rgba(255, 255, 255, 1) 100%);
 
 }
 
-#about{
+#about {
     text-align: center;
-    margin: 150px 20px;
+    margin: 150px 100px;
+    line-height: 50px;
 }
-.abouttext{
+
+#about>p:first-child {
+    margin-bottom: 60px;
+}
+
+.abouttext {
     font-size: 40px;
 }
-.title{
+
+.title {
     font-size: 50px;
 }
-.favorable{
+
+.favorable {
     display: flex;
     text-align: center;
     justify-items: center;
     padding: 20px;
     margin: 20px;
-   
-    
+
+
 }
 
 
-.proa{
+.proa {
     /* padding: 40px; */
-     height: 100%;
-     /* justify-items: center; */
-     text-decoration-line: none;
+    height: 100%;
+    /* justify-items: center; */
+    text-decoration-line: none;
+    color: #635538;
+
 }
 
-.proFlex{
-    flex:1 ;
+.proFlex {
+    flex: 1;
     /* display: flex; */
     margin: 20px;
-  
+
 }
-.proinbox{
+
+.proinbox {
     border: 1px solid black;
     border-radius: 10px;
     /* margin: 20px; */
     align-self: center;
     height: 300px;
     display: flex;
-       
+
 }
 
-#container{
+#container {
     --bs-gutter-x: 1.5rem !important;
     --bs-gutter-y: 0 !important;
     width: 100% !important;
@@ -60,71 +71,88 @@ body{
 
 
 
-.proSpan{
+.proSpan {
     font-size: 45px;
-    flex:1 ;
-    margin: 0 20px;  
+    flex: 1;
+    margin: 0 20px;
     padding: 20% 0;
     align-self: center;
 }
 
-.proimg{
-    flex:1 ;
+.proimg {
+    flex: 1;
     width: 50%;
 }
 
 
-#activity{
-    text-align: center;
-    width: 100%;
+#activity {
+    /* text-align: center; */
+    width: 50%;
+    margin: auto;
+    line-height: 80px;
+
 }
 
-#activity p{
+#activity p {
     text-align: center;
-    font-size: 45px;
- }
- #activity ol{
-    text-align: center;
+    font-size: 50px;
+    margin-bottom: 60px;
+}
+
+#activity ol {
+    /* text-align: center; */
     font-size: 40px;
- }
- #divmap{
-    text-align: center;
- }
+}
 
- #imap{
+#divmap {
     text-align: center;
-    width:800px ;
-    height:500px;
-    border:0;
- }
+}
 
- #weatb{
-    width: 100%;  
+#imap {
+    text-align: center;
+    width: 800px;
+    height: 500px;
+    border: 0;
+}
+
+#weatb {
+    width: 100%;
     border-collapse: collapse;
-    margin-top: 50px; 
-    
- }
- #thd{
+    margin-top: 50px;
+
+}
+
+#thd {
     font-size: 46px;
- }
- #weatb tr{
+}
+
+#weatb tr {
     margin: 10px;
     padding: 20px;
- }
- #weatb td{
+}
+
+#weatb td {
     text-align: center;
     margin: 10px;
     padding: 20px;
     font-size: 40px;
     border: 2px solid black;
 }
-.weasel{
+
+.weasel {
     width: 200px;
     height: 60px;
-    font-size: 50px;
-    margin:100px 20px 20px 50px;
+    font-size: 40px;
+    margin: 100px 20px 20px 50px;
 }
-#weath{
+
+
+
+#weath {
     width: 90%;
-    margin:20px  auto    200px auto;
+    margin: 20px auto 200px auto;
+}
+
+#weath>span {
+    font-size: 40px;
 }
