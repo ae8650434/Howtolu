@@ -114,7 +114,7 @@ class Navigation extends Component {
             this.states.mem.data.userdata.m_img=a
             
             this.setState(newStates.mem)
-            console.log(this.states.mem.data.userdata)
+        
         }
 
 
@@ -122,7 +122,6 @@ class Navigation extends Component {
         var result=await axios.get("http://localhost:8000/cart")      
             this.states.car= result.data.filter((x)=>x.tel==sessionStorage.getItem('account'))
              var  navcartnum=document.getElementById("navcartnum")
-             console.log(this.states.car)
              this.setState(this.states.car)
              if(this.states.car.length>=1){
                 navcartnum.style.visibility="visible";
