@@ -24,7 +24,7 @@ class Google extends Component {
 
     render() {
         const { googleSheet } = this.state;
-        console.log( this.state.googleSheet[0][1])
+        console.log( this.state.googleSheet[0])
         return (
             <React.Fragment>
 
