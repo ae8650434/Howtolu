@@ -31,23 +31,23 @@ class Google extends Component {
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
 
-                        {googleSheet.map((google) => (
+                        {/* {googleSheet.map((google) => (
                             <div key={google.id}>
 
                                 <img id={cartstyle["imgw"]} src={`/image/${google}`} alt="" />
-                                {/* {console.log(`/image${google}`)} */}
+                                {console.log(`/image${google}`)}
                                 <div id={cartstyle['shopping3']}>
-                                    <span style={{ fontSize: 40 }}>{}</span>
+                                    <span style={{ fontSize: 40 }}>{google}</span>
                                     <br /><br /><br /><br />
-                                    {/* {rentStartDate && rentEndDate && ( */}
+                                    {rentStartDate && rentEndDate && (
                                         <div>
-                                            <span><p id={cartstyle["dateSize"]}>可租借天數:{} ～ {} 共3日</p></span>
+                                            <span><p id={cartstyle["dateSize"]}>可租借天數:{rentStartDate} ～ {rentEndDate} 共3日</p></span>
                                         </div>
-                                  {/* }) */}
+                                    )}
                                     <p></p>
                                     <div id={cartstyle['disFlex']}>
-                                        <p id={cartstyle["moneySize"]}>金額:{['']}</p>
-                                        <input id={cartstyle["numberstyle"]} type="number" min={1} value={['']} />
+                                        <p id={cartstyle["moneySize"]}>金額:{google['']}</p>
+                                        <input id={cartstyle["numberstyle"]} type="number" min={1} value={google['']} />
                                         <button id={cartstyle["butRubbish"]} onClick='del'>
                                             <img id={cartstyle["imgRubbish"]} src="/image/Rubbish.png" alt="" />
                                         </button>
@@ -55,7 +55,7 @@ class Google extends Component {
                                 </div>
 
                             </div>
-                        ))}
+                        ))} */}
 
                     </div>
                 </div>
