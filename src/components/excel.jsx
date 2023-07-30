@@ -3,13 +3,15 @@ import * as XLSX from 'xlsx';
 import cartstyle from '../css/cart.module.css';
 import axios from 'axios';
 import CalendarExcel from './CalendarExcel.jsx';
+import Process1 from './Process1.jsx';
 
 class Excel extends Component {
     state = {
         items: [],
         excelList: [],
         rentalStartDate: null,
-        rentalEndDate: null
+        rentalEndDate: null,
+        totalPrice: 0
     }
 
     readExcel = (file) => {
@@ -34,7 +36,15 @@ class Excel extends Component {
         promise.then((d) => {
             const noItems1 = d.filter((row) => row['數量(填入數字即可)'] !== undefined);
             this.setState({ items: noItems1 });
-        });
+
+            let totalPrice = 0;
+            noItems1.forEach((row) => {
+                totalPrice  += parseFloat(row['金額']) * parseFloat(row['數量(填入數字即可)'])
+            });
+            this.setState({items: noItems1, totalPrice});
+        }).catch((error)=>{
+            console.error('Excel:', error);
+        })
     };
 
     excelDate = (startDate, endDate) => {
@@ -44,30 +54,11 @@ class Excel extends Component {
         });
     }
 
-    totalMoney = () => {
-        const { items } = this.state
-        let total = 0
-        // console.log('prop',this.props)
-        // console.log('cartList',cartList)
-        items.forEach(item => {
-            // console.log('item', item)
-            if (item.p_price) {
-                total += item.p_price * item.quantity;
-            } else if (item.f_price) {
-                total += item.f_price * item.quantity;
-            }
-        })
-        console.log('total', total)
-        return total
-    }
-
-    updateCart = (updatedProductList) => {
-        this.setState({ cartList: updatedProductList });
-    };
+    
 
     render() {
-        const { items, excelList, rentStartDate, rentEndDate } = this.state;
-        const totalPrice = this.totalMoney()
+        const { items, excelList, rentStartDate, rentEndDate, totalPrice  } = this.state;
+
         return (
             <React.Fragment>
                 {/* 上傳檔案 */}
@@ -82,8 +73,11 @@ class Excel extends Component {
                             this.readExcel(file);
                         }}
                     />
-                </div><br /><br /><br />
+                </div>
+                <br /><br /><br />
                 {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} /> : null}
+                <br /><br /><br />
+                {items.length > 0 ? (<Process1 />) : null}
 
                 {/* excel插入後的格式 */}
                 <br /><br /><br /><br /><br />
@@ -114,15 +108,17 @@ class Excel extends Component {
                         ))}
                     </div>
                 </div><br />
+
                 {items.length > 0 ? (
                     <div id={cartstyle['shopping2']}>
-                        <span style={{ fontSize: 40 }}>總計：NT{totalPrice}</span>
+                        <span style={{ fontSize: 40 }}>總計：NT{totalPrice} </span>
                         <button onClick={this.delAll} id={cartstyle['buy']}><a href=''><span style={{ color: 'white' }}>一鍵刪除</span></a></button>
                         <a href="/payment">
                             <button id={cartstyle['buy']}><span>前往結帳</span></button>
                         </a>
                     </div>
                 ) : null}
+<br /><br /><br /><br /><br />
             </React.Fragment>
         );
     }

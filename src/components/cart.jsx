@@ -53,7 +53,7 @@ class Cart extends Component {
 
     render() {
         const { cartList } = this.state;
-        const totalPrice = this.totalMoney()
+        const totalPrice = this.totalMoney();
         return (
             <React.Fragment>
                 <Excel />
