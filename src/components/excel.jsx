@@ -74,13 +74,12 @@ class Excel extends Component {
                         }}
                     />
                 </div>
-                <br /><br /><br />
+                {/* <br /><br /> */}
                 {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} /> : null}
-                <br /><br /><br />
+                {/* <br /><br /> */}
                 {items.length > 0 ? (<Process1 />) : null}
-
                 {/* excel插入後的格式 */}
-                <br /><br /><br /><br /><br />
+                <br /><br />
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
                         {items.map((row, index) => (
