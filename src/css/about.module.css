@@ -39,8 +39,8 @@ body {
     /* justify-items: center; */
     text-decoration-line: none;
     color: #635538;
-
 }
+
 
 .proFlex {
     flex: 1;
@@ -58,6 +58,7 @@ body {
     display: flex;
 
 }
+
 
 #container {
     --bs-gutter-x: 1.5rem !important;
@@ -78,6 +79,7 @@ body {
     padding: 20% 0;
     align-self: center;
 }
+
 
 .proimg {
     flex: 1;
@@ -156,3 +158,9 @@ body {
 #weath>span {
     font-size: 40px;
 }
+
+.weaicontd {
+    width: 190px;
+    height: 200px;
+}
+

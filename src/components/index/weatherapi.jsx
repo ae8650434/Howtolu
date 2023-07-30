@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import weastyle from '../../css/about.module.css'
+import  '../../css/weatherapianimation.css'
 
 
 
@@ -12,7 +13,7 @@ class Weather extends Component {
                 locations: [{
                     location: [
                         {
-                            locationName: "",
+                            locationName: null,
                             weatherElement: [{},
                             {
                                 time: [
@@ -42,17 +43,7 @@ class Weather extends Component {
         },
         date: [{ startTime: {} }],
         sel: 0,
-        icon:[
-            {day_clear:[1]},
-            {day_cloudy_fog:[25, 26, 27, 28]},
-            {day_cloudy:[2, 3, 4, 5, 6, 7]},
-            {day_fog:[24]},
-            {day_partially_clear_with_rain:[8, 9, 10, 11, 12,
-                13, 14, 19, 20, 29, 30,
-                31, 32, 38, 39]},
-            {day_snowing:[23, 37, 42]},
-            {day_thunderstorm:[15, 16, 17, 18, 21, 22, 33, 34, 35, 36, 41]}
-        ]
+        
     }
 
 
@@ -109,34 +100,34 @@ class Weather extends Component {
                                 if (this.state.data.records.locations[0].location[0].weatherElement[1].time.length > 14) {
                                     if (index % 2 == 1) {
                                         if(wicon==1){
-                                            return <td>{<img src='image/day_clear.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_clear.png'  className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=2 && wicon<=7){
-                                            return <td>{<img src='image/day_cloudy.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_cloudy.png'  className="weaicontd wclear wclear wclear"/>}</td>
                                         }else if(wicon>=8 && wicon<=14 && wicon==19 && wicon==20 && wicon>=29 && wicon<=32 && wicon==38 &&wicon==39){
-                                            return <td>{<img src='image/day_partially_clear_with_rain.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_partially_clear_with_rain.png' />}</td>
                                         }else if(wicon==23 && wicon==37 && wicon==42){
-                                            return <td>{<img src='image/day_snowing' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_snowing' className="weaicontd wclear wclear wclear"/>}</td>
                                         }else if(wicon>=25 && wicon<=28 ){
-                                            return <td>{<img src='image/day_cloudy_fog.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_cloudy_fog.png'  className="weaicontd wclear wclear wclear"/>}</td>
                                         }else{
-                                            return <td>{<img src='image/day_thunderstorm.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_thunderstorm.png'  className="weaicontd  wclear wclear wclear"/>}</td>
                                         }
                                         }
 
                                 } else {
                                     if (index % 2 == 0) {
                                         if(wicon==1){
-                                            return <td>{<img src='image/day_clear.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_clear.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=2 && wicon<=7){
-                                            return <td>{<img src='image/day_cloudy.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_cloudy.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=8 && wicon<=14 && wicon==19 && wicon==20 && wicon>=29 && wicon<=32 && wicon==38 &&wicon==39){
-                                            return <td>{<img src='image/day_partially_clear_with_rain.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_partially_clear_with_rain.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon==23 && wicon==37 && wicon==42){
-                                            return <td>{<img src='image/day_snowing' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_snowing' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=25 && wicon<=28 ){
-                                            return <td>{<img src='image/day_cloudy_fog.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_cloudy_fog.png' className="weaicontd wclear"/>}</td>
                                         }else{
-                                            return <td>{<img src='image/day_thunderstorm.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/day_thunderstorm.png'  className='weaicontd wclear'/>}</td>
                                         }
                                     }
                                 }
@@ -165,21 +156,21 @@ class Weather extends Component {
                         {
                             this.state.data.records.locations[0].location[this.state.sel].weatherElement[6].time.map((datetime, index) => {
                                 var wicon=parseInt( datetime.elementValue[1].value)
-                                console.log(parseInt( datetime.elementValue[1].value))
+                                // console.log(parseInt( datetime.elementValue[1].value))
                                 if (this.state.data.records.locations[0].location[0].weatherElement[1].time.length > 14) {
                                     if (index != 0 && index % 2 == 0) {
                                         if(wicon==1){
-                                            return <td>{<img src='image/night_clear.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_clear.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=2 && wicon<=7){
-                                            return <td>{<img src='image/night_cloudy.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_cloudy.png' className="weaicontd wclear wclear"/>}</td>
                                         }else if(wicon>=8 && wicon<=14 && wicon==19 && wicon==20 && wicon>=29 && wicon<=32 && wicon==38 &&wicon==39){
-                                            return <td>{<img src='image/night_partially_clear_with_rain.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_partially_clear_with_rain.png' className="weaicontd wclear wclear"/>}</td>
                                         }else if(wicon==23 && wicon==37 && wicon==42){
-                                            return <td>{<img src='image/night_snowing' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_snowing' className="weaicontd wclear wclear"/>}</td>
                                         }else if(wicon>=25 && wicon<=28 ){
-                                            return <td>{<img src='image/night_cloudy_fog.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_cloudy_fog.png' className="weaicontd wclear wclear"/>}</td>
                                         }else{
-                                            return <td>{<img src='image/night_thunderstorm.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_thunderstorm.png' className="weaicontd thunderstorm wclear wclear"/>}</td>
                                         }
                                     }
 
@@ -187,17 +178,17 @@ class Weather extends Component {
                                     if (index != 0 && index % 2 == 1) {
                                        
                                         if(wicon==1){
-                                            return <td>{<img src='image/night_clear.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_clear.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=2 && wicon<=7){
-                                            return <td>{<img src='image/night_cloudy.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_cloudy.png' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=8 && wicon<=14 && wicon==19 && wicon==20 && wicon>=29 && wicon<=32 && wicon==38 &&wicon==39){
-                                            return <td>{<img src='image/night_partially_clear_with_rain.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_partially_clear_with_rain.png' className="weaicontd  wclear"/>}</td>
                                         }else if(wicon==23 && wicon==37 && wicon==42){
-                                            return <td>{<img src='image/night_snowing' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_snowing' className="weaicontd wclear"/>}</td>
                                         }else if(wicon>=25 && wicon<=28 ){
-                                            return <td>{<img src='image/night_cloudy_fog.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_cloudy_fog.png' className="weaicontd wclear"/>}</td>
                                         }else{
-                                            return <td>{<img src='image/night_thunderstorm.png' />}</td>
+                                            return <td className={weastyle.weaicontd}>{<img src='image/night_thunderstorm.png' className="weaicontd wclear"/>}</td>
                                         }
                                     }
                                 }
@@ -238,7 +229,7 @@ class Weather extends Component {
         // console.log("das",newState.date)
         this.state = newState;
         this.setState(this.state);
-        console.log(this.state)
+        // console.log(this.state)
     }
     cityChange = () => {
         var city = document.getElementById("selectWt").selectedIndex

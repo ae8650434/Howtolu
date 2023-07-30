@@ -9,7 +9,7 @@ const readGoogleSheet = () => {
 
 class Google extends Component {
     state = {
-        googleSheet: []
+        googleSheet: [{1:null},]
     };
 
     componentDidMount() {
@@ -24,6 +24,7 @@ class Google extends Component {
 
     render() {
         const { googleSheet } = this.state;
+        console.log( this.state.googleSheet[0][1])
         return (
             <React.Fragment>
 
