@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import '../css/calendar.css';
 import Calendar from 'react-calendar';
+import axios from 'axios';
 
 class CalendarExcel extends Component {
-    state = {}
+    state = {
+        items: []
+    }
 
     styleSize = {
         fontSize: 30
@@ -23,6 +26,9 @@ class CalendarExcel extends Component {
             minDate: minDate,
             selectedDate: null,
             datepicker: false,
+            items: props.items,
+            rentStartDate: props.rentStartDate,
+            rentEndDate: props.rentEndDate
         };
     }
 
@@ -37,7 +43,7 @@ class CalendarExcel extends Component {
         return day !== 2 && day !== 5;
     };
 
-    onClickDay = date => {
+    onClickDay = async date => {
         this.setState({
             selectedDate: date,
             datepicker: false,
@@ -45,9 +51,33 @@ class CalendarExcel extends Component {
         const startDate = new Date(date);
         const endDate = new Date(date);
         endDate.setDate(endDate.getDate() + 2);
+        // console.log('111',endDate)
         const excelStartDate = this.formatDateString(startDate);
         const excelEndDate = this.formatDateString(endDate);
+        // console.log('111',excelStartDate)
+        // console.log('222',excelEndDate)
         this.props.onSelectDateRange(excelStartDate, excelEndDate);
+        var response = await axios.get('http://localhost:8000/excel1',
+            {
+                params:
+                {
+                    mid: sessionStorage.getItem('account'),
+                    items: this.state.items,
+                    excelStartDate: excelStartDate,
+                    excelEndDate: excelEndDate
+                }
+            }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        },
+        );
+        if(response.status === 200){
+            window.location.href = 'http://localhost:3000/cart'
+            console.log('你好')
+        }
+        console.log("看看123:", this.state)
+
     };
 
     formatDateString = date => {
