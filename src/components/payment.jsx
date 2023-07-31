@@ -367,22 +367,21 @@ class Payment extends Component {
             this.state.months &&
             this.state.cvv
         ) {
+
             var bee = this.state.cartMid.filter((x) => x.fid === null)
-            const formattedUseDate = this.formDate(bee[0].use_date.slice(0, 10));
-            const formattedReturnDate = this.formDate(bee[0].return_date.slice(0, 10));
             var today = new Date();
             var year = today.getFullYear()
             var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
             var day = ((today.getDate())).toString().padStart(2, '0');
             // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
-            // console.log("bee", typeof mids);
+            console.log("bee", bee);
             var todayMid = `${year}` + month + day
             // console.log("日期", month);
             var neworder = {
                 mid: this.state.cartMid[0].mid,
                 order_number: todayMid,
-                use_date: formattedUseDate,
-                return_date: formattedReturnDate,
+                use_date: this.formDate(bee[0].use_date, 0), 
+                return_date: this.formDate(bee[0].return_date, 0),
                 // use_date: bee[0].use_date.slice(0, 10),
                 // return_date: bee[0].return_date.slice(0, 10),
                 price: document.getElementById('total').textContent,
