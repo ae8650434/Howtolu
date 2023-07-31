@@ -380,8 +380,8 @@ class Payment extends Component {
             var neworder = {
                 mid: this.state.cartMid[0].mid,
                 order_number: todayMid,
-                use_date: this.formDate(bee[0].use_date, 0), 
-                return_date: this.formDate(bee[0].return_date, 0),
+                use_date: this.formDate(bee[0].use_date, -1), 
+                return_date: this.formDate(bee[0].return_date, -1),
                 // use_date: bee[0].use_date.slice(0, 10),
                 // return_date: bee[0].return_date.slice(0, 10),
                 price: document.getElementById('total').textContent,
