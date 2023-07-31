@@ -22,7 +22,7 @@ class slotbtn extends Component {
                             </div>
                         </div>
                     </div>
-                    <button className="slotbtn" onClick={this.slot}>GO</button>
+                    <button style={{display:"inline-block"}} id="slotbtn" className="slotbtn" onClick={this.slot}>GO</button>
                 </div>
 
             </>
@@ -33,7 +33,8 @@ class slotbtn extends Component {
         console.log(this.state.i)
         var newState = { ...this.state }
         var num = newState.i
-
+       document.getElementById("slotbtn").style.display="none"
+        
         if (document.getElementById(`result0`)) {
             document.getElementById(`result0`).classList.add(`isplay${num}`);
             document.getElementById(`result0`).style.transform =`translateY(${num * 100}%)`;
@@ -93,7 +94,7 @@ class slotbtn extends Component {
                 document.getElementById(`result2`).classList.remove('isplay0');
                 document.getElementById(`result2`).style.transform = `translateY(${0}%)`;
             }
-
+            document.getElementById("slotbtn").style.display="block"
 
         }, 4100
 
