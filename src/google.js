@@ -4,7 +4,7 @@ function App() {
 
   const readGoogleSheet = () => {
 
-    fetch('https://sheetdb.io/api/v1/5rctxpm3syzj9')
+    fetch('https://sheet2api.com/v1/qtrYQuBZSjuv/googlehowto')
       .then((response) => response.json())
       .then((data) => console.log(data));
 
