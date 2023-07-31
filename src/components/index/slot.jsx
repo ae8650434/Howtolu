@@ -10,7 +10,7 @@ class slot extends Component {
            
                           {           
                     this.state.slotimg.map((x,index)=>(
-                    <img  src={`/image/${x}`} className={`slotimg slotimgpos${index}   ${this.props.className}` }/> 
+                    <img  src={`/image/${x}`} style={{top:-(index*600)}} className={`slotimg slotimgpos${index}   ${this.props.className}` }/> 
                     ))   
                     }
                

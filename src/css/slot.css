@@ -1,17 +1,41 @@
 .slotoutdiv{
      overflow:hidden;
+     height: 800px;
+     background-color:#D4C19F ;
+     
+    }
+    .slotdiv{
   
-}
-.slotdiv{
     width: 400px;
     height: 600px;
     position: relative;
-    box-sizing: border-box;
-   
-    
+    box-sizing: border-box;  
+     
 }
 
+.slotbtn{
+  position: absolute;
+  right: 10%;
+  top :50%;
+  width: 150px;
+  height: 150px;
+  clip-path: circle(50% at 50% 50%);
+  color: #FFFFFF;
+  background-color: #5E9B44;
+  font-size:50px ;
+  border: none;
+  
+}
 
+.slotborder{
+  position: relative;
+  left:300px ;
+  bottom:  10px;
+  width: 1200px;
+  overflow:hidden;
+border-radius: 20px ;
+margin-top: 100px;
+}
 
 .slotimg{
     object-fit:cover;
@@ -19,7 +43,7 @@
     box-sizing: border-box;
     height: 600px;
     width: 1200px;
-    left: 300px;
+    
     overflow:hidden;
 }
 .slotimg1{
@@ -35,54 +59,56 @@
     clip: rect(0, 1200px, 600px, 800px);
    
 }
-
-.slotimgpos0{
-    top:0px
+.isplayleft{
+   animation-timing-function:linear;
+    animation-duration:1s;
 }
-.slotimgpos1{
-    top:-600px
+.isplaymid{
+  animation-timing-function:linear;
+  animation-duration:3s;
 }
-.slotimgpos2{
-    top:-1200px
-}
-.slotimgpos3{
-    top:-1800px
-}
-.slotimgpos4{
-    top:-2400px
-}
-.slotimgpos5{
-    top:-3000px
-}
-.slotimgpos6{
-    top:-3600px
-}
-.slotimgpos7{
-    top:-4200px
-}
-.slotimgpos8{
-    top:-4800px
-}
-.slotimgpos9{
-    top:-5400px
+.isplayright{
+  animation-timing-function:linear;
+  animation-duration:4s;
 }
 
-.isplay0 {
-    animation: resultPlay 1s  linear;
+
+
+.isplay0 { 
+    animation-name:resultPlay0  ;
   }
 .isplay1 {
-    animation: resultPlay 2s  linear;
+  animation-name:resultPlay1  ;
   }
 .isplay2 {
-    animation: resultPlay 4s  linear;
+  animation-name:resultPlay2  ;
   }
+
 
 
 
   
-  @keyframes resultPlay {
+  @keyframes resultPlay0 {
     100% {
       transform: translateY(300%)
+    }
+  }
+
+ 
+  @keyframes resultPlay1 {
+    50% {
+      transform: translateY(300%)
+    }
+    100% {
+      transform: translateY(400%)
+    }
+  }
+  @keyframes resultPlay2 {
+    30% {
+      transform: translateY(300%)
+    }
+    100% {
+      transform: translateY(500%)
     }
   }
  
