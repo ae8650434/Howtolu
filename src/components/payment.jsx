@@ -27,32 +27,35 @@ class Payment extends Component {
     // 日期尾數去除
     formDate = (dateStr, addDay = 0) => {
         if (!dateStr) return '';
-      
+
         const date = new Date(dateStr);
         date.setDate(date.getDate() + addDay);
-      
+
         let year = date.getFullYear();
         let month = date.getMonth() + 1;
-        let day = date.getDate()+1;
-    
-        if (day > 31) {
-          month += Math.floor(day / 31);
-          day = day % 31;
+        let day = date.getDate() + 1;
+
+        const lastDayOfMonth = new Date(year, month, 0).getDate();
+
+        if (day > lastDayOfMonth) {
+            month += Math.floor(day / lastDayOfMonth);
+            day = day % lastDayOfMonth;
         }
-      
-       
+
         if (month > 12) {
-          year += Math.floor(month / 12);
-          month = month % 12;
+            year += Math.floor(month / 12);
+            month = month % 12;
         }
-      
+
         const formattedMonth = String(month).padStart(2, '0');
         const formattedDay = String(day).padStart(2, '0');
-      
+
         const formDate = `${year}-${formattedMonth}-${formattedDay}`;
         return formDate;
-      };
-      
+    };
+
+
+
 
     render() {
         const { displayOrderList, dataIndex, paym, inputValues, months, years, cvv,
@@ -83,7 +86,7 @@ class Payment extends Component {
                             // 將小計加到總計中
                             const subTotal = (data.p_price * data.quantity) ? (data.p_price * data.quantity) : (data.f_price * data.quantity);
                             totalSum += subTotal;
-            
+
                             return (<div key={index}>
                                 <table className={styles.detailsTable}>
                                     <tr >
@@ -288,7 +291,7 @@ class Payment extends Component {
 
     // 關閉彈窗
     closeSuccessModal = () => {
-        this.setState({ registerSuccess: false});
+        this.setState({ registerSuccess: false });
         window.location.href = '/'
     };
 
@@ -364,20 +367,23 @@ class Payment extends Component {
             this.state.months &&
             this.state.cvv
         ) {
+
             var bee = this.state.cartMid.filter((x) => x.fid === null)
             var today = new Date();
             var year = today.getFullYear()
             var month = ((today.getMonth() + 1)).toString().padStart(2, '0');
             var day = ((today.getDate())).toString().padStart(2, '0');
             // var mids = this.state.cartMid[0].mid.toString().padStart(3, '0')
-            // console.log("bee", typeof mids);
+            console.log("bee", bee);
             var todayMid = `${year}` + month + day
             // console.log("日期", month);
             var neworder = {
                 mid: this.state.cartMid[0].mid,
                 order_number: todayMid,
-                use_date: bee[0].use_date.slice(0, 10),
-                return_date: bee[0].return_date.slice(0, 10),
+                use_date: this.formDate(bee[0].use_date, -1), 
+                return_date: this.formDate(bee[0].return_date, -1),
+                // use_date: bee[0].use_date.slice(0, 10),
+                // return_date: bee[0].return_date.slice(0, 10),
                 price: document.getElementById('total').textContent,
 
             }
@@ -432,11 +438,11 @@ class Payment extends Component {
 
                     // 更新庫存數量
                     const updates = await axios.put(
-                       "http://localhost:8000/payment_update",
-                       
+                        "http://localhost:8000/payment_update",
+
                         {
                             cartMid: this.state.cartMid,
-                           
+
                         },
                         {
                             headers: {

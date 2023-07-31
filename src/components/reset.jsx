@@ -98,6 +98,7 @@ class Reset extends Component {
         this.setState(newState)
         console.log('3333',newState)
         console.log('成功')
+        alert('信件發送成功！')
       } else {
         // console.error(response.data);
       }
