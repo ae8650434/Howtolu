@@ -30,7 +30,7 @@ var insertmall =
 var nopassword =
   "UPDATE member SET mail = ?, name = ?, gender = ?, address = ?, m_img = ? WHERE mid = ?";
 var noimage =
-  "UPDATE member SET mail = ?, name = ?, gender = ?, address = ?, m_img = ? WHERE mid = ?";
+  "UPDATE member SET  password = ? , mail = ?, name = ?, gender = ?, address = ?, m_img = ? WHERE mid = ?";
 // 定义 multer 存储配置
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

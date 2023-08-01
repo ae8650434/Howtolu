@@ -75,14 +75,24 @@ class Excel extends Component {
                     />
                 </div>
                 <br /><br />
-                {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} /> : null}
-                <br /><br />
+                
+                {items.length > 0 ? <CalendarExcel onSelectDateRange={this.excelDate} 
+                items={items} 
+                rentStartDate={rentStartDate}
+                rentEndDate={rentEndDate}
+                 /> : null}    
+
+                <br />
                 {items.length > 0 ? (<Process1 />) : null}
 
                 {/* excel插入後的格式 */}
-                <br /><br /><br /><br />
+                <br /><br />
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
+                        {/* {console.log('我要:',items)}
+                        {console.log('我要1:',rentStartDate)}
+                        {console.log('我要2:',rentEndDate)} */}
+                    
                         {items.map((row, index) => (
                             <div key={index}>
                                 <img id={cartstyle["imgw"]} src={`/image/${row['圖片']}`} alt="" />
@@ -118,7 +128,7 @@ class Excel extends Component {
                         </a>
                     </div>
                 ) : null}
-
+<br /><br /><br /><br />
             </React.Fragment>
         );
     }

@@ -8,7 +8,7 @@ class Rules extends Component {
 
             <div className={styles.all}>
                 <br /><br /><br />
-                <p className={styles.title}>租借規範</p>
+                <p className={styles.title}>租借規範</p><br />
                 <hr style={{border: '2px solid black'}}/>
                 <br /><br /><br />
                 <div className={styles.second_all}>

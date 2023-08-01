@@ -19,6 +19,7 @@ var order = require('./order.js')
 var add_to_cart = require('./add_to_car.js')
 var download_history_order = require ('./download_history_order.js')
 var payment_update=require('./payment_update.js')
+var excel1=require('./excel1.js')
 
 var cors = require("cors");
 var payment = require('./payment.js');
@@ -45,6 +46,7 @@ app.use('/mid',food_insert);
 app.use('/order', order)
 app.use('/add_to_cart', add_to_cart)
 app.use('/payment_update',payment_update)
+app.use('/excel1',excel1)
 
 app.use('/download_excel', download_history_order)
 app.use('/toorder',payment);
