@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import cartstyle from '../css/cart.module.css';
+// import React, { Component } from "react";
+// import cartstyle from '../css/cart.module.css';
 
-const readGoogleSheet = () => {
-    return fetch('https://sheet2api.com/v1/qtrYQuBZSjuv/googlehowto')
-        .then((response) => response.json())
-        .then((googleSheet) => googleSheet);
-}
+// const readGoogleSheet = () => {
+//     return fetch('https://sheet2api.com/v1/qtrYQuBZSjuv/googlehowto')
+//         .then((response) => response.json())
+//         .then((googleSheet) => googleSheet);
+// }
 
-class Google extends Component {
-    state = {
-        googleSheet: [{ 1: null },]
-    };
+// class Google extends Component {
+//     state = {
+//         googleSheet: [{ 1: null },]
+//     };
 
-    componentDidMount() {
-        readGoogleSheet()
-            .then((googleSheet) => {
-                this.setState({ googleSheet });
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-    }
+//     componentDidMount() {
+//         readGoogleSheet()
+//             .then((googleSheet) => {
+//                 this.setState({ googleSheet });
+//             })
+//             .catch((error) => {
+//                 console.error("Error fetching data:", error);
+//             });
+//     }
 
-    render() {
-        const { googleSheet } = this.state;
-        console.log(this.state.googleSheet[0])
-        return (
-            <React.Fragment>
+//     render() {
+//         const { googleSheet } = this.state;
+//         console.log(this.state.googleSheet[0])
+//         return (
+//             <React.Fragment>
                         {/* <iframe src="https://sheet2api.com/table/qtrYQuBZSjuv/googlehowto/%25E8%25A1%25A8%25E5%2596%25AE%25E5%259B%259E%25E6%2587%2589%25204"
                             frameborder="0"
                             style={{width:1300, height: 700}}></iframe> */}
@@ -67,7 +67,7 @@ class Google extends Component {
                                             <span><p id={cartstyle["dateSize"]}>可租借天數:{rentStartDate} ～ {rentEndDate} 共3日</p></span>
                                         </div>
                                     )} */}
-                                <p></p>
+                                {/* <p></p> */}
                                 {/* <div id={cartstyle['disFlex']}>
                                         <p id={cartstyle["moneySize"]}>金額:{google['']}</p>
                                         <input id={cartstyle["numberstyle"]} type="number" min={1} value={google['']} />
@@ -83,9 +83,9 @@ class Google extends Component {
                     </div>
                 </div> */}
 
-            </React.Fragment>
-        );
-    }
-}
+//             </React.Fragment>
+//         );
+//     }
+// }
 
-export default Google;
+// export default Google;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cartstyle from '../css/cart.module.css';
 import Excel from './excel.jsx';
-import Google from './google.jsx';
+
 import Process1 from './Process1.jsx';
 import CartFood from './cartfood.jsx';
 import CartProduct from './cartproduct.jsx';
@@ -62,7 +62,7 @@ class Cart extends Component {
                 <br /><br /><br />
                 <div id={cartstyle['shopping']}>
                     <div id={cartstyle['null']}>
-                        <Google />
+                       
                         <CartProduct
                             cartProductList={cartList.filter(item => item.pid == null)}
                             updateQuantity={this.updateQuantity}

@@ -38,8 +38,7 @@ class Navigation extends Component {
                             <ul>
                                 <a href="/cart"><li className={navstyle.conli}>表單上傳</li></a>
                                 <li className={navstyle.conli}>表單填寫
-                                    <ul id={navstyle['a']}>
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBpC90D4LAPmwi5iGMOShmuA6D1Lj0IvsvNUr7HUmzzhWzrQ/viewform"><li >Google表單</li></a>
+                                    <ul id={navstyle['a']}>                                 
                                         <a href="/excel/HowTo露.xlsx" download><li >Excel表單下載</li></a>
 
                                     </ul>
