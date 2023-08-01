@@ -26,7 +26,8 @@ class Info extends Component {
             errors: {
                 password: '',
                 mail: ''
-            }
+            },
+            handleOK:false
 
         }
     }
@@ -236,7 +237,7 @@ class Info extends Component {
                                     <p>HowTo露</p>
                                 </div>
                                 <div id={styles["div2"]}>
-                                    <h1>商品已加入購物車</h1>
+                                    <h1>修改成功</h1>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +255,6 @@ class Info extends Component {
     // 關閉 已加入購物 彈窗
     handleCloseOK = () => {
         this.setState({ handleOK: false });
-        const { historys } = this.props;
         window.location.href = 'http://localhost:3000/info';
     }
 
@@ -342,12 +342,17 @@ class Info extends Component {
                 }
 
             )
-
+            console.log('OK2',response)
             if (response.status === 200) {
                 // 响应状态码为200，表示成功
                 // 在此处处理成功响应的逻辑
-                
-                console.log('OK')
+                alert('修改成功')
+                // this.setState({ handleOK: true })
+                // console.log('OK',this.state.handleOK)
+                // setTimeout(()=> {
+                //     
+                    
+                // },30000)
                 // alert('註冊成功')
             } else {
                 // 其他状态码处理
