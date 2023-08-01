@@ -237,6 +237,7 @@ app.post("/member", upload.single("m_img"), (req, res) => {
               } else {
                 console.log("5", result);
                 if (checkFileExists(imagePath, imageBuffer, user)) {
+                  console.log('ok')
                   return res.status(200).send("更新成功");
                 }
               }

@@ -26,7 +26,8 @@ class Info extends Component {
             errors: {
                 password: '',
                 mail: ''
-            }
+            },
+            handleOK:false
 
         }
     }
@@ -79,7 +80,7 @@ class Info extends Component {
 
 
     render() {
-        const { errors, registerSuccess, opacity } = this.state
+        const { errors, registerSuccess, opacity, handleOK } = this.state
 
 
         return (
@@ -227,33 +228,21 @@ class Info extends Component {
                     </div>
                 </form>
                 <br /><br /><br /><br />
-                <Modal
-                    isOpen={registerSuccess}
-                    onRequestClose={this.closeSuccessModal}
-                    className={styles.modal}
-                    overlayClassName={styles.overlay}
-                >
-                    <div className={styles.content2}>
-                        <svg width="300" height="300">
-                            <circle
-                                fill="none"
-                                stroke="#68E534"
-                                strokeWidth="8"
-                                cx="140" cy="140" r="120"
-                                className={styles.circle}
-                            />
-                            <polyline
-                                fill="none"
-                                stroke="#68E534"
-                                strokeWidth="8"
-                                points="80,150 140,220 220,75"
-                                className={styles.tick}
-                            />
-                        </svg>
-                        <p className={styles.h2}>修改成功</p>
-                        <button onClick={this.closeSuccessModal} className={styles.open_button}>關閉</button>
-                    </div>
-                </Modal>
+                {handleOK &&
+                    <React.Fragment>
+                        <div id={styles["background"]}>
+                            <div id={styles["div1"]} className={styles.content}>
+                                <div id={styles["close"]}>
+                                    <span id={styles["close-button"]} onClick={this.handleCloseOK}>×</span>
+                                    <p>HowTo露</p>
+                                </div>
+                                <div id={styles["div2"]}>
+                                    <h1>修改成功</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
             </div>
         );
     }
@@ -263,11 +252,13 @@ class Info extends Component {
         window.location.href = '/';
     }
 
-    // 關閉彈窗
-    closeSuccessModal = () => {
-        this.setState({ registerSuccess: false });
-    };
+    // 關閉 已加入購物 彈窗
+    handleCloseOK = () => {
+        this.setState({ handleOK: false });
+        window.location.href = 'http://localhost:3000/info';
+    }
 
+    
     handleFileChange = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -351,12 +342,17 @@ class Info extends Component {
                 }
 
             )
-
+            console.log('OK2',response)
             if (response.status === 200) {
                 // 响应状态码为200，表示成功
                 // 在此处处理成功响应的逻辑
-                this.setState({ registerSuccess: true }); // 设置注册成功状态为 true
-                console.log('OK')
+                alert('修改成功')
+                // this.setState({ handleOK: true })
+                // console.log('OK',this.state.handleOK)
+                // setTimeout(()=> {
+                //     
+                    
+                // },30000)
                 // alert('註冊成功')
             } else {
                 // 其他状态码处理
